@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Solaris CheatSheet - Software Development and System Administration Notes</title>
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome-4.5.0.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../css/highlight.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+	
+	<script src="../../js/jquery-1.10.2.min.js"></script>
+        <script src="../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../js/highlight.pack.js"></script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../..">Software Development and System Administration Notes</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                    <li >
+                        <a href="../..">Home</a>
+                    </li>
+                    <li >
+                        <a href="../../Git_and_GitHub/">Git and GitHub</a>
+                    </li>
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Linux and Unix <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../File_System/">File System</a>
+</li>
+                            
+<li >
+    <a href="../Files_and_Directories/">Files and Directories</a>
+</li>
+                            
+<li >
+    <a href="../Naming_Services/">Naming Services</a>
+</li>
+                            
+<li >
+    <a href="../SSH_and_SCP_Usage/">SSH and SCP Usage</a>
+</li>
+                            
+<li >
+    <a href="../Setup_an_Apache_Server/">Setup an Apache Server</a>
+</li>
+                            
+<li >
+    <a href="../Slackware/">Slackware</a>
+</li>
+                            
+<li class="active">
+    <a href="./">Solaris CheatSheet</a>
+</li>
+                            
+<li >
+    <a href="../Solaris_Networking/">Solaris Networking</a>
+</li>
+                            
+<li >
+    <a href="../Solaris_Roles/">Solaris Roles</a>
+</li>
+                            
+<li >
+    <a href="../Solaris_SMF/">Solaris SMF</a>
+</li>
+                            
+<li >
+    <a href="../Users_and_Groups/">Users and Groups</a>
+</li>
+                            
+<li >
+    <a href="../Using_FTP/">Using FTP</a>
+</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Miscellaneous <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../../Miscellaneous/Octave_Basics/">Octave Basics</a>
+</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Powershell <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../../Powershell/Installation_for_Linux_Mac/">Installation for Linux Mac</a>
+</li>
+                            
+<li >
+    <a href="../../Powershell/Network_Configuration/">Network Configuration</a>
+</li>
+                            
+<li >
+    <a href="../../Powershell/Windows_Firewall/">Windows Firewall</a>
+</li>
+                            
+<li >
+    <a href="../../Powershell/Windows_Server_2012R2_Installation/">Windows Server 2012R2 Installation</a>
+</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">WinServer2012 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../../WinServer2012/Basic_Command_Line/">Basic Command Line</a>
+</li>
+                            
+<li >
+    <a href="../../WinServer2012/Server_Roles/">Server Roles</a>
+</li>
+                            
+<li >
+    <a href="../../WinServer2012/Windows_Server/">Windows Server</a>
+</li>
+                        </ul>
+                    </li>
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                    <li >
+                        <a rel="next" href="../Slackware/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../Solaris_Networking/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#solaris-113-cheatsheet">Solaris 11.3 Cheatsheet</a></li>
+        <li class="main "><a href="#useradd">Useradd</a></li>
+        <li class="main "><a href="#usermod">Usermod</a></li>
+        <li class="main "><a href="#userdel">Userdel</a></li>
+        <li class="main "><a href="#getent">Getent</a></li>
+        <li class="main "><a href="#groupadd">Groupadd</a></li>
+        <li class="main "><a href="#rbac">RBAC</a></li>
+        <li class="main "><a href="#solaris-services">Solaris Services</a></li>
+        <li class="main "><a href="#networking">Networking</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="solaris-113-cheatsheet">Solaris 11.3 Cheatsheet</h1>
+<h1 id="useradd">Useradd</h1>
+<ul>
+<li>Administrator requires <strong>User Management Profile</strong></li>
+</ul>
+<pre><code>useradd -m username
+useradd -m [options] username
+
+    -A authorization [,authorization]       # Assigns authorizations to the user
+    -P profile [,profile]                   # Assigns profiles to the user
+    -R role [,role]                         # Assigns roles to the user
+
+    -c comment
+    -d directory                            # Specifies home directory path for the new user.
+    -g group                                # Assigns primary group (GID or name-string)
+    -G group [,group]                       # Assigns secondary/supplementary group(s)
+    -s shell                                # Assigns shell
+    -e expire
+</code></pre>
+
+<ul>
+<li>User information located in <code>/etc/passwd</code>, can be listed with <code>getent passwd</code></li>
+</ul>
+<h1 id="usermod">Usermod</h1>
+<ul>
+<li>Administrator requires <strong>User Security</strong> profile to modify security attributes.</li>
+<li>Requires <strong>User Management</strong> profile to modify the non-security attributes.</li>
+</ul>
+<pre><code>usermod -A [+|-]authorization username      # If no prefix, overwrites authorization; +|- add/removes
+</code></pre>
+
+<h1 id="userdel">Userdel</h1>
+<ul>
+<li>Requires <strong>User Management</strong> profile to delete user's login</li>
+</ul>
+<pre><code>userdel -r username                         # Removes user's home directory from the file system.
+userdel [options] username                  # Removes user but home directory remains.
+</code></pre>
+
+<h1 id="getent">Getent</h1>
+<pre><code>getent passwd
+getent passwd username
+getent group
+getent group groupname
+getent user_attr                            # Displays auths and profile info for all users
+getent user_attr username                   # Displays auths and profiles for username
+getent prof_attr                            # Displays profiles
+getent auth_attr                            # Displays authorizations
+getent exec_attr                            # Displays executable rights
+
+</code></pre>
+
+<h1 id="groupadd">Groupadd</h1>
+<ul>
+<li>Administrator requires <strong>User Management Profile</strong></li>
+</ul>
+<pre><code>groupadd groupname                          # Creates new group &quot;groupname&quot;
+groupadd -U user1[,user2] new_groupname     # Creates new group and adds users to it
+
+    -g gid                                  # Assigns the group id gid for the new group
+
+</code></pre>
+
+<h1 id="rbac">RBAC</h1>
+<ul>
+<li>Roles must be created and assigned to the user before the user can assume the role via <code>su</code></li>
+</ul>
+<pre><code>roleadd -P &quot;User Management&quot; rolename        # Creates a role named rolename with profile &quot;User Management&quot;
+
+    -c comment
+    -e expire
+    -f inactive
+    -g group                                # Primary group
+    -G group[,group...]                     # Secondary group
+    -u UID
+    -A authorization [,authorization]
+    -K key=value
+
+rolemod -K roleauth=user usermx1            # Role authentication uses user password
+rolemod -K roleauth=role usermx1            # Role authentication uses role password
+passwd usermx1                              # Create password for the role
+
+useradd -R usermx1 user1                    # Assigns usermx1 to a new user user1
+usermod -R usermx1 user2                    # Modifies user2 to assign it a role
+
+roledel -r rolename                         # Deletes the role and removes the role's home directory
+</code></pre>
+
+<h1 id="solaris-services">Solaris Services</h1>
+<pre><code>svcs                                        # List services: report service status
+svcs -a                                     # List all services, includes extra disabled services
+
+svcs *dhcp*                                 # Searches for service with &quot;dhcp&quot;
+svcs -v servicename                         # Lists verbose information
+svcs -l servicename                         # Lists detailed information about instances of system/service3
+svcs -p servicename                         # Lists processes
+
+svccfg                                      # Import, export and modify service configurations.
+
+svcadm                                      # Manipulate service instances
+svcadm disable telnet
+svcadm enable ssh
+</code></pre>
+
+<h1 id="networking">Networking</h1>
+<pre><code>ifconfig -a
+ifconfig net0
+ifconfig net0 up
+ifconfig net0 down
+
+ping
+traceroute url
+
+netcfg                                      # Create and modify network configuration profiles
+netcfg&gt; list                                # Lists objects
+netcfg&gt; list ncp Automatic                  # Lists the details for the NCP Automatic
+</code></pre></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>var base_url = '../..';</script>
+        <script data-main="../../mkdocs/js/search.js" src="../../mkdocs/js/require.js"></script>
+        <script src="../../js/base.js"></script><div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

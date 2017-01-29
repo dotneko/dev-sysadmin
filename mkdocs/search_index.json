@@ -1,0 +1,634 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "Software Development \n Server Administration Notes\n\n\nThis is a personal repository of notes, commands and scripts and resources on software development, server administration, and miscellaneous technology tidbits.\nIt is not intended to be a complete reference or guide, but more as a cheatsheet/archive of links to more comprehensive resources that are available on the Internet.", 
+            "title": "Home"
+        }, 
+        {
+            "location": "/#software-development-server-administration-notes", 
+            "text": "This is a personal repository of notes, commands and scripts and resources on software development, server administration, and miscellaneous technology tidbits.\nIt is not intended to be a complete reference or guide, but more as a cheatsheet/archive of links to more comprehensive resources that are available on the Internet.", 
+            "title": "Software Development &amp; Server Administration Notes"
+        }, 
+        {
+            "location": "/Git_and_GitHub/", 
+            "text": "References and Links:\n\n\n\n\nGit-Guide for Open Source Contributions\n\n\nGit Reference", 
+            "title": "Git and GitHub"
+        }, 
+        {
+            "location": "/Linux-and-Unix/File_System/", 
+            "text": "Linux File System\n\n\nLinux file systems explained @ Ubuntu\n\n\n\n\nJournaling file systems prevent inconsistency and are faster at file system checks than non-journaled file systems.\n\n\nSome journaling file systems can prevent corruption as well by writing the data twice.\n\n\n\n\nLinux file system hierarchy\n\n\n\n\nCentral concepts of a file system:\n\n\nsuperblock\n: contains info about the file system as a whole such as size.\n\n\ninode\n: contains info about a file, except its name; contains numbers of several data blocks.\n\n\nname\n: stored in the directory together with the number of the inode.\n\n\ndirectory entry\n: consists of a filename and the number of the inode.\n\n\ndata blocks\n: used to store data in the file.\n\n\nindirect blocks\n: dynamically allocated blocks that contain additional data for an inode.\n\n\n\n\n\n\n\n\nUnix File System\n\n\nSource unknown\n\n\nParts of a Unix directory tree. See the FSSTND standard (Filesystem standard)\n\n/                     Root\n|---root              The home directory for the root user\n|---home              Contains the user's home directories\n|    |----ftp         Users include many services as listed here\n|    |----httpd\n|    |----samba\n|    |----user1\n|    |----user2\n|---bin               Commands needed during bootup that might be needed by normal users\n|---sbin              Like bin but commands are not intended for normal users.  Commands run by LINUX.\n|---proc              This filesystem is not on a disk.  Exists in the kernels imagination (virtual).  This directory\n|    |                Holds information about kernel parameters and system configuration.\n|    |----1           A directory with info about process number 1.  Each process\n|                     has a directory below proc.  \n|---usr               Contains all commands, libraries, man pages, games and static files for normal\n|    |                operation.\n|    |----bin         Almost all user commands.  some commands are in /bin or /usr/local/bin.\n|    |----sbin        System admin commands not needed on the root filesystem.  e.g., most server\n|    |                programs.\n|    |----include     Header files for the C programming language.  Should be below /user/lib for\n|    |                consistency.\n|    |----lib         Unchanging data files for programs and subsystems\n|    |----local       The place for locally installed software and other files.\n|    |----man         Manual pages\n|    |----info        Info documents\n|    |----doc         Documentation for various packages\n|    |----tmp\n|    |----X11R6       The X windows system files.  There is a directory similar to usr below this\n|    |                directory.\n|    |----X386        Like X11R6 but for X11 release 5\n|---boot              Files used by the bootstrap loader, LILO.  Kernel images are often kept here.\n|---lib               Shared libraries needed by the programs on the root filesystem\n|    |----modules     Loadable kernel modules, especially those needed to boot the system after\n|                     disasters.\n|---dev               Device files for devices such as disk drives, serial ports, etc.\n|---etc               Configuration files specific to the machine.\n|    |----skel        When a home directory is created it is initialized with files from this directory\n|    |----sysconfig   Files that configure the linux system for networking, keyboard, time, and more.\n|---var               Contains files that change for mail, news, printers log files, man pages, temp files\n|    |----file\n|    |----lib         Files that change while the system is running normally\n|    |----local       Variable data for programs installed in /usr/local.\n|    |----lock        Lock files.  Used by a program to indicate it is using a particular device or file\n|    |----log         Log files from programs such as login and syslog which logs all logins,\n|    |                logouts, and other system messages.\n|    |----run         Files that contain information about the system that is valid until the system is\n|    |                next booted\n|    |----spool       Directories for mail, printer spools, news and other spooled work.\n|    |----tmp         Temporary files that are large or need to exist for longer than they should in\n|    |            /tmp.\n|    |----catman      A cache for man pages that are formatted on demand\n|---mnt               Mount points for temporary mounts by the system administrator.\n|---tmp               Temporary files.  Programs running after bootup should use /var/tmp.", 
+            "title": "File System"
+        }, 
+        {
+            "location": "/Linux-and-Unix/File_System/#linux-file-system", 
+            "text": "Linux file systems explained @ Ubuntu   Journaling file systems prevent inconsistency and are faster at file system checks than non-journaled file systems.  Some journaling file systems can prevent corruption as well by writing the data twice.   Linux file system hierarchy   Central concepts of a file system:  superblock : contains info about the file system as a whole such as size.  inode : contains info about a file, except its name; contains numbers of several data blocks.  name : stored in the directory together with the number of the inode.  directory entry : consists of a filename and the number of the inode.  data blocks : used to store data in the file.  indirect blocks : dynamically allocated blocks that contain additional data for an inode.", 
+            "title": "Linux File System"
+        }, 
+        {
+            "location": "/Linux-and-Unix/File_System/#unix-file-system", 
+            "text": "Source unknown  Parts of a Unix directory tree. See the FSSTND standard (Filesystem standard)\n\n/                     Root\n|---root              The home directory for the root user\n|---home              Contains the user's home directories\n|    |----ftp         Users include many services as listed here\n|    |----httpd\n|    |----samba\n|    |----user1\n|    |----user2\n|---bin               Commands needed during bootup that might be needed by normal users\n|---sbin              Like bin but commands are not intended for normal users.  Commands run by LINUX.\n|---proc              This filesystem is not on a disk.  Exists in the kernels imagination (virtual).  This directory\n|    |                Holds information about kernel parameters and system configuration.\n|    |----1           A directory with info about process number 1.  Each process\n|                     has a directory below proc.  \n|---usr               Contains all commands, libraries, man pages, games and static files for normal\n|    |                operation.\n|    |----bin         Almost all user commands.  some commands are in /bin or /usr/local/bin.\n|    |----sbin        System admin commands not needed on the root filesystem.  e.g., most server\n|    |                programs.\n|    |----include     Header files for the C programming language.  Should be below /user/lib for\n|    |                consistency.\n|    |----lib         Unchanging data files for programs and subsystems\n|    |----local       The place for locally installed software and other files.\n|    |----man         Manual pages\n|    |----info        Info documents\n|    |----doc         Documentation for various packages\n|    |----tmp\n|    |----X11R6       The X windows system files.  There is a directory similar to usr below this\n|    |                directory.\n|    |----X386        Like X11R6 but for X11 release 5\n|---boot              Files used by the bootstrap loader, LILO.  Kernel images are often kept here.\n|---lib               Shared libraries needed by the programs on the root filesystem\n|    |----modules     Loadable kernel modules, especially those needed to boot the system after\n|                     disasters.\n|---dev               Device files for devices such as disk drives, serial ports, etc.\n|---etc               Configuration files specific to the machine.\n|    |----skel        When a home directory is created it is initialized with files from this directory\n|    |----sysconfig   Files that configure the linux system for networking, keyboard, time, and more.\n|---var               Contains files that change for mail, news, printers log files, man pages, temp files\n|    |----file\n|    |----lib         Files that change while the system is running normally\n|    |----local       Variable data for programs installed in /usr/local.\n|    |----lock        Lock files.  Used by a program to indicate it is using a particular device or file\n|    |----log         Log files from programs such as login and syslog which logs all logins,\n|    |                logouts, and other system messages.\n|    |----run         Files that contain information about the system that is valid until the system is\n|    |                next booted\n|    |----spool       Directories for mail, printer spools, news and other spooled work.\n|    |----tmp         Temporary files that are large or need to exist for longer than they should in\n|    |            /tmp.\n|    |----catman      A cache for man pages that are formatted on demand\n|---mnt               Mount points for temporary mounts by the system administrator.\n|---tmp               Temporary files.  Programs running after bootup should use /var/tmp.", 
+            "title": "Unix File System"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Files_and_Directories/", 
+            "text": "3 types of access permission/privileges: read(r), write(w), execute(x) - these are set for the 3 user types: user(u), group(g) and others(o) to give 9 permission types.\n\n\nExecute permission should be set for executable files only (binary / shell scripts).\n\n\nAccess privileges are stored in a file's \ninode\n.\n\n\n\n\nUsing Binary and Octal values\n\n\n\n\nOne bit (1:permission granted, 0:permission not granted) is used to set permissions, and a total of 3 bits are needed to indicate file permissions.\n\n\nOctal numbers represent these eight 3-bit access values from 0-7.\n\n\n\n\nd r w x octal meaning\n  0 0 0 0     no permissions\n  0 0 1 1     execute permission\n  0 1 0 2     write permission\n  0 1 1 3     write and execute permission\n  1 0 0 4     read permission\n  1 0 1 5     read and execute permission\n  1 1 0 6     read and write permission\n  1 1 1 7     read, write and execute permission\n\n\n\n\nChanging File Access Privileges\n\n\nchmod [options] octal-mode file-list\nchmod [options] symbolic-mode file-list\n  -R  recursively descend through directories/setting permissions for all within\n  -f  force specified access permissions; no error messages if owner\n\nchmod ugo filename (uog is the octal representation for permissions)\nchmod 777 filename: rwx permission for user, group and others\nchmod 700 filename: rwx permission for user, no permissions for group/others\nchmod 755 filename: rwx permission for user, rx permissions for group/others\n\n\n\n\nSymbolic mode:\n\n\nWho\n\n\n  u: user\n  g: group\n  o: other\n  a: all\n  ugo: all\n\n\n\n\nOperator\n\n\n  +: add privilege\n  -: remove privilege\n  =: set privilege\n\n\n\n\nPrivilege\n\n\n  r: read bit\n  w: write bit\n  x: execute/search bit\n  u: user's current privileges\n  g: group's current privileges\n  o: other's current privileges\n  l: locking privilige bit\n  s: sets user or group ID mode bit\n  t: sticky bit\n\n\n\n\n\n\nSingle octal digit using chmod: specifies \"others\"; user and groups set to 0\n\n\nTwo octal digits using chmod: specifies \"others and groups\"; user set to 0\n\n\n\n\nAccess Permissions for Directories\n\n\n\n\nRead permission: reading contents\n\n\nWrite permission: allows creation or removing entries from the directory\n\n\nExecute permission: permits search but not read/write\n\n\nNote that read and write permissions on directories are not meaningful without the search permission, therefore you ust have both the read and execute permissions on a directory to be able to list its contents, similarly with both write and execute permissions.\n\n\n\n\nDefault File Access Privileges\n- When a new file/directory is created, it sets privilges based on current mask value.\n- Default in UNIX is 777 for executable files and directories, 666 for text files.\n- System uses Boolean logic to determine permissions.\n\n\numask [-S] [mask]\n  # Execution without argument displays current value of bit mask in octal\n  # Bit mask identifies the permission bits that are to be turned off when a new file is being created.\n  # Rightmost nine-bits (3 octal digits) are for user, group and others.\n  # Leftmost three-bits (1 octal digit) is for special access bit\n  -S  displays symbolic value of the mask\n\n\n\n\n\n\numask\n command could be placed in the system startup file \n~/.profile\n in System V Unix and the \n~/.login\n or \n~/.cshrc\n file in BSD\n\n\nAuthors prefer a mask value of 077 so that new files are always created with full protection in place - files have full access permissions for owner and no permissions for anyone else.\n\n\nMask value of 027 gives default privileges to group members and no permissions to others.\n\n\n\n\nSpecial Access Bits\n\n\nSet-User-ID (SUID) Bit\n\n\n\n\nWhen a command runs, it executes with the effective user ID of the user running the command.\n\n\nUNIX allows commands such as \npasswd\n to change their effective user ID and become privileged in some way so that they can change special files such as \n/etc/passwd\n without compromising the integrity of the system.\n\n\nEvery UNIX file has a protection bit called the \nSUID bit\n associated with it. If this bit is set for a file containing an executable program, the program takes on the privileges of the owner of the file when it executes. \ni.e. if file owned by root has its SUID bit set, it runs with superuser privileges\n - this occurs with the \npasswd\n command.\n\n\nOther commands with SUID bit set include: \nlp, mail, mkdir, mv, ps\n\n\nSUID bit is enabled if the execute bit for the owner is \ns\n or \nS\n.\n\n\nIf both SUID and execute bits are enabled the bit is displayed as \ns\n.\n\n\nIf SUID bit is enabled but the execute bit is disabled, the bit is displayed as \nS\n.\n\n\n\n\nchmod 4xxx file-list\nchmod u+s file-list\n\n\n\n\n\n\nSUID bit can compromise security of the system if not implemented correctly:\n if the permissions of any set-UID program are set to allow write privileges to others, you can change the program in this file or overwrite the existing program with another program.\n\n\n\n\nSet-Group-ID (SGID) Bit\n\n\n\n\nNot as dangerous as the SUID bit feautre, because most privileged operations require superuser identity, regardless of current group ID.\n\n\n\n\nchmod g+s file-list\nchmod ug+s file-list  # sets SUID and SGID using a single chmod command\n\n\n\n\nSticky Bit\n\n\n\n\nCan be set for a directory to ensure that an unprivileged user cannot remove or rename files of other users in that directory.\n\n\nMust be owner of a directory or have appropriate permissions to set the sticky bit for it.\n\n\nCommonly set for shared directories that contain files owned by several users.\n\n\nUseful for programs such as compilers, assemblers, editors and commands such as \nls\n and \ncat\n, but care must be taken that not too many programs have this bit set, otherwise system performance will suffer.\n\n\n\n\nchmod 1xxx file-list\nchmod +t file-list", 
+            "title": "Files and Directories"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Files_and_Directories/#using-binary-and-octal-values", 
+            "text": "One bit (1:permission granted, 0:permission not granted) is used to set permissions, and a total of 3 bits are needed to indicate file permissions.  Octal numbers represent these eight 3-bit access values from 0-7.   d r w x octal meaning\n  0 0 0 0     no permissions\n  0 0 1 1     execute permission\n  0 1 0 2     write permission\n  0 1 1 3     write and execute permission\n  1 0 0 4     read permission\n  1 0 1 5     read and execute permission\n  1 1 0 6     read and write permission\n  1 1 1 7     read, write and execute permission", 
+            "title": "Using Binary and Octal values"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Files_and_Directories/#changing-file-access-privileges", 
+            "text": "chmod [options] octal-mode file-list\nchmod [options] symbolic-mode file-list\n  -R  recursively descend through directories/setting permissions for all within\n  -f  force specified access permissions; no error messages if owner\n\nchmod ugo filename (uog is the octal representation for permissions)\nchmod 777 filename: rwx permission for user, group and others\nchmod 700 filename: rwx permission for user, no permissions for group/others\nchmod 755 filename: rwx permission for user, rx permissions for group/others", 
+            "title": "Changing File Access Privileges"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Files_and_Directories/#symbolic-mode", 
+            "text": "Who    u: user\n  g: group\n  o: other\n  a: all\n  ugo: all  Operator    +: add privilege\n  -: remove privilege\n  =: set privilege  Privilege    r: read bit\n  w: write bit\n  x: execute/search bit\n  u: user's current privileges\n  g: group's current privileges\n  o: other's current privileges\n  l: locking privilige bit\n  s: sets user or group ID mode bit\n  t: sticky bit   Single octal digit using chmod: specifies \"others\"; user and groups set to 0  Two octal digits using chmod: specifies \"others and groups\"; user set to 0", 
+            "title": "Symbolic mode:"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Files_and_Directories/#access-permissions-for-directories", 
+            "text": "Read permission: reading contents  Write permission: allows creation or removing entries from the directory  Execute permission: permits search but not read/write  Note that read and write permissions on directories are not meaningful without the search permission, therefore you ust have both the read and execute permissions on a directory to be able to list its contents, similarly with both write and execute permissions.   Default File Access Privileges\n- When a new file/directory is created, it sets privilges based on current mask value.\n- Default in UNIX is 777 for executable files and directories, 666 for text files.\n- System uses Boolean logic to determine permissions.  umask [-S] [mask]\n  # Execution without argument displays current value of bit mask in octal\n  # Bit mask identifies the permission bits that are to be turned off when a new file is being created.\n  # Rightmost nine-bits (3 octal digits) are for user, group and others.\n  # Leftmost three-bits (1 octal digit) is for special access bit\n  -S  displays symbolic value of the mask   umask  command could be placed in the system startup file  ~/.profile  in System V Unix and the  ~/.login  or  ~/.cshrc  file in BSD  Authors prefer a mask value of 077 so that new files are always created with full protection in place - files have full access permissions for owner and no permissions for anyone else.  Mask value of 027 gives default privileges to group members and no permissions to others.", 
+            "title": "Access Permissions for Directories"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Files_and_Directories/#special-access-bits", 
+            "text": "", 
+            "title": "Special Access Bits"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Files_and_Directories/#set-user-id-suid-bit", 
+            "text": "When a command runs, it executes with the effective user ID of the user running the command.  UNIX allows commands such as  passwd  to change their effective user ID and become privileged in some way so that they can change special files such as  /etc/passwd  without compromising the integrity of the system.  Every UNIX file has a protection bit called the  SUID bit  associated with it. If this bit is set for a file containing an executable program, the program takes on the privileges of the owner of the file when it executes.  i.e. if file owned by root has its SUID bit set, it runs with superuser privileges  - this occurs with the  passwd  command.  Other commands with SUID bit set include:  lp, mail, mkdir, mv, ps  SUID bit is enabled if the execute bit for the owner is  s  or  S .  If both SUID and execute bits are enabled the bit is displayed as  s .  If SUID bit is enabled but the execute bit is disabled, the bit is displayed as  S .   chmod 4xxx file-list\nchmod u+s file-list   SUID bit can compromise security of the system if not implemented correctly:  if the permissions of any set-UID program are set to allow write privileges to others, you can change the program in this file or overwrite the existing program with another program.", 
+            "title": "Set-User-ID (SUID) Bit"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Files_and_Directories/#set-group-id-sgid-bit", 
+            "text": "Not as dangerous as the SUID bit feautre, because most privileged operations require superuser identity, regardless of current group ID.   chmod g+s file-list\nchmod ug+s file-list  # sets SUID and SGID using a single chmod command", 
+            "title": "Set-Group-ID (SGID) Bit"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Files_and_Directories/#sticky-bit", 
+            "text": "Can be set for a directory to ensure that an unprivileged user cannot remove or rename files of other users in that directory.  Must be owner of a directory or have appropriate permissions to set the sticky bit for it.  Commonly set for shared directories that contain files owned by several users.  Useful for programs such as compilers, assemblers, editors and commands such as  ls  and  cat , but care must be taken that not too many programs have this bit set, otherwise system performance will suffer.   chmod 1xxx file-list\nchmod +t file-list", 
+            "title": "Sticky Bit"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Naming_Services/", 
+            "text": "Notes from: \nOracle: What is a Naming Service?\n\n\n\n\nPerforms lookups of stored information, including usernames, passwords, access permissions, group membership etc.\n\n\nCan be stored locally or in a central network-based repository/database.\n\n\n\n\nFundamental to computing networks, provides following functionality:\n\n\n\n\nAssociates (binds names with objects)\n\n\nResolves names to objects\n\n\nRemoves bindings\n\n\nLists names\n\n\nRenames information\n\n\n\n\n\n\n\n\nNetwork information service enables systems to be identified by common names instead of numerical addresses.\n\n\n\n\n/etc/inet/hosts\n stores network address of every system in the network, including itself.\n\n\nClient-server computing\n: A network information service stores network information on a server, which can be queried by any system (clients).\n\n\nNaming allows for a more flexible identification of divisions/subnets that could be spread across different physical networks.\n\n\n\n\nOracle Solaris Naming Services\n\n\n\n\nDomain Name System (DNS)\n\n\n/etc\n files: the original UNIX naming system\n\n\nNetwork Information Service (NIS)\n\n\n\n\nLightweight Directory Access Protocol (LDAP)\n\n\n\n\n\n\nWhen managing user accounts for a large site, consider using a name or directory service such as LDAP or NIS - these allow user account information to be stored in a centralized manner instead of in every system's \n/etc\n files.\n\n\n\n\n\n\nDNS\n\n\n\n\nThe \nDNS\n is a hierarchical, distributed database, implemented on a TCP/IP network and is primarily used to look up IP addresses for Internet host names and host names for IP addresses.\n\n\nDNS clients request information about a host name from name server(s) and wait for a response. DNS servers respond to requests from a information cache.\n\n\nDNS makes communication simpler by using machine names instead of numerical IP addresses.\n\n\n\n\nNIS\n\n\n\n\nDeveloped independently of DNS.\n\n\nFocuses on making network administration more manageable by providing centralized control over a variety of network information.\n\n\nStores information about network, machine names and addresses, users, network services.\n\n\nCollection of information known as \nNIS namespace\n.\n\n\nStored in \nNIS maps\n, designed to replace \n/etc/\n files.\n\n\n\n\nLDAP\n\n\n\n\nLDAP @ Wikipedia\n\n\nOpen, vendor-neutral, industry standard application protocol for accessing and maintaining distributed directory information services over an IP network.\n\n\nCommonly used to provide a central place to store usernames and passwords. Allows different applications and services to connect to the LDAP server to validate users.", 
+            "title": "Naming Services"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Naming_Services/#oracle-solaris-naming-services", 
+            "text": "Domain Name System (DNS)  /etc  files: the original UNIX naming system  Network Information Service (NIS)   Lightweight Directory Access Protocol (LDAP)    When managing user accounts for a large site, consider using a name or directory service such as LDAP or NIS - these allow user account information to be stored in a centralized manner instead of in every system's  /etc  files.", 
+            "title": "Oracle Solaris Naming Services"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Naming_Services/#dns", 
+            "text": "The  DNS  is a hierarchical, distributed database, implemented on a TCP/IP network and is primarily used to look up IP addresses for Internet host names and host names for IP addresses.  DNS clients request information about a host name from name server(s) and wait for a response. DNS servers respond to requests from a information cache.  DNS makes communication simpler by using machine names instead of numerical IP addresses.", 
+            "title": "DNS"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Naming_Services/#nis", 
+            "text": "Developed independently of DNS.  Focuses on making network administration more manageable by providing centralized control over a variety of network information.  Stores information about network, machine names and addresses, users, network services.  Collection of information known as  NIS namespace .  Stored in  NIS maps , designed to replace  /etc/  files.", 
+            "title": "NIS"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Naming_Services/#ldap", 
+            "text": "LDAP @ Wikipedia  Open, vendor-neutral, industry standard application protocol for accessing and maintaining distributed directory information services over an IP network.  Commonly used to provide a central place to store usernames and passwords. Allows different applications and services to connect to the LDAP server to validate users.", 
+            "title": "LDAP"
+        }, 
+        {
+            "location": "/Linux-and-Unix/SSH_and_SCP_Usage/", 
+            "text": "Links and References\n\n- \nOracle Linux Tips and Tricks: Using SSH\n\n\nSecure Shell (SSH) and Secure Copy (SCP)\n\n\n\n\nDeveloped in 1995, provided security through encryption.\n\n\nUnlike \ntelnet\n and \nftp\n, user credentials and file contents are encrypted.\n\n\nAlso used by \nSecure Copy\n (\nscp\n)\n\n\n\n\nOracle Solaris SSH\n\n\n\n\nOpenSSH in Solaris 11.3\n\n\nFor Solaris 11.3 both OpenSSH and SunSSH are both supplied.\n\n\nSunSSH: \npkg:/network/ssh\n\n\nOpenSSH: \npkg:/network/openssh\n\n\nBoth packages deliver the same \nsvc:/network/ssh:default\n\n\n\n\n\n\n\n\nConfiguring SSH\n\n\n\n\nSSH configuration stored in \n/etc/ssh/sshd_conf\n file.\n\n\nEnsure \nStrictModes yes\n for secure permissions on users .ssh directory.\n\n\n\n\nUsing SSH on Oracle Solaris\n\n\n\n\nSSH is automatically installed and enabled by default with root access disabled.\n\n\nCan check with \nsvcs ssh\n and/or \nps -ef|grep ssh\n\n\nCan enable/disable with:\n\n\n\n\nsvcadm disable ssh\nsvcadm enable ssh\n\n\n\n\nUsing SCP\n\n\n\n\nSyntax:\n\n\n\n\nscp /localpath/localfilename remoteuser@remotehost:/remotepath/remotefilename\n\n\n\n\nConnecting with Microsoft Windows OS\n\n\n\n\nSetting up SSH Server on Microsoft Windows", 
+            "title": "SSH and SCP Usage"
+        }, 
+        {
+            "location": "/Linux-and-Unix/SSH_and_SCP_Usage/#secure-shell-ssh-and-secure-copy-scp", 
+            "text": "Developed in 1995, provided security through encryption.  Unlike  telnet  and  ftp , user credentials and file contents are encrypted.  Also used by  Secure Copy  ( scp )", 
+            "title": "Secure Shell (SSH) and Secure Copy (SCP)"
+        }, 
+        {
+            "location": "/Linux-and-Unix/SSH_and_SCP_Usage/#oracle-solaris-ssh", 
+            "text": "OpenSSH in Solaris 11.3  For Solaris 11.3 both OpenSSH and SunSSH are both supplied.  SunSSH:  pkg:/network/ssh  OpenSSH:  pkg:/network/openssh  Both packages deliver the same  svc:/network/ssh:default", 
+            "title": "Oracle Solaris SSH"
+        }, 
+        {
+            "location": "/Linux-and-Unix/SSH_and_SCP_Usage/#configuring-ssh", 
+            "text": "SSH configuration stored in  /etc/ssh/sshd_conf  file.  Ensure  StrictModes yes  for secure permissions on users .ssh directory.", 
+            "title": "Configuring SSH"
+        }, 
+        {
+            "location": "/Linux-and-Unix/SSH_and_SCP_Usage/#using-ssh-on-oracle-solaris", 
+            "text": "SSH is automatically installed and enabled by default with root access disabled.  Can check with  svcs ssh  and/or  ps -ef|grep ssh  Can enable/disable with:   svcadm disable ssh\nsvcadm enable ssh", 
+            "title": "Using SSH on Oracle Solaris"
+        }, 
+        {
+            "location": "/Linux-and-Unix/SSH_and_SCP_Usage/#using-scp", 
+            "text": "Syntax:   scp /localpath/localfilename remoteuser@remotehost:/remotepath/remotefilename", 
+            "title": "Using SCP"
+        }, 
+        {
+            "location": "/Linux-and-Unix/SSH_and_SCP_Usage/#connecting-with-microsoft-windows-os", 
+            "text": "Setting up SSH Server on Microsoft Windows", 
+            "title": "Connecting with Microsoft Windows OS"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Setup_an_Apache_Server/", 
+            "text": "Useful Links:\n\n- \nApache HTTP Server Version 2.4 Documentation\n\n- \nOracle Docs: Apache Web Server\n\n\nApache on Oracle Solaris 11.3\n\n\n\n\nBy default apache22 is installed but disabled. One can check using either of the following:\n\n\n\n\nsvcs *apache*       # Or:\nsvcs http\n\n\n\n\n\n\nCan install newer version then enable the server.\n\n\n\n\npkg install web/server/apache-24\nsvcadm -v enable /network/http:apache24\n\n\n\n\n\n\nAlternately can install a Apache webserver with MySQL and PHP:\n\n\n\n\npkg install group/feature/amp\n\n\n\n\n\n\nVerify that webserver works by opening: \nhttp://localhost:80\n in browser.\n\n\n\n\nConfiguration of Apache\n\n\n\n\nConfiguration is stored in the \n/etc/apache2/2.2/httpd.conf\n file.\n\n\nBy default, web pages are served from \n/var/apache2/2.2/htdocs\n folders.\n\n\n\n\nEdit \n/etc/apache2/2.2/httpd.conf\n\n\n\n\nCan edit \nDocumentRoot\n to point to another directory.\n\n\nMake sure to change the \n to point to the same DocumentRoot\n\n\nAlso need to make sure that the directory it points into to has execute permissions, otherwise others won't be able to read the files within the directory.", 
+            "title": "Setup an Apache Server"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Setup_an_Apache_Server/#apache-on-oracle-solaris-113", 
+            "text": "By default apache22 is installed but disabled. One can check using either of the following:   svcs *apache*       # Or:\nsvcs http   Can install newer version then enable the server.   pkg install web/server/apache-24\nsvcadm -v enable /network/http:apache24   Alternately can install a Apache webserver with MySQL and PHP:   pkg install group/feature/amp   Verify that webserver works by opening:  http://localhost:80  in browser.", 
+            "title": "Apache on Oracle Solaris 11.3"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Setup_an_Apache_Server/#configuration-of-apache", 
+            "text": "Configuration is stored in the  /etc/apache2/2.2/httpd.conf  file.  By default, web pages are served from  /var/apache2/2.2/htdocs  folders.", 
+            "title": "Configuration of Apache"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Setup_an_Apache_Server/#edit-etcapache222httpdconf", 
+            "text": "Can edit  DocumentRoot  to point to another directory.  Make sure to change the   to point to the same DocumentRoot  Also need to make sure that the directory it points into to has execute permissions, otherwise others won't be able to read the files within the directory.", 
+            "title": "Edit /etc/apache2/2.2/httpd.conf"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Slackware/", 
+            "text": "The Slackware Linux Project\n\n\n\n\nDocumentation\n\n\n\n\nSlackbook: The Revised Slackware Book Project\n\n\nSlackware Documentation Project", 
+            "title": "Slackware"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Slackware/#documentation", 
+            "text": "Slackbook: The Revised Slackware Book Project  Slackware Documentation Project", 
+            "title": "Documentation"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Solaris_CheatSheet/", 
+            "text": "Solaris 11.3 Cheatsheet\n\n\nUseradd\n\n\n\n\nAdministrator requires \nUser Management Profile\n\n\n\n\nuseradd -m username\nuseradd -m [options] username\n\n    -A authorization [,authorization]       # Assigns authorizations to the user\n    -P profile [,profile]                   # Assigns profiles to the user\n    -R role [,role]                         # Assigns roles to the user\n\n    -c comment\n    -d directory                            # Specifies home directory path for the new user.\n    -g group                                # Assigns primary group (GID or name-string)\n    -G group [,group]                       # Assigns secondary/supplementary group(s)\n    -s shell                                # Assigns shell\n    -e expire\n\n\n\n\n\n\nUser information located in \n/etc/passwd\n, can be listed with \ngetent passwd\n\n\n\n\nUsermod\n\n\n\n\nAdministrator requires \nUser Security\n profile to modify security attributes.\n\n\nRequires \nUser Management\n profile to modify the non-security attributes.\n\n\n\n\nusermod -A [+|-]authorization username      # If no prefix, overwrites authorization; +|- add/removes\n\n\n\n\nUserdel\n\n\n\n\nRequires \nUser Management\n profile to delete user's login\n\n\n\n\nuserdel -r username                         # Removes user's home directory from the file system.\nuserdel [options] username                  # Removes user but home directory remains.\n\n\n\n\nGetent\n\n\ngetent passwd\ngetent passwd username\ngetent group\ngetent group groupname\ngetent user_attr                            # Displays auths and profile info for all users\ngetent user_attr username                   # Displays auths and profiles for username\ngetent prof_attr                            # Displays profiles\ngetent auth_attr                            # Displays authorizations\ngetent exec_attr                            # Displays executable rights\n\n\n\n\n\nGroupadd\n\n\n\n\nAdministrator requires \nUser Management Profile\n\n\n\n\ngroupadd groupname                          # Creates new group \ngroupname\n\ngroupadd -U user1[,user2] new_groupname     # Creates new group and adds users to it\n\n    -g gid                                  # Assigns the group id gid for the new group\n\n\n\n\n\nRBAC\n\n\n\n\nRoles must be created and assigned to the user before the user can assume the role via \nsu\n\n\n\n\nroleadd -P \nUser Management\n rolename        # Creates a role named rolename with profile \nUser Management\n\n\n    -c comment\n    -e expire\n    -f inactive\n    -g group                                # Primary group\n    -G group[,group...]                     # Secondary group\n    -u UID\n    -A authorization [,authorization]\n    -K key=value\n\nrolemod -K roleauth=user usermx1            # Role authentication uses user password\nrolemod -K roleauth=role usermx1            # Role authentication uses role password\npasswd usermx1                              # Create password for the role\n\nuseradd -R usermx1 user1                    # Assigns usermx1 to a new user user1\nusermod -R usermx1 user2                    # Modifies user2 to assign it a role\n\nroledel -r rolename                         # Deletes the role and removes the role's home directory\n\n\n\n\nSolaris Services\n\n\nsvcs                                        # List services: report service status\nsvcs -a                                     # List all services, includes extra disabled services\n\nsvcs *dhcp*                                 # Searches for service with \ndhcp\n\nsvcs -v servicename                         # Lists verbose information\nsvcs -l servicename                         # Lists detailed information about instances of system/service3\nsvcs -p servicename                         # Lists processes\n\nsvccfg                                      # Import, export and modify service configurations.\n\nsvcadm                                      # Manipulate service instances\nsvcadm disable telnet\nsvcadm enable ssh\n\n\n\n\nNetworking\n\n\nifconfig -a\nifconfig net0\nifconfig net0 up\nifconfig net0 down\n\nping\ntraceroute url\n\nnetcfg                                      # Create and modify network configuration profiles\nnetcfg\n list                                # Lists objects\nnetcfg\n list ncp Automatic                  # Lists the details for the NCP Automatic", 
+            "title": "Solaris CheatSheet"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Solaris_CheatSheet/#solaris-113-cheatsheet", 
+            "text": "", 
+            "title": "Solaris 11.3 Cheatsheet"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Solaris_CheatSheet/#useradd", 
+            "text": "Administrator requires  User Management Profile   useradd -m username\nuseradd -m [options] username\n\n    -A authorization [,authorization]       # Assigns authorizations to the user\n    -P profile [,profile]                   # Assigns profiles to the user\n    -R role [,role]                         # Assigns roles to the user\n\n    -c comment\n    -d directory                            # Specifies home directory path for the new user.\n    -g group                                # Assigns primary group (GID or name-string)\n    -G group [,group]                       # Assigns secondary/supplementary group(s)\n    -s shell                                # Assigns shell\n    -e expire   User information located in  /etc/passwd , can be listed with  getent passwd", 
+            "title": "Useradd"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Solaris_CheatSheet/#usermod", 
+            "text": "Administrator requires  User Security  profile to modify security attributes.  Requires  User Management  profile to modify the non-security attributes.   usermod -A [+|-]authorization username      # If no prefix, overwrites authorization; +|- add/removes", 
+            "title": "Usermod"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Solaris_CheatSheet/#userdel", 
+            "text": "Requires  User Management  profile to delete user's login   userdel -r username                         # Removes user's home directory from the file system.\nuserdel [options] username                  # Removes user but home directory remains.", 
+            "title": "Userdel"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Solaris_CheatSheet/#getent", 
+            "text": "getent passwd\ngetent passwd username\ngetent group\ngetent group groupname\ngetent user_attr                            # Displays auths and profile info for all users\ngetent user_attr username                   # Displays auths and profiles for username\ngetent prof_attr                            # Displays profiles\ngetent auth_attr                            # Displays authorizations\ngetent exec_attr                            # Displays executable rights", 
+            "title": "Getent"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Solaris_CheatSheet/#groupadd", 
+            "text": "Administrator requires  User Management Profile   groupadd groupname                          # Creates new group  groupname \ngroupadd -U user1[,user2] new_groupname     # Creates new group and adds users to it\n\n    -g gid                                  # Assigns the group id gid for the new group", 
+            "title": "Groupadd"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Solaris_CheatSheet/#rbac", 
+            "text": "Roles must be created and assigned to the user before the user can assume the role via  su   roleadd -P  User Management  rolename        # Creates a role named rolename with profile  User Management \n\n    -c comment\n    -e expire\n    -f inactive\n    -g group                                # Primary group\n    -G group[,group...]                     # Secondary group\n    -u UID\n    -A authorization [,authorization]\n    -K key=value\n\nrolemod -K roleauth=user usermx1            # Role authentication uses user password\nrolemod -K roleauth=role usermx1            # Role authentication uses role password\npasswd usermx1                              # Create password for the role\n\nuseradd -R usermx1 user1                    # Assigns usermx1 to a new user user1\nusermod -R usermx1 user2                    # Modifies user2 to assign it a role\n\nroledel -r rolename                         # Deletes the role and removes the role's home directory", 
+            "title": "RBAC"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Solaris_CheatSheet/#solaris-services", 
+            "text": "svcs                                        # List services: report service status\nsvcs -a                                     # List all services, includes extra disabled services\n\nsvcs *dhcp*                                 # Searches for service with  dhcp \nsvcs -v servicename                         # Lists verbose information\nsvcs -l servicename                         # Lists detailed information about instances of system/service3\nsvcs -p servicename                         # Lists processes\n\nsvccfg                                      # Import, export and modify service configurations.\n\nsvcadm                                      # Manipulate service instances\nsvcadm disable telnet\nsvcadm enable ssh", 
+            "title": "Solaris Services"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Solaris_CheatSheet/#networking", 
+            "text": "ifconfig -a\nifconfig net0\nifconfig net0 up\nifconfig net0 down\n\nping\ntraceroute url\n\nnetcfg                                      # Create and modify network configuration profiles\nnetcfg  list                                # Lists objects\nnetcfg  list ncp Automatic                  # Lists the details for the NCP Automatic", 
+            "title": "Networking"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Solaris_Networking/", 
+            "text": "References and Links:\n\n- \nOracle Network Configuration\n\n- \nOracle Solaris 11.3 Network Documentation\n\n\n\n\nOracle introduced \ndladm\n and \nipadm\n to supersede \nifconfig\n\n\nChanges made by \ndladm\n and \nipadm\n persist across reboots.\n\n\nAlso added automatic network configuration using network profiles.\n\n\nnetadm\n and \nnetcfg\n describe configuration of network related policies.\n\n\nAutomatic\n NCP: uses DHCP to obtain basic network configuration\n\n\n\n\nDefaultFixed\n NCP: disables automatic network configuration and requires the network interfaces to be manually configured using \ndladm\n and \nipadm\n.\n\n\n\n\n\n\ndladm\n: Data-link (layer 2) administration - links, VLANs, IP tunnels.\n\n\n\n\n\n\ndata-link names are given generic names and are no longer the same as physical interface.\n\n\n\n\n\n\nipadm\n: Configures IP interfaces, IP addresses and TCP/IP properties.\n\n\n\n\n\n\nBasic Commands\n\n\nifconfig -a\nifconfig net0\nifconfig net0 up\nifconfig net0 down\n\nping 192.168.x.x\nping -s 192.168.x.x\n\nping gateway_addr to check that network is working\ntraceroute url\n\nnetcfg\n\nifconfig\nifconfig -a\n\nipadm         # Lists network cards, their class, state and address\nnetadm        # Enters interactive mode\nnetadm list   # Lists\n\nnetadm enable -p ncp Automatic          # Will enable DHCP\nipadm show-if                           # Display status of interface\nipadm show-addr                         # Display IP addresses of interfaces\n\n\n\n\nConfigure a Static IP Address\n\n\nnetadm enable -p ncp DefaultFixed       # Will disable DHCP, allow manual config\ndladm show-phys                         # Will display network devices\n                                        # Status changed from up -\n unknown\nipadm create-ip net0\nipadm show-if\n\n# Add a persistent default route:\nroute -p add default 10.163.198.1       # Adds a default gateway\nroute -p show                           # Shows persistent route\n\n\n\n\nName Service Configuration using SMF\n\n\n\n\nUse svc:/network/dns/client\n\n\nhttps://docs.oracle.com/cd/E36784_01/html/E36831/dnsref-36.html\n\n\n\n\nsvccfg -s system/name-service/switch\nsvc:/system/name-service/switch\n setprop config/host = astring: \nfiles dns\n\nsvc:/system/name-service/switch:default\n refresh\nsvc:/system/name-service/switch:default\n quit", 
+            "title": "Solaris Networking"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Solaris_Networking/#basic-commands", 
+            "text": "ifconfig -a\nifconfig net0\nifconfig net0 up\nifconfig net0 down\n\nping 192.168.x.x\nping -s 192.168.x.x\n\nping gateway_addr to check that network is working\ntraceroute url\n\nnetcfg\n\nifconfig\nifconfig -a\n\nipadm         # Lists network cards, their class, state and address\nnetadm        # Enters interactive mode\nnetadm list   # Lists\n\nnetadm enable -p ncp Automatic          # Will enable DHCP\nipadm show-if                           # Display status of interface\nipadm show-addr                         # Display IP addresses of interfaces", 
+            "title": "Basic Commands"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Solaris_Networking/#configure-a-static-ip-address", 
+            "text": "netadm enable -p ncp DefaultFixed       # Will disable DHCP, allow manual config\ndladm show-phys                         # Will display network devices\n                                        # Status changed from up -  unknown\nipadm create-ip net0\nipadm show-if\n\n# Add a persistent default route:\nroute -p add default 10.163.198.1       # Adds a default gateway\nroute -p show                           # Shows persistent route", 
+            "title": "Configure a Static IP Address"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Solaris_Networking/#name-service-configuration-using-smf", 
+            "text": "Use svc:/network/dns/client  https://docs.oracle.com/cd/E36784_01/html/E36831/dnsref-36.html   svccfg -s system/name-service/switch\nsvc:/system/name-service/switch  setprop config/host = astring:  files dns \nsvc:/system/name-service/switch:default  refresh\nsvc:/system/name-service/switch:default  quit", 
+            "title": "Name Service Configuration using SMF"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Solaris_Roles/", 
+            "text": "Oracle Solaris 11 Roles @ The Urban Penguin\n\n\n\n\nRBAC and Roles allow implementation of the least privileged security model.\n\n\nRoot user is a role rather than a typical user, so cannot log in directly to the account, but may still use \nsu\n\n\nUsers cannot use root even if they know the root password; users can only use the root role if it is assigned to them.\n\n\n\n\n\n\n\n\nOracle Solaris 11 Security Privileges and Authorizations\n\n\n\n\n\n\nrolemod -K roleauth=user root\n    # Require users own password when switching to root role.\n\nrolemod -K roleauth=role\n    # Require pasword of the role itself.\n\n\n\n\nProfiles in Solaris 11 RBAC allow authorizations and privileged commands to be grouped together and can be assigned to users or to roles.\n\n\nprofiles -a |more\nprofiles -p \nUser Management\n info", 
+            "title": "Solaris Roles"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Solaris_SMF/", 
+            "text": "Basics of Service Management Facility (SMF) on Oracle Solaris 11\n\n\n\n\nA software framework that manages the services on a system.\n\n\nEach service has a well-defined state and a relationship to other dependent services.\n\n\nAbility to run multiple instanes of a given service and share common configuration.\n\n\nConfiguration repository managed by \nsvc.configd\n\n\nEach service described using a Fault Management Reousrce Indicator (FMRI)\n\n\nSMF framework always active on Oracle Solaris 11 - started and restarted through the default init process.\n\n\n\n\nCommand line:\n\n\nsvcadm\nsvcs\nsvcs -a    # Lists additional new service instances.", 
+            "title": "Solaris SMF"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Users_and_Groups/", 
+            "text": "User Accounts\n\n\nuseradd -m username\nuseradd -m username # simple way to create a new user with username\nuseradd -c \nCommon name\n -d [home directory, e.g. /export/home/username] -m username\nuseradd -c \nUser1\n -d -m -u:101 -g:staff User1\n\n\n\n\nN.B. Very important to use -m for make, otherwise directory will not be created\n\n\nusermod -c\nusermod -u [userid]\nusermod -d\n\n\n\n\nTo delete a user:\n\n\nuserdel username\n\n\n\n\nNote that user folder must be unmounted before it could be deleted\n\n\numount dirname\n\n\n\n\nPassword information\n\n\npasswd username\n\n\n\n\n\n\nIn \n/etc/shadow\n file stores passwords when using /etc files\n\n\nIn \n/etc/passwd\n file when using NIS\n\n\nIn \npeople\n container when using LDAP\n\n\nDefault password requirements stored in \n/etc/default/passwd\n file\n\n\n\n\nSpecial UIDs\n\n\n\n\nUID 0-99: reserved for Oracle Solaris system\n\n\nUID 0: root\n\n\nUID 1: daemon\n\n\nUID 2: bin pseudouser\n\n\nUID 60001 and 65534: reserved for nobody and nobody4 (NFS Anonymous users)\n\n\nUID 60002: noaccess\n\n\n\n\nStandard Users\n\n\n\n\nInteractive in the sense that user can log into the system locally or remotely.\n\n\nWill have a home directory associated with it, can be located either on local system or remote file server.\n\n\n\n\nSystem Accounts\n\n\n\n\n\n\nAssociated with an application process that is installed and running on the system.\n\n\n\n\n\n\nAn application process that listens on a network port for service requests is referred to as a \ndaemon\n.\n\n\n\n\n\n\nThese running processes need a way to operate on the system just as standard users do.\n\n\n\n\nSystem account usually does not require a home directory.\n\n\nProvides a basic level of security to the system by protecting it in the event that the service that the service associated  with the account is violated.\n\n\n\n\nRoot Account\n\n\n\n\nCalled \"super user\" in previous Solaris releases - owner of most binaries and configuration files.\n\n\n\n\nRoot account in Oracle Solaris 11 is generally configured as an RBAC role.\n\n\n\n\n\n\nThis means it cannot be logged in directly and users must be explicitly granted to access to the account.\n\n\n\n\nWhen you're authenticating to a role, the password must be that of the role.\n\n\n\n\nUNIX Groups\n\n\n\n\nEach group has a name, group ID (GID), and a list of usernames that belong to the group.\n\n\nTwo types of groups:\n\n\nPrimary group:\n group that OS assigns files that are created by the user.\n\n\nSecondary group:\n other groups a user belongs to, maximum 1024 supplemental groups.\n\n\n\n\n\n\n\n\nTo display the list of groups for the user:\n\n\ngroups username\n\n\n\n\nList groups\n\n\ngetent group\n\n\n\n\nList users in a group\n\n\ngetent group groupname\n\n\n\n\nAdding and modifying groups\n\n\ngroupadd -U user1[,user2]\ngroupmod\ngroupdel\n\nuseradd -g group-primary\nuseradd -G group-secondary\ngetent group\nusermod -g group-primary username\nusermod -G +group1,group2... username\nusermod -G -group2,group3... username\nusermod -G \n username    # removes all secondary groups\n\n\n\n\nLinks and References:\n\n\n\n\nOracle Solaris 11.3 Information Library\n\n\nCreating Users 1 Video\n\n\nCreating Users 2 Video\n\n\nCreating Users 3 Video\n\n\nFinding account information\n\n\nChanging account policies", 
+            "title": "Users and Groups"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Users_and_Groups/#user-accounts", 
+            "text": "useradd -m username\nuseradd -m username # simple way to create a new user with username\nuseradd -c  Common name  -d [home directory, e.g. /export/home/username] -m username\nuseradd -c  User1  -d -m -u:101 -g:staff User1  N.B. Very important to use -m for make, otherwise directory will not be created  usermod -c\nusermod -u [userid]\nusermod -d  To delete a user:  userdel username  Note that user folder must be unmounted before it could be deleted  umount dirname", 
+            "title": "User Accounts"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Users_and_Groups/#password-information", 
+            "text": "passwd username   In  /etc/shadow  file stores passwords when using /etc files  In  /etc/passwd  file when using NIS  In  people  container when using LDAP  Default password requirements stored in  /etc/default/passwd  file", 
+            "title": "Password information"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Users_and_Groups/#special-uids", 
+            "text": "UID 0-99: reserved for Oracle Solaris system  UID 0: root  UID 1: daemon  UID 2: bin pseudouser  UID 60001 and 65534: reserved for nobody and nobody4 (NFS Anonymous users)  UID 60002: noaccess", 
+            "title": "Special UIDs"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Users_and_Groups/#standard-users", 
+            "text": "Interactive in the sense that user can log into the system locally or remotely.  Will have a home directory associated with it, can be located either on local system or remote file server.", 
+            "title": "Standard Users"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Users_and_Groups/#system-accounts", 
+            "text": "Associated with an application process that is installed and running on the system.    An application process that listens on a network port for service requests is referred to as a  daemon .    These running processes need a way to operate on the system just as standard users do.   System account usually does not require a home directory.  Provides a basic level of security to the system by protecting it in the event that the service that the service associated  with the account is violated.", 
+            "title": "System Accounts"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Users_and_Groups/#root-account", 
+            "text": "Called \"super user\" in previous Solaris releases - owner of most binaries and configuration files.   Root account in Oracle Solaris 11 is generally configured as an RBAC role.    This means it cannot be logged in directly and users must be explicitly granted to access to the account.   When you're authenticating to a role, the password must be that of the role.", 
+            "title": "Root Account"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Users_and_Groups/#unix-groups", 
+            "text": "Each group has a name, group ID (GID), and a list of usernames that belong to the group.  Two types of groups:  Primary group:  group that OS assigns files that are created by the user.  Secondary group:  other groups a user belongs to, maximum 1024 supplemental groups.     To display the list of groups for the user:  groups username  List groups  getent group  List users in a group  getent group groupname  Adding and modifying groups  groupadd -U user1[,user2]\ngroupmod\ngroupdel\n\nuseradd -g group-primary\nuseradd -G group-secondary\ngetent group\nusermod -g group-primary username\nusermod -G +group1,group2... username\nusermod -G -group2,group3... username\nusermod -G   username    # removes all secondary groups", 
+            "title": "UNIX Groups"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Users_and_Groups/#links-and-references", 
+            "text": "Oracle Solaris 11.3 Information Library  Creating Users 1 Video  Creating Users 2 Video  Creating Users 3 Video  Finding account information  Changing account policies", 
+            "title": "Links and References:"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Using_FTP/", 
+            "text": "File Transfer Protocol (FTP)\n\n\n\n\nAn old file transfer protocol for exchanging files over a TCP/IP network since the 1970's.\n\n\nBase specification is \nRFC 959\n, 1985.\n\n\nDesigned to allow clients to browse the file system, and FTP is a stateful sequence of one or more transactions.\n\n\nClient is always responsible for initiating requests.\n\n\nAuthentication by username/password; de facto standard for guest access using \"anonymous\" for username and an \"email address\" for the password.\n\n\nSupports \nASCII\n for text and \"image\" for binary data.\n\n\nBase specification does not have any special handling for encrypted communications, so files containing sensitive material should not be sent.\n\n\nUsernames and passwords are sent in clear text\n and the entire FTP transmission could be monitored by potential attackers.\n\n\n\n\nSource:\n http://www.ncftp.com/libncftp/doc/ftp_overview.html\n\n\n\n\nShould instead use something like \nscp\n for same security as \nssh\n.\n\n\n\n\nFTP service on Solaris\n\n\nsvcs ftp                # Check status of ftp service (default: disabled)\nsvcadm enable ftp       # Enables FTP\nsvcs -xv svc:/network/ftp:default       # Run for troubleshooting\n\n\n\n\nBasic FTP Usage\n\n\nftp\nftp -i                  # Opens FTP and turns off interactive mode so mget/mput\n                        # will not ask for confirmation.\n\n\n\n\nBasic FTP commands\n\n\nftp\n open 192.168.40.153\nftp\n put filename.txt   # Transfer single file\n\n\n\n\nLocal\n\n\nftp\n lcd            # Lists local directory, or changes local directory\nftp\n !ls            # Lists files in local directory - doesn't work with default Windows cmd.exe FTP\nftp\n !dir           # Lists files in local directory - works with MS FTP\n\n\n\n\nRemote\n\n\nftp\n get            # Retrieves files\nftp\n mget           # Retrieves multiple files\nftp\n put            # Sends one file\nftp\n mput           # Sends multiple files\n\n\n\n\nTransferring directories\n\n\n\n\nFTP will not automatically create and transfer directories when using \nmput\n.\n\n\nBash script could be created to recursively transfer directories with their contents through FTP... \ncurrently only runs on Bash for Windows with MS FTP.\n\n\n\n\nif [[ \n$1\n = \nhelp\n ]]; then\n  echo \nRun with ftpcdir.sh \ndirectory\n \nhost address\n \nusername\n \npassword\n\n  exit\nfi\nfind $1 -type d \n dirs.txt\nfind $1 \n files.txt\necho open $2 \n command.ftp\necho $3 \n command.ftp\necho $4 \n command.ftp\nfor i in `cat dirs.txt`\ndo\n  if [[ \n$i\n != '.' ]]; then\n    echo mkdir $i \n command.ftp\n  fi\ndone\nfor i in `cat files.txt`\ndo\n  if [[ \n$i\n != '.' ]]; then\n    echo put $i $i \n command.ftp\n  fi\ndone\necho quit \n command.ftp\nftp -s:command.ftp                  # Only works with Windows Cmd FTP\nexit\n\n\n\n\nChanging the FTP Connection message\n\n\n\n\nCould be done by editing the \n/etc/proftpd.conf\n file.\n\n\nAny change of the file requires restarting the ftp service: \nsvcadm restart ftp\n for changes to take effect.", 
+            "title": "Using FTP"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Using_FTP/#file-transfer-protocol-ftp", 
+            "text": "An old file transfer protocol for exchanging files over a TCP/IP network since the 1970's.  Base specification is  RFC 959 , 1985.  Designed to allow clients to browse the file system, and FTP is a stateful sequence of one or more transactions.  Client is always responsible for initiating requests.  Authentication by username/password; de facto standard for guest access using \"anonymous\" for username and an \"email address\" for the password.  Supports  ASCII  for text and \"image\" for binary data.  Base specification does not have any special handling for encrypted communications, so files containing sensitive material should not be sent.  Usernames and passwords are sent in clear text  and the entire FTP transmission could be monitored by potential attackers.   Source:  http://www.ncftp.com/libncftp/doc/ftp_overview.html   Should instead use something like  scp  for same security as  ssh .", 
+            "title": "File Transfer Protocol (FTP)"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Using_FTP/#ftp-service-on-solaris", 
+            "text": "svcs ftp                # Check status of ftp service (default: disabled)\nsvcadm enable ftp       # Enables FTP\nsvcs -xv svc:/network/ftp:default       # Run for troubleshooting", 
+            "title": "FTP service on Solaris"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Using_FTP/#basic-ftp-usage", 
+            "text": "ftp\nftp -i                  # Opens FTP and turns off interactive mode so mget/mput\n                        # will not ask for confirmation.", 
+            "title": "Basic FTP Usage"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Using_FTP/#basic-ftp-commands", 
+            "text": "ftp  open 192.168.40.153\nftp  put filename.txt   # Transfer single file", 
+            "title": "Basic FTP commands"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Using_FTP/#local", 
+            "text": "ftp  lcd            # Lists local directory, or changes local directory\nftp  !ls            # Lists files in local directory - doesn't work with default Windows cmd.exe FTP\nftp  !dir           # Lists files in local directory - works with MS FTP", 
+            "title": "Local"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Using_FTP/#remote", 
+            "text": "ftp  get            # Retrieves files\nftp  mget           # Retrieves multiple files\nftp  put            # Sends one file\nftp  mput           # Sends multiple files", 
+            "title": "Remote"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Using_FTP/#transferring-directories", 
+            "text": "FTP will not automatically create and transfer directories when using  mput .  Bash script could be created to recursively transfer directories with their contents through FTP...  currently only runs on Bash for Windows with MS FTP.   if [[  $1  =  help  ]]; then\n  echo  Run with ftpcdir.sh  directory   host address   username   password \n  exit\nfi\nfind $1 -type d   dirs.txt\nfind $1   files.txt\necho open $2   command.ftp\necho $3   command.ftp\necho $4   command.ftp\nfor i in `cat dirs.txt`\ndo\n  if [[  $i  != '.' ]]; then\n    echo mkdir $i   command.ftp\n  fi\ndone\nfor i in `cat files.txt`\ndo\n  if [[  $i  != '.' ]]; then\n    echo put $i $i   command.ftp\n  fi\ndone\necho quit   command.ftp\nftp -s:command.ftp                  # Only works with Windows Cmd FTP\nexit", 
+            "title": "Transferring directories"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Using_FTP/#changing-the-ftp-connection-message", 
+            "text": "Could be done by editing the  /etc/proftpd.conf  file.  Any change of the file requires restarting the ftp service:  svcadm restart ftp  for changes to take effect.", 
+            "title": "Changing the FTP Connection message"
+        }, 
+        {
+            "location": "/Miscellaneous/Octave_Basics/", 
+            "text": "Notes on Octave taken from \nAndrew Ng's Coursera machine Learning Course\n\n\nBasic commands\n\n\nones()\nzeros()\neye()\nsize(A)\nlength(A)   % Usually applied to vectors\n\n\n\n\nChaining commands\n\n\n\n\nUse \n,\n to chain commands with output.\n\n\nUse \n;\n to chain commands without output.\n\n\n\n\nNavigation\n\n\npwd\ncd\nls\n\n\n\n\nLoading \n saving data\n\n\nload filename1.dat\nload('filename1.dat')       % equivalent to above\n\nsave filename2.mat\nsave filename3.mat v        % stores data in binary\nsave hello.txt v -ascii     % save as text(ASCII)\n\n\n\n\nViewing variables in current scope\n\n\nwho\nwhos                        % shows detailed view\n\n\n\n\nRemoving data\n\n\nclear                       % clears all data\nclear variable_name\n\n\n\n\nManipulating data\n\n\nA=[1 2; 3 4; 5 6]\nA(3,2)                      % Retrieves item in row 3, column 2\nA(2,:)                      % Colon (:) means every element along that row/column A(2,:) retrieves all elements in row 2\nA(:,2)                      % Retrieves all elements in column 2\n\n\n\n\nAssigning elements\n\n\nA(:,2) = [10;11;12]         % Assigns 10,11,12 to the second column\n\n\n\n\nAppending vectors\n\n\nA = [A,[100, 101, 102]]\nA(:)                        % Put all elements of A into a single vector\n\n\n\n\nConcatenating matrices\n\n\nA=[1 2;3 4;5 6]\nB=[11 12;13 14;15 16]\nC=[A B]                     % Concatenates matrices side by side\nC=[A;B]                     % Concatenates matrices vertically\n\n\n\n\nComputing on data\n\n\nA=[1 2;3 4;5 6]\nB=[11 12;13 14;15 16]\nC=[1 1;2 2]\n\nA*C (3x3 * 2x3 matrix, gives a 3x2 matrix)\n\n\n\n\nElementwise operations\n\n\nA .* B                      % Takes each element in A and multiples by corresponding element in B\nA .^ 2                      % Element squaring of A\n\nv = [1; 2; 3]\n1 ./ v                      % Elementwise reciprical of v\n1 ./ A                      % Elementwise reciprical of matrix A\n\nlog(v)                      % Elementwise logarithm\nexp(v)\nabs(v)\n-v                          % Same as -1 * v\n\nv + ones(length(v),1)       % Increments all elements of v by 1\n\n\n\n\nTranposing etc.\n\n\nA = [1 2; 3 4; 5 6]\nA'                          % Represents A transpose, i.e. [1 3 5;2 4 6]\n(A')'                       % Returns transpose of A transpose, i.e. A\n\na = [1 15 2 0.5]\nval = max(a)                % Returns maximum value of a, i.e. 15\n[val,ind] = max(a)          % Returns maximum value of a and its index\nmax(A)                      % Does columnwise maximum\n\na \n 3                       % Does elementwise comparison\n\nmagic(3)                    % Generates a 3x3 matrix with magic squares\n\n[r,c] = find(A \n= 7)        % r is row, c is column\nsum(a)\nprod(a)\nfloor(a)                    % rounds up\nceil(a)                     % rounds down\nmax(rand(3), rand(3))\n\npinv(A)                     % pseudo inverse of A\n\n\n\n\nPlotting Data\n\n\nt=[0:0.01:0.98];\ny1=sin(2*pi*4*t);\nplot(t,y1);\nplot(t,y2);\n\n\n\n\nPlot two sets of data into one plot\n\n\nplot(t,y1);\nhold on;                    % Holds previous plot\nplot(t,y2,'r');              % r indicates red color\nxlabel('time')\nylabel('value')\nlegend('sin', 'cos')\ntitle('my plot')\n\n\n\n\nSave file as PNG\n\n\nprint -dpng 'myPlot.png'\n\n\n\n\nUsing figures for multiple plots\n\n\nfigure(1); plot(t,y1);\nfigure(2); plot(t,y2);\nsubplot(1,2,1);             % Divides plot to a 1x2 grid, access first element.\nplot(t,y1);\nsubplot(1,2,2);\nplot(t,y2);\naxis([0.5 1 -1 1])\n\n\n\n\nClear a figure\n\n\nclf\n\n\n\n\nUsing a grid of colors\n\n\nA = magic(5)\n\nimagesc(A)\n\n\n\n\nDisplay grid of gray colors\n\n\nimagesc(A), colorbar, colormap gray;\nimagesc(magic(15)), colorbar, colormap gray;\n\n\n\n\nWriting Control Statemnents\n\n\nFor Loop Example\n\n\nv=zeros(10,1)\n\n% Spacing doesn't matter\nfor i=1:10,\n  v(i) = 2^i;\nend;\n\nindicies=1:10;\nfor i=indicies,\n  disp(i);\nend;\n\n\n\n\nWhile Loop Example\n\n\ni=1;\nwhile i \n= 5;\n  v(i) = 100;\n  i = i + 1;\nend;\n\n\n\n\nBreak Example\n\n\n\n\nOverwriting the first 5 values with 999.\n\n\n\n\ni=1;\nwhile true,\n  v(i) = 999;\n  i = i+1;\n  if i == 6,\n    break;\n  end;\nend;\n\n\n\n\nExample of \nElseif\n and \nElse\n\n\nv(1) = 2;\nif v(1) ==1,\n  disp('The value is one');\nelseif v(1) == 2,\n  disp('The value is two');\nelse\n  disp('The value is not one or two');\n\n\n\n\nDefining Functions\n\n\n\n\nCreate a file with filename as function name and extension \n.m\n\n\nTo run the function, need to \ncd\n into directory that contains the function before running the function.\n\n\n\n\n% Filename: squareThisNumber.m\n\nfunction y = squareThisNumber(x)\ny=x^2;\n\n\n\n\nExample function\n\n\n% Filename: squareAndCubeThisNumber.m\n\nfunction [y1,y2] = squareAndCubeThisNumber(x)\n\ny1 = x^2\ny2 = x^3\n\n\n\n\nDefining the Octave search path\n\n\naddpath('C:\\Users\\username\\Desktop')\n\n\n\n\nExample to define a cost function\n\n\n% Filename: costFunctionJ.m\n\nfunction J = costFunctionJ(X, y, theta)\n\n% X is the \ndesign matrix\n containing the training example\n% y is the class labels\n\nm = size(X, 1);             % number of training examples\npredictions = X * theta     % predictions of hypothesis on all m examples\nsqrErrors = (predictions - y).^2;   % squared errors\n\nJ = 1 / (2*m) * sum(sqrErrors);\n\n\n\n\nTesting the cost function\n\n\nX = [1 1;1 2;1 3]\ny = [1; 2; 3]\n\n\n\n\nVectorization\n\n\n\n\nNote that Matlab/Octave vectors are indexed from 1.\n\n\n\n\nprediction = theta' * x;", 
+            "title": "Octave Basics"
+        }, 
+        {
+            "location": "/Miscellaneous/Octave_Basics/#basic-commands", 
+            "text": "ones()\nzeros()\neye()\nsize(A)\nlength(A)   % Usually applied to vectors", 
+            "title": "Basic commands"
+        }, 
+        {
+            "location": "/Miscellaneous/Octave_Basics/#chaining-commands", 
+            "text": "Use  ,  to chain commands with output.  Use  ;  to chain commands without output.", 
+            "title": "Chaining commands"
+        }, 
+        {
+            "location": "/Miscellaneous/Octave_Basics/#navigation", 
+            "text": "pwd\ncd\nls", 
+            "title": "Navigation"
+        }, 
+        {
+            "location": "/Miscellaneous/Octave_Basics/#loading-saving-data", 
+            "text": "load filename1.dat\nload('filename1.dat')       % equivalent to above\n\nsave filename2.mat\nsave filename3.mat v        % stores data in binary\nsave hello.txt v -ascii     % save as text(ASCII)", 
+            "title": "Loading &amp; saving data"
+        }, 
+        {
+            "location": "/Miscellaneous/Octave_Basics/#viewing-variables-in-current-scope", 
+            "text": "who\nwhos                        % shows detailed view", 
+            "title": "Viewing variables in current scope"
+        }, 
+        {
+            "location": "/Miscellaneous/Octave_Basics/#removing-data", 
+            "text": "clear                       % clears all data\nclear variable_name", 
+            "title": "Removing data"
+        }, 
+        {
+            "location": "/Miscellaneous/Octave_Basics/#manipulating-data", 
+            "text": "A=[1 2; 3 4; 5 6]\nA(3,2)                      % Retrieves item in row 3, column 2\nA(2,:)                      % Colon (:) means every element along that row/column A(2,:) retrieves all elements in row 2\nA(:,2)                      % Retrieves all elements in column 2", 
+            "title": "Manipulating data"
+        }, 
+        {
+            "location": "/Miscellaneous/Octave_Basics/#assigning-elements", 
+            "text": "A(:,2) = [10;11;12]         % Assigns 10,11,12 to the second column", 
+            "title": "Assigning elements"
+        }, 
+        {
+            "location": "/Miscellaneous/Octave_Basics/#appending-vectors", 
+            "text": "A = [A,[100, 101, 102]]\nA(:)                        % Put all elements of A into a single vector", 
+            "title": "Appending vectors"
+        }, 
+        {
+            "location": "/Miscellaneous/Octave_Basics/#concatenating-matrices", 
+            "text": "A=[1 2;3 4;5 6]\nB=[11 12;13 14;15 16]\nC=[A B]                     % Concatenates matrices side by side\nC=[A;B]                     % Concatenates matrices vertically", 
+            "title": "Concatenating matrices"
+        }, 
+        {
+            "location": "/Miscellaneous/Octave_Basics/#computing-on-data", 
+            "text": "A=[1 2;3 4;5 6]\nB=[11 12;13 14;15 16]\nC=[1 1;2 2]\n\nA*C (3x3 * 2x3 matrix, gives a 3x2 matrix)", 
+            "title": "Computing on data"
+        }, 
+        {
+            "location": "/Miscellaneous/Octave_Basics/#elementwise-operations", 
+            "text": "A .* B                      % Takes each element in A and multiples by corresponding element in B\nA .^ 2                      % Element squaring of A\n\nv = [1; 2; 3]\n1 ./ v                      % Elementwise reciprical of v\n1 ./ A                      % Elementwise reciprical of matrix A\n\nlog(v)                      % Elementwise logarithm\nexp(v)\nabs(v)\n-v                          % Same as -1 * v\n\nv + ones(length(v),1)       % Increments all elements of v by 1", 
+            "title": "Elementwise operations"
+        }, 
+        {
+            "location": "/Miscellaneous/Octave_Basics/#tranposing-etc", 
+            "text": "A = [1 2; 3 4; 5 6]\nA'                          % Represents A transpose, i.e. [1 3 5;2 4 6]\n(A')'                       % Returns transpose of A transpose, i.e. A\n\na = [1 15 2 0.5]\nval = max(a)                % Returns maximum value of a, i.e. 15\n[val,ind] = max(a)          % Returns maximum value of a and its index\nmax(A)                      % Does columnwise maximum\n\na   3                       % Does elementwise comparison\n\nmagic(3)                    % Generates a 3x3 matrix with magic squares\n\n[r,c] = find(A  = 7)        % r is row, c is column\nsum(a)\nprod(a)\nfloor(a)                    % rounds up\nceil(a)                     % rounds down\nmax(rand(3), rand(3))\n\npinv(A)                     % pseudo inverse of A", 
+            "title": "Tranposing etc."
+        }, 
+        {
+            "location": "/Miscellaneous/Octave_Basics/#plotting-data", 
+            "text": "t=[0:0.01:0.98];\ny1=sin(2*pi*4*t);\nplot(t,y1);\nplot(t,y2);", 
+            "title": "Plotting Data"
+        }, 
+        {
+            "location": "/Miscellaneous/Octave_Basics/#plot-two-sets-of-data-into-one-plot", 
+            "text": "plot(t,y1);\nhold on;                    % Holds previous plot\nplot(t,y2,'r');              % r indicates red color\nxlabel('time')\nylabel('value')\nlegend('sin', 'cos')\ntitle('my plot')", 
+            "title": "Plot two sets of data into one plot"
+        }, 
+        {
+            "location": "/Miscellaneous/Octave_Basics/#save-file-as-png", 
+            "text": "print -dpng 'myPlot.png'", 
+            "title": "Save file as PNG"
+        }, 
+        {
+            "location": "/Miscellaneous/Octave_Basics/#using-figures-for-multiple-plots", 
+            "text": "figure(1); plot(t,y1);\nfigure(2); plot(t,y2);\nsubplot(1,2,1);             % Divides plot to a 1x2 grid, access first element.\nplot(t,y1);\nsubplot(1,2,2);\nplot(t,y2);\naxis([0.5 1 -1 1])", 
+            "title": "Using figures for multiple plots"
+        }, 
+        {
+            "location": "/Miscellaneous/Octave_Basics/#clear-a-figure", 
+            "text": "clf", 
+            "title": "Clear a figure"
+        }, 
+        {
+            "location": "/Miscellaneous/Octave_Basics/#using-a-grid-of-colors", 
+            "text": "A = magic(5)\n\nimagesc(A)", 
+            "title": "Using a grid of colors"
+        }, 
+        {
+            "location": "/Miscellaneous/Octave_Basics/#display-grid-of-gray-colors", 
+            "text": "imagesc(A), colorbar, colormap gray;\nimagesc(magic(15)), colorbar, colormap gray;", 
+            "title": "Display grid of gray colors"
+        }, 
+        {
+            "location": "/Miscellaneous/Octave_Basics/#writing-control-statemnents", 
+            "text": "", 
+            "title": "Writing Control Statemnents"
+        }, 
+        {
+            "location": "/Miscellaneous/Octave_Basics/#for-loop-example", 
+            "text": "v=zeros(10,1)\n\n% Spacing doesn't matter\nfor i=1:10,\n  v(i) = 2^i;\nend;\n\nindicies=1:10;\nfor i=indicies,\n  disp(i);\nend;", 
+            "title": "For Loop Example"
+        }, 
+        {
+            "location": "/Miscellaneous/Octave_Basics/#while-loop-example", 
+            "text": "i=1;\nwhile i  = 5;\n  v(i) = 100;\n  i = i + 1;\nend;", 
+            "title": "While Loop Example"
+        }, 
+        {
+            "location": "/Miscellaneous/Octave_Basics/#break-example", 
+            "text": "Overwriting the first 5 values with 999.   i=1;\nwhile true,\n  v(i) = 999;\n  i = i+1;\n  if i == 6,\n    break;\n  end;\nend;", 
+            "title": "Break Example"
+        }, 
+        {
+            "location": "/Miscellaneous/Octave_Basics/#example-of-elseif-and-else", 
+            "text": "v(1) = 2;\nif v(1) ==1,\n  disp('The value is one');\nelseif v(1) == 2,\n  disp('The value is two');\nelse\n  disp('The value is not one or two');", 
+            "title": "Example of Elseif and Else"
+        }, 
+        {
+            "location": "/Miscellaneous/Octave_Basics/#defining-functions", 
+            "text": "Create a file with filename as function name and extension  .m  To run the function, need to  cd  into directory that contains the function before running the function.   % Filename: squareThisNumber.m\n\nfunction y = squareThisNumber(x)\ny=x^2;", 
+            "title": "Defining Functions"
+        }, 
+        {
+            "location": "/Miscellaneous/Octave_Basics/#example-function", 
+            "text": "% Filename: squareAndCubeThisNumber.m\n\nfunction [y1,y2] = squareAndCubeThisNumber(x)\n\ny1 = x^2\ny2 = x^3", 
+            "title": "Example function"
+        }, 
+        {
+            "location": "/Miscellaneous/Octave_Basics/#defining-the-octave-search-path", 
+            "text": "addpath('C:\\Users\\username\\Desktop')", 
+            "title": "Defining the Octave search path"
+        }, 
+        {
+            "location": "/Miscellaneous/Octave_Basics/#example-to-define-a-cost-function", 
+            "text": "% Filename: costFunctionJ.m\n\nfunction J = costFunctionJ(X, y, theta)\n\n% X is the  design matrix  containing the training example\n% y is the class labels\n\nm = size(X, 1);             % number of training examples\npredictions = X * theta     % predictions of hypothesis on all m examples\nsqrErrors = (predictions - y).^2;   % squared errors\n\nJ = 1 / (2*m) * sum(sqrErrors);", 
+            "title": "Example to define a cost function"
+        }, 
+        {
+            "location": "/Miscellaneous/Octave_Basics/#testing-the-cost-function", 
+            "text": "X = [1 1;1 2;1 3]\ny = [1; 2; 3]", 
+            "title": "Testing the cost function"
+        }, 
+        {
+            "location": "/Miscellaneous/Octave_Basics/#vectorization", 
+            "text": "Note that Matlab/Octave vectors are indexed from 1.   prediction = theta' * x;", 
+            "title": "Vectorization"
+        }, 
+        {
+            "location": "/Powershell/Installation_for_Linux_Mac/", 
+            "text": "Links\n\n\n\n\nHow to install PowerShell on Linux or MacOS", 
+            "title": "Installation for Linux Mac"
+        }, 
+        {
+            "location": "/Powershell/Network_Configuration/", 
+            "text": "References and Links:\n\n- \nWindows PowerShell cmdlets for Net TCP/IP\n\n\nView Network Configuration\n\n\nGet-NetIPConfiguration\n\n\n\n\nView IP Addresses\n\n\nGet-NetIPAddress\n\n\n\n\nSetting a static IP address\n\n\nGet-NetIPInterface\n\n\n\n\n\n\nifIndex\n displays value fo which you wish to set a static IP address.\n\n\n\n\nNew-NetIPAddress -InterfaceIndex 12 -IPAddress -192.0.2.2 - PrefixLength 24 -DefaultGateway -192.0.2.1\nSet-DNSClientServerAddress -InterfaceIndex 12 -ServerAddresses 192.0.2.4,192.0.2.5\n\n\n\n\nSwitching to use DHCP\n\n\nSet-DnsClientServerAddress -InterfaceIndex 12 -ResetServerAddresses\n\n\n\n\nDetermine current name of server\n\n\nhostname\nipconfig\n\n\n\n\nRename Server\n\n\nRename-Computer", 
+            "title": "Network Configuration"
+        }, 
+        {
+            "location": "/Powershell/Network_Configuration/#view-network-configuration", 
+            "text": "Get-NetIPConfiguration", 
+            "title": "View Network Configuration"
+        }, 
+        {
+            "location": "/Powershell/Network_Configuration/#view-ip-addresses", 
+            "text": "Get-NetIPAddress", 
+            "title": "View IP Addresses"
+        }, 
+        {
+            "location": "/Powershell/Network_Configuration/#setting-a-static-ip-address", 
+            "text": "Get-NetIPInterface   ifIndex  displays value fo which you wish to set a static IP address.   New-NetIPAddress -InterfaceIndex 12 -IPAddress -192.0.2.2 - PrefixLength 24 -DefaultGateway -192.0.2.1\nSet-DNSClientServerAddress -InterfaceIndex 12 -ServerAddresses 192.0.2.4,192.0.2.5", 
+            "title": "Setting a static IP address"
+        }, 
+        {
+            "location": "/Powershell/Network_Configuration/#switching-to-use-dhcp", 
+            "text": "Set-DnsClientServerAddress -InterfaceIndex 12 -ResetServerAddresses", 
+            "title": "Switching to use DHCP"
+        }, 
+        {
+            "location": "/Powershell/Network_Configuration/#determine-current-name-of-server", 
+            "text": "hostname\nipconfig", 
+            "title": "Determine current name of server"
+        }, 
+        {
+            "location": "/Powershell/Network_Configuration/#rename-server", 
+            "text": "Rename-Computer", 
+            "title": "Rename Server"
+        }, 
+        {
+            "location": "/Powershell/Windows_Firewall/", 
+            "text": "References and Links:\n\n- \nWindows Server 2012 R2: Windows Firewall with Advanced Security Overview\n\n- \nWindows Firewall with Advanced Security Administration with Powershell\n\n\nNetsh Commands for Windows Firewall with Advanced Security\n\n\n\n\nNot recommended as the \nnetsh advfirewall\n context may be removed in the future.\n\n\nhttps://technet.microsoft.com/library/cc771920(v=ws.10)\n\n\n\n\nnetsh advfirewall firewall\n\n\n\n\nEnable Windows Firewall\n\n\nPowershell\n```Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled True\n\n\nNetsh\n```netsh advfirewall set allprofiles state on\n\n\n\n\nControl Firewall behaviour\n\n\nPowershell\n```Set-NetFirewallProfile -DefaultInboundAction Block -DefaultOutboundAction Allow -NotifyOnListen True -AllowUnicastResponseToMulticast True -LogFileName %SystemRoot%\\System32\\LogFiles\\Firewall\\pfirewall.log\n\n\nNetsh\n\n\n\n\nnetsh advfirewall set allprofiles firewallpolicy blockinbound,allowoutbound\nnetsh advfirewall set allprofiles settings inboundusernotification enable\nnetsh advfirewall set allprofiles settings unicastresponsetomulticast enable\nnetsh advfirewall set allprofiles logging filename %SystemRoot%\\System32\\LogFiles\\Firewall\\pfirewall.log\n```", 
+            "title": "Windows Firewall"
+        }, 
+        {
+            "location": "/Powershell/Windows_Firewall/#netsh-commands-for-windows-firewall-with-advanced-security", 
+            "text": "Not recommended as the  netsh advfirewall  context may be removed in the future.  https://technet.microsoft.com/library/cc771920(v=ws.10)   netsh advfirewall firewall", 
+            "title": "Netsh Commands for Windows Firewall with Advanced Security"
+        }, 
+        {
+            "location": "/Powershell/Windows_Firewall/#enable-windows-firewall", 
+            "text": "Powershell\n```Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled True  Netsh\n```netsh advfirewall set allprofiles state on", 
+            "title": "Enable Windows Firewall"
+        }, 
+        {
+            "location": "/Powershell/Windows_Firewall/#control-firewall-behaviour", 
+            "text": "Powershell\n```Set-NetFirewallProfile -DefaultInboundAction Block -DefaultOutboundAction Allow -NotifyOnListen True -AllowUnicastResponseToMulticast True -LogFileName %SystemRoot%\\System32\\LogFiles\\Firewall\\pfirewall.log  Netsh  netsh advfirewall set allprofiles firewallpolicy blockinbound,allowoutbound\nnetsh advfirewall set allprofiles settings inboundusernotification enable\nnetsh advfirewall set allprofiles settings unicastresponsetomulticast enable\nnetsh advfirewall set allprofiles logging filename %SystemRoot%\\System32\\LogFiles\\Firewall\\pfirewall.log\n```", 
+            "title": "Control Firewall behaviour"
+        }, 
+        {
+            "location": "/Powershell/Windows_Server_2012R2_Installation/", 
+            "text": "Powershell install/uninstall command values for the Name parameter:\n\n\nGraphical Management Tools and Infrastructure\n\nServer-Gui-Mgmt-Infra\n\n\nGraphical Management Tools and Infrastructure, Server Graphical Shell\n\nServer-Gui-Mgmt-Infra, Server-Gui-Shell\n\n\nGraphical Management Tools and Infrastructure, Server Graphical Shell, Desktop Experience\n\nServer-Gui-Mgmt-Infra, Server-Gui-Shell, Desktop-Experience", 
+            "title": "Windows Server 2012R2 Installation"
+        }, 
+        {
+            "location": "/Powershell/Windows_Server_2012R2_Installation/#powershell-installuninstall-command-values-for-the-name-parameter", 
+            "text": "Graphical Management Tools and Infrastructure Server-Gui-Mgmt-Infra  Graphical Management Tools and Infrastructure, Server Graphical Shell Server-Gui-Mgmt-Infra, Server-Gui-Shell  Graphical Management Tools and Infrastructure, Server Graphical Shell, Desktop Experience Server-Gui-Mgmt-Infra, Server-Gui-Shell, Desktop-Experience", 
+            "title": "Powershell install/uninstall command values for the Name parameter:"
+        }, 
+        {
+            "location": "/WinServer2012/Basic_Command_Line/", 
+            "text": "References and Links:\n\n- \nCommand Line Reference\n\n\nCMD commands\n\n\ncls         # clear commandline\nhelp        # list DOS commands\ndir\ndir *.exe /s\nfind\nfindstr\nnetdom\nshutdown\npowershell  # enters powershell environment\n\n\n\n\nNetwork Commands\n\n\nipconfig\nnet\nnet help\nnet command ?       # displays syntax of the command\nnet computer\nnet localgroup      # equivalent to bash-$ getent groups\nnet use             # allows connection to another network   \n\n\n\n\nChanging Computer Name\n\n\nnetdom renamecomputer compname /newname:a_New_Name\nwmic computersystem where caption='currentname' rename newname\n\n\n\n\nChanging the Time/Date/Timezone\n\n\ndate\ntime\ntzutil`\n\n\n\n\nWindows Core Server Configuration Screen\n\n\nsconfig", 
+            "title": "Basic Command Line"
+        }, 
+        {
+            "location": "/WinServer2012/Basic_Command_Line/#cmd-commands", 
+            "text": "cls         # clear commandline\nhelp        # list DOS commands\ndir\ndir *.exe /s\nfind\nfindstr\nnetdom\nshutdown\npowershell  # enters powershell environment", 
+            "title": "CMD commands"
+        }, 
+        {
+            "location": "/WinServer2012/Basic_Command_Line/#network-commands", 
+            "text": "ipconfig\nnet\nnet help\nnet command ?       # displays syntax of the command\nnet computer\nnet localgroup      # equivalent to bash-$ getent groups\nnet use             # allows connection to another network", 
+            "title": "Network Commands"
+        }, 
+        {
+            "location": "/WinServer2012/Basic_Command_Line/#changing-computer-name", 
+            "text": "netdom renamecomputer compname /newname:a_New_Name\nwmic computersystem where caption='currentname' rename newname", 
+            "title": "Changing Computer Name"
+        }, 
+        {
+            "location": "/WinServer2012/Basic_Command_Line/#changing-the-timedatetimezone", 
+            "text": "date\ntime\ntzutil`", 
+            "title": "Changing the Time/Date/Timezone"
+        }, 
+        {
+            "location": "/WinServer2012/Basic_Command_Line/#windows-core-server-configuration-screen", 
+            "text": "sconfig", 
+            "title": "Windows Core Server Configuration Screen"
+        }, 
+        {
+            "location": "/WinServer2012/Server_Roles/", 
+            "text": "References and Links:\n\n\n\n\nRoles and Features Video\n\n\nMS TechNet List of Windows Server 2012 Roles and Features\n\n\nTop 5 Roles to deploy Windows Server 2012\n\n\n\n\nWith Server 2012, you can install roles and features by using the Add Roles and Features Wizard or the Install-WindowsFeature Windows PowerShell cmdlet.\n\n\nTo design, deploy, manage and troubleshoot technologies in Windows Server 2012:\n- \nMS TechNet Server Roles and Technologies\n)", 
+            "title": "Server Roles"
+        }, 
+        {
+            "location": "/WinServer2012/Windows_Server/", 
+            "text": "References and Links:\n\n\n\n\nWindows Server Overview\n\n\nWindows Server Blog\n\n\nWindows Server TechNet Library\n\n\nAccess and Information Protection with WS 2012R2\n\n\n\n\nInstallation options\n\n\n\n\nMS WS2012R2 Installation Options\n\n\nWindows Server 2012 Unattended Installation @ Seaman's Blog\n\n\n\n\nNew Installation of Windows Core\n\n\n\n\nWindows Core Install starts in cmd.exe\n\n\nIf close automatically, can enter \n to run Task Manager and run a new task.\n\n\nSome available programs:\n\n\n\n\ntaskmgr\nregedit\ntimedate.cpl\nintl.cpl\nmsinfo32\nsconfig.cmd\n\n\n\n\nConvert Server Core to Server with GUI\n\n\nTo use Windows PowerShell to convert from a Server Core installation to a Server with a GUI installation\nDetermine the index number for a Server with a GUI image (for example, SERVERDATACENTER, not SERVERDATACENTERCORE) with: \nGet-WindowsImage -ImagePath \npath to wim\n\\install.wim\n\n\nRun: \nInstall-WindowsFeature Server-Gui-Mgmt-Infra,Server-Gui-Shell \u2013Restart \u2013Source c:\\mountdir\\windows\\winsxs\n\n\nAlternatively, if you want to use Windows Update as the source instead of a WIM file, use this Windows PowerShell cmdlet:\n\nInstall-WindowsFeature Server-Gui-Mgmt-Infra,Server-Gui-Shell \u2013Restart\n\n\nIf you get the following error message when trying the above installations:\n\n\nError: 0x800f081f\n\nThe source files could not be found.\nUse the \nSource\n option to specify the location of the files that are required to restore the feature. For more information\non specifying a source location, see http://go.microsoft.com/fwlink/?LinkId=243077.\n\n\n\n\nSee this link to solve the issue.\n \nlink here from Microsoft\n\n\nFirst get the index number of desired installation for Non-core:\n\n\ndism /get-wiminfo /wimfile:d:\\sources\\install.wim\n\n\n\n\nNext can run the command with the index number:\n\n\nInstall-WindowsFeature Server-Gui-Mgmt-Infra,Server-Gui-Shell -Restart -Source wim:d:\\sources\\install.wim:2\n\n\n\n\nConvert Server with GUI to Server Core\n\n\nTo convert to a Server Core installation with Windows PowerShell: run the following cmdlet:\n\n\nUninstall-WindowsFeature Server-Gui-Mgmt-Infra -Restart\n\n\n\n\nFeatures on Demand\n\n\nIn previous versions of Windows, even if a server role or feature was disabled, the binary files for it were still present on the disk, consuming space. In Windows Server 2012, not only can you disable a role or feature, but you can also completely remove its files, a state shown as \u201cremoved\u201d in Server Manager or \u201cdisabled with payload removed\u201d in Dism.exe.\n\n\n\n\n\n\nTo reinstall a role or feature that been completely removed, you must have access to an installation source.\n\n\n\n\n\n\nTo completely remove a role or feature, use \n\u2013Remove\n with the \nUninstall-WindowsFeature\n cmdlet of Windows PowerShell. For example, to completely remove Windows Explorer, Internet Explorer, and dependent components, run the following Windows PowerShell command:\n\n\n\n\n\n\nUninstall-WindowsFeature Server-Gui-Shell -Remove\n\n\nTo install a role or feature that has been completely removed, use the Windows PowerShell \n\u2013Source\n option of the \nInstall-WindowsFeature\n Server Manager cmdlet. The \u2013Source option specifies a path to a WIM image and the index number of the image. If you do not specify a \u2013Source option, Windows will use Windows Update by default. Offline VHDs cannot be used as a source for installing roles or features which have been completely removed.\n\n\nOnly component sources from the exact same version of Windows are supported. For example, a component source derived from the Windows Server Developer Preview is not a valid installation source for a server running Windows Server 2012.\n\n\nTo install a removed role or feature using a WIM image, use the steps and Windows PowerShell cmdlets:\nRun \nGet-windowsimage \u2013imagepath \npath to wim\n\\install.wim\n, and make note of the index of the Windows Server 2012 image.\n\n\nInstall-WindowsFeature \nfeaturename\n -Source wim:\npath\n:\nindex\n, where:\nFeaturename is the name of the role or feature from Get-WindowsFeature\nPath is the path to the WIM mount point\nIndex is the index of the server image from Step 1.\nFor example: \nInstall-WindowsFeature \nfeaturename\n -Source wim:d:\\sources\\install.wim:4", 
+            "title": "Windows Server"
+        }, 
+        {
+            "location": "/WinServer2012/Windows_Server/#installation-options", 
+            "text": "MS WS2012R2 Installation Options  Windows Server 2012 Unattended Installation @ Seaman's Blog", 
+            "title": "Installation options"
+        }, 
+        {
+            "location": "/WinServer2012/Windows_Server/#new-installation-of-windows-core", 
+            "text": "Windows Core Install starts in cmd.exe  If close automatically, can enter   to run Task Manager and run a new task.  Some available programs:   taskmgr\nregedit\ntimedate.cpl\nintl.cpl\nmsinfo32\nsconfig.cmd", 
+            "title": "New Installation of Windows Core"
+        }, 
+        {
+            "location": "/WinServer2012/Windows_Server/#convert-server-core-to-server-with-gui", 
+            "text": "To use Windows PowerShell to convert from a Server Core installation to a Server with a GUI installation\nDetermine the index number for a Server with a GUI image (for example, SERVERDATACENTER, not SERVERDATACENTERCORE) with:  Get-WindowsImage -ImagePath  path to wim \\install.wim  Run:  Install-WindowsFeature Server-Gui-Mgmt-Infra,Server-Gui-Shell \u2013Restart \u2013Source c:\\mountdir\\windows\\winsxs  Alternatively, if you want to use Windows Update as the source instead of a WIM file, use this Windows PowerShell cmdlet: Install-WindowsFeature Server-Gui-Mgmt-Infra,Server-Gui-Shell \u2013Restart  If you get the following error message when trying the above installations:  Error: 0x800f081f\n\nThe source files could not be found.\nUse the  Source  option to specify the location of the files that are required to restore the feature. For more information\non specifying a source location, see http://go.microsoft.com/fwlink/?LinkId=243077.  See this link to solve the issue.   link here from Microsoft  First get the index number of desired installation for Non-core:  dism /get-wiminfo /wimfile:d:\\sources\\install.wim  Next can run the command with the index number:  Install-WindowsFeature Server-Gui-Mgmt-Infra,Server-Gui-Shell -Restart -Source wim:d:\\sources\\install.wim:2", 
+            "title": "Convert Server Core to Server with GUI"
+        }, 
+        {
+            "location": "/WinServer2012/Windows_Server/#convert-server-with-gui-to-server-core", 
+            "text": "To convert to a Server Core installation with Windows PowerShell: run the following cmdlet:  Uninstall-WindowsFeature Server-Gui-Mgmt-Infra -Restart", 
+            "title": "Convert Server with GUI to Server Core"
+        }, 
+        {
+            "location": "/WinServer2012/Windows_Server/#features-on-demand", 
+            "text": "In previous versions of Windows, even if a server role or feature was disabled, the binary files for it were still present on the disk, consuming space. In Windows Server 2012, not only can you disable a role or feature, but you can also completely remove its files, a state shown as \u201cremoved\u201d in Server Manager or \u201cdisabled with payload removed\u201d in Dism.exe.    To reinstall a role or feature that been completely removed, you must have access to an installation source.    To completely remove a role or feature, use  \u2013Remove  with the  Uninstall-WindowsFeature  cmdlet of Windows PowerShell. For example, to completely remove Windows Explorer, Internet Explorer, and dependent components, run the following Windows PowerShell command:    Uninstall-WindowsFeature Server-Gui-Shell -Remove  To install a role or feature that has been completely removed, use the Windows PowerShell  \u2013Source  option of the  Install-WindowsFeature  Server Manager cmdlet. The \u2013Source option specifies a path to a WIM image and the index number of the image. If you do not specify a \u2013Source option, Windows will use Windows Update by default. Offline VHDs cannot be used as a source for installing roles or features which have been completely removed.  Only component sources from the exact same version of Windows are supported. For example, a component source derived from the Windows Server Developer Preview is not a valid installation source for a server running Windows Server 2012.  To install a removed role or feature using a WIM image, use the steps and Windows PowerShell cmdlets:\nRun  Get-windowsimage \u2013imagepath  path to wim \\install.wim , and make note of the index of the Windows Server 2012 image.  Install-WindowsFeature  featurename  -Source wim: path : index , where:\nFeaturename is the name of the role or feature from Get-WindowsFeature\nPath is the path to the WIM mount point\nIndex is the index of the server image from Step 1.\nFor example:  Install-WindowsFeature  featurename  -Source wim:d:\\sources\\install.wim:4", 
+            "title": "Features on Demand"
+        }
+    ]
+}

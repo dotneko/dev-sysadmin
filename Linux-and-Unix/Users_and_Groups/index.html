@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Users and Groups - Software Development and System Administration Notes</title>
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome-4.5.0.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../css/highlight.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+	
+	<script src="../../js/jquery-1.10.2.min.js"></script>
+        <script src="../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../js/highlight.pack.js"></script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../..">Software Development and System Administration Notes</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                    <li >
+                        <a href="../..">Home</a>
+                    </li>
+                    <li >
+                        <a href="../../Git_and_GitHub/">Git and GitHub</a>
+                    </li>
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Linux and Unix <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../File_System/">File System</a>
+</li>
+                            
+<li >
+    <a href="../Files_and_Directories/">Files and Directories</a>
+</li>
+                            
+<li >
+    <a href="../Naming_Services/">Naming Services</a>
+</li>
+                            
+<li >
+    <a href="../SSH_and_SCP_Usage/">SSH and SCP Usage</a>
+</li>
+                            
+<li >
+    <a href="../Setup_an_Apache_Server/">Setup an Apache Server</a>
+</li>
+                            
+<li >
+    <a href="../Slackware/">Slackware</a>
+</li>
+                            
+<li >
+    <a href="../Solaris_CheatSheet/">Solaris CheatSheet</a>
+</li>
+                            
+<li >
+    <a href="../Solaris_Networking/">Solaris Networking</a>
+</li>
+                            
+<li >
+    <a href="../Solaris_Roles/">Solaris Roles</a>
+</li>
+                            
+<li >
+    <a href="../Solaris_SMF/">Solaris SMF</a>
+</li>
+                            
+<li class="active">
+    <a href="./">Users and Groups</a>
+</li>
+                            
+<li >
+    <a href="../Using_FTP/">Using FTP</a>
+</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Miscellaneous <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../../Miscellaneous/Octave_Basics/">Octave Basics</a>
+</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Powershell <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../../Powershell/Installation_for_Linux_Mac/">Installation for Linux Mac</a>
+</li>
+                            
+<li >
+    <a href="../../Powershell/Network_Configuration/">Network Configuration</a>
+</li>
+                            
+<li >
+    <a href="../../Powershell/Windows_Firewall/">Windows Firewall</a>
+</li>
+                            
+<li >
+    <a href="../../Powershell/Windows_Server_2012R2_Installation/">Windows Server 2012R2 Installation</a>
+</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">WinServer2012 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../../WinServer2012/Basic_Command_Line/">Basic Command Line</a>
+</li>
+                            
+<li >
+    <a href="../../WinServer2012/Server_Roles/">Server Roles</a>
+</li>
+                            
+<li >
+    <a href="../../WinServer2012/Windows_Server/">Windows Server</a>
+</li>
+                        </ul>
+                    </li>
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                    <li >
+                        <a rel="next" href="../Solaris_SMF/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../Using_FTP/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#user-accounts">User Accounts</a></li>
+        <li class="main "><a href="#password-information">Password information</a></li>
+        <li class="main "><a href="#special-uids">Special UIDs</a></li>
+            <li><a href="#standard-users">Standard Users</a></li>
+            <li><a href="#system-accounts">System Accounts</a></li>
+            <li><a href="#root-account">Root Account</a></li>
+        <li class="main "><a href="#unix-groups">UNIX Groups</a></li>
+        <li class="main "><a href="#links-and-references">Links and References:</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="user-accounts">User Accounts</h1>
+<pre><code>useradd -m username
+useradd -m username # simple way to create a new user with username
+useradd -c &quot;Common name&quot; -d [home directory, e.g. /export/home/username] -m username
+useradd -c &quot;User1&quot; -d -m -u:101 -g:staff User1
+</code></pre>
+
+<p>N.B. Very important to use -m for make, otherwise directory will not be created</p>
+<pre><code>usermod -c
+usermod -u [userid]
+usermod -d
+</code></pre>
+
+<p>To delete a user:</p>
+<pre><code>userdel username
+</code></pre>
+
+<p>Note that user folder must be unmounted before it could be deleted</p>
+<pre><code>umount dirname
+</code></pre>
+
+<h1 id="password-information">Password information</h1>
+<pre><code>passwd username
+</code></pre>
+
+<ul>
+<li>In <code>/etc/shadow</code> file stores passwords when using /etc files</li>
+<li>In <code>/etc/passwd</code> file when using NIS</li>
+<li>In <code>people</code> container when using LDAP</li>
+<li>Default password requirements stored in <code>/etc/default/passwd</code> file</li>
+</ul>
+<h1 id="special-uids">Special UIDs</h1>
+<ul>
+<li>UID 0-99: reserved for Oracle Solaris system</li>
+<li>UID 0: root</li>
+<li>UID 1: daemon</li>
+<li>UID 2: bin pseudouser</li>
+<li>UID 60001 and 65534: reserved for nobody and nobody4 (NFS Anonymous users)</li>
+<li>UID 60002: noaccess</li>
+</ul>
+<h2 id="standard-users">Standard Users</h2>
+<ul>
+<li>Interactive in the sense that user can log into the system locally or remotely.</li>
+<li>Will have a home directory associated with it, can be located either on local system or remote file server.</li>
+</ul>
+<h2 id="system-accounts">System Accounts</h2>
+<ul>
+<li>
+<p>Associated with an application process that is installed and running on the system.</p>
+</li>
+<li>
+<p>An application process that listens on a network port for service requests is referred to as a <strong>daemon</strong>.</p>
+</li>
+<li>
+<p>These running processes need a way to operate on the system just as standard users do.</p>
+</li>
+<li>System account usually does not require a home directory.</li>
+<li>Provides a basic level of security to the system by protecting it in the event that the service that the service associated  with the account is violated.</li>
+</ul>
+<h2 id="root-account">Root Account</h2>
+<ul>
+<li>Called "super user" in previous Solaris releases - owner of most binaries and configuration files.</li>
+<li>
+<p>Root account in Oracle Solaris 11 is generally configured as an RBAC role.</p>
+</li>
+<li>
+<p>This means it cannot be logged in directly and users must be explicitly granted to access to the account.</p>
+</li>
+<li>When you're authenticating to a role, the password must be that of the role.</li>
+</ul>
+<h1 id="unix-groups">UNIX Groups</h1>
+<ul>
+<li>Each group has a name, group ID (GID), and a list of usernames that belong to the group.</li>
+<li>Two types of groups:<ul>
+<li><strong>Primary group:</strong> group that OS assigns files that are created by the user.</li>
+<li><strong>Secondary group:</strong> other groups a user belongs to, maximum 1024 supplemental groups.</li>
+</ul>
+</li>
+</ul>
+<p>To display the list of groups for the user:</p>
+<pre><code>groups username
+</code></pre>
+
+<p>List groups</p>
+<pre><code>getent group
+</code></pre>
+
+<p>List users in a group</p>
+<pre><code>getent group groupname
+</code></pre>
+
+<p>Adding and modifying groups</p>
+<pre><code>groupadd -U user1[,user2]
+groupmod
+groupdel
+
+useradd -g group-primary
+useradd -G group-secondary
+getent group
+usermod -g group-primary username
+usermod -G +group1,group2... username
+usermod -G -group2,group3... username
+usermod -G &quot;&quot; username    # removes all secondary groups
+</code></pre>
+
+<h1 id="links-and-references">Links and References:</h1>
+<ul>
+<li><a href="https://docs.oracle.com/cd/E53394_01/">Oracle Solaris 11.3 Information Library</a></li>
+<li><a href="https://www.youtube.com/watch?v=n_7uUnTodSY">Creating Users 1 Video</a></li>
+<li><a href="https://www.youtube.com/watch?v=dj_V5XDdYcU">Creating Users 2 Video</a></li>
+<li><a href="https://www.youtube.com/watch?v=bQF1SavzgL8">Creating Users 3 Video</a></li>
+<li><a href="https://www.youtube.com/watch?v=QBpLUfWOYLs">Finding account information</a></li>
+<li><a href="https://www.youtube.com/watch?v=EZ4BmS1VM7w">Changing account policies</a></li>
+</ul></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>var base_url = '../..';</script>
+        <script data-main="../../mkdocs/js/search.js" src="../../mkdocs/js/require.js"></script>
+        <script src="../../js/base.js"></script><div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

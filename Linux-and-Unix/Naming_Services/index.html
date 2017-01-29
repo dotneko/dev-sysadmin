@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Naming Services - Software Development and System Administration Notes</title>
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome-4.5.0.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../css/highlight.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+	
+	<script src="../../js/jquery-1.10.2.min.js"></script>
+        <script src="../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../js/highlight.pack.js"></script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../..">Software Development and System Administration Notes</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                    <li >
+                        <a href="../..">Home</a>
+                    </li>
+                    <li >
+                        <a href="../../Git_and_GitHub/">Git and GitHub</a>
+                    </li>
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Linux and Unix <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../File_System/">File System</a>
+</li>
+                            
+<li >
+    <a href="../Files_and_Directories/">Files and Directories</a>
+</li>
+                            
+<li class="active">
+    <a href="./">Naming Services</a>
+</li>
+                            
+<li >
+    <a href="../SSH_and_SCP_Usage/">SSH and SCP Usage</a>
+</li>
+                            
+<li >
+    <a href="../Setup_an_Apache_Server/">Setup an Apache Server</a>
+</li>
+                            
+<li >
+    <a href="../Slackware/">Slackware</a>
+</li>
+                            
+<li >
+    <a href="../Solaris_CheatSheet/">Solaris CheatSheet</a>
+</li>
+                            
+<li >
+    <a href="../Solaris_Networking/">Solaris Networking</a>
+</li>
+                            
+<li >
+    <a href="../Solaris_Roles/">Solaris Roles</a>
+</li>
+                            
+<li >
+    <a href="../Solaris_SMF/">Solaris SMF</a>
+</li>
+                            
+<li >
+    <a href="../Users_and_Groups/">Users and Groups</a>
+</li>
+                            
+<li >
+    <a href="../Using_FTP/">Using FTP</a>
+</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Miscellaneous <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../../Miscellaneous/Octave_Basics/">Octave Basics</a>
+</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Powershell <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../../Powershell/Installation_for_Linux_Mac/">Installation for Linux Mac</a>
+</li>
+                            
+<li >
+    <a href="../../Powershell/Network_Configuration/">Network Configuration</a>
+</li>
+                            
+<li >
+    <a href="../../Powershell/Windows_Firewall/">Windows Firewall</a>
+</li>
+                            
+<li >
+    <a href="../../Powershell/Windows_Server_2012R2_Installation/">Windows Server 2012R2 Installation</a>
+</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">WinServer2012 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../../WinServer2012/Basic_Command_Line/">Basic Command Line</a>
+</li>
+                            
+<li >
+    <a href="../../WinServer2012/Server_Roles/">Server Roles</a>
+</li>
+                            
+<li >
+    <a href="../../WinServer2012/Windows_Server/">Windows Server</a>
+</li>
+                        </ul>
+                    </li>
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                    <li >
+                        <a rel="next" href="../Files_and_Directories/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../SSH_and_SCP_Usage/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#oracle-solaris-naming-services">Oracle Solaris Naming Services</a></li>
+        <li class="main "><a href="#dns">DNS</a></li>
+        <li class="main "><a href="#nis">NIS</a></li>
+            <li><a href="#ldap">LDAP</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<p><em>Notes from: <a href="https://docs.oracle.com/cd/E23824_01/html/821-1455/a00intro-21293.html#scrolltoc">Oracle: What is a Naming Service?</a></em></p>
+<ul>
+<li>Performs lookups of stored information, including usernames, passwords, access permissions, group membership etc.</li>
+<li>Can be stored locally or in a central network-based repository/database.</li>
+<li>
+<p>Fundamental to computing networks, provides following functionality:</p>
+<ul>
+<li>Associates (binds names with objects)</li>
+<li>Resolves names to objects</li>
+<li>Removes bindings</li>
+<li>Lists names</li>
+<li>Renames information</li>
+</ul>
+</li>
+<li>
+<p>Network information service enables systems to be identified by common names instead of numerical addresses.</p>
+</li>
+<li><code>/etc/inet/hosts</code> stores network address of every system in the network, including itself.</li>
+<li><strong>Client-server computing</strong>: A network information service stores network information on a server, which can be queried by any system (clients).</li>
+<li>Naming allows for a more flexible identification of divisions/subnets that could be spread across different physical networks.</li>
+</ul>
+<h2 id="oracle-solaris-naming-services">Oracle Solaris Naming Services</h2>
+<ul>
+<li>Domain Name System (DNS)</li>
+<li><code>/etc</code> files: the original UNIX naming system</li>
+<li>Network Information Service (NIS)</li>
+<li>
+<p>Lightweight Directory Access Protocol (LDAP)</p>
+</li>
+<li>
+<p>When managing user accounts for a large site, consider using a name or directory service such as LDAP or NIS - these allow user account information to be stored in a centralized manner instead of in every system's <code>/etc</code> files.</p>
+</li>
+</ul>
+<h2 id="dns">DNS</h2>
+<ul>
+<li>The <em>DNS</em> is a hierarchical, distributed database, implemented on a TCP/IP network and is primarily used to look up IP addresses for Internet host names and host names for IP addresses.</li>
+<li>DNS clients request information about a host name from name server(s) and wait for a response. DNS servers respond to requests from a information cache.</li>
+<li>DNS makes communication simpler by using machine names instead of numerical IP addresses.</li>
+</ul>
+<h2 id="nis">NIS</h2>
+<ul>
+<li>Developed independently of DNS.</li>
+<li>Focuses on making network administration more manageable by providing centralized control over a variety of network information.</li>
+<li>Stores information about network, machine names and addresses, users, network services.</li>
+<li>Collection of information known as <strong>NIS namespace</strong>.</li>
+<li>Stored in <strong>NIS maps</strong>, designed to replace <code>/etc/</code> files.</li>
+</ul>
+<h4 id="ldap">LDAP</h4>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Lightweight_Directory_Access_Protocol">LDAP @ Wikipedia</a></li>
+<li>Open, vendor-neutral, industry standard application protocol for accessing and maintaining distributed directory information services over an IP network.</li>
+<li>Commonly used to provide a central place to store usernames and passwords. Allows different applications and services to connect to the LDAP server to validate users.</li>
+</ul></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>var base_url = '../..';</script>
+        <script data-main="../../mkdocs/js/search.js" src="../../mkdocs/js/require.js"></script>
+        <script src="../../js/base.js"></script><div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

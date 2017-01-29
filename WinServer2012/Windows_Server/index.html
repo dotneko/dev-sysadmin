@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Windows Server - Software Development and System Administration Notes</title>
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome-4.5.0.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../css/highlight.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+	
+	<script src="../../js/jquery-1.10.2.min.js"></script>
+        <script src="../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../js/highlight.pack.js"></script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../..">Software Development and System Administration Notes</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                    <li >
+                        <a href="../..">Home</a>
+                    </li>
+                    <li >
+                        <a href="../../Git_and_GitHub/">Git and GitHub</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Linux and Unix <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../../Linux-and-Unix/File_System/">File System</a>
+</li>
+                            
+<li >
+    <a href="../../Linux-and-Unix/Files_and_Directories/">Files and Directories</a>
+</li>
+                            
+<li >
+    <a href="../../Linux-and-Unix/Naming_Services/">Naming Services</a>
+</li>
+                            
+<li >
+    <a href="../../Linux-and-Unix/SSH_and_SCP_Usage/">SSH and SCP Usage</a>
+</li>
+                            
+<li >
+    <a href="../../Linux-and-Unix/Setup_an_Apache_Server/">Setup an Apache Server</a>
+</li>
+                            
+<li >
+    <a href="../../Linux-and-Unix/Slackware/">Slackware</a>
+</li>
+                            
+<li >
+    <a href="../../Linux-and-Unix/Solaris_CheatSheet/">Solaris CheatSheet</a>
+</li>
+                            
+<li >
+    <a href="../../Linux-and-Unix/Solaris_Networking/">Solaris Networking</a>
+</li>
+                            
+<li >
+    <a href="../../Linux-and-Unix/Solaris_Roles/">Solaris Roles</a>
+</li>
+                            
+<li >
+    <a href="../../Linux-and-Unix/Solaris_SMF/">Solaris SMF</a>
+</li>
+                            
+<li >
+    <a href="../../Linux-and-Unix/Users_and_Groups/">Users and Groups</a>
+</li>
+                            
+<li >
+    <a href="../../Linux-and-Unix/Using_FTP/">Using FTP</a>
+</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Miscellaneous <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../../Miscellaneous/Octave_Basics/">Octave Basics</a>
+</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Powershell <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../../Powershell/Installation_for_Linux_Mac/">Installation for Linux Mac</a>
+</li>
+                            
+<li >
+    <a href="../../Powershell/Network_Configuration/">Network Configuration</a>
+</li>
+                            
+<li >
+    <a href="../../Powershell/Windows_Firewall/">Windows Firewall</a>
+</li>
+                            
+<li >
+    <a href="../../Powershell/Windows_Server_2012R2_Installation/">Windows Server 2012R2 Installation</a>
+</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">WinServer2012 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../Basic_Command_Line/">Basic Command Line</a>
+</li>
+                            
+<li >
+    <a href="../Server_Roles/">Server Roles</a>
+</li>
+                            
+<li class="active">
+    <a href="./">Windows Server</a>
+</li>
+                        </ul>
+                    </li>
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                    <li >
+                        <a rel="next" href="../Server_Roles/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li class="disabled">
+                        <a rel="prev" >
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#installation-options">Installation options</a></li>
+            <li><a href="#new-installation-of-windows-core">New Installation of Windows Core</a></li>
+            <li><a href="#convert-server-core-to-server-with-gui">Convert Server Core to Server with GUI</a></li>
+            <li><a href="#convert-server-with-gui-to-server-core">Convert Server with GUI to Server Core</a></li>
+            <li><a href="#features-on-demand">Features on Demand</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<p><em>References and Links:</em></p>
+<ul>
+<li><a href="https://msdn.microsoft.com/library/dn636873(v=vs.85).aspx">Windows Server Overview</a></li>
+<li><a href="https://blogs.technet.microsoft.com/windowsserver/">Windows Server Blog</a></li>
+<li><a href="https://technet.microsoft.com/en-us/library/bb625087.aspx">Windows Server TechNet Library</a></li>
+<li><a href="https://technet.microsoft.com/en-us/library/dn761715">Access and Information Protection with WS 2012R2</a></li>
+</ul>
+<h1 id="installation-options">Installation options</h1>
+<ul>
+<li><a href="https://technet.microsoft.com/en-us/library/hh831786">MS WS2012R2 Installation Options</a></li>
+<li><a href="https://www.derekseaman.com/2012/07/windows-server-2012-unattended.html">Windows Server 2012 Unattended Installation @ Seaman's Blog</a></li>
+</ul>
+<h2 id="new-installation-of-windows-core">New Installation of Windows Core</h2>
+<ul>
+<li>Windows Core Install starts in cmd.exe</li>
+<li>If close automatically, can enter <Ctrl><Alt><Del> to run Task Manager and run a new task.</li>
+<li>Some available programs:</li>
+</ul>
+<pre><code>taskmgr
+regedit
+timedate.cpl
+intl.cpl
+msinfo32
+sconfig.cmd
+</code></pre>
+
+<h2 id="convert-server-core-to-server-with-gui">Convert Server Core to Server with GUI</h2>
+<p>To use Windows PowerShell to convert from a Server Core installation to a Server with a GUI installation
+Determine the index number for a Server with a GUI image (for example, SERVERDATACENTER, not SERVERDATACENTERCORE) with: <code>Get-WindowsImage -ImagePath &lt;path to wim&gt;\install.wim</code></p>
+<p>Run: <code>Install-WindowsFeature Server-Gui-Mgmt-Infra,Server-Gui-Shell –Restart –Source c:\mountdir\windows\winsxs</code></p>
+<p>Alternatively, if you want to use Windows Update as the source instead of a WIM file, use this Windows PowerShell cmdlet:
+<code>Install-WindowsFeature Server-Gui-Mgmt-Infra,Server-Gui-Shell –Restart</code></p>
+<p><em>If you get the following error message when trying the above installations:</em></p>
+<pre><code>Error: 0x800f081f
+
+The source files could not be found.
+Use the &quot;Source&quot; option to specify the location of the files that are required to restore the feature. For more information
+on specifying a source location, see http://go.microsoft.com/fwlink/?LinkId=243077.
+</code></pre>
+
+<p><strong>See this link to solve the issue.</strong> <a href="https://support.microsoft.com/en-us/kb/2913316">link here from Microsoft</a></p>
+<p>First get the index number of desired installation for Non-core:</p>
+<pre><code>dism /get-wiminfo /wimfile:d:\sources\install.wim
+</code></pre>
+
+<p>Next can run the command with the index number:</p>
+<pre><code>Install-WindowsFeature Server-Gui-Mgmt-Infra,Server-Gui-Shell -Restart -Source wim:d:\sources\install.wim:2
+</code></pre>
+
+<h2 id="convert-server-with-gui-to-server-core">Convert Server with GUI to Server Core</h2>
+<p>To convert to a Server Core installation with Windows PowerShell: run the following cmdlet:</p>
+<pre><code>Uninstall-WindowsFeature Server-Gui-Mgmt-Infra -Restart
+</code></pre>
+
+<h2 id="features-on-demand">Features on Demand</h2>
+<p>In previous versions of Windows, even if a server role or feature was disabled, the binary files for it were still present on the disk, consuming space. In Windows Server 2012, not only can you disable a role or feature, but you can also completely remove its files, a state shown as “removed” in Server Manager or “disabled with payload removed” in Dism.exe.</p>
+<ul>
+<li>
+<p>To reinstall a role or feature that been completely removed, you must have access to an installation source.</p>
+</li>
+<li>
+<p>To completely remove a role or feature, use <code>–Remove</code> with the <code>Uninstall-WindowsFeature</code> cmdlet of Windows PowerShell. For example, to completely remove Windows Explorer, Internet Explorer, and dependent components, run the following Windows PowerShell command:</p>
+</li>
+</ul>
+<p><code>Uninstall-WindowsFeature Server-Gui-Shell -Remove</code></p>
+<p>To install a role or feature that has been completely removed, use the Windows PowerShell <code>–Source</code> option of the <code>Install-WindowsFeature</code> Server Manager cmdlet. The –Source option specifies a path to a WIM image and the index number of the image. If you do not specify a –Source option, Windows will use Windows Update by default. Offline VHDs cannot be used as a source for installing roles or features which have been completely removed.</p>
+<p>Only component sources from the exact same version of Windows are supported. For example, a component source derived from the Windows Server Developer Preview is not a valid installation source for a server running Windows Server 2012.</p>
+<p>To install a removed role or feature using a WIM image, use the steps and Windows PowerShell cmdlets:
+Run <code>Get-windowsimage –imagepath &lt;path to wim&gt;\install.wim</code>, and make note of the index of the Windows Server 2012 image.</p>
+<p><code>Install-WindowsFeature &lt;featurename&gt; -Source wim:&lt;path&gt;:&lt;index&gt;</code>, where:
+Featurename is the name of the role or feature from Get-WindowsFeature
+Path is the path to the WIM mount point
+Index is the index of the server image from Step 1.
+For example: <code>Install-WindowsFeature &lt;featurename&gt; -Source wim:d:\sources\install.wim:4</code></p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>var base_url = '../..';</script>
+        <script data-main="../../mkdocs/js/search.js" src="../../mkdocs/js/require.js"></script>
+        <script src="../../js/base.js"></script><div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

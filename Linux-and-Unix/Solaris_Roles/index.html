@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Solaris Roles - Software Development and System Administration Notes</title>
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome-4.5.0.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../css/highlight.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+	
+	<script src="../../js/jquery-1.10.2.min.js"></script>
+        <script src="../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../js/highlight.pack.js"></script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../..">Software Development and System Administration Notes</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                    <li >
+                        <a href="../..">Home</a>
+                    </li>
+                    <li >
+                        <a href="../../Git_and_GitHub/">Git and GitHub</a>
+                    </li>
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Linux and Unix <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../File_System/">File System</a>
+</li>
+                            
+<li >
+    <a href="../Files_and_Directories/">Files and Directories</a>
+</li>
+                            
+<li >
+    <a href="../Naming_Services/">Naming Services</a>
+</li>
+                            
+<li >
+    <a href="../SSH_and_SCP_Usage/">SSH and SCP Usage</a>
+</li>
+                            
+<li >
+    <a href="../Setup_an_Apache_Server/">Setup an Apache Server</a>
+</li>
+                            
+<li >
+    <a href="../Slackware/">Slackware</a>
+</li>
+                            
+<li >
+    <a href="../Solaris_CheatSheet/">Solaris CheatSheet</a>
+</li>
+                            
+<li >
+    <a href="../Solaris_Networking/">Solaris Networking</a>
+</li>
+                            
+<li class="active">
+    <a href="./">Solaris Roles</a>
+</li>
+                            
+<li >
+    <a href="../Solaris_SMF/">Solaris SMF</a>
+</li>
+                            
+<li >
+    <a href="../Users_and_Groups/">Users and Groups</a>
+</li>
+                            
+<li >
+    <a href="../Using_FTP/">Using FTP</a>
+</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Miscellaneous <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../../Miscellaneous/Octave_Basics/">Octave Basics</a>
+</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Powershell <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../../Powershell/Installation_for_Linux_Mac/">Installation for Linux Mac</a>
+</li>
+                            
+<li >
+    <a href="../../Powershell/Network_Configuration/">Network Configuration</a>
+</li>
+                            
+<li >
+    <a href="../../Powershell/Windows_Firewall/">Windows Firewall</a>
+</li>
+                            
+<li >
+    <a href="../../Powershell/Windows_Server_2012R2_Installation/">Windows Server 2012R2 Installation</a>
+</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">WinServer2012 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../../WinServer2012/Basic_Command_Line/">Basic Command Line</a>
+</li>
+                            
+<li >
+    <a href="../../WinServer2012/Server_Roles/">Server Roles</a>
+</li>
+                            
+<li >
+    <a href="../../WinServer2012/Windows_Server/">Windows Server</a>
+</li>
+                        </ul>
+                    </li>
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                    <li >
+                        <a rel="next" href="../Solaris_Networking/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../Solaris_SMF/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<ul>
+<li>
+<p><a href="https://www.theurbanpenguin.com/oracle-solaris-11-roles/">Oracle Solaris 11 Roles @ The Urban Penguin</a></p>
+<ul>
+<li>RBAC and Roles allow implementation of the least privileged security model.</li>
+<li>Root user is a role rather than a typical user, so cannot log in directly to the account, but may still use <code>su</code></li>
+<li>Users cannot use root even if they know the root password; users can only use the root role if it is assigned to them.</li>
+</ul>
+</li>
+<li>
+<p><a href="http://www.oracle.com/technetwork/systems/hands-on-labs/s11-security-1408641.html">Oracle Solaris 11 Security Privileges and Authorizations</a></p>
+</li>
+</ul>
+<pre><code>rolemod -K roleauth=user root
+    # Require users own password when switching to root role.
+
+rolemod -K roleauth=role
+    # Require pasword of the role itself.
+</code></pre>
+
+<p>Profiles in Solaris 11 RBAC allow authorizations and privileged commands to be grouped together and can be assigned to users or to roles.</p>
+<pre><code>profiles -a |more
+profiles -p &quot;User Management&quot; info
+</code></pre></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>var base_url = '../..';</script>
+        <script data-main="../../mkdocs/js/search.js" src="../../mkdocs/js/require.js"></script>
+        <script src="../../js/base.js"></script><div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
