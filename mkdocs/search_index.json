@@ -2,18 +2,18 @@
     "docs": [
         {
             "location": "/", 
-            "text": "Software Development \n Server Administration Notes\n\n\nThis is a personal repository of notes, commands and scripts and resources on software development, server administration, and miscellaneous technology tidbits.\nIt is not intended to be a complete reference or guide, but more as a cheatsheet/archive of links to more comprehensive resources that are available on the Internet.", 
+            "text": "Software Development \n Systems Administration Notes\n\n\nThis is a personal repository of notes, commands, scripts and resources on software development, systems administration, and miscellaneous tidbits of technology wisdom collected from various sources.\n\n\nIt is not intended to be a complete reference or guide, but more as a cheatsheet/archive of links to more comprehensive resources that are available on the Internet.\n\n\nLicense\n\n\nThis project is licensed under the \nCreative Commons CC0 Universal license\n.", 
             "title": "Home"
         }, 
         {
-            "location": "/#software-development-server-administration-notes", 
-            "text": "This is a personal repository of notes, commands and scripts and resources on software development, server administration, and miscellaneous technology tidbits.\nIt is not intended to be a complete reference or guide, but more as a cheatsheet/archive of links to more comprehensive resources that are available on the Internet.", 
-            "title": "Software Development &amp; Server Administration Notes"
+            "location": "/#software-development-systems-administration-notes", 
+            "text": "This is a personal repository of notes, commands, scripts and resources on software development, systems administration, and miscellaneous tidbits of technology wisdom collected from various sources.  It is not intended to be a complete reference or guide, but more as a cheatsheet/archive of links to more comprehensive resources that are available on the Internet.", 
+            "title": "Software Development &amp; Systems Administration Notes"
         }, 
         {
-            "location": "/Git_and_GitHub/", 
-            "text": "References and Links:\n\n\n\n\nGit-Guide for Open Source Contributions\n\n\nGit Reference", 
-            "title": "Git and GitHub"
+            "location": "/#license", 
+            "text": "This project is licensed under the  Creative Commons CC0 Universal license .", 
+            "title": "License"
         }, 
         {
             "location": "/Linux-and-Unix/File_System/", 
@@ -336,6 +336,11 @@
             "title": "Changing the FTP Connection message"
         }, 
         {
+            "location": "/Miscellaneous/Git_and_GitHub/", 
+            "text": "References and Links:\n\n\n\n\nGit Reference\n\n\nGit-Guide for Open Source Contributions\n\n\nGit Cheatsheet", 
+            "title": "Git and GitHub"
+        }, 
+        {
             "location": "/Miscellaneous/Octave_Basics/", 
             "text": "Notes on Octave taken from \nAndrew Ng's Coursera machine Learning Course\n\n\nBasic commands\n\n\nones()\nzeros()\neye()\nsize(A)\nlength(A)   % Usually applied to vectors\n\n\n\n\nChaining commands\n\n\n\n\nUse \n,\n to chain commands with output.\n\n\nUse \n;\n to chain commands without output.\n\n\n\n\nNavigation\n\n\npwd\ncd\nls\n\n\n\n\nLoading \n saving data\n\n\nload filename1.dat\nload('filename1.dat')       % equivalent to above\n\nsave filename2.mat\nsave filename3.mat v        % stores data in binary\nsave hello.txt v -ascii     % save as text(ASCII)\n\n\n\n\nViewing variables in current scope\n\n\nwho\nwhos                        % shows detailed view\n\n\n\n\nRemoving data\n\n\nclear                       % clears all data\nclear variable_name\n\n\n\n\nManipulating data\n\n\nA=[1 2; 3 4; 5 6]\nA(3,2)                      % Retrieves item in row 3, column 2\nA(2,:)                      % Colon (:) means every element along that row/column A(2,:) retrieves all elements in row 2\nA(:,2)                      % Retrieves all elements in column 2\n\n\n\n\nAssigning elements\n\n\nA(:,2) = [10;11;12]         % Assigns 10,11,12 to the second column\n\n\n\n\nAppending vectors\n\n\nA = [A,[100, 101, 102]]\nA(:)                        % Put all elements of A into a single vector\n\n\n\n\nConcatenating matrices\n\n\nA=[1 2;3 4;5 6]\nB=[11 12;13 14;15 16]\nC=[A B]                     % Concatenates matrices side by side\nC=[A;B]                     % Concatenates matrices vertically\n\n\n\n\nComputing on data\n\n\nA=[1 2;3 4;5 6]\nB=[11 12;13 14;15 16]\nC=[1 1;2 2]\n\nA*C (3x3 * 2x3 matrix, gives a 3x2 matrix)\n\n\n\n\nElementwise operations\n\n\nA .* B                      % Takes each element in A and multiples by corresponding element in B\nA .^ 2                      % Element squaring of A\n\nv = [1; 2; 3]\n1 ./ v                      % Elementwise reciprical of v\n1 ./ A                      % Elementwise reciprical of matrix A\n\nlog(v)                      % Elementwise logarithm\nexp(v)\nabs(v)\n-v                          % Same as -1 * v\n\nv + ones(length(v),1)       % Increments all elements of v by 1\n\n\n\n\nTranposing etc.\n\n\nA = [1 2; 3 4; 5 6]\nA'                          % Represents A transpose, i.e. [1 3 5;2 4 6]\n(A')'                       % Returns transpose of A transpose, i.e. A\n\na = [1 15 2 0.5]\nval = max(a)                % Returns maximum value of a, i.e. 15\n[val,ind] = max(a)          % Returns maximum value of a and its index\nmax(A)                      % Does columnwise maximum\n\na \n 3                       % Does elementwise comparison\n\nmagic(3)                    % Generates a 3x3 matrix with magic squares\n\n[r,c] = find(A \n= 7)        % r is row, c is column\nsum(a)\nprod(a)\nfloor(a)                    % rounds up\nceil(a)                     % rounds down\nmax(rand(3), rand(3))\n\npinv(A)                     % pseudo inverse of A\n\n\n\n\nPlotting Data\n\n\nt=[0:0.01:0.98];\ny1=sin(2*pi*4*t);\nplot(t,y1);\nplot(t,y2);\n\n\n\n\nPlot two sets of data into one plot\n\n\nplot(t,y1);\nhold on;                    % Holds previous plot\nplot(t,y2,'r');              % r indicates red color\nxlabel('time')\nylabel('value')\nlegend('sin', 'cos')\ntitle('my plot')\n\n\n\n\nSave file as PNG\n\n\nprint -dpng 'myPlot.png'\n\n\n\n\nUsing figures for multiple plots\n\n\nfigure(1); plot(t,y1);\nfigure(2); plot(t,y2);\nsubplot(1,2,1);             % Divides plot to a 1x2 grid, access first element.\nplot(t,y1);\nsubplot(1,2,2);\nplot(t,y2);\naxis([0.5 1 -1 1])\n\n\n\n\nClear a figure\n\n\nclf\n\n\n\n\nUsing a grid of colors\n\n\nA = magic(5)\n\nimagesc(A)\n\n\n\n\nDisplay grid of gray colors\n\n\nimagesc(A), colorbar, colormap gray;\nimagesc(magic(15)), colorbar, colormap gray;\n\n\n\n\nWriting Control Statemnents\n\n\nFor Loop Example\n\n\nv=zeros(10,1)\n\n% Spacing doesn't matter\nfor i=1:10,\n  v(i) = 2^i;\nend;\n\nindicies=1:10;\nfor i=indicies,\n  disp(i);\nend;\n\n\n\n\nWhile Loop Example\n\n\ni=1;\nwhile i \n= 5;\n  v(i) = 100;\n  i = i + 1;\nend;\n\n\n\n\nBreak Example\n\n\n\n\nOverwriting the first 5 values with 999.\n\n\n\n\ni=1;\nwhile true,\n  v(i) = 999;\n  i = i+1;\n  if i == 6,\n    break;\n  end;\nend;\n\n\n\n\nExample of \nElseif\n and \nElse\n\n\nv(1) = 2;\nif v(1) ==1,\n  disp('The value is one');\nelseif v(1) == 2,\n  disp('The value is two');\nelse\n  disp('The value is not one or two');\n\n\n\n\nDefining Functions\n\n\n\n\nCreate a file with filename as function name and extension \n.m\n\n\nTo run the function, need to \ncd\n into directory that contains the function before running the function.\n\n\n\n\n% Filename: squareThisNumber.m\n\nfunction y = squareThisNumber(x)\ny=x^2;\n\n\n\n\nExample function\n\n\n% Filename: squareAndCubeThisNumber.m\n\nfunction [y1,y2] = squareAndCubeThisNumber(x)\n\ny1 = x^2\ny2 = x^3\n\n\n\n\nDefining the Octave search path\n\n\naddpath('C:\\Users\\username\\Desktop')\n\n\n\n\nExample to define a cost function\n\n\n% Filename: costFunctionJ.m\n\nfunction J = costFunctionJ(X, y, theta)\n\n% X is the \ndesign matrix\n containing the training example\n% y is the class labels\n\nm = size(X, 1);             % number of training examples\npredictions = X * theta     % predictions of hypothesis on all m examples\nsqrErrors = (predictions - y).^2;   % squared errors\n\nJ = 1 / (2*m) * sum(sqrErrors);\n\n\n\n\nTesting the cost function\n\n\nX = [1 1;1 2;1 3]\ny = [1; 2; 3]\n\n\n\n\nVectorization\n\n\n\n\nNote that Matlab/Octave vectors are indexed from 1.\n\n\n\n\nprediction = theta' * x;", 
             "title": "Octave Basics"
@@ -496,6 +501,76 @@
             "title": "Vectorization"
         }, 
         {
+            "location": "/Miscellaneous/Vim/", 
+            "text": "References and Links:\n- \nVim Official page\n\n\nLearning Vim\n\n\n\n\nStarting out: \nLearn Vim Progressively\n\n\nVIM Adventures\n\n\nvimtutor\n\n\n\n\nUseful plugins\n\n\n\n\nPathogen.vim\n. An easy way to install plugins and manage your \n'runtimepath'\n.\n\n\nvim-pug\n. Vim syntax highlighting for Pug (formerly Jade) templates.", 
+            "title": "Vim"
+        }, 
+        {
+            "location": "/Miscellaneous/Vim/#learning-vim", 
+            "text": "Starting out:  Learn Vim Progressively  VIM Adventures  vimtutor", 
+            "title": "Learning Vim"
+        }, 
+        {
+            "location": "/Miscellaneous/Vim/#useful-plugins", 
+            "text": "Pathogen.vim . An easy way to install plugins and manage your  'runtimepath' .  vim-pug . Vim syntax highlighting for Pug (formerly Jade) templates.", 
+            "title": "Useful plugins"
+        }, 
+        {
+            "location": "/Powershell/Functions_and_Scripting/", 
+            "text": "Functions provide additional capability and own functions can be defined.\n\n\nScripts are usually saved as .ps1 files.\n\n\nHere is an example:\n\n\n\n\nfunction add\n{\n    $add = [int](2+2)\n    write-output $add\n}\n\n\n\n\nRunning Scripts in Powershell\n\n\n.\\Scriptname.ps1\n\n\n\n\n\nDefine function(s) in a file and call it/them from the PowerShell commandline\n\n\n. .\\Scriptname.ps1\n\n\n\n\n\n\nSource and discussion: http://stackoverflow.com/questions/6016436/in-powershell-how-do-i-define-a-function-in-a-file-and-call-it-from-the-powersh\n\n\n\n\nPowershell script arguments\n\n\n\n\nPowershell script arguments\n\n\n\n\nComments in Powershell\n\n\n# comment\n\n#\n    Block comment\n    Another comment in the block\n#\n\n\n\n\n\nWriting to the display\n\n\nWrite-Host \nSome string\n\nWrite-Host \nSome string with $variable\n\nWrite-Host Works even without the double-quotes\n\n\n\n\nReading from input\n\n\n$Variable = Read-Host -Prompt \nAsk a question:\n\n\n\n\n\nExample\n\n\n$Server = Read-Host -Prompt 'Input your server name:'\n$User = Read-Host -Prompt 'Input the user name:\n\n$Date = Get-Date\nWrite-Host \nYou input server '$Server' and '$User on '$Date'\n\n\n\n\n\nWhile loop\n\n\n\n\nhttp://ss64.com/ps/while.html\n\n\n\n\nIf statement\n\n\n\n\nhttp://www.computerperformance.co.uk/powershell/powershell_if_statement.htm\n\n\n\n\nDocumenting functions\n\n\nFormat of comment based help:\n\n\nfunction get-example {\n    \n#\n    .SYNOPSIS\n        A brief description of the function or script.\n\n    .DESCRIPTION\n        A longer description.\n\n    .PARAMETER FirstParameter\n        Description of each of the parameters\n\n    .PARAMETER SecondParameter\n        Description of each of the parameters\n\n    .INPUTS\n        Description of objects that can be piped to the script\n\n    .OUTPUTS\n        Description of objects that are output by the script\n\n    .EXAMPLE\n        Example of how to run the script\n\n    .LINK\n        Links to further documentation\n\n    .NOTES\n        Detail on what the script does, if this is needed\n\n    #\n\n\n\n\n\n\n\nSource: \nPowerShell Practice and Style Documentation and Comments", 
+            "title": "Functions and Scripting"
+        }, 
+        {
+            "location": "/Powershell/Functions_and_Scripting/#running-scripts-in-powershell", 
+            "text": ".\\Scriptname.ps1", 
+            "title": "Running Scripts in Powershell"
+        }, 
+        {
+            "location": "/Powershell/Functions_and_Scripting/#define-functions-in-a-file-and-call-itthem-from-the-powershell-commandline", 
+            "text": ". .\\Scriptname.ps1   Source and discussion: http://stackoverflow.com/questions/6016436/in-powershell-how-do-i-define-a-function-in-a-file-and-call-it-from-the-powersh", 
+            "title": "Define function(s) in a file and call it/them from the PowerShell commandline"
+        }, 
+        {
+            "location": "/Powershell/Functions_and_Scripting/#powershell-script-arguments", 
+            "text": "Powershell script arguments", 
+            "title": "Powershell script arguments"
+        }, 
+        {
+            "location": "/Powershell/Functions_and_Scripting/#comments-in-powershell", 
+            "text": "# comment #\n    Block comment\n    Another comment in the block\n#", 
+            "title": "Comments in Powershell"
+        }, 
+        {
+            "location": "/Powershell/Functions_and_Scripting/#writing-to-the-display", 
+            "text": "Write-Host  Some string \nWrite-Host  Some string with $variable \nWrite-Host Works even without the double-quotes", 
+            "title": "Writing to the display"
+        }, 
+        {
+            "location": "/Powershell/Functions_and_Scripting/#reading-from-input", 
+            "text": "$Variable = Read-Host -Prompt  Ask a question:", 
+            "title": "Reading from input"
+        }, 
+        {
+            "location": "/Powershell/Functions_and_Scripting/#example", 
+            "text": "$Server = Read-Host -Prompt 'Input your server name:'\n$User = Read-Host -Prompt 'Input the user name: \n$Date = Get-Date\nWrite-Host  You input server '$Server' and '$User on '$Date'", 
+            "title": "Example"
+        }, 
+        {
+            "location": "/Powershell/Functions_and_Scripting/#while-loop", 
+            "text": "http://ss64.com/ps/while.html", 
+            "title": "While loop"
+        }, 
+        {
+            "location": "/Powershell/Functions_and_Scripting/#if-statement", 
+            "text": "http://www.computerperformance.co.uk/powershell/powershell_if_statement.htm", 
+            "title": "If statement"
+        }, 
+        {
+            "location": "/Powershell/Functions_and_Scripting/#documenting-functions", 
+            "text": "Format of comment based help:  function get-example {\n     #\n    .SYNOPSIS\n        A brief description of the function or script.\n\n    .DESCRIPTION\n        A longer description.\n\n    .PARAMETER FirstParameter\n        Description of each of the parameters\n\n    .PARAMETER SecondParameter\n        Description of each of the parameters\n\n    .INPUTS\n        Description of objects that can be piped to the script\n\n    .OUTPUTS\n        Description of objects that are output by the script\n\n    .EXAMPLE\n        Example of how to run the script\n\n    .LINK\n        Links to further documentation\n\n    .NOTES\n        Detail on what the script does, if this is needed\n\n    #    Source:  PowerShell Practice and Style Documentation and Comments", 
+            "title": "Documenting functions"
+        }, 
+        {
             "location": "/Powershell/Installation_for_Linux_Mac/", 
             "text": "Links\n\n\n\n\nHow to install PowerShell on Linux or MacOS", 
             "title": "Installation for Linux Mac"
@@ -534,6 +609,46 @@
             "location": "/Powershell/Network_Configuration/#rename-server", 
             "text": "Rename-Computer", 
             "title": "Rename Server"
+        }, 
+        {
+            "location": "/Powershell/Powershell_Basics/", 
+            "text": "Links:\n\n- \nTable of Basic PowerShell Commands\n\n\n\n\n\n\nEverything is treated like an object, which could be configured and manipulated with PowerShell\n\n\nObject oriented, interactive shell that enables task automation and bulk operations.\n\n\nBased on the .NET framework\n\n\nCommands and arguments are \ncase-insensitive\n.\n\n\n\n\nAliases\n help to bridge gap between languages.\n\n\nE.g. \ndir\n is actually an alias for the PowerShell command \nGet-Child\n.\n\n\n\n\n\n\nBuilt into many products including 3rd party products.\n\n\n\n\n\n\nHow to Read Powershell\n\n\nGet-Service -name *net*         # Displays all services that contain net\nGet-Service -name \n*net*\n       # Performs the same function\n\n\n\n\n\n\nGet\n is the \nverb\n, \nService\n is the \nnoun\n, while \nGet-Service\n is the \ncommand\n.\n\n\n-name\n is the \nname\n, \n\"*net*\"\n is the \nargument\n, while \n-name \"*net*\"\n is the \nparameter\n\n\nParameters are like adjectives.\n\n\nAlmost all commands are singular.\n\n\n\n\nPower of the Pipe\n\n\n\n\nThe pipe operator: \n|\n\n\nOutput from one command becomes input for the next.\n\n\nAlso strings together multiple commands.\n\n\nParameter binding is the key; \"|\" routes information to the correct command.\n\n\n\n\nget-service|out-file c:\\service.txt     # Pipes output from get-service into a text file\n\n\n\n\nGetting Help\n\n\n\n\nPowerShell Supports tab suggestions, e.g. Typing \nGet-\n and then \n will offer suggestions.\n\n\nhelp\n is similar to \nGet-Help\n but also attaches the \"More\" function to it.\n\n\nman\n is an alias for \nhelp\n.\n\n\nN.B. Help may need to be updated by\n \nUpdate-Help\n\n\n\n\nGet-Help \ncmdlet name\n\nGet-Help \nkeyword\n\n\n\n\n\nGetting Help: Examples\n\n\nGet-Help alias                      # Get help entry for the command alias\nGet-Help New-Alias\nNew-Alias -name \nlsss\n \nGet-ChildItem\n\n\nGet-help get-service -examples      # Get help entry for get-service examples\nGet-help get-service -online        # N.B. Requires a browser to display the online help\n\n\n\n\nCmdlets and Aliases\n\n\nGet-Command         # Gets all commands that are installed on the computer.\nGet-Command|More\ngcm                 # Alias for Get-Command\n\nGet-ChildItem       # Powershell command for dir or ls; actually dir and ls are aliases of this command.\ngci                 # Alias for Get-ChildItem\n\nAlias               # Displays all aliases in the current environment\nGet-Help about_Aliases\n\n\n\n\nExploring Services\n\n\nGet-Service         # Lists all services, including running and stopped services.\nGet-Service|Where-Object {$_.status -eq \nstopped\n}      # Search servies for Status \nstopped\n\n\nGet-Member          # Gets the properties and methods of objects\n\n\n\n\n\n\nGet-Service\n can be piped into \nGet-Member\n so show the properties and methods of \nGet-Service\n.\n\n\n\n\nGet-Service|Get-Member\n\n\n\n\nExploring Local Users\n\n\nGet-CIMinstance win32_useraccount\ngetWMIObject win32_useraccount\n\n\n\n\n\n\nSource and more info: \nFind Local User Accounts Using PowerShell", 
+            "title": "Powershell Basics"
+        }, 
+        {
+            "location": "/Powershell/Powershell_Basics/#how-to-read-powershell", 
+            "text": "Get-Service -name *net*         # Displays all services that contain net\nGet-Service -name  *net*        # Performs the same function   Get  is the  verb ,  Service  is the  noun , while  Get-Service  is the  command .  -name  is the  name ,  \"*net*\"  is the  argument , while  -name \"*net*\"  is the  parameter  Parameters are like adjectives.  Almost all commands are singular.", 
+            "title": "How to Read Powershell"
+        }, 
+        {
+            "location": "/Powershell/Powershell_Basics/#power-of-the-pipe", 
+            "text": "The pipe operator:  |  Output from one command becomes input for the next.  Also strings together multiple commands.  Parameter binding is the key; \"|\" routes information to the correct command.   get-service|out-file c:\\service.txt     # Pipes output from get-service into a text file", 
+            "title": "Power of the Pipe"
+        }, 
+        {
+            "location": "/Powershell/Powershell_Basics/#getting-help", 
+            "text": "PowerShell Supports tab suggestions, e.g. Typing  Get-  and then   will offer suggestions.  help  is similar to  Get-Help  but also attaches the \"More\" function to it.  man  is an alias for  help .  N.B. Help may need to be updated by   Update-Help   Get-Help  cmdlet name \nGet-Help  keyword", 
+            "title": "Getting Help"
+        }, 
+        {
+            "location": "/Powershell/Powershell_Basics/#getting-help-examples", 
+            "text": "Get-Help alias                      # Get help entry for the command alias\nGet-Help New-Alias\nNew-Alias -name  lsss   Get-ChildItem \n\nGet-help get-service -examples      # Get help entry for get-service examples\nGet-help get-service -online        # N.B. Requires a browser to display the online help", 
+            "title": "Getting Help: Examples"
+        }, 
+        {
+            "location": "/Powershell/Powershell_Basics/#cmdlets-and-aliases", 
+            "text": "Get-Command         # Gets all commands that are installed on the computer.\nGet-Command|More\ngcm                 # Alias for Get-Command\n\nGet-ChildItem       # Powershell command for dir or ls; actually dir and ls are aliases of this command.\ngci                 # Alias for Get-ChildItem\n\nAlias               # Displays all aliases in the current environment\nGet-Help about_Aliases", 
+            "title": "Cmdlets and Aliases"
+        }, 
+        {
+            "location": "/Powershell/Powershell_Basics/#exploring-services", 
+            "text": "Get-Service         # Lists all services, including running and stopped services.\nGet-Service|Where-Object {$_.status -eq  stopped }      # Search servies for Status  stopped \n\nGet-Member          # Gets the properties and methods of objects   Get-Service  can be piped into  Get-Member  so show the properties and methods of  Get-Service .   Get-Service|Get-Member", 
+            "title": "Exploring Services"
+        }, 
+        {
+            "location": "/Powershell/Powershell_Basics/#exploring-local-users", 
+            "text": "Get-CIMinstance win32_useraccount\ngetWMIObject win32_useraccount   Source and more info:  Find Local User Accounts Using PowerShell", 
+            "title": "Exploring Local Users"
         }, 
         {
             "location": "/Powershell/Windows_Firewall/", 

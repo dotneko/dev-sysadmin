@@ -8,7 +8,7 @@
   
   <meta name="author" content="Gavin">
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Windows Firewall - Software Development and System Administration Notes</title>
+  <title>Powershell Basics - Software Development and System Administration Notes</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Windows Firewall";
-    var mkdocs_page_input_path = "Powershell/Windows_Firewall.md";
-    var mkdocs_page_url = "/Powershell/Windows_Firewall/";
+    var mkdocs_page_name = "Powershell Basics";
+    var mkdocs_page_input_path = "Powershell/Powershell_Basics.md";
+    var mkdocs_page_url = "/Powershell/Powershell_Basics/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -211,28 +211,39 @@
 
         
             
-    <li class="toctree-l1 ">
-        <a class="" href="../Powershell_Basics/">Powershell Basics</a>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Powershell Basics</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#how-to-read-powershell">How to Read Powershell</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#power-of-the-pipe">Power of the Pipe</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#getting-help">Getting Help</a></li>
+                
+                    <li><a class="toctree-l4" href="#getting-help-examples">Getting Help: Examples</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#cmdlets-and-aliases">Cmdlets and Aliases</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#exploring-services">Exploring Services</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#exploring-local-users">Exploring Local Users</a></li>
+                
+            
+            </ul>
         
     </li>
 
         
             
-    <li class="toctree-l1 current">
-        <a class="current" href="./">Windows Firewall</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#netsh-commands-for-windows-firewall-with-advanced-security">Netsh Commands for Windows Firewall with Advanced Security</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#enable-windows-firewall">Enable Windows Firewall</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#control-firewall-behaviour">Control Firewall behaviour</a></li>
-                
-            
-            </ul>
+    <li class="toctree-l1 ">
+        <a class="" href="../Windows_Firewall/">Windows Firewall</a>
         
     </li>
 
@@ -302,10 +313,10 @@
         
       
     
-    <li>Windows Firewall</li>
+    <li>Powershell Basics</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/gavchan/dev-sysadmin/edit/master/docs/Powershell/Windows_Firewall.md"
+        <a href="https://github.com/gavchan/dev-sysadmin/edit/master/docs/Powershell/Powershell_Basics.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -315,35 +326,96 @@
           <div role="main">
             <div class="section">
               
-                <p><em>References and Links:</em>
-- <a href="https://technet.microsoft.com/en-us/library/hh831365.aspx">Windows Server 2012 R2: Windows Firewall with Advanced Security Overview</a>
-- <a href="https://technet.microsoft.com/library/hh831755.aspx">Windows Firewall with Advanced Security Administration with Powershell</a></p>
-<h1 id="netsh-commands-for-windows-firewall-with-advanced-security">Netsh Commands for Windows Firewall with Advanced Security</h1>
+                <p><em>Links:</em>
+- <a href="https://blogs.technet.microsoft.com/heyscriptingguy/2015/06/11/table-of-basic-powershell-commands/">Table of Basic PowerShell Commands</a></p>
+<hr />
 <ul>
-<li>Not recommended as the <code>netsh advfirewall</code> context may be removed in the future.</li>
-<li>https://technet.microsoft.com/library/cc771920(v=ws.10)</li>
+<li>Everything is treated like an object, which could be configured and manipulated with PowerShell</li>
+<li>Object oriented, interactive shell that enables task automation and bulk operations.</li>
+<li>Based on the .NET framework</li>
+<li>Commands and arguments are <em>case-insensitive</em>.</li>
+<li>
+<p><em>Aliases</em> help to bridge gap between languages.</p>
+<p>E.g. <code>dir</code> is actually an alias for the PowerShell command <code>Get-Child</code>.</p>
+</li>
+<li>
+<p>Built into many products including 3rd party products.</p>
+</li>
 </ul>
-<pre><code>netsh advfirewall firewall
+<h1 id="how-to-read-powershell">How to Read Powershell</h1>
+<pre><code>Get-Service -name *net*         # Displays all services that contain net
+Get-Service -name &quot;*net*&quot;       # Performs the same function
 </code></pre>
 
-<h1 id="enable-windows-firewall">Enable Windows Firewall</h1>
-<p>Powershell
-```Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled True</p>
-<pre><code>Netsh
-```netsh advfirewall set allprofiles state on
+<ul>
+<li><code>Get</code> is the <strong>verb</strong>, <code>Service</code> is the <strong>noun</strong>, while <code>Get-Service</code> is the <strong>command</strong>.</li>
+<li><code>-name</code> is the <strong>name</strong>, <code>"*net*"</code> is the <strong>argument</strong>, while <code>-name "*net*"</code> is the <strong>parameter</strong></li>
+<li>Parameters are like adjectives.</li>
+<li>Almost all commands are singular.</li>
+</ul>
+<h1 id="power-of-the-pipe">Power of the Pipe</h1>
+<ul>
+<li>The pipe operator: <code>|</code></li>
+<li>Output from one command becomes input for the next.</li>
+<li>Also strings together multiple commands.</li>
+<li>Parameter binding is the key; "|" routes information to the correct command.</li>
+</ul>
+<pre><code>get-service|out-file c:\service.txt     # Pipes output from get-service into a text file
 </code></pre>
 
-<h1 id="control-firewall-behaviour">Control Firewall behaviour</h1>
-<p>Powershell
-```Set-NetFirewallProfile -DefaultInboundAction Block -DefaultOutboundAction Allow -NotifyOnListen True -AllowUnicastResponseToMulticast True -LogFileName %SystemRoot%\System32\LogFiles\Firewall\pfirewall.log</p>
-<pre><code>Netsh
+<h1 id="getting-help">Getting Help</h1>
+<ul>
+<li>PowerShell Supports tab suggestions, e.g. Typing <code>Get-</code> and then <Tab> will offer suggestions.</li>
+<li><code>help</code> is similar to <code>Get-Help</code> but also attaches the "More" function to it.</li>
+<li><code>man</code> is an alias for <code>help</code>.</li>
+<li><em>N.B. Help may need to be updated by</em> <code>Update-Help</code></li>
+</ul>
+<pre><code>Get-Help &lt;cmdlet name&gt;
+Get-Help &lt;keyword&gt;
 </code></pre>
 
-<p>netsh advfirewall set allprofiles firewallpolicy blockinbound,allowoutbound
-netsh advfirewall set allprofiles settings inboundusernotification enable
-netsh advfirewall set allprofiles settings unicastresponsetomulticast enable
-netsh advfirewall set allprofiles logging filename %SystemRoot%\System32\LogFiles\Firewall\pfirewall.log
-```</p>
+<h3 id="getting-help-examples">Getting Help: Examples</h3>
+<pre><code>Get-Help alias                      # Get help entry for the command alias
+Get-Help New-Alias
+New-Alias -name &quot;lsss&quot; &quot;Get-ChildItem&quot;
+
+Get-help get-service -examples      # Get help entry for get-service examples
+Get-help get-service -online        # N.B. Requires a browser to display the online help
+</code></pre>
+
+<h1 id="cmdlets-and-aliases">Cmdlets and Aliases</h1>
+<pre><code>Get-Command         # Gets all commands that are installed on the computer.
+Get-Command|More
+gcm                 # Alias for Get-Command
+
+Get-ChildItem       # Powershell command for dir or ls; actually dir and ls are aliases of this command.
+gci                 # Alias for Get-ChildItem
+
+Alias               # Displays all aliases in the current environment
+Get-Help about_Aliases
+</code></pre>
+
+<h1 id="exploring-services">Exploring Services</h1>
+<pre><code>Get-Service         # Lists all services, including running and stopped services.
+Get-Service|Where-Object {$_.status -eq &quot;stopped&quot;}      # Search servies for Status &quot;stopped&quot;
+
+Get-Member          # Gets the properties and methods of objects
+</code></pre>
+
+<ul>
+<li><code>Get-Service</code> can be piped into <code>Get-Member</code> so show the properties and methods of <code>Get-Service</code>.</li>
+</ul>
+<pre><code>Get-Service|Get-Member
+</code></pre>
+
+<h1 id="exploring-local-users">Exploring Local Users</h1>
+<pre><code>Get-CIMinstance win32_useraccount
+getWMIObject win32_useraccount
+</code></pre>
+
+<ul>
+<li>Source and more info: <a href="https://www.petri.com/find-local-user-accounts-using-powershell">Find Local User Accounts Using PowerShell</a></li>
+</ul>
               
             </div>
           </div>
@@ -351,10 +423,10 @@ netsh advfirewall set allprofiles logging filename %SystemRoot%\System32\LogFile
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../Windows_Server_2012R2_Installation/" class="btn btn-neutral float-right" title="Windows Server 2012R2 Installation">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../Windows_Firewall/" class="btn btn-neutral float-right" title="Windows Firewall">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../Powershell_Basics/" class="btn btn-neutral" title="Powershell Basics"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../Network_Configuration/" class="btn btn-neutral" title="Network Configuration"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -382,10 +454,10 @@ netsh advfirewall set allprofiles logging filename %SystemRoot%\System32\LogFile
           <a href="https://github.com/gavchan/dev-sysadmin/" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../Powershell_Basics/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../Network_Configuration/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../Windows_Server_2012R2_Installation/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../Windows_Firewall/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

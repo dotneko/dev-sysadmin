@@ -8,7 +8,7 @@
   
   <meta name="author" content="Gavin">
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Windows Firewall - Software Development and System Administration Notes</title>
+  <title>Functions and Scripting - Software Development and System Administration Notes</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Windows Firewall";
-    var mkdocs_page_input_path = "Powershell/Windows_Firewall.md";
-    var mkdocs_page_url = "/Powershell/Windows_Firewall/";
+    var mkdocs_page_name = "Functions and Scripting";
+    var mkdocs_page_input_path = "Powershell/Functions_and_Scripting.md";
+    var mkdocs_page_url = "/Powershell/Functions_and_Scripting/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -190,8 +190,40 @@
 
         
             
-    <li class="toctree-l1 ">
-        <a class="" href="../Functions_and_Scripting/">Functions and Scripting</a>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Functions and Scripting</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#running-scripts-in-powershell">Running Scripts in Powershell</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#define-functions-in-a-file-and-call-itthem-from-the-powershell-commandline">Define function(s) in a file and call it/them from the PowerShell commandline</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#powershell-script-arguments">Powershell script arguments</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#comments-in-powershell">Comments in Powershell</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#writing-to-the-display">Writing to the display</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#reading-from-input">Reading from input</a></li>
+                
+                    <li><a class="toctree-l4" href="#example">Example</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#while-loop">While loop</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#if-statement">If statement</a></li>
+                
+                    <li><a class="toctree-l4" href="#documenting-functions">Documenting functions</a></li>
+                
+            
+            </ul>
         
     </li>
 
@@ -218,21 +250,8 @@
 
         
             
-    <li class="toctree-l1 current">
-        <a class="current" href="./">Windows Firewall</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#netsh-commands-for-windows-firewall-with-advanced-security">Netsh Commands for Windows Firewall with Advanced Security</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#enable-windows-firewall">Enable Windows Firewall</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#control-firewall-behaviour">Control Firewall behaviour</a></li>
-                
-            
-            </ul>
+    <li class="toctree-l1 ">
+        <a class="" href="../Windows_Firewall/">Windows Firewall</a>
         
     </li>
 
@@ -302,10 +321,10 @@
         
       
     
-    <li>Windows Firewall</li>
+    <li>Functions and Scripting</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/gavchan/dev-sysadmin/edit/master/docs/Powershell/Windows_Firewall.md"
+        <a href="https://github.com/gavchan/dev-sysadmin/edit/master/docs/Powershell/Functions_and_Scripting.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -315,35 +334,104 @@
           <div role="main">
             <div class="section">
               
-                <p><em>References and Links:</em>
-- <a href="https://technet.microsoft.com/en-us/library/hh831365.aspx">Windows Server 2012 R2: Windows Firewall with Advanced Security Overview</a>
-- <a href="https://technet.microsoft.com/library/hh831755.aspx">Windows Firewall with Advanced Security Administration with Powershell</a></p>
-<h1 id="netsh-commands-for-windows-firewall-with-advanced-security">Netsh Commands for Windows Firewall with Advanced Security</h1>
-<ul>
-<li>Not recommended as the <code>netsh advfirewall</code> context may be removed in the future.</li>
-<li>https://technet.microsoft.com/library/cc771920(v=ws.10)</li>
+                <ul>
+<li>Functions provide additional capability and own functions can be defined.</li>
+<li>Scripts are usually saved as .ps1 files.</li>
+<li>Here is an example:</li>
 </ul>
-<pre><code>netsh advfirewall firewall
+<pre><code>function add
+{
+    $add = [int](2+2)
+    write-output $add
+}
 </code></pre>
 
-<h1 id="enable-windows-firewall">Enable Windows Firewall</h1>
-<p>Powershell
-```Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled True</p>
-<pre><code>Netsh
-```netsh advfirewall set allprofiles state on
+<h2 id="running-scripts-in-powershell">Running Scripts in Powershell</h2>
+<pre><code>.\Scriptname.ps1
+
 </code></pre>
 
-<h1 id="control-firewall-behaviour">Control Firewall behaviour</h1>
-<p>Powershell
-```Set-NetFirewallProfile -DefaultInboundAction Block -DefaultOutboundAction Allow -NotifyOnListen True -AllowUnicastResponseToMulticast True -LogFileName %SystemRoot%\System32\LogFiles\Firewall\pfirewall.log</p>
-<pre><code>Netsh
+<h2 id="define-functions-in-a-file-and-call-itthem-from-the-powershell-commandline">Define function(s) in a file and call it/them from the PowerShell commandline</h2>
+<pre><code>. .\Scriptname.ps1
 </code></pre>
 
-<p>netsh advfirewall set allprofiles firewallpolicy blockinbound,allowoutbound
-netsh advfirewall set allprofiles settings inboundusernotification enable
-netsh advfirewall set allprofiles settings unicastresponsetomulticast enable
-netsh advfirewall set allprofiles logging filename %SystemRoot%\System32\LogFiles\Firewall\pfirewall.log
-```</p>
+<ul>
+<li>Source and discussion: http://stackoverflow.com/questions/6016436/in-powershell-how-do-i-define-a-function-in-a-file-and-call-it-from-the-powersh</li>
+</ul>
+<h1 id="powershell-script-arguments">Powershell script arguments</h1>
+<ul>
+<li><a href="http://stackoverflow.com/questions/2157554/how-to-handle-command-line-arguments-in-powershell">Powershell script arguments</a></li>
+</ul>
+<h1 id="comments-in-powershell">Comments in Powershell</h1>
+<pre><code># comment
+&lt;#
+    Block comment
+    Another comment in the block
+#&gt;
+</code></pre>
+
+<h1 id="writing-to-the-display">Writing to the display</h1>
+<pre><code>Write-Host &quot;Some string&quot;
+Write-Host &quot;Some string with $variable&quot;
+Write-Host Works even without the double-quotes
+</code></pre>
+
+<h1 id="reading-from-input">Reading from input</h1>
+<pre><code>$Variable = Read-Host -Prompt &quot;Ask a question:&quot;
+</code></pre>
+
+<h3 id="example">Example</h3>
+<pre><code>$Server = Read-Host -Prompt 'Input your server name:'
+$User = Read-Host -Prompt 'Input the user name:&quot;
+$Date = Get-Date
+Write-Host &quot;You input server '$Server' and '$User on '$Date'&quot;
+</code></pre>
+
+<h1 id="while-loop">While loop</h1>
+<ul>
+<li>http://ss64.com/ps/while.html</li>
+</ul>
+<h1 id="if-statement">If statement</h1>
+<ul>
+<li>http://www.computerperformance.co.uk/powershell/powershell_if_statement.htm</li>
+</ul>
+<h2 id="documenting-functions">Documenting functions</h2>
+<p>Format of comment based help:</p>
+<pre><code>function get-example {
+    &lt;#
+    .SYNOPSIS
+        A brief description of the function or script.
+
+    .DESCRIPTION
+        A longer description.
+
+    .PARAMETER FirstParameter
+        Description of each of the parameters
+
+    .PARAMETER SecondParameter
+        Description of each of the parameters
+
+    .INPUTS
+        Description of objects that can be piped to the script
+
+    .OUTPUTS
+        Description of objects that are output by the script
+
+    .EXAMPLE
+        Example of how to run the script
+
+    .LINK
+        Links to further documentation
+
+    .NOTES
+        Detail on what the script does, if this is needed
+
+    #&gt;
+</code></pre>
+
+<ul>
+<li>Source: <a href="https://github.com/PoshCode/PowerShellPracticeAndStyle/blob/master/Style%20Guide/Documentation%20and%20Comments.md">PowerShell Practice and Style Documentation and Comments</a></li>
+</ul>
               
             </div>
           </div>
@@ -351,10 +439,10 @@ netsh advfirewall set allprofiles logging filename %SystemRoot%\System32\LogFile
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../Windows_Server_2012R2_Installation/" class="btn btn-neutral float-right" title="Windows Server 2012R2 Installation">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../Installation_for_Linux_Mac/" class="btn btn-neutral float-right" title="Installation for Linux Mac">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../Powershell_Basics/" class="btn btn-neutral" title="Powershell Basics"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../Miscellaneous/Vim/" class="btn btn-neutral" title="Vim"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -382,10 +470,10 @@ netsh advfirewall set allprofiles logging filename %SystemRoot%\System32\LogFile
           <a href="https://github.com/gavchan/dev-sysadmin/" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../Powershell_Basics/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../../Miscellaneous/Vim/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../Windows_Server_2012R2_Installation/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../Installation_for_Linux_Mac/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
