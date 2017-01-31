@@ -1,6 +1,7 @@
-Powershell Basics
-=================
+*Links:*
+- [Table of Basic PowerShell Commands](https://blogs.technet.microsoft.com/heyscriptingguy/2015/06/11/table-of-basic-powershell-commands/)
 
+---
 - Everything is treated like an object, which could be configured and manipulated with PowerShell
 - Object oriented, interactive shell that enables task automation and bulk operations.
 - Based on the .NET framework
