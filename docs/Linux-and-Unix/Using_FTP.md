@@ -84,6 +84,8 @@ ftp -s:command.ftp                  # Only works with Windows Cmd FTP
 exit
 ```
 
-# Changing the FTP Connection message
-- Could be done by editing the `/etc/proftpd.conf` file.
+# Changing the FTP Connection Message
+- Could be done by editing the `/etc/proftpd.conf` file under `DisplayConnect`.
+- By default `DisplayConnect` is configured to display the contents of the `/etc/issue` text file.
+- One can modify this to point to another file or edit the `/etc/issue` file directly.
 - Any change of the file requires restarting the ftp service: `svcadm restart ftp` for changes to take effect.
