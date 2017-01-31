@@ -8,6 +8,10 @@
 svcs *apache*       # Or:
 svcs http
 ```
+- To enable default apache22 service if currently disabled.
+```
+svcadm enable svc:/network/http:apache22
+```
 - Can install newer version then enable the server.
 ```
 pkg install web/server/apache-24
