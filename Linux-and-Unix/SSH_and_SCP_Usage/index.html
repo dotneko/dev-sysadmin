@@ -364,6 +364,12 @@ svcadm enable ssh
 <pre><code>scp /localpath/localfilename remoteuser@remotehost:/remotepath/remotefilename
 </code></pre>
 
+<ul>
+<li>Use the <code>-r</code> option to recursively transfer all files and directories inside the path.</li>
+</ul>
+<pre><code>scp -r /localpath/dirname remoteuser@remotehost:/remotepath/dirfortransfer
+</code></pre>
+
 <h1 id="connecting-with-microsoft-windows-os">Connecting with Microsoft Windows OS</h1>
 <ul>
 <li><a href="http://docs.oracle.com/cd/E11857_01/install.111/e15838/appdx_setting_up_ssh.htm">Setting up SSH Server on Microsoft Windows</a></li>

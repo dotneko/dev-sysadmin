@@ -326,6 +326,12 @@ svcs http
 </code></pre>
 
 <ul>
+<li>To enable default apache22 service if currently disabled.</li>
+</ul>
+<pre><code>svcadm enable svc:/network/http:apache22
+</code></pre>
+
+<ul>
 <li>Can install newer version then enable the server.</li>
 </ul>
 <pre><code>pkg install web/server/apache-24

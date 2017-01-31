@@ -169,7 +169,7 @@
                     <li><a class="toctree-l4" href="#transferring-directories">Transferring directories</a></li>
                 
             
-                <li class="toctree-l3"><a href="#changing-the-ftp-connection-message">Changing the FTP Connection message</a></li>
+                <li class="toctree-l3"><a href="#changing-the-ftp-connection-message">Changing the FTP Connection Message</a></li>
                 
             
             </ul>
@@ -403,9 +403,11 @@ ftp -s:command.ftp                  # Only works with Windows Cmd FTP
 exit
 </code></pre>
 
-<h1 id="changing-the-ftp-connection-message">Changing the FTP Connection message</h1>
+<h1 id="changing-the-ftp-connection-message">Changing the FTP Connection Message</h1>
 <ul>
-<li>Could be done by editing the <code>/etc/proftpd.conf</code> file.</li>
+<li>Could be done by editing the <code>/etc/proftpd.conf</code> file under <code>DisplayConnect</code>.</li>
+<li>By default <code>DisplayConnect</code> is configured to display the contents of the <code>/etc/issue</code> text file.</li>
+<li>One can modify this to point to another file or edit the <code>/etc/issue</code> file directly.</li>
 <li>Any change of the file requires restarting the ftp service: <code>svcadm restart ftp</code> for changes to take effect.</li>
 </ul>
               
