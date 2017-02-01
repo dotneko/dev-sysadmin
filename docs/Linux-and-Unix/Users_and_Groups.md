@@ -14,9 +14,10 @@ usermod -d
 ```
 To delete a user:
 ```
-userdel username
+userdel username          # Preserves user's home directory.
+userdel -r username       # Removes user's home directory.
 ```
-Note that user folder must be unmounted before it could be deleted
+If wanting to delete a user's home directory that was not deleted before, the user folder must be unmounted before it could be deleted.
 ```
 umount dirname
 ```
@@ -80,7 +81,7 @@ List users in a group
 getent group groupname
 ```
 
-Adding and modifying groups
+## Adding and modifying groups
 ```
 groupadd -U user1[,user2]
 groupmod
@@ -97,8 +98,3 @@ usermod -G "" username    # removes all secondary groups
 
 # Links and References:
 - [Oracle Solaris 11.3 Information Library](https://docs.oracle.com/cd/E53394_01/)
-- [Creating Users 1 Video](https://www.youtube.com/watch?v=n_7uUnTodSY)
-- [Creating Users 2 Video](https://www.youtube.com/watch?v=dj_V5XDdYcU)
-- [Creating Users 3 Video](https://www.youtube.com/watch?v=bQF1SavzgL8)
-- [Finding account information](https://www.youtube.com/watch?v=QBpLUfWOYLs)
-- [Changing account policies](https://www.youtube.com/watch?v=EZ4BmS1VM7w)
