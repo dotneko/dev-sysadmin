@@ -168,8 +168,16 @@
                 
                     <li><a class="toctree-l4" href="#transferring-directories">Transferring directories</a></li>
                 
+                    <li><a class="toctree-l4" href="#nb-it-would-be-better-to-use-scp-anyway">N.B. It would be better to use scp anyway!</a></li>
+                
             
-                <li class="toctree-l3"><a href="#changing-the-ftp-connection-message">Changing the FTP Connection Message</a></li>
+                <li class="toctree-l3"><a href="#further-configuration-options">Further configuration options</a></li>
+                
+                    <li><a class="toctree-l4" href="#changing-the-ftp-connection-message">Changing the FTP Connection Message</a></li>
+                
+                    <li><a class="toctree-l4" href="#changing-the-default-connection-folder">Changing the Default Connection Folder</a></li>
+                
+                    <li><a class="toctree-l4" href="#changing-the-ftp-closing-message">Changing the FTP Closing Message</a></li>
                 
             
             </ul>
@@ -355,7 +363,8 @@ ftp -i                  # Opens FTP and turns off interactive mode so mget/mput
 </code></pre>
 
 <h1 id="basic-ftp-commands">Basic FTP commands</h1>
-<pre><code>ftp&gt; open 192.168.40.153
+<pre><code>ftp&gt; help
+ftp&gt; open 192.168.40.153
 ftp&gt; put filename.txt   # Transfer single file
 </code></pre>
 
@@ -375,7 +384,10 @@ ftp&gt; mput           # Sends multiple files
 <h2 id="transferring-directories">Transferring directories</h2>
 <ul>
 <li>FTP will not automatically create and transfer directories when using <code>mput</code>.</li>
-<li>Bash script could be created to recursively transfer directories with their contents through FTP... <em>currently only runs on Bash for Windows with MS FTP.</em></li>
+<li>Here's a bash script that could  recursively transfer directories with their contents through FTP... <em>currently only runs on Bash for Windows with MS FTP.</em></li>
+<li>
+<h2 id="nb-it-would-be-better-to-use-scp-anyway">N.B. It would be better to use <code>scp</code> anyway!</h2>
+</li>
 </ul>
 <pre><code>if [[ &quot;$1&quot; = &quot;help&quot; ]]; then
   echo &quot;Run with ftpcdir.sh &lt;directory&gt; &lt;host address&gt; &lt;username&gt; &lt;password&gt;&quot;
@@ -403,13 +415,35 @@ ftp -s:command.ftp                  # Only works with Windows Cmd FTP
 exit
 </code></pre>
 
-<h1 id="changing-the-ftp-connection-message">Changing the FTP Connection Message</h1>
+<h1 id="further-configuration-options">Further configuration options</h1>
 <ul>
-<li>Could be done by editing the <code>/etc/proftpd.conf</code> file under <code>DisplayConnect</code>.</li>
-<li>By default <code>DisplayConnect</code> is configured to display the contents of the <code>/etc/issue</code> text file.</li>
-<li>One can modify this to point to another file or edit the <code>/etc/issue</code> file directly.</li>
-<li>Any change of the file requires restarting the ftp service: <code>svcadm restart ftp</code> for changes to take effect.</li>
+<li>Configuration is done through editing the <code>/etc/proftpd.conf</code> file.</li>
+<li>The file <code>/etc/ftpd/ftpusers</code> contains a list of users denied access to the FTP server, e.g. root.</li>
+<li>Note that any change of the file requires restarting the ftp service.<ul>
+<li>Solaris: <code>svcadm restart ftp</code></li>
 </ul>
+</li>
+</ul>
+<h2 id="changing-the-ftp-connection-message">Changing the FTP Connection Message</h2>
+<ul>
+<li>Configured under <code>DisplayConnect</code> in <code>/etc/proftpd.conf</code>.</li>
+<li>By default <code>DisplayConnect</code> is configured to display the contents of the <code>/etc/issue</code> text file.</li>
+</ul>
+<pre><code>DisplayConnect      /etc/issue
+</code></pre>
+
+<ul>
+<li>One can modify this to point to another file or edit the <code>/etc/issue</code> file directly.</li>
+</ul>
+<h2 id="changing-the-default-connection-folder">Changing the Default Connection Folder</h2>
+<p>In <code>/etc/proftpd.conf</code>, example:</p>
+<pre><code>DefaultRoot         /export/home/public
+</code></pre>
+
+<h2 id="changing-the-ftp-closing-message">Changing the FTP Closing Message</h2>
+<p>In <code>/etc/proftpd.conf</code>, example:</p>
+<pre><code>DisplayQuit         /etc/quitmessage
+</code></pre>
               
             </div>
           </div>

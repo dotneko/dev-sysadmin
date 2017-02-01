@@ -259,6 +259,9 @@
         
             <ul>
             
+                <li class="toctree-l3"><a href="#useful-resources-and-references">Useful Resources and References:</a></li>
+                
+            
                 <li class="toctree-l3"><a href="#installation-options">Installation options</a></li>
                 
                     <li><a class="toctree-l4" href="#new-installation-of-windows-core">New Installation of Windows Core</a></li>
@@ -317,7 +320,7 @@
           <div role="main">
             <div class="section">
               
-                <p><em>References and Links:</em></p>
+                <h1 id="useful-resources-and-references">Useful Resources and References:</h1>
 <ul>
 <li><a href="https://msdn.microsoft.com/library/dn636873(v=vs.85).aspx">Windows Server Overview</a></li>
 <li><a href="https://blogs.technet.microsoft.com/windowsserver/">Windows Server Blog</a></li>
@@ -332,11 +335,12 @@
 <h2 id="new-installation-of-windows-core">New Installation of Windows Core</h2>
 <ul>
 <li>Windows Core Install starts in cmd.exe</li>
-<li>If close automatically, can enter <Ctrl><Alt><Del> to run Task Manager and run a new task.</li>
+<li>If close automatically, can enter \<Ctrl>\<Alt>\<Del> to run Task Manager and run a new task.</li>
 <li>Some available programs:</li>
 </ul>
 <pre><code>taskmgr
 regedit
+notepad
 timedate.cpl
 intl.cpl
 msinfo32
@@ -345,24 +349,33 @@ sconfig.cmd
 
 <h2 id="convert-server-core-to-server-with-gui">Convert Server Core to Server with GUI</h2>
 <p>To use Windows PowerShell to convert from a Server Core installation to a Server with a GUI installation
-Determine the index number for a Server with a GUI image (for example, SERVERDATACENTER, not SERVERDATACENTERCORE) with: <code>Get-WindowsImage -ImagePath &lt;path to wim&gt;\install.wim</code></p>
-<p>Run: <code>Install-WindowsFeature Server-Gui-Mgmt-Infra,Server-Gui-Shell –Restart –Source c:\mountdir\windows\winsxs</code></p>
-<p>Alternatively, if you want to use Windows Update as the source instead of a WIM file, use this Windows PowerShell cmdlet:
-<code>Install-WindowsFeature Server-Gui-Mgmt-Infra,Server-Gui-Shell –Restart</code></p>
-<p><em>If you get the following error message when trying the above installations:</em></p>
-<pre><code>Error: 0x800f081f
+Determine the index number for a Server with a GUI image (for example, SERVERDATACENTER, not SERVERDATACENTERCORE) with: </p>
+<pre><code>Get-WindowsImage -ImagePath &lt;path to wim&gt;\install.wim
+</code></pre>
 
+<p>Then run: </p>
+<pre><code>Install-WindowsFeature Server-Gui-Mgmt-Infra,Server-Gui-Shell –Restart –Source c:\mountdir\windows\winsxs
+</code></pre>
+
+<p>Alternatively, if you want to use Windows Update as the source instead of a WIM file, use this Windows PowerShell cmdlet:</p>
+<pre><code>Install-WindowsFeature Server-Gui-Mgmt-Infra,Server-Gui-Shell –Restart
+</code></pre>
+
+<p>You may get an error message when trying the above installations:</p>
+<pre><code>Error: 0x800f081f
 The source files could not be found.
 Use the &quot;Source&quot; option to specify the location of the files that are required to restore the feature. For more information
 on specifying a source location, see http://go.microsoft.com/fwlink/?LinkId=243077.
 </code></pre>
 
-<p><strong>See this link to solve the issue.</strong> <a href="https://support.microsoft.com/en-us/kb/2913316">link here from Microsoft</a></p>
-<p>First get the index number of desired installation for Non-core:</p>
+<p>If so, follow the following <a href="https://support.microsoft.com/en-us/kb/2913316">instructions from Microsoft</a>:
+- First get the index number of desired installation for Non-core:</p>
 <pre><code>dism /get-wiminfo /wimfile:d:\sources\install.wim
 </code></pre>
 
-<p>Next can run the command with the index number:</p>
+<ul>
+<li>Next can run the command with the index number:</li>
+</ul>
 <pre><code>Install-WindowsFeature Server-Gui-Mgmt-Infra,Server-Gui-Shell -Restart -Source wim:d:\sources\install.wim:2
 </code></pre>
 
@@ -372,8 +385,10 @@ on specifying a source location, see http://go.microsoft.com/fwlink/?LinkId=2430
 </code></pre>
 
 <h2 id="features-on-demand">Features on Demand</h2>
-<p>In previous versions of Windows, even if a server role or feature was disabled, the binary files for it were still present on the disk, consuming space. In Windows Server 2012, not only can you disable a role or feature, but you can also completely remove its files, a state shown as “removed” in Server Manager or “disabled with payload removed” in Dism.exe.</p>
 <ul>
+<li>
+<p>In Windows Server 2012, not only can you disable a role or feature, but you can also completely remove its files, a state shown as “removed” in Server Manager or “disabled with payload removed” in Dism.exe.</p>
+</li>
 <li>
 <p>To reinstall a role or feature that been completely removed, you must have access to an installation source.</p>
 </li>
@@ -381,16 +396,25 @@ on specifying a source location, see http://go.microsoft.com/fwlink/?LinkId=2430
 <p>To completely remove a role or feature, use <code>–Remove</code> with the <code>Uninstall-WindowsFeature</code> cmdlet of Windows PowerShell. For example, to completely remove Windows Explorer, Internet Explorer, and dependent components, run the following Windows PowerShell command:</p>
 </li>
 </ul>
-<p><code>Uninstall-WindowsFeature Server-Gui-Shell -Remove</code></p>
-<p>To install a role or feature that has been completely removed, use the Windows PowerShell <code>–Source</code> option of the <code>Install-WindowsFeature</code> Server Manager cmdlet. The –Source option specifies a path to a WIM image and the index number of the image. If you do not specify a –Source option, Windows will use Windows Update by default. Offline VHDs cannot be used as a source for installing roles or features which have been completely removed.</p>
+<pre><code>Uninstall-WindowsFeature Server-Gui-Shell -Remove
+</code></pre>
+
+<p>To install a role or feature that has been completely removed, use the Windows PowerShell <code>–Source</code> option of the <code>Install-WindowsFeature</code> Server Manager cmdlet. The –Source option specifies a path to a WIM image and the index number of the image. If you do not specify a <code>–Source</code> option, Windows will use Windows Update by default. Offline VHDs cannot be used as a source for installing roles or features which have been completely removed.</p>
 <p>Only component sources from the exact same version of Windows are supported. For example, a component source derived from the Windows Server Developer Preview is not a valid installation source for a server running Windows Server 2012.</p>
-<p>To install a removed role or feature using a WIM image, use the steps and Windows PowerShell cmdlets:
-Run <code>Get-windowsimage –imagepath &lt;path to wim&gt;\install.wim</code>, and make note of the index of the Windows Server 2012 image.</p>
-<p><code>Install-WindowsFeature &lt;featurename&gt; -Source wim:&lt;path&gt;:&lt;index&gt;</code>, where:
-Featurename is the name of the role or feature from Get-WindowsFeature
-Path is the path to the WIM mount point
-Index is the index of the server image from Step 1.
-For example: <code>Install-WindowsFeature &lt;featurename&gt; -Source wim:d:\sources\install.wim:4</code></p>
+<h3 id="to-install-a-removed-role-or-feature-using-a-wim-image-use-the-steps-and-windows-powershell-cmdlets">To install a removed role or feature using a WIM image, use the steps and Windows PowerShell cmdlets:</h3>
+<p>Run the following command and make note of the index of the Windows Server 2012 image:</p>
+<pre><code>Get-windowsimage –imagepath &lt;path to wim&gt;\install.wim
+</code></pre>
+
+<p>Then execute:</p>
+<pre><code>Install-WindowsFeature &lt;featurename&gt; -Source wim:&lt;path&gt;:&lt;index&gt;
+</code></pre>
+
+<p>Where:
+- \<Featurename> is the name of the role or feature from Get-WindowsFeature
+- \<Path> is the path to the WIM mount point
+- \<Index> is the index of the server image from Step 1.</p>
+<p>For example: <code>Install-WindowsFeature &lt;featurename&gt; -Source wim:d:\sources\install.wim:4</code></p>
               
             </div>
           </div>
