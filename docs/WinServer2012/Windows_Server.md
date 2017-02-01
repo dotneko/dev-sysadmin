@@ -80,11 +80,19 @@ To install a role or feature that has been completely removed, use the Windows P
 
 Only component sources from the exact same version of Windows are supported. For example, a component source derived from the Windows Server Developer Preview is not a valid installation source for a server running Windows Server 2012.
 
-To install a removed role or feature using a WIM image, use the steps and Windows PowerShell cmdlets:
-Run `Get-windowsimage –imagepath <path to wim>\install.wim`, and make note of the index of the Windows Server 2012 image.
+### To install a removed role or feature using a WIM image, use the steps and Windows PowerShell cmdlets:
 
-`Install-WindowsFeature <featurename> -Source wim:<path>:<index>`, where:
-Featurename is the name of the role or feature from Get-WindowsFeature
-Path is the path to the WIM mount point
-Index is the index of the server image from Step 1.
+Run the following command and make note of the index of the Windows Server 2012 image:
+```
+Get-windowsimage –imagepath <path to wim>\install.wim
+```
+Then execute:
+```
+Install-WindowsFeature <featurename> -Source wim:<path>:<index>
+```
+Where:
+- \<Featurename> is the name of the role or feature from Get-WindowsFeature
+- \<Path> is the path to the WIM mount point
+- \<Index> is the index of the server image from Step 1.
+
 For example: `Install-WindowsFeature <featurename> -Source wim:d:\sources\install.wim:4`
