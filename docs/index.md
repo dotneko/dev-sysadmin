@@ -4,5 +4,4 @@ This is a personal repository of notes, commands, scripts and resources on softw
 
 It is not intended to be a complete reference or guide, but more as a cheatsheet/archive of links to more comprehensive resources that are available on the Internet.
 
-# License
-This project is licensed under the [Creative Commons CC0 Universal license](http://creativecommons.org/publicdomain/zero/1.0/).
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
