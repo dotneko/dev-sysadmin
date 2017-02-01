@@ -32,6 +32,7 @@ ftp -i                  # Opens FTP and turns off interactive mode so mget/mput
 # Basic FTP commands
 
 ```
+ftp> help
 ftp> open 192.168.40.153
 ftp> put filename.txt   # Transfer single file
 ```
@@ -55,8 +56,9 @@ ftp> mput           # Sends multiple files
 
 ## Transferring directories
 - FTP will not automatically create and transfer directories when using `mput`.
-- Bash script could be created to recursively transfer directories with their contents through FTP... *currently only runs on Bash for Windows with MS FTP.*
-
+- Here's a bash script that could  recursively transfer directories with their contents through FTP... *currently only runs on Bash for Windows with MS FTP.*
+- N.B. It would be better to use `scp` anyway!
+-
 ```
 if [[ "$1" = "help" ]]; then
   echo "Run with ftpcdir.sh <directory> <host address> <username> <password>"
@@ -84,8 +86,30 @@ ftp -s:command.ftp                  # Only works with Windows Cmd FTP
 exit
 ```
 
-# Changing the FTP Connection Message
-- Could be done by editing the `/etc/proftpd.conf` file under `DisplayConnect`.
+# Further configuration options
+- Configuration is done through editing the `/etc/proftpd.conf` file.
+- The file `/etc/ftpd/ftpusers` contains a list of users denied access to the FTP server, e.g. root.
+- Note that any change of the file requires restarting the ftp service.
+    - Solaris: `svcadm restart ftp`
+
+## Changing the FTP Connection Message
+- Configured under `DisplayConnect` in `/etc/proftpd.conf`.
 - By default `DisplayConnect` is configured to display the contents of the `/etc/issue` text file.
+
+```
+DisplayConnect      /etc/issue
+```
+
 - One can modify this to point to another file or edit the `/etc/issue` file directly.
-- Any change of the file requires restarting the ftp service: `svcadm restart ftp` for changes to take effect.
+
+## Changing the Default Connection Folder
+In `/etc/proftpd.conf`, example:
+```
+DefaultRoot         /export/home/public
+```
+
+## Changing the FTP Closing Message
+In `/etc/proftpd.conf`, example:
+```
+DisplayQuit         /etc/quitmessage
+```
