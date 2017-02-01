@@ -11,7 +11,7 @@
 
 ## New Installation of Windows Core
 - Windows Core Install starts in cmd.exe
-- If close automatically, can enter <Ctrl><Alt><Del> to run Task Manager and run a new task.
+- If close automatically, can enter \<Ctrl>\<Alt>\<Del> to run Task Manager and run a new task.
 - Some available programs:
 ```
 taskmgr
@@ -37,7 +37,9 @@ Install-WindowsFeature Server-Gui-Mgmt-Infra,Server-Gui-Shell –Restart –Sour
 
 Alternatively, if you want to use Windows Update as the source instead of a WIM file, use this Windows PowerShell cmdlet:
 
-`Install-WindowsFeature Server-Gui-Mgmt-Infra,Server-Gui-Shell –Restart`
+```
+Install-WindowsFeature Server-Gui-Mgmt-Infra,Server-Gui-Shell –Restart
+```
 
 You may get an error message when trying the above installations:
 ```
@@ -57,6 +59,7 @@ Install-WindowsFeature Server-Gui-Mgmt-Infra,Server-Gui-Shell -Restart -Source w
 ```
 
 ## Convert Server with GUI to Server Core
+
 To convert to a Server Core installation with Windows PowerShell: run the following cmdlet:
 ```
 Uninstall-WindowsFeature Server-Gui-Mgmt-Infra -Restart
@@ -69,7 +72,8 @@ Uninstall-WindowsFeature Server-Gui-Mgmt-Infra -Restart
 
 - To completely remove a role or feature, use `–Remove` with the `Uninstall-WindowsFeature` cmdlet of Windows PowerShell. For example, to completely remove Windows Explorer, Internet Explorer, and dependent components, run the following Windows PowerShell command:
 
-```Uninstall-WindowsFeature Server-Gui-Shell -Remove
+```
+Uninstall-WindowsFeature Server-Gui-Shell -Remove
 ```
 
 To install a role or feature that has been completely removed, use the Windows PowerShell `–Source` option of the `Install-WindowsFeature` Server Manager cmdlet. The –Source option specifies a path to a WIM image and the index number of the image. If you do not specify a `–Source` option, Windows will use Windows Update by default. Offline VHDs cannot be used as a source for installing roles or features which have been completely removed.
