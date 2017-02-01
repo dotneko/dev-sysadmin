@@ -8,10 +8,10 @@
 - Supports **ASCII** for text and "image" for binary data.
 - *Base specification does not have any special handling for encrypted communications, so files containing sensitive material should not be sent.*
 - **Usernames and passwords are sent in clear text** and the entire FTP transmission could be monitored by potential attackers.
+- Instead should instead use something like `scp` for same security as `ssh`.
 
-*Source:* http://www.ncftp.com/libncftp/doc/ftp_overview.html
+*Source:* [http://www.ncftp.com/libncftp/doc/ftp_overview.html](http://www.ncftp.com/libncftp/doc/ftp_overview.html)
 
-- Should instead use something like `scp` for same security as `ssh`.
 
 # FTP service on Solaris
 
@@ -56,9 +56,9 @@ ftp> mput           # Sends multiple files
 
 ## Transferring directories
 - FTP will not automatically create and transfer directories when using `mput`.
-- Here's a bash script that could  recursively transfer directories with their contents through FTP... *currently only runs on Bash for Windows with MS FTP.*
-- N.B. It would be better to use `scp` anyway!
--
+- It would be better to use `scp` for better security and support for recursive transfer of files/subdirectories.
+- Anyway here's a bash script that could recursively transfer directories with their contents through FTP...*currently only runs on Bash for Windows with MS FTP.*
+
 ```
 if [[ "$1" = "help" ]]; then
   echo "Run with ftpcdir.sh <directory> <host address> <username> <password>"
