@@ -161,6 +161,8 @@
             
                 <li class="toctree-l3"><a href="#unix-groups">UNIX Groups</a></li>
                 
+                    <li><a class="toctree-l4" href="#adding-and-modifying-groups">Adding and modifying groups</a></li>
+                
             
                 <li class="toctree-l3"><a href="#links-and-references">Links and References:</a></li>
                 
@@ -341,10 +343,11 @@ usermod -d
 </code></pre>
 
 <p>To delete a user:</p>
-<pre><code>userdel username
+<pre><code>userdel username          # Preserves user's home directory.
+userdel -r username       # Removes user's home directory.
 </code></pre>
 
-<p>Note that user folder must be unmounted before it could be deleted</p>
+<p>If wanting to delete a user's home directory that was not deleted before, the user folder must be unmounted before it could be deleted.</p>
 <pre><code>umount dirname
 </code></pre>
 
@@ -418,7 +421,7 @@ usermod -d
 <pre><code>getent group groupname
 </code></pre>
 
-<p>Adding and modifying groups</p>
+<h2 id="adding-and-modifying-groups">Adding and modifying groups</h2>
 <pre><code>groupadd -U user1[,user2]
 groupmod
 groupdel
@@ -435,11 +438,6 @@ usermod -G &quot;&quot; username    # removes all secondary groups
 <h1 id="links-and-references">Links and References:</h1>
 <ul>
 <li><a href="https://docs.oracle.com/cd/E53394_01/">Oracle Solaris 11.3 Information Library</a></li>
-<li><a href="https://www.youtube.com/watch?v=n_7uUnTodSY">Creating Users 1 Video</a></li>
-<li><a href="https://www.youtube.com/watch?v=dj_V5XDdYcU">Creating Users 2 Video</a></li>
-<li><a href="https://www.youtube.com/watch?v=bQF1SavzgL8">Creating Users 3 Video</a></li>
-<li><a href="https://www.youtube.com/watch?v=QBpLUfWOYLs">Finding account information</a></li>
-<li><a href="https://www.youtube.com/watch?v=EZ4BmS1VM7w">Changing account policies</a></li>
 </ul>
               
             </div>
