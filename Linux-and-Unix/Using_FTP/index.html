@@ -168,8 +168,6 @@
                 
                     <li><a class="toctree-l4" href="#transferring-directories">Transferring directories</a></li>
                 
-                    <li><a class="toctree-l4" href="#nb-it-would-be-better-to-use-scp-anyway">N.B. It would be better to use scp anyway!</a></li>
-                
             
                 <li class="toctree-l3"><a href="#further-configuration-options">Further configuration options</a></li>
                 
@@ -345,11 +343,9 @@
 <li>Supports <strong>ASCII</strong> for text and "image" for binary data.</li>
 <li><em>Base specification does not have any special handling for encrypted communications, so files containing sensitive material should not be sent.</em></li>
 <li><strong>Usernames and passwords are sent in clear text</strong> and the entire FTP transmission could be monitored by potential attackers.</li>
+<li>Instead should instead use something like <code>scp</code> for same security as <code>ssh</code>.</li>
 </ul>
-<p><em>Source:</em> http://www.ncftp.com/libncftp/doc/ftp_overview.html</p>
-<ul>
-<li>Should instead use something like <code>scp</code> for same security as <code>ssh</code>.</li>
-</ul>
+<p><em>Source:</em> <a href="http://www.ncftp.com/libncftp/doc/ftp_overview.html">http://www.ncftp.com/libncftp/doc/ftp_overview.html</a></p>
 <h1 id="ftp-service-on-solaris">FTP service on Solaris</h1>
 <pre><code>svcs ftp                # Check status of ftp service (default: disabled)
 svcadm enable ftp       # Enables FTP
@@ -384,10 +380,8 @@ ftp&gt; mput           # Sends multiple files
 <h2 id="transferring-directories">Transferring directories</h2>
 <ul>
 <li>FTP will not automatically create and transfer directories when using <code>mput</code>.</li>
-<li>Here's a bash script that could  recursively transfer directories with their contents through FTP... <em>currently only runs on Bash for Windows with MS FTP.</em></li>
-<li>
-<h2 id="nb-it-would-be-better-to-use-scp-anyway">N.B. It would be better to use <code>scp</code> anyway!</h2>
-</li>
+<li>It would be better to use <code>scp</code> for better security and support for recursive transfer of files/subdirectories.</li>
+<li>Anyway here's a bash script that could recursively transfer directories with their contents through FTP...<em>currently only runs on Bash for Windows with MS FTP.</em></li>
 </ul>
 <pre><code>if [[ &quot;$1&quot; = &quot;help&quot; ]]; then
   echo &quot;Run with ftpcdir.sh &lt;directory&gt; &lt;host address&gt; &lt;username&gt; &lt;password&gt;&quot;
