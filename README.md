@@ -2,11 +2,12 @@
 
 This is a personal repository of notes, commands, scripts and resources on software development, systems administration, and miscellaneous tidbits of technology wisdom collected from various sources.
 
-It is not intended to be a complete reference or guide, but more as a cheatsheet/archive of links to more comprehensive resources that are available on the Internet.
+It is not intended to be a complete reference or guide, but more as a cheatsheet/archive of what worked for me, and of links to more comprehensive resources that are available on the Internet.
 
-[Take a look here](https://gavchan.github.io/dev-sysadmin/)
+[Notes hosted on Github Pages](https://gavchan.github.io/dev-sysadmin/)
 
 --Gavin
 
-# License
-This project is licensed under the [Creative Commons CC0 Universal license](http://creativecommons.org/publicdomain/zero/1.0/).
+---
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+
