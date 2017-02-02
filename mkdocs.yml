@@ -3,5 +3,5 @@ repo_url: https://github.com/gavchan/dev-sysadmin/
 edit_uri: edit/master/docs/
 site_description: Notes on Software Development and System Adminsitration
 site_author: "Gavin"
-google_analytics: ['UA-91170914-1', 'gavchan.github.io/dev-sysadmin']
+google_analytics: ['UA-91170914-1', 'gavchan.github.io']
 theme: readthedocs
