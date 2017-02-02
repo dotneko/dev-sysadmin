@@ -166,16 +166,20 @@
                 
                     <li><a class="toctree-l4" href="#remote">Remote</a></li>
                 
-                    <li><a class="toctree-l4" href="#transferring-directories">Transferring directories</a></li>
-                
             
-                <li class="toctree-l3"><a href="#further-configuration-options">Further configuration options</a></li>
+                <li class="toctree-l3"><a href="#configuring-proftpdconf">Configuring ProFTPD.conf</a></li>
                 
                     <li><a class="toctree-l4" href="#changing-the-ftp-connection-message">Changing the FTP Connection Message</a></li>
                 
-                    <li><a class="toctree-l4" href="#changing-the-default-connection-folder">Changing the Default Connection Folder</a></li>
+                    <li><a class="toctree-l4" href="#confine-ftp-users-to-their-home-directory">Confine FTP users to their home directory</a></li>
                 
                     <li><a class="toctree-l4" href="#changing-the-ftp-closing-message">Changing the FTP Closing Message</a></li>
+                
+                    <li><a class="toctree-l4" href="#configuring-anonymous-ftp-no-write-access">Configuring anonymous FTP (No write access)</a></li>
+                
+                    <li><a class="toctree-l4" href="#configuring-anonymous-ftp-with-an-upload-directory">Configuring anonymous FTP (with an upload directory)</a></li>
+                
+                    <li><a class="toctree-l4" href="#transferring-directories">Transferring directories</a></li>
                 
             
             </ul>
@@ -374,9 +378,90 @@ ftp&gt; !dir           # Lists files in local directory - works with MS FTP
 <pre><code>ftp&gt; get            # Retrieves files
 ftp&gt; mget           # Retrieves multiple files
 ftp&gt; put            # Sends one file
-ftp&gt; mput           # Sends multiple files
+ftp&gt; mput           # Sends multiple files; note that directories are not transferred automatically (see bottom of page).
 </code></pre>
 
+<h1 id="configuring-proftpdconf">Configuring ProFTPD.conf</h1>
+<ul>
+<li>Detailed configuration documentation at <a href="http://www.proftpd.org/docs/howto/ConfigFile.html">proftpd.org</a></li>
+<li>Configuration is done through editing the <code>/etc/proftpd.conf</code> file.</li>
+<li>The file <code>/etc/ftpd/ftpusers</code> in Solaris contains a list of users denied access to the FTP server, e.g. root.</li>
+<li>See <a href="https://docs.oracle.com/cd/E23823_01/html/816-4555/wuftp-43.html">Oracle: Controlling FTP Server Access</a> for more information.</li>
+<li>Note that any change of the file requires restarting the ftp service.<ul>
+<li>Solaris: <code>svcadm restart ftp</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="changing-the-ftp-connection-message">Changing the FTP Connection Message</h2>
+<ul>
+<li>Configured under <code>DisplayConnect</code> in <code>/etc/proftpd.conf</code>.</li>
+<li>By default <code>DisplayConnect</code> is configured to display the contents of the <code>/etc/issue</code> text file.</li>
+</ul>
+<pre><code>DisplayConnect      /etc/issue
+</code></pre>
+
+<ul>
+<li>One can modify this to point to another file or edit the <code>/etc/issue</code> file directly.</li>
+</ul>
+<h2 id="confine-ftp-users-to-their-home-directory">Confine FTP users to their home directory</h2>
+<p>In <code>/etc/proftpd.conf</code>, example:</p>
+<pre><code>DefaultRoot         ~       # Causes every FTP user to be &quot;jailed&quot; into their home directory.
+</code></pre>
+
+<h2 id="changing-the-ftp-closing-message">Changing the FTP Closing Message</h2>
+<p>In <code>/etc/proftpd.conf</code>, example, can point the message to /etc/quitmessage</p>
+<pre><code>DisplayQuit         /etc/quitmessage
+</code></pre>
+
+<h2 id="configuring-anonymous-ftp-no-write-access">Configuring anonymous FTP (No write access)</h2>
+<ul>
+<li>By default, Solaris 11 does not allow for anonymous connections.</li>
+<li>To enable, one can add the following according to <a href="http://www.proftpd.org/docs/configs/basic.conf">www.proftpd.org</a>:</li>
+<li>Also need to make sure <code>ftp</code> is removed from the ftp deny list that is stored in <code>/etc/ftpd/ftpusers</code> (Solaris).</li>
+</ul>
+<pre><code># A basic anonymous configuration, no upload directories:
+&lt;Anonymous ~ftp&gt;
+  User              ftp
+  Group             ftp
+
+  # We want clients to be able to login with &quot;anonymous&quot; as well as &quot;ftp&quot;
+  UserAlias         anonymous ftp
+
+  # Limit the maximum number of anonymous logins
+  MaxClients            10
+
+  # We want 'welcome.msg' displayed at login, and '.message' displayed
+  # in each newly chdired directory.
+  DisplayLogin          welcome.msg
+  DisplayFirstChdir     .message
+
+  # Limit WRITE everywhere in the anonymous chroot
+  &lt;Limit WRITE&gt;
+    DenyAll
+  &lt;/Limit&gt;
+&lt;/Anonymous&gt;
+</code></pre>
+
+<h2 id="configuring-anonymous-ftp-with-an-upload-directory">Configuring anonymous FTP (with an upload directory)</h2>
+<ul>
+<li>Add the following within the <Anonymous></Anonymous> section from above:</li>
+</ul>
+<pre><code># An upload directory that allows storing files but not retrieving
+# or creating directories.
+&lt;Directory uploads/*&gt;
+  &lt;Limit READ&gt;
+    DenyAll
+  &lt;/Limit&gt;
+
+  &lt;Limit STOR&gt;
+    AllowAll
+  &lt;/Limit&gt;
+&lt;/Directory&gt;
+</code></pre>
+
+<ul>
+<li>For detailed example configuration, see example:  <a href="http://www.proftpd.org/docs/configs/anonymous.conf">anonymous.conf</a></li>
+</ul>
 <h2 id="transferring-directories">Transferring directories</h2>
 <ul>
 <li>FTP will not automatically create and transfer directories when using <code>mput</code>.</li>
@@ -407,36 +492,6 @@ done
 echo quit &gt;&gt; command.ftp
 ftp -s:command.ftp                  # Only works with Windows Cmd FTP
 exit
-</code></pre>
-
-<h1 id="further-configuration-options">Further configuration options</h1>
-<ul>
-<li>Configuration is done through editing the <code>/etc/proftpd.conf</code> file.</li>
-<li>The file <code>/etc/ftpd/ftpusers</code> contains a list of users denied access to the FTP server, e.g. root.</li>
-<li>Note that any change of the file requires restarting the ftp service.<ul>
-<li>Solaris: <code>svcadm restart ftp</code></li>
-</ul>
-</li>
-</ul>
-<h2 id="changing-the-ftp-connection-message">Changing the FTP Connection Message</h2>
-<ul>
-<li>Configured under <code>DisplayConnect</code> in <code>/etc/proftpd.conf</code>.</li>
-<li>By default <code>DisplayConnect</code> is configured to display the contents of the <code>/etc/issue</code> text file.</li>
-</ul>
-<pre><code>DisplayConnect      /etc/issue
-</code></pre>
-
-<ul>
-<li>One can modify this to point to another file or edit the <code>/etc/issue</code> file directly.</li>
-</ul>
-<h2 id="changing-the-default-connection-folder">Changing the Default Connection Folder</h2>
-<p>In <code>/etc/proftpd.conf</code>, example:</p>
-<pre><code>DefaultRoot         /export/home/public
-</code></pre>
-
-<h2 id="changing-the-ftp-closing-message">Changing the FTP Closing Message</h2>
-<p>In <code>/etc/proftpd.conf</code>, example:</p>
-<pre><code>DisplayQuit         /etc/quitmessage
 </code></pre>
               
             </div>
