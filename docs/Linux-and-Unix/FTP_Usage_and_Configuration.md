@@ -83,6 +83,22 @@ In `/etc/proftpd.conf`, example, can point the message to /etc/quitmessage
 DisplayQuit         /etc/quitmessage
 ```
 
+## Controlling who can connect through FTP
+- Using the following directive would deny all access by default:
+```
+<Limit LOGIN>
+DenyAll
+</Limit>
+```
+- The above would be used if one wants to allow access to specific users, e.g. Anonymous., where you would add the following within the  <Anonmyous ~ftp> section:
+```
+<Anonymous ~ftp>
+    <Limit LOGIN>
+        AllowAll
+    </Limit> ....
+</Anonymous>
+```
+
 ## Configuring anonymous FTP (No write access)
 - By default, Solaris 11 does not allow for anonymous connections.
 - To enable, one can add the following according to [www.proftpd.org](http://www.proftpd.org/docs/configs/basic.conf):
