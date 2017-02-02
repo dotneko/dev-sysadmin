@@ -12,6 +12,18 @@
     
         
     <url>
+     <loc>/Linux-and-Unix/Apache_Server_Setup_and_Configuration/</loc>
+     <lastmod>2017-02-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/Linux-and-Unix/FTP_Usage_and_Configuration/</loc>
+     <lastmod>2017-02-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
      <loc>/Linux-and-Unix/File_System/</loc>
      <lastmod>2017-02-02</lastmod>
      <changefreq>daily</changefreq>
@@ -31,12 +43,6 @@
         
     <url>
      <loc>/Linux-and-Unix/SSH_and_SCP_Usage/</loc>
-     <lastmod>2017-02-02</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/Linux-and-Unix/Setup_an_Apache_Server/</loc>
      <lastmod>2017-02-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -73,12 +79,6 @@
         
     <url>
      <loc>/Linux-and-Unix/Users_and_Groups/</loc>
-     <lastmod>2017-02-02</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/Linux-and-Unix/Using_FTP/</loc>
      <lastmod>2017-02-02</lastmod>
      <changefreq>daily</changefreq>
     </url>

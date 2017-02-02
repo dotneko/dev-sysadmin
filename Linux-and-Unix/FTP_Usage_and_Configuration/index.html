@@ -8,7 +8,7 @@
   
   <meta name="author" content="Gavin">
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Using FTP - Software Development and System Administration Notes</title>
+  <title>FTP Usage and Configuration - Software Development and System Administration Notes</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Using FTP";
-    var mkdocs_page_input_path = "Linux-and-Unix/Using_FTP.md";
-    var mkdocs_page_url = "/Linux-and-Unix/Using_FTP/";
+    var mkdocs_page_name = "FTP Usage and Configuration";
+    var mkdocs_page_input_path = "Linux-and-Unix/FTP_Usage_and_Configuration.md";
+    var mkdocs_page_url = "/Linux-and-Unix/FTP_Usage_and_Configuration/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -70,6 +70,57 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../Apache_Server_Setup_and_Configuration/">Apache Server Setup and Configuration</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 current">
+        <a class="current" href="./">FTP Usage and Configuration</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#file-transfer-protocol-ftp">File Transfer Protocol (FTP)</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#ftp-service-on-solaris">FTP service on Solaris</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#basic-ftp-usage">Basic FTP Usage</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#basic-ftp-commands">Basic FTP commands</a></li>
+                
+                    <li><a class="toctree-l4" href="#local">Local</a></li>
+                
+                    <li><a class="toctree-l4" href="#remote">Remote</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#configuring-proftpdconf">Configuring ProFTPD.conf</a></li>
+                
+                    <li><a class="toctree-l4" href="#changing-the-ftp-connection-message">Changing the FTP Connection Message</a></li>
+                
+                    <li><a class="toctree-l4" href="#confine-ftp-users-to-their-home-directory">Confine FTP users to their home directory</a></li>
+                
+                    <li><a class="toctree-l4" href="#changing-the-ftp-closing-message">Changing the FTP Closing Message</a></li>
+                
+                    <li><a class="toctree-l4" href="#controlling-who-can-connect-through-ftp">Controlling who can connect through FTP</a></li>
+                
+                    <li><a class="toctree-l4" href="#configuring-anonymous-ftp-no-write-access">Configuring anonymous FTP (No write access)</a></li>
+                
+                    <li><a class="toctree-l4" href="#configuring-anonymous-ftp-with-an-upload-directory">Configuring anonymous FTP (with an upload directory)</a></li>
+                
+                    <li><a class="toctree-l4" href="#transferring-directories">Transferring directories</a></li>
+                
+            
+            </ul>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../File_System/">File System</a>
         
     </li>
@@ -92,13 +143,6 @@
             
     <li class="toctree-l1 ">
         <a class="" href="../SSH_and_SCP_Usage/">SSH and SCP Usage</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../Setup_an_Apache_Server/">Setup an Apache Server</a>
         
     </li>
 
@@ -141,48 +185,6 @@
             
     <li class="toctree-l1 ">
         <a class="" href="../Users_and_Groups/">Users and Groups</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 current">
-        <a class="current" href="./">Using FTP</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#file-transfer-protocol-ftp">File Transfer Protocol (FTP)</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#ftp-service-on-solaris">FTP service on Solaris</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#basic-ftp-usage">Basic FTP Usage</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#basic-ftp-commands">Basic FTP commands</a></li>
-                
-                    <li><a class="toctree-l4" href="#local">Local</a></li>
-                
-                    <li><a class="toctree-l4" href="#remote">Remote</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#configuring-proftpdconf">Configuring ProFTPD.conf</a></li>
-                
-                    <li><a class="toctree-l4" href="#changing-the-ftp-connection-message">Changing the FTP Connection Message</a></li>
-                
-                    <li><a class="toctree-l4" href="#confine-ftp-users-to-their-home-directory">Confine FTP users to their home directory</a></li>
-                
-                    <li><a class="toctree-l4" href="#changing-the-ftp-closing-message">Changing the FTP Closing Message</a></li>
-                
-                    <li><a class="toctree-l4" href="#configuring-anonymous-ftp-no-write-access">Configuring anonymous FTP (No write access)</a></li>
-                
-                    <li><a class="toctree-l4" href="#configuring-anonymous-ftp-with-an-upload-directory">Configuring anonymous FTP (with an upload directory)</a></li>
-                
-                    <li><a class="toctree-l4" href="#transferring-directories">Transferring directories</a></li>
-                
-            
-            </ul>
         
     </li>
 
@@ -324,10 +326,10 @@
         
       
     
-    <li>Using FTP</li>
+    <li>FTP Usage and Configuration</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/gavchan/dev-sysadmin/edit/master/docs/Linux-and-Unix/Using_FTP.md"
+        <a href="https://github.com/gavchan/dev-sysadmin/edit/master/docs/Linux-and-Unix/FTP_Usage_and_Configuration.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -411,6 +413,25 @@ ftp&gt; mput           # Sends multiple files; note that directories are not tra
 <h2 id="changing-the-ftp-closing-message">Changing the FTP Closing Message</h2>
 <p>In <code>/etc/proftpd.conf</code>, example, can point the message to /etc/quitmessage</p>
 <pre><code>DisplayQuit         /etc/quitmessage
+</code></pre>
+
+<h2 id="controlling-who-can-connect-through-ftp">Controlling who can connect through FTP</h2>
+<ul>
+<li>Using the following directive would deny all access by default:</li>
+</ul>
+<pre><code>&lt;Limit LOGIN&gt;
+DenyAll
+&lt;/Limit&gt;
+</code></pre>
+
+<ul>
+<li>The above would be used if one wants to allow access to specific users, e.g. Anonymous., where you would add the following within the  <Anonmyous ~ftp> section:</li>
+</ul>
+<pre><code>&lt;Anonymous ~ftp&gt;
+    &lt;Limit LOGIN&gt;
+        AllowAll
+    &lt;/Limit&gt; ....
+&lt;/Anonymous&gt;
 </code></pre>
 
 <h2 id="configuring-anonymous-ftp-no-write-access">Configuring anonymous FTP (No write access)</h2>
@@ -500,10 +521,10 @@ exit
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../../Miscellaneous/Git_and_GitHub/" class="btn btn-neutral float-right" title="Git and GitHub">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../File_System/" class="btn btn-neutral float-right" title="File System">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../Users_and_Groups/" class="btn btn-neutral" title="Users and Groups"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../Apache_Server_Setup_and_Configuration/" class="btn btn-neutral" title="Apache Server Setup and Configuration"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -531,10 +552,10 @@ exit
           <a href="https://github.com/gavchan/dev-sysadmin/" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../Users_and_Groups/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../Apache_Server_Setup_and_Configuration/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../../Miscellaneous/Git_and_GitHub/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../File_System/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

@@ -11,6 +11,111 @@
             "title": "Software Development &amp; Systems Administration Notes"
         }, 
         {
+            "location": "/Linux-and-Unix/Apache_Server_Setup_and_Configuration/", 
+            "text": "Useful Links:\n\n- \nApache HTTP Server Version 2.4 Documentation\n\n- \nOracle Docs: Apache Web Server\n\n\nApache on Oracle Solaris 11.3\n\n\n\n\nBy default apache22 is installed but disabled. One can check using either of the following:\n\n\n\n\nsvcs *apache*       # Or:\nsvcs http\n\n\n\n\n\n\nTo enable default apache22 service if currently disabled.\n\n\n\n\nsvcadm enable svc:/network/http:apache22\n\n\n\n\n\n\nCan install newer version then enable the server.\n\n\n\n\npkg install web/server/apache-24\nsvcadm -v enable /network/http:apache24\n\n\n\n\n\n\nAlternately can install a Apache webserver with MySQL and PHP:\n\n\n\n\npkg install group/feature/amp\n\n\n\n\n\n\nVerify that webserver works by opening: \nhttp://localhost:80\n in browser.\n\n\n\n\nConfiguration of Apache\n\n\n\n\nConfiguration is stored in the \n/etc/apache2/2.2/httpd.conf\n file.\n\n\nBy default, web pages are served from \n/var/apache2/2.2/htdocs\n folder.\n\n\n\n\nEdit \n/etc/apache2/2.2/httpd.conf\n\n\n\n\nCan edit \nDocumentRoot\n to point to another directory.\n\n\nMake sure to change the \n to point to the same DocumentRoot\n\n\nAlso need to make sure that the directory it points into to has execute permissions, otherwise others won't be able to read the files within the directory.\n\n\n\n\nDirectives in \nhttpd.conf\n\n\nAllow from \naddress\n        # \naddress\n is IP address or fully qualified domain name\nDeny from \naddress\n\n\n\n\n\n\n\nUsing \nOrder\n allows one to fine-tune the access:\n\n\n\n\nOrder deny,allow            # Specifies restriction order\nDeny from all\nAllow from some.host.com\n\n\n\n\n\n\nThe above example will by default deny access to all, and then only allow access from some.host.com.\n\n\n\n\nConfiguring Authentication and Authorization\n\n\n\n\nAuthentication and Authorization for version 2.2 from apache.org\n\n\nCreate a password file (not accessible from the web) using \nhtpasswd\n.\n\n\nNote that \nhtpasswd\n is located at \n/usr/local/apache2/bin/htpasswd\n\n\nE.g. \nhtpasswd -c /usr/local/apache/passwd/passwords user_name\n\n\nThen configure the server to request the password by editing the \nhttpd.conf\n file or using an \n.htaccess\n file:\n\n\n\n\nAuthType Basic\nAuthName \nRestricted Files\n\n# (Following line optional)\nAuthBasicProvider file\nAuthUserFile /usr/local/apache/passwd/passwords\nRequire user user_name\n\n\n\n\n\n\nSo to protect a folder \n/pathto/secret\n:\n\n\nPlace the above directives in \n.htaccess\n within the folder \n/pathto/secret\n.\n\n\nAlternatively, place the above directives in the \nhttpd.conf\n file within a directory section: \nDirectory /pathto/secret\n ... \n/Directory", 
+            "title": "Apache Server Setup and Configuration"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Apache_Server_Setup_and_Configuration/#apache-on-oracle-solaris-113", 
+            "text": "By default apache22 is installed but disabled. One can check using either of the following:   svcs *apache*       # Or:\nsvcs http   To enable default apache22 service if currently disabled.   svcadm enable svc:/network/http:apache22   Can install newer version then enable the server.   pkg install web/server/apache-24\nsvcadm -v enable /network/http:apache24   Alternately can install a Apache webserver with MySQL and PHP:   pkg install group/feature/amp   Verify that webserver works by opening:  http://localhost:80  in browser.", 
+            "title": "Apache on Oracle Solaris 11.3"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Apache_Server_Setup_and_Configuration/#configuration-of-apache", 
+            "text": "Configuration is stored in the  /etc/apache2/2.2/httpd.conf  file.  By default, web pages are served from  /var/apache2/2.2/htdocs  folder.", 
+            "title": "Configuration of Apache"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Apache_Server_Setup_and_Configuration/#edit-etcapache222httpdconf", 
+            "text": "Can edit  DocumentRoot  to point to another directory.  Make sure to change the   to point to the same DocumentRoot  Also need to make sure that the directory it points into to has execute permissions, otherwise others won't be able to read the files within the directory.", 
+            "title": "Edit /etc/apache2/2.2/httpd.conf"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Apache_Server_Setup_and_Configuration/#directives-in-httpdconf", 
+            "text": "Allow from  address         #  address  is IP address or fully qualified domain name\nDeny from  address    Using  Order  allows one to fine-tune the access:   Order deny,allow            # Specifies restriction order\nDeny from all\nAllow from some.host.com   The above example will by default deny access to all, and then only allow access from some.host.com.", 
+            "title": "Directives in httpd.conf"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Apache_Server_Setup_and_Configuration/#configuring-authentication-and-authorization", 
+            "text": "Authentication and Authorization for version 2.2 from apache.org  Create a password file (not accessible from the web) using  htpasswd .  Note that  htpasswd  is located at  /usr/local/apache2/bin/htpasswd  E.g.  htpasswd -c /usr/local/apache/passwd/passwords user_name  Then configure the server to request the password by editing the  httpd.conf  file or using an  .htaccess  file:   AuthType Basic\nAuthName  Restricted Files \n# (Following line optional)\nAuthBasicProvider file\nAuthUserFile /usr/local/apache/passwd/passwords\nRequire user user_name   So to protect a folder  /pathto/secret :  Place the above directives in  .htaccess  within the folder  /pathto/secret .  Alternatively, place the above directives in the  httpd.conf  file within a directory section:  Directory /pathto/secret  ...  /Directory", 
+            "title": "Configuring Authentication and Authorization"
+        }, 
+        {
+            "location": "/Linux-and-Unix/FTP_Usage_and_Configuration/", 
+            "text": "File Transfer Protocol (FTP)\n\n\n\n\nAn old file transfer protocol for exchanging files over a TCP/IP network since the 1970's.\n\n\nBase specification is \nRFC 959\n, 1985.\n\n\nDesigned to allow clients to browse the file system, and FTP is a stateful sequence of one or more transactions.\n\n\nClient is always responsible for initiating requests.\n\n\nAuthentication by username/password; de facto standard for guest access using \"anonymous\" for username and an \"email address\" for the password.\n\n\nSupports \nASCII\n for text and \"image\" for binary data.\n\n\nBase specification does not have any special handling for encrypted communications, so files containing sensitive material should not be sent.\n\n\nUsernames and passwords are sent in clear text\n and the entire FTP transmission could be monitored by potential attackers.\n\n\nInstead should instead use something like \nscp\n for same security as \nssh\n.\n\n\n\n\nSource:\n \nhttp://www.ncftp.com/libncftp/doc/ftp_overview.html\n\n\nFTP service on Solaris\n\n\nsvcs ftp                # Check status of ftp service (default: disabled)\nsvcadm enable ftp       # Enables FTP\nsvcs -xv svc:/network/ftp:default       # Run for troubleshooting\n\n\n\n\nBasic FTP Usage\n\n\nftp\nftp -i                  # Opens FTP and turns off interactive mode so mget/mput\n                        # will not ask for confirmation.\n\n\n\n\nBasic FTP commands\n\n\nftp\n help\nftp\n open 192.168.40.153\nftp\n put filename.txt   # Transfer single file\n\n\n\n\nLocal\n\n\nftp\n lcd            # Lists local directory, or changes local directory\nftp\n !ls            # Lists files in local directory - doesn't work with default Windows cmd.exe FTP\nftp\n !dir           # Lists files in local directory - works with MS FTP\n\n\n\n\nRemote\n\n\nftp\n get            # Retrieves files\nftp\n mget           # Retrieves multiple files\nftp\n put            # Sends one file\nftp\n mput           # Sends multiple files; note that directories are not transferred automatically (see bottom of page).\n\n\n\n\nConfiguring ProFTPD.conf\n\n\n\n\nDetailed configuration documentation at \nproftpd.org\n\n\nConfiguration is done through editing the \n/etc/proftpd.conf\n file.\n\n\nThe file \n/etc/ftpd/ftpusers\n in Solaris contains a list of users denied access to the FTP server, e.g. root.\n\n\nSee \nOracle: Controlling FTP Server Access\n for more information.\n\n\nNote that any change of the file requires restarting the ftp service.\n\n\nSolaris: \nsvcadm restart ftp\n\n\n\n\n\n\n\n\nChanging the FTP Connection Message\n\n\n\n\nConfigured under \nDisplayConnect\n in \n/etc/proftpd.conf\n.\n\n\nBy default \nDisplayConnect\n is configured to display the contents of the \n/etc/issue\n text file.\n\n\n\n\nDisplayConnect      /etc/issue\n\n\n\n\n\n\nOne can modify this to point to another file or edit the \n/etc/issue\n file directly.\n\n\n\n\nConfine FTP users to their home directory\n\n\nIn \n/etc/proftpd.conf\n, example:\n\n\nDefaultRoot         ~       # Causes every FTP user to be \njailed\n into their home directory.\n\n\n\n\nChanging the FTP Closing Message\n\n\nIn \n/etc/proftpd.conf\n, example, can point the message to /etc/quitmessage\n\n\nDisplayQuit         /etc/quitmessage\n\n\n\n\nControlling who can connect through FTP\n\n\n\n\nUsing the following directive would deny all access by default:\n\n\n\n\nLimit LOGIN\n\nDenyAll\n\n/Limit\n\n\n\n\n\n\n\nThe above would be used if one wants to allow access to specific users, e.g. Anonymous., where you would add the following within the  \n section:\n\n\n\n\nAnonymous ~ftp\n\n    \nLimit LOGIN\n\n        AllowAll\n    \n/Limit\n ....\n\n/Anonymous\n\n\n\n\n\nConfiguring anonymous FTP (No write access)\n\n\n\n\nBy default, Solaris 11 does not allow for anonymous connections.\n\n\nTo enable, one can add the following according to \nwww.proftpd.org\n:\n\n\nAlso need to make sure \nftp\n is removed from the ftp deny list that is stored in \n/etc/ftpd/ftpusers\n (Solaris).\n\n\n\n\n# A basic anonymous configuration, no upload directories:\n\nAnonymous ~ftp\n\n  User              ftp\n  Group             ftp\n\n  # We want clients to be able to login with \nanonymous\n as well as \nftp\n\n  UserAlias         anonymous ftp\n\n  # Limit the maximum number of anonymous logins\n  MaxClients            10\n\n  # We want 'welcome.msg' displayed at login, and '.message' displayed\n  # in each newly chdired directory.\n  DisplayLogin          welcome.msg\n  DisplayFirstChdir     .message\n\n  # Limit WRITE everywhere in the anonymous chroot\n  \nLimit WRITE\n\n    DenyAll\n  \n/Limit\n\n\n/Anonymous\n\n\n\n\n\nConfiguring anonymous FTP (with an upload directory)\n\n\n\n\nAdd the following within the \n section from above:\n\n\n\n\n# An upload directory that allows storing files but not retrieving\n# or creating directories.\n\nDirectory uploads/*\n\n  \nLimit READ\n\n    DenyAll\n  \n/Limit\n\n\n  \nLimit STOR\n\n    AllowAll\n  \n/Limit\n\n\n/Directory\n\n\n\n\n\n\n\nFor detailed example configuration, see example:  \nanonymous.conf\n\n\n\n\nTransferring directories\n\n\n\n\nFTP will not automatically create and transfer directories when using \nmput\n.\n\n\nIt would be better to use \nscp\n for better security and support for recursive transfer of files/subdirectories.\n\n\nAnyway here's a bash script that could recursively transfer directories with their contents through FTP...\ncurrently only runs on Bash for Windows with MS FTP.\n\n\n\n\nif [[ \n$1\n = \nhelp\n ]]; then\n  echo \nRun with ftpcdir.sh \ndirectory\n \nhost address\n \nusername\n \npassword\n\n  exit\nfi\nfind $1 -type d \n dirs.txt\nfind $1 \n files.txt\necho open $2 \n command.ftp\necho $3 \n command.ftp\necho $4 \n command.ftp\nfor i in `cat dirs.txt`\ndo\n  if [[ \n$i\n != '.' ]]; then\n    echo mkdir $i \n command.ftp\n  fi\ndone\nfor i in `cat files.txt`\ndo\n  if [[ \n$i\n != '.' ]]; then\n    echo put $i $i \n command.ftp\n  fi\ndone\necho quit \n command.ftp\nftp -s:command.ftp                  # Only works with Windows Cmd FTP\nexit", 
+            "title": "FTP Usage and Configuration"
+        }, 
+        {
+            "location": "/Linux-and-Unix/FTP_Usage_and_Configuration/#file-transfer-protocol-ftp", 
+            "text": "An old file transfer protocol for exchanging files over a TCP/IP network since the 1970's.  Base specification is  RFC 959 , 1985.  Designed to allow clients to browse the file system, and FTP is a stateful sequence of one or more transactions.  Client is always responsible for initiating requests.  Authentication by username/password; de facto standard for guest access using \"anonymous\" for username and an \"email address\" for the password.  Supports  ASCII  for text and \"image\" for binary data.  Base specification does not have any special handling for encrypted communications, so files containing sensitive material should not be sent.  Usernames and passwords are sent in clear text  and the entire FTP transmission could be monitored by potential attackers.  Instead should instead use something like  scp  for same security as  ssh .   Source:   http://www.ncftp.com/libncftp/doc/ftp_overview.html", 
+            "title": "File Transfer Protocol (FTP)"
+        }, 
+        {
+            "location": "/Linux-and-Unix/FTP_Usage_and_Configuration/#ftp-service-on-solaris", 
+            "text": "svcs ftp                # Check status of ftp service (default: disabled)\nsvcadm enable ftp       # Enables FTP\nsvcs -xv svc:/network/ftp:default       # Run for troubleshooting", 
+            "title": "FTP service on Solaris"
+        }, 
+        {
+            "location": "/Linux-and-Unix/FTP_Usage_and_Configuration/#basic-ftp-usage", 
+            "text": "ftp\nftp -i                  # Opens FTP and turns off interactive mode so mget/mput\n                        # will not ask for confirmation.", 
+            "title": "Basic FTP Usage"
+        }, 
+        {
+            "location": "/Linux-and-Unix/FTP_Usage_and_Configuration/#basic-ftp-commands", 
+            "text": "ftp  help\nftp  open 192.168.40.153\nftp  put filename.txt   # Transfer single file", 
+            "title": "Basic FTP commands"
+        }, 
+        {
+            "location": "/Linux-and-Unix/FTP_Usage_and_Configuration/#local", 
+            "text": "ftp  lcd            # Lists local directory, or changes local directory\nftp  !ls            # Lists files in local directory - doesn't work with default Windows cmd.exe FTP\nftp  !dir           # Lists files in local directory - works with MS FTP", 
+            "title": "Local"
+        }, 
+        {
+            "location": "/Linux-and-Unix/FTP_Usage_and_Configuration/#remote", 
+            "text": "ftp  get            # Retrieves files\nftp  mget           # Retrieves multiple files\nftp  put            # Sends one file\nftp  mput           # Sends multiple files; note that directories are not transferred automatically (see bottom of page).", 
+            "title": "Remote"
+        }, 
+        {
+            "location": "/Linux-and-Unix/FTP_Usage_and_Configuration/#configuring-proftpdconf", 
+            "text": "Detailed configuration documentation at  proftpd.org  Configuration is done through editing the  /etc/proftpd.conf  file.  The file  /etc/ftpd/ftpusers  in Solaris contains a list of users denied access to the FTP server, e.g. root.  See  Oracle: Controlling FTP Server Access  for more information.  Note that any change of the file requires restarting the ftp service.  Solaris:  svcadm restart ftp", 
+            "title": "Configuring ProFTPD.conf"
+        }, 
+        {
+            "location": "/Linux-and-Unix/FTP_Usage_and_Configuration/#changing-the-ftp-connection-message", 
+            "text": "Configured under  DisplayConnect  in  /etc/proftpd.conf .  By default  DisplayConnect  is configured to display the contents of the  /etc/issue  text file.   DisplayConnect      /etc/issue   One can modify this to point to another file or edit the  /etc/issue  file directly.", 
+            "title": "Changing the FTP Connection Message"
+        }, 
+        {
+            "location": "/Linux-and-Unix/FTP_Usage_and_Configuration/#confine-ftp-users-to-their-home-directory", 
+            "text": "In  /etc/proftpd.conf , example:  DefaultRoot         ~       # Causes every FTP user to be  jailed  into their home directory.", 
+            "title": "Confine FTP users to their home directory"
+        }, 
+        {
+            "location": "/Linux-and-Unix/FTP_Usage_and_Configuration/#changing-the-ftp-closing-message", 
+            "text": "In  /etc/proftpd.conf , example, can point the message to /etc/quitmessage  DisplayQuit         /etc/quitmessage", 
+            "title": "Changing the FTP Closing Message"
+        }, 
+        {
+            "location": "/Linux-and-Unix/FTP_Usage_and_Configuration/#controlling-who-can-connect-through-ftp", 
+            "text": "Using the following directive would deny all access by default:   Limit LOGIN \nDenyAll /Limit    The above would be used if one wants to allow access to specific users, e.g. Anonymous., where you would add the following within the    section:   Anonymous ~ftp \n     Limit LOGIN \n        AllowAll\n     /Limit  .... /Anonymous", 
+            "title": "Controlling who can connect through FTP"
+        }, 
+        {
+            "location": "/Linux-and-Unix/FTP_Usage_and_Configuration/#configuring-anonymous-ftp-no-write-access", 
+            "text": "By default, Solaris 11 does not allow for anonymous connections.  To enable, one can add the following according to  www.proftpd.org :  Also need to make sure  ftp  is removed from the ftp deny list that is stored in  /etc/ftpd/ftpusers  (Solaris).   # A basic anonymous configuration, no upload directories: Anonymous ~ftp \n  User              ftp\n  Group             ftp\n\n  # We want clients to be able to login with  anonymous  as well as  ftp \n  UserAlias         anonymous ftp\n\n  # Limit the maximum number of anonymous logins\n  MaxClients            10\n\n  # We want 'welcome.msg' displayed at login, and '.message' displayed\n  # in each newly chdired directory.\n  DisplayLogin          welcome.msg\n  DisplayFirstChdir     .message\n\n  # Limit WRITE everywhere in the anonymous chroot\n   Limit WRITE \n    DenyAll\n   /Limit  /Anonymous", 
+            "title": "Configuring anonymous FTP (No write access)"
+        }, 
+        {
+            "location": "/Linux-and-Unix/FTP_Usage_and_Configuration/#configuring-anonymous-ftp-with-an-upload-directory", 
+            "text": "Add the following within the   section from above:   # An upload directory that allows storing files but not retrieving\n# or creating directories. Directory uploads/* \n   Limit READ \n    DenyAll\n   /Limit \n\n   Limit STOR \n    AllowAll\n   /Limit  /Directory    For detailed example configuration, see example:   anonymous.conf", 
+            "title": "Configuring anonymous FTP (with an upload directory)"
+        }, 
+        {
+            "location": "/Linux-and-Unix/FTP_Usage_and_Configuration/#transferring-directories", 
+            "text": "FTP will not automatically create and transfer directories when using  mput .  It would be better to use  scp  for better security and support for recursive transfer of files/subdirectories.  Anyway here's a bash script that could recursively transfer directories with their contents through FTP... currently only runs on Bash for Windows with MS FTP.   if [[  $1  =  help  ]]; then\n  echo  Run with ftpcdir.sh  directory   host address   username   password \n  exit\nfi\nfind $1 -type d   dirs.txt\nfind $1   files.txt\necho open $2   command.ftp\necho $3   command.ftp\necho $4   command.ftp\nfor i in `cat dirs.txt`\ndo\n  if [[  $i  != '.' ]]; then\n    echo mkdir $i   command.ftp\n  fi\ndone\nfor i in `cat files.txt`\ndo\n  if [[  $i  != '.' ]]; then\n    echo put $i $i   command.ftp\n  fi\ndone\necho quit   command.ftp\nftp -s:command.ftp                  # Only works with Windows Cmd FTP\nexit", 
+            "title": "Transferring directories"
+        }, 
+        {
             "location": "/Linux-and-Unix/File_System/", 
             "text": "Linux File System\n\n\nLinux file systems explained @ Ubuntu\n\n\n\n\nJournaling file systems prevent inconsistency and are faster at file system checks than non-journaled file systems.\n\n\nSome journaling file systems can prevent corruption as well by writing the data twice.\n\n\n\n\nLinux file system hierarchy\n\n\n\n\nCentral concepts of a file system:\n\n\nsuperblock\n: contains info about the file system as a whole such as size.\n\n\ninode\n: contains info about a file, except its name; contains numbers of several data blocks.\n\n\nname\n: stored in the directory together with the number of the inode.\n\n\ndirectory entry\n: consists of a filename and the number of the inode.\n\n\ndata blocks\n: used to store data in the file.\n\n\nindirect blocks\n: dynamically allocated blocks that contain additional data for an inode.\n\n\n\n\n\n\n\n\nUnix File System\n\n\nSource unknown\n\n\nParts of a Unix directory tree. See the FSSTND standard (Filesystem standard)\n\n/                     Root\n|---root              The home directory for the root user\n|---home              Contains the user's home directories\n|    |----ftp         Users include many services as listed here\n|    |----httpd\n|    |----samba\n|    |----user1\n|    |----user2\n|---bin               Commands needed during bootup that might be needed by normal users\n|---sbin              Like bin but commands are not intended for normal users.  Commands run by LINUX.\n|---proc              This filesystem is not on a disk.  Exists in the kernels imagination (virtual).  This directory\n|    |                Holds information about kernel parameters and system configuration.\n|    |----1           A directory with info about process number 1.  Each process\n|                     has a directory below proc.  \n|---usr               Contains all commands, libraries, man pages, games and static files for normal\n|    |                operation.\n|    |----bin         Almost all user commands.  some commands are in /bin or /usr/local/bin.\n|    |----sbin        System admin commands not needed on the root filesystem.  e.g., most server\n|    |                programs.\n|    |----include     Header files for the C programming language.  Should be below /user/lib for\n|    |                consistency.\n|    |----lib         Unchanging data files for programs and subsystems\n|    |----local       The place for locally installed software and other files.\n|    |----man         Manual pages\n|    |----info        Info documents\n|    |----doc         Documentation for various packages\n|    |----tmp\n|    |----X11R6       The X windows system files.  There is a directory similar to usr below this\n|    |                directory.\n|    |----X386        Like X11R6 but for X11 release 5\n|---boot              Files used by the bootstrap loader, LILO.  Kernel images are often kept here.\n|---lib               Shared libraries needed by the programs on the root filesystem\n|    |----modules     Loadable kernel modules, especially those needed to boot the system after\n|                     disasters.\n|---dev               Device files for devices such as disk drives, serial ports, etc.\n|---etc               Configuration files specific to the machine.\n|    |----skel        When a home directory is created it is initialized with files from this directory\n|    |----sysconfig   Files that configure the linux system for networking, keyboard, time, and more.\n|---var               Contains files that change for mail, news, printers log files, man pages, temp files\n|    |----file\n|    |----lib         Files that change while the system is running normally\n|    |----local       Variable data for programs installed in /usr/local.\n|    |----lock        Lock files.  Used by a program to indicate it is using a particular device or file\n|    |----log         Log files from programs such as login and syslog which logs all logins,\n|    |                logouts, and other system messages.\n|    |----run         Files that contain information about the system that is valid until the system is\n|    |                next booted\n|    |----spool       Directories for mail, printer spools, news and other spooled work.\n|    |----tmp         Temporary files that are large or need to exist for longer than they should in\n|    |            /tmp.\n|    |----catman      A cache for man pages that are formatted on demand\n|---mnt               Mount points for temporary mounts by the system administrator.\n|---tmp               Temporary files.  Programs running after bootup should use /var/tmp.", 
             "title": "File System"
@@ -129,26 +234,6 @@
             "location": "/Linux-and-Unix/SSH_and_SCP_Usage/#connecting-with-microsoft-windows-os", 
             "text": "Setting up SSH Server on Microsoft Windows", 
             "title": "Connecting with Microsoft Windows OS"
-        }, 
-        {
-            "location": "/Linux-and-Unix/Setup_an_Apache_Server/", 
-            "text": "Useful Links:\n\n- \nApache HTTP Server Version 2.4 Documentation\n\n- \nOracle Docs: Apache Web Server\n\n\nApache on Oracle Solaris 11.3\n\n\n\n\nBy default apache22 is installed but disabled. One can check using either of the following:\n\n\n\n\nsvcs *apache*       # Or:\nsvcs http\n\n\n\n\n\n\nTo enable default apache22 service if currently disabled.\n\n\n\n\nsvcadm enable svc:/network/http:apache22\n\n\n\n\n\n\nCan install newer version then enable the server.\n\n\n\n\npkg install web/server/apache-24\nsvcadm -v enable /network/http:apache24\n\n\n\n\n\n\nAlternately can install a Apache webserver with MySQL and PHP:\n\n\n\n\npkg install group/feature/amp\n\n\n\n\n\n\nVerify that webserver works by opening: \nhttp://localhost:80\n in browser.\n\n\n\n\nConfiguration of Apache\n\n\n\n\nConfiguration is stored in the \n/etc/apache2/2.2/httpd.conf\n file.\n\n\nBy default, web pages are served from \n/var/apache2/2.2/htdocs\n folders.\n\n\n\n\nEdit \n/etc/apache2/2.2/httpd.conf\n\n\n\n\nCan edit \nDocumentRoot\n to point to another directory.\n\n\nMake sure to change the \n to point to the same DocumentRoot\n\n\nAlso need to make sure that the directory it points into to has execute permissions, otherwise others won't be able to read the files within the directory.", 
-            "title": "Setup an Apache Server"
-        }, 
-        {
-            "location": "/Linux-and-Unix/Setup_an_Apache_Server/#apache-on-oracle-solaris-113", 
-            "text": "By default apache22 is installed but disabled. One can check using either of the following:   svcs *apache*       # Or:\nsvcs http   To enable default apache22 service if currently disabled.   svcadm enable svc:/network/http:apache22   Can install newer version then enable the server.   pkg install web/server/apache-24\nsvcadm -v enable /network/http:apache24   Alternately can install a Apache webserver with MySQL and PHP:   pkg install group/feature/amp   Verify that webserver works by opening:  http://localhost:80  in browser.", 
-            "title": "Apache on Oracle Solaris 11.3"
-        }, 
-        {
-            "location": "/Linux-and-Unix/Setup_an_Apache_Server/#configuration-of-apache", 
-            "text": "Configuration is stored in the  /etc/apache2/2.2/httpd.conf  file.  By default, web pages are served from  /var/apache2/2.2/htdocs  folders.", 
-            "title": "Configuration of Apache"
-        }, 
-        {
-            "location": "/Linux-and-Unix/Setup_an_Apache_Server/#edit-etcapache222httpdconf", 
-            "text": "Can edit  DocumentRoot  to point to another directory.  Make sure to change the   to point to the same DocumentRoot  Also need to make sure that the directory it points into to has execute permissions, otherwise others won't be able to read the files within the directory.", 
-            "title": "Edit /etc/apache2/2.2/httpd.conf"
         }, 
         {
             "location": "/Linux-and-Unix/Slackware/", 
@@ -289,76 +374,6 @@
             "location": "/Linux-and-Unix/Users_and_Groups/#links-and-references", 
             "text": "Oracle Solaris 11.3 Information Library", 
             "title": "Links and References:"
-        }, 
-        {
-            "location": "/Linux-and-Unix/Using_FTP/", 
-            "text": "File Transfer Protocol (FTP)\n\n\n\n\nAn old file transfer protocol for exchanging files over a TCP/IP network since the 1970's.\n\n\nBase specification is \nRFC 959\n, 1985.\n\n\nDesigned to allow clients to browse the file system, and FTP is a stateful sequence of one or more transactions.\n\n\nClient is always responsible for initiating requests.\n\n\nAuthentication by username/password; de facto standard for guest access using \"anonymous\" for username and an \"email address\" for the password.\n\n\nSupports \nASCII\n for text and \"image\" for binary data.\n\n\nBase specification does not have any special handling for encrypted communications, so files containing sensitive material should not be sent.\n\n\nUsernames and passwords are sent in clear text\n and the entire FTP transmission could be monitored by potential attackers.\n\n\nInstead should instead use something like \nscp\n for same security as \nssh\n.\n\n\n\n\nSource:\n \nhttp://www.ncftp.com/libncftp/doc/ftp_overview.html\n\n\nFTP service on Solaris\n\n\nsvcs ftp                # Check status of ftp service (default: disabled)\nsvcadm enable ftp       # Enables FTP\nsvcs -xv svc:/network/ftp:default       # Run for troubleshooting\n\n\n\n\nBasic FTP Usage\n\n\nftp\nftp -i                  # Opens FTP and turns off interactive mode so mget/mput\n                        # will not ask for confirmation.\n\n\n\n\nBasic FTP commands\n\n\nftp\n help\nftp\n open 192.168.40.153\nftp\n put filename.txt   # Transfer single file\n\n\n\n\nLocal\n\n\nftp\n lcd            # Lists local directory, or changes local directory\nftp\n !ls            # Lists files in local directory - doesn't work with default Windows cmd.exe FTP\nftp\n !dir           # Lists files in local directory - works with MS FTP\n\n\n\n\nRemote\n\n\nftp\n get            # Retrieves files\nftp\n mget           # Retrieves multiple files\nftp\n put            # Sends one file\nftp\n mput           # Sends multiple files; note that directories are not transferred automatically (see bottom of page).\n\n\n\n\nConfiguring ProFTPD.conf\n\n\n\n\nDetailed configuration documentation at \nproftpd.org\n\n\nConfiguration is done through editing the \n/etc/proftpd.conf\n file.\n\n\nThe file \n/etc/ftpd/ftpusers\n in Solaris contains a list of users denied access to the FTP server, e.g. root.\n\n\nSee \nOracle: Controlling FTP Server Access\n for more information.\n\n\nNote that any change of the file requires restarting the ftp service.\n\n\nSolaris: \nsvcadm restart ftp\n\n\n\n\n\n\n\n\nChanging the FTP Connection Message\n\n\n\n\nConfigured under \nDisplayConnect\n in \n/etc/proftpd.conf\n.\n\n\nBy default \nDisplayConnect\n is configured to display the contents of the \n/etc/issue\n text file.\n\n\n\n\nDisplayConnect      /etc/issue\n\n\n\n\n\n\nOne can modify this to point to another file or edit the \n/etc/issue\n file directly.\n\n\n\n\nConfine FTP users to their home directory\n\n\nIn \n/etc/proftpd.conf\n, example:\n\n\nDefaultRoot         ~       # Causes every FTP user to be \njailed\n into their home directory.\n\n\n\n\nChanging the FTP Closing Message\n\n\nIn \n/etc/proftpd.conf\n, example, can point the message to /etc/quitmessage\n\n\nDisplayQuit         /etc/quitmessage\n\n\n\n\nConfiguring anonymous FTP (No write access)\n\n\n\n\nBy default, Solaris 11 does not allow for anonymous connections.\n\n\nTo enable, one can add the following according to \nwww.proftpd.org\n:\n\n\nAlso need to make sure \nftp\n is removed from the ftp deny list that is stored in \n/etc/ftpd/ftpusers\n (Solaris).\n\n\n\n\n# A basic anonymous configuration, no upload directories:\n\nAnonymous ~ftp\n\n  User              ftp\n  Group             ftp\n\n  # We want clients to be able to login with \nanonymous\n as well as \nftp\n\n  UserAlias         anonymous ftp\n\n  # Limit the maximum number of anonymous logins\n  MaxClients            10\n\n  # We want 'welcome.msg' displayed at login, and '.message' displayed\n  # in each newly chdired directory.\n  DisplayLogin          welcome.msg\n  DisplayFirstChdir     .message\n\n  # Limit WRITE everywhere in the anonymous chroot\n  \nLimit WRITE\n\n    DenyAll\n  \n/Limit\n\n\n/Anonymous\n\n\n\n\n\nConfiguring anonymous FTP (with an upload directory)\n\n\n\n\nAdd the following within the \n section from above:\n\n\n\n\n# An upload directory that allows storing files but not retrieving\n# or creating directories.\n\nDirectory uploads/*\n\n  \nLimit READ\n\n    DenyAll\n  \n/Limit\n\n\n  \nLimit STOR\n\n    AllowAll\n  \n/Limit\n\n\n/Directory\n\n\n\n\n\n\n\nFor detailed example configuration, see example:  \nanonymous.conf\n\n\n\n\nTransferring directories\n\n\n\n\nFTP will not automatically create and transfer directories when using \nmput\n.\n\n\nIt would be better to use \nscp\n for better security and support for recursive transfer of files/subdirectories.\n\n\nAnyway here's a bash script that could recursively transfer directories with their contents through FTP...\ncurrently only runs on Bash for Windows with MS FTP.\n\n\n\n\nif [[ \n$1\n = \nhelp\n ]]; then\n  echo \nRun with ftpcdir.sh \ndirectory\n \nhost address\n \nusername\n \npassword\n\n  exit\nfi\nfind $1 -type d \n dirs.txt\nfind $1 \n files.txt\necho open $2 \n command.ftp\necho $3 \n command.ftp\necho $4 \n command.ftp\nfor i in `cat dirs.txt`\ndo\n  if [[ \n$i\n != '.' ]]; then\n    echo mkdir $i \n command.ftp\n  fi\ndone\nfor i in `cat files.txt`\ndo\n  if [[ \n$i\n != '.' ]]; then\n    echo put $i $i \n command.ftp\n  fi\ndone\necho quit \n command.ftp\nftp -s:command.ftp                  # Only works with Windows Cmd FTP\nexit", 
-            "title": "Using FTP"
-        }, 
-        {
-            "location": "/Linux-and-Unix/Using_FTP/#file-transfer-protocol-ftp", 
-            "text": "An old file transfer protocol for exchanging files over a TCP/IP network since the 1970's.  Base specification is  RFC 959 , 1985.  Designed to allow clients to browse the file system, and FTP is a stateful sequence of one or more transactions.  Client is always responsible for initiating requests.  Authentication by username/password; de facto standard for guest access using \"anonymous\" for username and an \"email address\" for the password.  Supports  ASCII  for text and \"image\" for binary data.  Base specification does not have any special handling for encrypted communications, so files containing sensitive material should not be sent.  Usernames and passwords are sent in clear text  and the entire FTP transmission could be monitored by potential attackers.  Instead should instead use something like  scp  for same security as  ssh .   Source:   http://www.ncftp.com/libncftp/doc/ftp_overview.html", 
-            "title": "File Transfer Protocol (FTP)"
-        }, 
-        {
-            "location": "/Linux-and-Unix/Using_FTP/#ftp-service-on-solaris", 
-            "text": "svcs ftp                # Check status of ftp service (default: disabled)\nsvcadm enable ftp       # Enables FTP\nsvcs -xv svc:/network/ftp:default       # Run for troubleshooting", 
-            "title": "FTP service on Solaris"
-        }, 
-        {
-            "location": "/Linux-and-Unix/Using_FTP/#basic-ftp-usage", 
-            "text": "ftp\nftp -i                  # Opens FTP and turns off interactive mode so mget/mput\n                        # will not ask for confirmation.", 
-            "title": "Basic FTP Usage"
-        }, 
-        {
-            "location": "/Linux-and-Unix/Using_FTP/#basic-ftp-commands", 
-            "text": "ftp  help\nftp  open 192.168.40.153\nftp  put filename.txt   # Transfer single file", 
-            "title": "Basic FTP commands"
-        }, 
-        {
-            "location": "/Linux-and-Unix/Using_FTP/#local", 
-            "text": "ftp  lcd            # Lists local directory, or changes local directory\nftp  !ls            # Lists files in local directory - doesn't work with default Windows cmd.exe FTP\nftp  !dir           # Lists files in local directory - works with MS FTP", 
-            "title": "Local"
-        }, 
-        {
-            "location": "/Linux-and-Unix/Using_FTP/#remote", 
-            "text": "ftp  get            # Retrieves files\nftp  mget           # Retrieves multiple files\nftp  put            # Sends one file\nftp  mput           # Sends multiple files; note that directories are not transferred automatically (see bottom of page).", 
-            "title": "Remote"
-        }, 
-        {
-            "location": "/Linux-and-Unix/Using_FTP/#configuring-proftpdconf", 
-            "text": "Detailed configuration documentation at  proftpd.org  Configuration is done through editing the  /etc/proftpd.conf  file.  The file  /etc/ftpd/ftpusers  in Solaris contains a list of users denied access to the FTP server, e.g. root.  See  Oracle: Controlling FTP Server Access  for more information.  Note that any change of the file requires restarting the ftp service.  Solaris:  svcadm restart ftp", 
-            "title": "Configuring ProFTPD.conf"
-        }, 
-        {
-            "location": "/Linux-and-Unix/Using_FTP/#changing-the-ftp-connection-message", 
-            "text": "Configured under  DisplayConnect  in  /etc/proftpd.conf .  By default  DisplayConnect  is configured to display the contents of the  /etc/issue  text file.   DisplayConnect      /etc/issue   One can modify this to point to another file or edit the  /etc/issue  file directly.", 
-            "title": "Changing the FTP Connection Message"
-        }, 
-        {
-            "location": "/Linux-and-Unix/Using_FTP/#confine-ftp-users-to-their-home-directory", 
-            "text": "In  /etc/proftpd.conf , example:  DefaultRoot         ~       # Causes every FTP user to be  jailed  into their home directory.", 
-            "title": "Confine FTP users to their home directory"
-        }, 
-        {
-            "location": "/Linux-and-Unix/Using_FTP/#changing-the-ftp-closing-message", 
-            "text": "In  /etc/proftpd.conf , example, can point the message to /etc/quitmessage  DisplayQuit         /etc/quitmessage", 
-            "title": "Changing the FTP Closing Message"
-        }, 
-        {
-            "location": "/Linux-and-Unix/Using_FTP/#configuring-anonymous-ftp-no-write-access", 
-            "text": "By default, Solaris 11 does not allow for anonymous connections.  To enable, one can add the following according to  www.proftpd.org :  Also need to make sure  ftp  is removed from the ftp deny list that is stored in  /etc/ftpd/ftpusers  (Solaris).   # A basic anonymous configuration, no upload directories: Anonymous ~ftp \n  User              ftp\n  Group             ftp\n\n  # We want clients to be able to login with  anonymous  as well as  ftp \n  UserAlias         anonymous ftp\n\n  # Limit the maximum number of anonymous logins\n  MaxClients            10\n\n  # We want 'welcome.msg' displayed at login, and '.message' displayed\n  # in each newly chdired directory.\n  DisplayLogin          welcome.msg\n  DisplayFirstChdir     .message\n\n  # Limit WRITE everywhere in the anonymous chroot\n   Limit WRITE \n    DenyAll\n   /Limit  /Anonymous", 
-            "title": "Configuring anonymous FTP (No write access)"
-        }, 
-        {
-            "location": "/Linux-and-Unix/Using_FTP/#configuring-anonymous-ftp-with-an-upload-directory", 
-            "text": "Add the following within the   section from above:   # An upload directory that allows storing files but not retrieving\n# or creating directories. Directory uploads/* \n   Limit READ \n    DenyAll\n   /Limit \n\n   Limit STOR \n    AllowAll\n   /Limit  /Directory    For detailed example configuration, see example:   anonymous.conf", 
-            "title": "Configuring anonymous FTP (with an upload directory)"
-        }, 
-        {
-            "location": "/Linux-and-Unix/Using_FTP/#transferring-directories", 
-            "text": "FTP will not automatically create and transfer directories when using  mput .  It would be better to use  scp  for better security and support for recursive transfer of files/subdirectories.  Anyway here's a bash script that could recursively transfer directories with their contents through FTP... currently only runs on Bash for Windows with MS FTP.   if [[  $1  =  help  ]]; then\n  echo  Run with ftpcdir.sh  directory   host address   username   password \n  exit\nfi\nfind $1 -type d   dirs.txt\nfind $1   files.txt\necho open $2   command.ftp\necho $3   command.ftp\necho $4   command.ftp\nfor i in `cat dirs.txt`\ndo\n  if [[  $i  != '.' ]]; then\n    echo mkdir $i   command.ftp\n  fi\ndone\nfor i in `cat files.txt`\ndo\n  if [[  $i  != '.' ]]; then\n    echo put $i $i   command.ftp\n  fi\ndone\necho quit   command.ftp\nftp -s:command.ftp                  # Only works with Windows Cmd FTP\nexit", 
-            "title": "Transferring directories"
         }, 
         {
             "location": "/Miscellaneous/Git_and_GitHub/", 

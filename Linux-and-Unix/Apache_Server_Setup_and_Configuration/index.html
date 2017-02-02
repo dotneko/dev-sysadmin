@@ -8,7 +8,7 @@
   
   <meta name="author" content="Gavin">
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Setup an Apache Server - Software Development and System Administration Notes</title>
+  <title>Apache Server Setup and Configuration - Software Development and System Administration Notes</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Setup an Apache Server";
-    var mkdocs_page_input_path = "Linux-and-Unix/Setup_an_Apache_Server.md";
-    var mkdocs_page_url = "/Linux-and-Unix/Setup_an_Apache_Server/";
+    var mkdocs_page_name = "Apache Server Setup and Configuration";
+    var mkdocs_page_input_path = "Linux-and-Unix/Apache_Server_Setup_and_Configuration.md";
+    var mkdocs_page_url = "/Linux-and-Unix/Apache_Server_Setup_and_Configuration/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -69,6 +69,34 @@
 
         
             
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Apache Server Setup and Configuration</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#apache-on-oracle-solaris-113">Apache on Oracle Solaris 11.3</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#configuration-of-apache">Configuration of Apache</a></li>
+                
+                    <li><a class="toctree-l4" href="#edit-etcapache222httpdconf">Edit /etc/apache2/2.2/httpd.conf</a></li>
+                
+                    <li><a class="toctree-l4" href="#configuring-authentication-and-authorization">Configuring Authentication and Authorization</a></li>
+                
+            
+            </ul>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../FTP_Usage_and_Configuration/">FTP Usage and Configuration</a>
+        
+    </li>
+
+        
+            
     <li class="toctree-l1 ">
         <a class="" href="../File_System/">File System</a>
         
@@ -92,25 +120,6 @@
             
     <li class="toctree-l1 ">
         <a class="" href="../SSH_and_SCP_Usage/">SSH and SCP Usage</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 current">
-        <a class="current" href="./">Setup an Apache Server</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#apache-on-oracle-solaris-113">Apache on Oracle Solaris 11.3</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#configuration-of-apache">Configuration of Apache</a></li>
-                
-                    <li><a class="toctree-l4" href="#edit-etcapache222httpdconf">Edit /etc/apache2/2.2/httpd.conf</a></li>
-                
-            
-            </ul>
         
     </li>
 
@@ -153,13 +162,6 @@
             
     <li class="toctree-l1 ">
         <a class="" href="../Users_and_Groups/">Users and Groups</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../Using_FTP/">Using FTP</a>
         
     </li>
 
@@ -301,10 +303,10 @@
         
       
     
-    <li>Setup an Apache Server</li>
+    <li>Apache Server Setup and Configuration</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/gavchan/dev-sysadmin/edit/master/docs/Linux-and-Unix/Setup_an_Apache_Server.md"
+        <a href="https://github.com/gavchan/dev-sysadmin/edit/master/docs/Linux-and-Unix/Apache_Server_Setup_and_Configuration.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -350,13 +352,52 @@ svcadm -v enable /network/http:apache24
 <h1 id="configuration-of-apache">Configuration of Apache</h1>
 <ul>
 <li>Configuration is stored in the <code>/etc/apache2/2.2/httpd.conf</code> file.</li>
-<li>By default, web pages are served from <code>/var/apache2/2.2/htdocs</code> folders.</li>
+<li>By default, web pages are served from <code>/var/apache2/2.2/htdocs</code> folder.</li>
 </ul>
 <h2 id="edit-etcapache222httpdconf">Edit <code>/etc/apache2/2.2/httpd.conf</code></h2>
 <ul>
 <li>Can edit <code>DocumentRoot</code> to point to another directory.</li>
 <li>Make sure to change the <Directory ""> to point to the same DocumentRoot</li>
 <li>Also need to make sure that the directory it points into to has execute permissions, otherwise others won't be able to read the files within the directory.</li>
+</ul>
+<h4 id="directives-in-httpdconf">Directives in <code>httpd.conf</code></h4>
+<pre><code>Allow from &lt;address&gt;        # &lt;address&gt; is IP address or fully qualified domain name
+Deny from &lt;address&gt;
+</code></pre>
+
+<ul>
+<li>Using <code>Order</code> allows one to fine-tune the access:</li>
+</ul>
+<pre><code>Order deny,allow            # Specifies restriction order
+Deny from all
+Allow from some.host.com
+</code></pre>
+
+<ul>
+<li>The above example will by default deny access to all, and then only allow access from some.host.com.</li>
+</ul>
+<h2 id="configuring-authentication-and-authorization">Configuring Authentication and Authorization</h2>
+<ul>
+<li><a href="http://httpd.apache.org/docs/2.2/howto/auth.html">Authentication and Authorization for version 2.2 from apache.org</a></li>
+<li>Create a password file (not accessible from the web) using <code>htpasswd</code>.</li>
+<li>Note that <code>htpasswd</code> is located at <code>/usr/local/apache2/bin/htpasswd</code></li>
+<li>E.g. <code>htpasswd -c /usr/local/apache/passwd/passwords user_name</code></li>
+<li>Then configure the server to request the password by editing the <code>httpd.conf</code> file or using an <code>.htaccess</code> file:</li>
+</ul>
+<pre><code>AuthType Basic
+AuthName &quot;Restricted Files&quot;
+# (Following line optional)
+AuthBasicProvider file
+AuthUserFile /usr/local/apache/passwd/passwords
+Require user user_name
+</code></pre>
+
+<ul>
+<li>So to protect a folder <code>/pathto/secret</code>:<ul>
+<li>Place the above directives in <code>.htaccess</code> within the folder <code>/pathto/secret</code>.</li>
+<li>Alternatively, place the above directives in the <code>httpd.conf</code> file within a directory section: <code>&lt;Directory /pathto/secret&gt; ... &lt;/Directory&gt;</code></li>
+</ul>
+</li>
 </ul>
               
             </div>
@@ -365,10 +406,10 @@ svcadm -v enable /network/http:apache24
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../Slackware/" class="btn btn-neutral float-right" title="Slackware">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../FTP_Usage_and_Configuration/" class="btn btn-neutral float-right" title="FTP Usage and Configuration">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../SSH_and_SCP_Usage/" class="btn btn-neutral" title="SSH and SCP Usage"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../.." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -396,10 +437,10 @@ svcadm -v enable /network/http:apache24
           <a href="https://github.com/gavchan/dev-sysadmin/" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../SSH_and_SCP_Usage/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../.." style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../Slackware/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../FTP_Usage_and_Configuration/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
