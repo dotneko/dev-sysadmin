@@ -51,8 +51,83 @@ ftp> !dir           # Lists files in local directory - works with MS FTP
 ftp> get            # Retrieves files
 ftp> mget           # Retrieves multiple files
 ftp> put            # Sends one file
-ftp> mput           # Sends multiple files
+ftp> mput           # Sends multiple files; note that directories are not transferred automatically (see bottom of page).
 ```
+# Configuring ProFTPD.conf
+- Detailed configuration documentation at [proftpd.org](http://www.proftpd.org/docs/howto/ConfigFile.html)
+- Configuration is done through editing the `/etc/proftpd.conf` file.
+- The file `/etc/ftpd/ftpusers` in Solaris contains a list of users denied access to the FTP server, e.g. root.
+- See [Oracle: Controlling FTP Server Access](https://docs.oracle.com/cd/E23823_01/html/816-4555/wuftp-43.html) for more information.
+- Note that any change of the file requires restarting the ftp service.
+    - Solaris: `svcadm restart ftp`
+
+## Changing the FTP Connection Message
+- Configured under `DisplayConnect` in `/etc/proftpd.conf`.
+- By default `DisplayConnect` is configured to display the contents of the `/etc/issue` text file.
+
+```
+DisplayConnect      /etc/issue
+```
+
+- One can modify this to point to another file or edit the `/etc/issue` file directly.
+
+## Confine FTP users to their home directory
+In `/etc/proftpd.conf`, example:
+```
+DefaultRoot         ~       # Causes every FTP user to be "jailed" into their home directory.
+```
+
+## Changing the FTP Closing Message
+In `/etc/proftpd.conf`, example, can point the message to /etc/quitmessage
+```
+DisplayQuit         /etc/quitmessage
+```
+
+## Configuring anonymous FTP (No write access)
+- By default, Solaris 11 does not allow for anonymous connections.
+- To enable, one can add the following according to [www.proftpd.org](http://www.proftpd.org/docs/configs/basic.conf):
+- Also need to make sure `ftp` is removed from the ftp deny list that is stored in `/etc/ftpd/ftpusers` (Solaris).
+```
+# A basic anonymous configuration, no upload directories:
+<Anonymous ~ftp>
+  User				ftp
+  Group				ftp
+
+  # We want clients to be able to login with "anonymous" as well as "ftp"
+  UserAlias			anonymous ftp
+
+  # Limit the maximum number of anonymous logins
+  MaxClients			10
+
+  # We want 'welcome.msg' displayed at login, and '.message' displayed
+  # in each newly chdired directory.
+  DisplayLogin			welcome.msg
+  DisplayFirstChdir		.message
+
+  # Limit WRITE everywhere in the anonymous chroot
+  <Limit WRITE>
+    DenyAll
+  </Limit>
+</Anonymous>
+```
+
+## Configuring anonymous FTP (with an upload directory)
+
+- Add the following within the <Anonymous></Anonymous> section from above:
+```
+# An upload directory that allows storing files but not retrieving
+# or creating directories.
+<Directory uploads/*>
+  <Limit READ>
+    DenyAll
+  </Limit>
+
+  <Limit STOR>
+    AllowAll
+  </Limit>
+</Directory>
+```
+- For detailed example configuration, see example:  [anonymous.conf](http://www.proftpd.org/docs/configs/anonymous.conf)
 
 ## Transferring directories
 - FTP will not automatically create and transfer directories when using `mput`.
@@ -84,32 +159,4 @@ done
 echo quit >> command.ftp
 ftp -s:command.ftp                  # Only works with Windows Cmd FTP
 exit
-```
-
-# Further configuration options
-- Configuration is done through editing the `/etc/proftpd.conf` file.
-- The file `/etc/ftpd/ftpusers` contains a list of users denied access to the FTP server, e.g. root.
-- Note that any change of the file requires restarting the ftp service.
-    - Solaris: `svcadm restart ftp`
-
-## Changing the FTP Connection Message
-- Configured under `DisplayConnect` in `/etc/proftpd.conf`.
-- By default `DisplayConnect` is configured to display the contents of the `/etc/issue` text file.
-
-```
-DisplayConnect      /etc/issue
-```
-
-- One can modify this to point to another file or edit the `/etc/issue` file directly.
-
-## Changing the Default Connection Folder
-In `/etc/proftpd.conf`, example:
-```
-DefaultRoot         /export/home/public
-```
-
-## Changing the FTP Closing Message
-In `/etc/proftpd.conf`, example:
-```
-DisplayQuit         /etc/quitmessage
 ```
