@@ -327,8 +327,8 @@
             <div class="section">
               
                 <h1 id="simple-example-solaris">Simple Example (Solaris)</h1>
+<p><strong><em>Task: Automate creation of users with a default password via a bash script</em></strong></p>
 <ul>
-<li>Task: Automate creation of users with a default password via a bash script.</li>
 <li>List of users are included in a <code>users.txt</code> containing usernames:</li>
 </ul>
 <pre><code>User1
@@ -374,9 +374,11 @@ exit
 <li>To run, execute ./users-pass.sh as root.</li>
 </ul>
 <h1 id="more-complex-example-solaris">More Complex Example (Solaris)</h1>
-<p>Task: To automatically create user accounts from a text file with additional information.
-- N.B. <a href="https://github.com/gavchan/sol-scripts">Scripts below pushed to github repository</a>
-- E.g. <code>userslist.txt</code> file contains usernames and passwords, first and last names:</p>
+<p><strong><em>Task: To automatically create user accounts from a text file with additional information.</em></strong></p>
+<ul>
+<li>N.B. <a href="https://github.com/gavchan/sol-scripts">Scripts below pushed to github repository</a></li>
+<li>E.g. <code>userslist.txt</code> file contains usernames and passwords, first and last names:</li>
+</ul>
 <pre><code>user1 password1 User1 Last1
 user2 password2 User2 Last2
 user3 password3 User3 Last3
@@ -409,7 +411,7 @@ close
 echo &quot;Creating users from file userslist.txt&quot;
 while IFS=&quot; &quot; read col1 col2 col3 col4
 do
-  echo &quot;Creating account '$col1' for '$col3 $col4'&quot;.
+  echo &quot;Creating account $col1 for $col3 $col4&quot;.
   useradd -m -c &quot;$col3 $col4&quot; $col1
   echo &quot;Password for username $col1 is: $col2&quot;
   ./userpass.exp $col1 $col2
