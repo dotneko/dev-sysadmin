@@ -43,7 +43,7 @@ do
 done
 exit
 ```
-- To run, execute ./users-pass.sh as root.
+- To run, execute `./users-pass.sh` as root.
 
 # More Complex Example (Solaris)
 
