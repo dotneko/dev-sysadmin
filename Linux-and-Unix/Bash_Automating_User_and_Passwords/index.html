@@ -8,7 +8,7 @@
   
   <meta name="author" content="Gavin">
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Solaris Roles - Software Development and System Administration Notes</title>
+  <title>Bash Automating User and Passwords - Software Development and System Administration Notes</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Solaris Roles";
-    var mkdocs_page_input_path = "Linux-and-Unix/Solaris_Roles.md";
-    var mkdocs_page_url = "/Linux-and-Unix/Solaris_Roles/";
+    var mkdocs_page_name = "Bash Automating User and Passwords";
+    var mkdocs_page_input_path = "Linux-and-Unix/Bash_Automating_User_and_Passwords.md";
+    var mkdocs_page_url = "/Linux-and-Unix/Bash_Automating_User_and_Passwords/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -83,8 +83,18 @@
 
         
             
-    <li class="toctree-l1 ">
-        <a class="" href="../Bash_Automating_User_and_Passwords/">Bash Automating User and Passwords</a>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Bash Automating User and Passwords</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#simple-example-solaris">Simple Example (Solaris)</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#more-complex-example-solaris">More Complex Example (Solaris)</a></li>
+                
+            
+            </ul>
         
     </li>
 
@@ -146,12 +156,8 @@
 
         
             
-    <li class="toctree-l1 current">
-        <a class="current" href="./">Solaris Roles</a>
-        
-            <ul>
-            
-            </ul>
+    <li class="toctree-l1 ">
+        <a class="" href="../Solaris_Roles/">Solaris Roles</a>
         
     </li>
 
@@ -307,10 +313,10 @@
         
       
     
-    <li>Solaris Roles</li>
+    <li>Bash Automating User and Passwords</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/gavchan/dev-sysadmin/edit/master/docs/Linux-and-Unix/Solaris_Roles.md"
+        <a href="https://github.com/gavchan/dev-sysadmin/edit/master/docs/Linux-and-Unix/Bash_Automating_User_and_Passwords.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -320,29 +326,95 @@
           <div role="main">
             <div class="section">
               
-                <ul>
-<li>
-<p><a href="https://www.theurbanpenguin.com/oracle-solaris-11-roles/">Oracle Solaris 11 Roles @ The Urban Penguin</a></p>
+                <h1 id="simple-example-solaris">Simple Example (Solaris)</h1>
 <ul>
-<li>RBAC and Roles allow implementation of the least privileged security model.</li>
-<li>Root user is a role rather than a typical user, so cannot log in directly to the account, but may still use <code>su</code></li>
-<li>Users cannot use root even if they know the root password; users can only use the root role if it is assigned to them.</li>
+<li>Task: Automate creation of users with a default password via a bash script.</li>
+<li>List of users are included in a <code>users.txt</code> containing usernames:</li>
 </ul>
-</li>
-<li>
-<p><a href="http://www.oracle.com/technetwork/systems/hands-on-labs/s11-security-1408641.html">Oracle Solaris 11 Security Privileges and Authorizations</a></p>
-</li>
-</ul>
-<pre><code>rolemod -K roleauth=user root
-    # Require users own password when switching to root role.
-
-rolemod -K roleauth=role
-    # Require pasword of the role itself.
+<pre><code>User1
+User2
+User3
+User4
+Test1
+Test2
+Test3
+Test4
 </code></pre>
 
-<p>Profiles in Solaris 11 RBAC allow authorizations and privileged commands to be grouped together and can be assigned to users or to roles.</p>
-<pre><code>profiles -a |more
-profiles -p &quot;User Management&quot; info
+<ul>
+<li>Since the <code>passwd</code> command in Solaris does not have an <code>-stdin</code> option for standard input, an <strong>expect script</strong> needs to be created, which takes an argument for the username to create a password.</li>
+<li>The password in this example = username+123, i.e. User1's password is User1123</li>
+<li>For example, <code>userpass.exp</code>:</li>
+</ul>
+<pre><code>#!/bin/expect
+set tag 123
+set password $argv$tag
+spawn passwd $argv
+expect &quot;Password:&quot;
+send &quot;$password\r&quot;;
+expect &quot;Password:&quot;
+send &quot;$password\r&quot;;
+interact
+</code></pre>
+
+<ul>
+<li>Now a bash script could be created to create a new user account and run the expect script to create a default password.</li>
+<li>For example, <code>user-pass.sh</code>:</li>
+</ul>
+<pre><code>#!/bin/bash
+for i in $(cat users.txt)
+do
+  useradd -m $i             # Creates a user
+  ./userpass.exp $i         # Runs the expect script to add the password
+done
+exit
+</code></pre>
+
+<ul>
+<li>To run, execute ./users-pass.sh as root.</li>
+</ul>
+<h1 id="more-complex-example-solaris">More Complex Example (Solaris)</h1>
+<p>Task: To automatically create user accounts from a text file with additional information.
+- N.B. <a href="https://github.com/gavchan/sol-scripts">Scripts below pushed to github repository</a>
+- E.g. <code>userslist.txt</code> file contains usernames and passwords, first and last names:</p>
+<pre><code>user1 password1 User1 Last1
+user2 password2 User2 Last2
+user3 password3 User3 Last3
+user4 password4 User4 Last4
+test1 password1 Test1 Last1
+test2 password2 Test2 Last2
+test3 password3 Test3 Last3
+test4 password4 Test4 Last4
+</code></pre>
+
+<p>A simple expect script <code>userpass.exp</code> to enter <argv> as password:</p>
+<pre><code>#!/bin/expect
+set username [lindex $argv 0]
+set password [lindex $argv 1]
+spawn passwd $username
+set sp_id $spawn_id
+expect &quot;Password:&quot;
+send &quot;$password\r&quot;;
+expect &quot;Password:&quot;
+send &quot;$password\r&quot;;
+wait $spawn_id
+close
+</code></pre>
+
+<ul>
+<li>N.B. For some reason closing with <code>interact</code> didn't work like the first script, so instead used <code>wait</code> to allow the <code>passwd</code> process to finish, then <code>close</code>.</li>
+</ul>
+<p>A bash script to read the <code>userslist.txt</code> file and create users with necessary info, <code>create-users.sh</code>:</p>
+<pre><code>#!/bin/bash
+echo &quot;Creating users from file userslist.txt&quot;
+while IFS=&quot; &quot; read col1 col2 col3 col4
+do
+  echo &quot;Creating account '$col1' for '$col3 $col4'&quot;.
+  useradd -m -c &quot;$col3 $col4&quot; $col1
+  echo &quot;Password for username $col1 is: $col2&quot;
+  ./userpass.exp $col1 $col2
+done &lt; userlist.txt
+exit
 </code></pre>
               
             </div>
@@ -351,10 +423,10 @@ profiles -p &quot;User Management&quot; info
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../Solaris_SMF/" class="btn btn-neutral float-right" title="Solaris SMF">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../FTP_Usage_and_Configuration/" class="btn btn-neutral float-right" title="FTP Usage and Configuration">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../Solaris_Networking/" class="btn btn-neutral" title="Solaris Networking"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../Apache_Server_Setup_and_Configuration/" class="btn btn-neutral" title="Apache Server Setup and Configuration"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -382,10 +454,10 @@ profiles -p &quot;User Management&quot; info
           <a href="https://github.com/gavchan/dev-sysadmin/" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../Solaris_Networking/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../Apache_Server_Setup_and_Configuration/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../Solaris_SMF/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../FTP_Usage_and_Configuration/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

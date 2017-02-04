@@ -64,6 +64,13 @@
 <li>
           
             <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../../Solaris_SMB_vs_Samba/">Solaris SMB vs Samba</a>
+        
+    </li>
+<li>
+          
+            <li>
     <ul class="subnav">
     <li><span>Linux and Unix</span></li>
 
@@ -71,6 +78,13 @@
             
     <li class="toctree-l1 ">
         <a class="" href="../../Linux-and-Unix/Apache_Server_Setup_and_Configuration/">Apache Server Setup and Configuration</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Linux-and-Unix/Bash_Automating_User_and_Passwords/">Bash Automating User and Passwords</a>
         
     </li>
 
@@ -165,6 +179,18 @@
         <a class="current" href="./">Git and GitHub</a>
         
             <ul>
+            
+                <li class="toctree-l3"><a href="#references-and-links">References and Links</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#authentication-with-ssh-key">Authentication with SSH Key</a></li>
+                
+                    <li><a class="toctree-l4" href="#generate-new-ssh-key-with-email-as-label">Generate new SSH Key with email as label</a></li>
+                
+                    <li><a class="toctree-l4" href="#link-key-to-github-account">Link key to Github account</a></li>
+                
+                    <li><a class="toctree-l4" href="#change-git-origin-from-https-to-ssh">Change git origin from https:// to ssh</a></li>
+                
             
             </ul>
         
@@ -306,12 +332,45 @@
           <div role="main">
             <div class="section">
               
-                <p><em>References and Links:</em></p>
+                <h1 id="references-and-links">References and Links</h1>
 <ul>
 <li><a href="http://gitref.org/index.html">Git Reference</a></li>
 <li><a href="https://github.com/chhavip/Git-Guide">Git-Guide for Open Source Contributions</a></li>
 <li><a href="https://github.com/tiimgreen/github-cheat-sheet">Git Cheatsheet</a></li>
 </ul>
+<h1 id="authentication-with-ssh-key">Authentication with SSH Key</h1>
+<ul>
+<li>
+<p>Ran into problems with 2FA when trying to connect to my own repository despite trying out various methods using https and personal access tokens.</p>
+<ul>
+<li>Username: <username> Password <personal-access-token> =&gt; Failed</li>
+</ul>
+</li>
+<li>
+<p>Eventually was able to successfully authenticate my Github identity using an SSH key (<a href="http://stackoverflow.com/questions/25550481/git-authentication-fails-after-enabling-2fa">Stackoverflow...Jossef Harush</a>:</p>
+</li>
+</ul>
+<h3 id="generate-new-ssh-key-with-email-as-label">Generate new SSH Key with email as label</h3>
+<pre><code>ssh-keygen -t rsa -b 4096 -C &quot;your_email@example.com&quot;
+</code></pre>
+
+<h3 id="link-key-to-github-account">Link key to Github account</h3>
+<ul>
+<li>Use <code>cat ~/.ssh/id_rsa.pub</code> to output the generated public key, which should output something like:</li>
+</ul>
+<pre><code>ssh-rsa AAASDFlkajdsflkadsf23j23l4kjkalsdfja ... asdfkEWR== your_email@example.com
+</code></pre>
+
+<ul>
+<li>Next go to https://github.com &gt; Settings &gt; SSH and GPG keys</li>
+<li>Click on "New SSH key", add a title and paste the key above into the box.</li>
+</ul>
+<h3 id="change-git-origin-from-https-to-ssh">Change git origin from <code>https://</code> to <code>ssh</code></h3>
+<ul>
+<li>Go to your repository location and type:</li>
+</ul>
+<pre><code>git remote set-url origin git@github.com:&lt;github username&gt;/&lt;repository name&gt;
+</code></pre>
               
             </div>
           </div>

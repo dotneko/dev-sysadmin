@@ -64,6 +64,13 @@
 <li>
           
             <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../../Solaris_SMB_vs_Samba/">Solaris SMB vs Samba</a>
+        
+    </li>
+<li>
+          
+            <li>
     <ul class="subnav">
     <li><span>Linux and Unix</span></li>
 
@@ -71,6 +78,13 @@
             
     <li class="toctree-l1 ">
         <a class="" href="../Apache_Server_Setup_and_Configuration/">Apache Server Setup and Configuration</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../Bash_Automating_User_and_Passwords/">Bash Automating User and Passwords</a>
         
     </li>
 
@@ -145,6 +159,15 @@
                 
             
                 <li class="toctree-l3"><a href="#solaris-services">Solaris Services</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#date-time-timezones-source">Date, Time, Timezones (Source)</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#message-of-the-day">Message of the day</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#change-system-identity-hostname-source">Change System Identity / hostname (Source)</a></li>
                 
             
                 <li class="toctree-l3"><a href="#networking">Networking</a></li>
@@ -429,12 +452,32 @@ svcs *dhcp*                                 # Searches for service with &quot;dh
 svcs -v servicename                         # Lists verbose information
 svcs -l servicename                         # Lists detailed information about instances of system/service3
 svcs -p servicename                         # Lists processes
+svcs -xv service                            # Troubleshoot service
 
 svccfg                                      # Import, export and modify service configurations.
 
 svcadm                                      # Manipulate service instances
 svcadm disable telnet
 svcadm enable ssh
+</code></pre>
+
+<h1 id="date-time-timezones-source">Date, Time, Timezones (<a href="http://unix.stackexchange.com/questions/211425/changing-timezone-in-oracle-solaris-11-2">Source</a>)</h1>
+<ul>
+<li><code>nlsadm</code> may need <code>pkg install nls-administration</code></li>
+</ul>
+<pre><code>date                                        # Gets system date and time
+date mmddHHMM                               # Sets system date and time
+nlsadm get-timezone                         # Gets timezone information
+nlsadm list-timezone | grep Canada          # Lists timezone, can filter with grep
+nlsadm set-timezone Canada/Central          # Sets timezone
+</code></pre>
+
+<h1 id="message-of-the-day">Message of the day</h1>
+<ul>
+<li>Edit <code>/etc/motd</code> file as root.</li>
+</ul>
+<h1 id="change-system-identity-hostname-source">Change System Identity / hostname (<a href="https://docs.oracle.com/cd/E23824_01/html/821-1451/sysressysinfo-8.html">Source</a>)</h1>
+<pre><code>svccfg -s svc:/system/identity:node setprop config/nodename = some-name
 </code></pre>
 
 <h1 id="networking">Networking</h1>

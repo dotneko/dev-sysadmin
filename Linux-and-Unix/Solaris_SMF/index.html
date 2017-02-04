@@ -64,6 +64,13 @@
 <li>
           
             <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../../Solaris_SMB_vs_Samba/">Solaris SMB vs Samba</a>
+        
+    </li>
+<li>
+          
+            <li>
     <ul class="subnav">
     <li><span>Linux and Unix</span></li>
 
@@ -71,6 +78,13 @@
             
     <li class="toctree-l1 ">
         <a class="" href="../Apache_Server_Setup_and_Configuration/">Apache Server Setup and Configuration</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../Bash_Automating_User_and_Passwords/">Bash Automating User and Passwords</a>
         
     </li>
 
@@ -143,6 +157,16 @@
         <a class="current" href="./">Solaris SMF</a>
         
             <ul>
+            
+                <li class="toctree-l3"><a href="#basics-of-service-management-facility-smf-on-oracle-solaris-11">Basics of Service Management Facility (SMF) on Oracle Solaris 11</a></li>
+                
+                    <li><a class="toctree-l4" href="#listing-services">Listing services</a></li>
+                
+                    <li><a class="toctree-l4" href="#managing-services">Managing services</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#troubleshooting-system-services">Troubleshooting system services</a></li>
+                
             
             </ul>
         
@@ -306,19 +330,37 @@
           <div role="main">
             <div class="section">
               
-                <p><a href="http://www.oracle.com/technetwork/articles/servers-storage-admin/intro-smf-basics-s11-1729181.html">Basics of Service Management Facility (SMF) on Oracle Solaris 11</a></p>
+                <h1 id="basics-of-service-management-facility-smf-on-oracle-solaris-11"><a href="http://www.oracle.com/technetwork/articles/servers-storage-admin/intro-smf-basics-s11-1729181.html">Basics of Service Management Facility (SMF) on Oracle Solaris 11</a></h1>
 <ul>
 <li>A software framework that manages the services on a system.</li>
 <li>Each service has a well-defined state and a relationship to other dependent services.</li>
-<li>Ability to run multiple instanes of a given service and share common configuration.</li>
+<li>Ability to run multiple instances of a given service and share common configuration.</li>
 <li>Configuration repository managed by <code>svc.configd</code></li>
 <li>Each service described using a Fault Management Reousrce Indicator (FMRI)</li>
 <li>SMF framework always active on Oracle Solaris 11 - started and restarted through the default init process.</li>
 </ul>
-<p>Command line:</p>
-<pre><code>svcadm
-svcs
-svcs -a    # Lists additional new service instances.
+<hr />
+<h2 id="listing-services">Listing services</h2>
+<pre><code>svcs
+svcs -a         # Lists additional new service instances.
+svcs *ftp*      # Searches for services containing *ftp*
+</code></pre>
+
+<h2 id="managing-services">Managing services</h2>
+<p>If change configuration file, need to restart service using <code>svcadm</code> <code>enable</code>/<code>disable</code>:</p>
+<pre><code>svcadm disable ftp
+svcadm enable ftp
+svcadm restart ftp
+</code></pre>
+
+<ul>
+<li>Note that <code>svcsadm restart</code> <a href="https://docs.oracle.com/cd/E36784_01/html/E36820/svcrestart.html">does not commit property changes to the running snapshot and does not run the refesh method of the instance</a>.</li>
+</ul>
+<h1 id="troubleshooting-system-services">Troubleshooting system services</h1>
+<ul>
+<li><a href="https://docs.oracle.com/cd/E36784_01/html/E36820/ecdps.html#SVSVFmaintenanceadm">Oracle Solaris 11.2: How to repair an instance that is in maintenance</a></li>
+</ul>
+<pre><code>svcs -xv svc:/network/ftp:default       # Troubleshoot the FTP server
 </code></pre>
               
             </div>

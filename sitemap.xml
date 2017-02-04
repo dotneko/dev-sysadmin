@@ -4,7 +4,15 @@
     
     <url>
      <loc>/</loc>
-     <lastmod>2017-02-02</lastmod>
+     <lastmod>2017-02-04</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>/Solaris_SMB_vs_Samba/</loc>
+     <lastmod>2017-02-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -13,73 +21,79 @@
         
     <url>
      <loc>/Linux-and-Unix/Apache_Server_Setup_and_Configuration/</loc>
-     <lastmod>2017-02-02</lastmod>
+     <lastmod>2017-02-04</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/Linux-and-Unix/Bash_Automating_User_and_Passwords/</loc>
+     <lastmod>2017-02-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/Linux-and-Unix/FTP_Usage_and_Configuration/</loc>
-     <lastmod>2017-02-02</lastmod>
+     <lastmod>2017-02-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/Linux-and-Unix/File_System/</loc>
-     <lastmod>2017-02-02</lastmod>
+     <lastmod>2017-02-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/Linux-and-Unix/Files_and_Directories/</loc>
-     <lastmod>2017-02-02</lastmod>
+     <lastmod>2017-02-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/Linux-and-Unix/Naming_Services/</loc>
-     <lastmod>2017-02-02</lastmod>
+     <lastmod>2017-02-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/Linux-and-Unix/SSH_and_SCP_Usage/</loc>
-     <lastmod>2017-02-02</lastmod>
+     <lastmod>2017-02-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/Linux-and-Unix/Slackware/</loc>
-     <lastmod>2017-02-02</lastmod>
+     <lastmod>2017-02-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/Linux-and-Unix/Solaris_CheatSheet/</loc>
-     <lastmod>2017-02-02</lastmod>
+     <lastmod>2017-02-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/Linux-and-Unix/Solaris_Networking/</loc>
-     <lastmod>2017-02-02</lastmod>
+     <lastmod>2017-02-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/Linux-and-Unix/Solaris_Roles/</loc>
-     <lastmod>2017-02-02</lastmod>
+     <lastmod>2017-02-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/Linux-and-Unix/Solaris_SMF/</loc>
-     <lastmod>2017-02-02</lastmod>
+     <lastmod>2017-02-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/Linux-and-Unix/Users_and_Groups/</loc>
-     <lastmod>2017-02-02</lastmod>
+     <lastmod>2017-02-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -89,19 +103,19 @@
         
     <url>
      <loc>/Miscellaneous/Git_and_GitHub/</loc>
-     <lastmod>2017-02-02</lastmod>
+     <lastmod>2017-02-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/Miscellaneous/Octave_Basics/</loc>
-     <lastmod>2017-02-02</lastmod>
+     <lastmod>2017-02-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/Miscellaneous/Vim/</loc>
-     <lastmod>2017-02-02</lastmod>
+     <lastmod>2017-02-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -111,37 +125,37 @@
         
     <url>
      <loc>/Powershell/Functions_and_Scripting/</loc>
-     <lastmod>2017-02-02</lastmod>
+     <lastmod>2017-02-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/Powershell/Installation_for_Linux_Mac/</loc>
-     <lastmod>2017-02-02</lastmod>
+     <lastmod>2017-02-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/Powershell/Network_Configuration/</loc>
-     <lastmod>2017-02-02</lastmod>
+     <lastmod>2017-02-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/Powershell/Powershell_Basics/</loc>
-     <lastmod>2017-02-02</lastmod>
+     <lastmod>2017-02-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/Powershell/Windows_Firewall/</loc>
-     <lastmod>2017-02-02</lastmod>
+     <lastmod>2017-02-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/Powershell/Windows_Server_2012R2_Installation/</loc>
-     <lastmod>2017-02-02</lastmod>
+     <lastmod>2017-02-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -151,19 +165,19 @@
         
     <url>
      <loc>/WinServer2012/Basic_Command_Line/</loc>
-     <lastmod>2017-02-02</lastmod>
+     <lastmod>2017-02-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/WinServer2012/Server_Roles/</loc>
-     <lastmod>2017-02-02</lastmod>
+     <lastmod>2017-02-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/WinServer2012/Windows_Server/</loc>
-     <lastmod>2017-02-02</lastmod>
+     <lastmod>2017-02-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
