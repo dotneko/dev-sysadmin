@@ -1,6 +1,10 @@
 Solaris 11.3 Cheatsheet
 =======================
 
+- [Unix Commands Cheatsheet](https://files.fosswire.com/2007/08/fwunixref.pdf)
+- [Another Linux/Unix Cheatsheet](http://sites.tufts.edu/cbi/files/2013/01/linux_cheat_sheet.pdf)
+- [Unix Toolbox commands](http://cb.vu/unixtoolbox.xhtml)
+
 # Useradd
 - Administrator requires **User Management Profile**
 ```
@@ -129,9 +133,42 @@ nlsadm set-timezone Canada/Central          # Sets timezone
 # Message of the day
 - Edit `/etc/motd` file as root.
 
-# Change System Identity / hostname ([Source](https://docs.oracle.com/cd/E23824_01/html/821-1451/sysressysinfo-8.html))
+# Change System Identity / hostname ([Source](https://blogs.oracle.com/VDIpier/entry/solaris_11_changing_the_hostname))
+
+To check the current environment properties:
 ```
-svccfg -s svc:/system/identity:node setprop config/nodename = some-name
+svccfg -s system/identity:node listprop config
+```
+Should output two properties:
+```
+config                 application        
+config/enable_mapping boolean     true
+config/nodename       astring     solaris
+config/loopback       astring     solaris
+```
+Set the new hostname:
+```
+svccfg -s system/identity:node setprop config/nodename="my-host-name"
+svccfg -s system/identity:node setprop config/loopback="my-host-name"
+```
+Refresh the properties:
+```
+svccfg -s system/identity:node refresh
+```
+Restart the service:
+```
+svcadm restart system/identity:node
+```
+Verify that the changes took place by running `hostname` or:
+```
+svccfg -s system/identity:node listprop config
+```
+Should output:
+```
+config                 application        
+config/enable_mapping boolean     true
+config/nodename       astring     my-host-name
+config/loopback       astring     my-host-name
 ```
 
 # Networking
@@ -148,4 +185,18 @@ traceroute url
 netcfg                                      # Create and modify network configuration profiles
 netcfg> list                                # Lists objects
 netcfg> list ncp Automatic                  # Lists the details for the NCP Automatic
+```
+
+# Installing the Graphical User Interface
+```
+pkg install solaris-desktop
+```
+
+### Disabling and Enabling the GUI
+```
+svcadm disable application/graphical-login/gdm:default
+svcadm disable gdm                                      # Shortcut; same as above
+
+svcadm enable gdm                                       # Re-enable GUI, persists
+startx                                                  # Run once
 ```

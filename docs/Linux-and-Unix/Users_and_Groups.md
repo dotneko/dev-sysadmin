@@ -85,37 +85,13 @@ passwd username
 
 - Default password requirements stored in `/etc/default/passwd` file
 
-## Standard Users
-
-- Interactive in the sense that user can log into the system locally or remotely.
-- Will have a home directory associated with it, can be located either on local system or remote file server.
-
-## System Accounts
-
-- Associated with an application process that is installed and running on the system.
-
-  - An application process that listens on a network port for service requests is referred to as a **daemon**.
-
-- These running processes need a way to operate on the system just as standard users do.
-- System account usually does not require a home directory.
-- Provides a basic level of security to the system by protecting it in the event that the service that the service associated  with the account is violated.
-
-## Root Account
-
-- Called "super user" in previous Solaris releases - owner of most binaries and configuration files.
-- Root account in Oracle Solaris 11 is generally configured as an RBAC role.
-
-  - This means it cannot be logged in directly and users must be explicitly granted to access to the account.
-  - When you're authenticating to a role, the password must be that of the role.
-
-- Given the root role, one can assume the role using `su`
-- If want `sudo` access, need to edit the `/etc/sudoers` file for the user ([Source](https://blogs.oracle.com/observatory/entry/sudo)):
-
+### Locking and Unlocking Users
 ```
-user_name ALL=(ALL) ALL
+passwd -f username      # Forces user to change password during next login
+passwd -l username      # Locks user - when user logs in, it seems like password is incorrect.
+passwd -u username      # Unlocks a locked password for entry name
+passwd -d username      # Deletes password for name and unlocks the account
 ```
-- In Solaris, commands authorized the user's assigned role can be executed with `pfexec`
-- Why one should use `pfexec` instead of `sudo`: [Link](https://lildude.co.uk/solaris-11-express-root-password-gotcha)
 
 # UNIX Groups
 - Each group has a name, group ID (GID), and a list of usernames that belong to the group.

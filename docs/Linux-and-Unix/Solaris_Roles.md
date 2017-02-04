@@ -8,13 +8,6 @@
 - Rights profiles are assigned to special user accounts, called *roles*.
 - One can base roles on rights profiles that have the smae name (e.g. root).
 
-- **Profile shell**
-
-  - In Solaris 11, users and roles can also run privileged applications from a *profile shell*.
-  - A special shell that recognizes the security attributes included in a rights profile.
-  - Can be assigned to a specific user as a login shell, or started by using the `su` command.
-  - In Solaris 11, every shell has a profile shell counterpart (e.g. bash and pfbash).
-
 ### [Oracle Solaris 11 Roles @ The Urban Penguin](https://www.theurbanpenguin.com/oracle-solaris-11-roles/)
 
   - RBAC and Roles allow implementation of the least privileged security model.
@@ -38,6 +31,13 @@
 -  `auths username` used to verify role.
 -  `roles username` verifies role assignment.
 
+```
+roleadd -m -P "User Management" usermx
+    # -m: specifies make directories (just like that used in useradd -m)
+    # -P: specifies profile "User Management"
+    # -A: specifies authorization
+    # usermx: the name of the role to be created.
+```
 - [Oracle Solaris 11 Security Privileges and Authorizations](http://www.oracle.com/technetwork/systems/hands-on-labs/s11-security-1408641.html)
 
 ```
@@ -45,15 +45,31 @@ rolemod -K roleauth=user root       # Require users own password when switching 
 rolemod -K roleauth=role            # Require pasword of the role itself.
 ```
 
+# Solaris Profiles
 Profiles in Solaris 11 RBAC allow authorizations and privileged commands to be grouped together and can be assigned to users or to roles.
 
+In order to find out more about the profiles available, you could use the command:
 ```
-profiles -a |more
+profiles -a|more
+```
+
+To find out more about the specific profile such as "User Management" including the authorizations and the commands the profile allows, you could use the command:
+
+```
 profiles -p "User Management" info
 ```
+- **Profile shell**
+
+  - In Solaris 11, users and roles can also run privileged applications from a *profile shell*.
+  - A special shell that recognizes the security attributes included in a rights profile.
+  - Can be assigned to a specific user as a login shell, or started by using the `su` command.
+  - In Solaris 11, every shell has a profile shell counterpart (e.g. bash and pfbash).
 
 # More on RBAC And Privileges
 - [c0t0d0s0.org Tutorial on RBAC](http://www.c0t0d0s0.org/archives/4073-Less-known-Solaris-features-RBAC-and-Privileges-Part-1-Introduction.html)
 - [c0t0d0s0.org Using pfexec to delegate administration](http://c0t0d0s0.org/archives/4844-Less-known-Solaris-features-pfexec.html). Very useful article.
 
     - `pfexec <command>` is a way to execute commands within your rights profile without using su or sudo.
+
+- [Solaris 11.3 User Rights Management](http://docs.oracle.com/cd/E53394_01/html/E54830/rbac-1.html#scrolltoc)
+- [Oracle User Authorizations, Rights Profiles and Roles](http://docs.oracle.com/cd/E53394_01/html/E54830/prbac-moreabt-1.html#OSSUPprbac-25)

@@ -44,6 +44,7 @@ done
 exit
 ```
 - To run, execute `./users-pass.sh` as root.
+- Reference: - [Using Expect Scripts to Automate Tasks](http://www.admin-magazine.com/Articles/Automating-with-Expect-Scripts)
 
 # More Complex Example (Solaris)
 
