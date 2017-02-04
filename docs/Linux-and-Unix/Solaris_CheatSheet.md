@@ -63,7 +63,7 @@ groupadd -U user1[,user2] new_groupname     # Creates new group and adds users t
 ```
 find /path/to/base/dir -type d -exec chmod 755 {} +
 ```
-- Recursively give directories read privileges:
+- Recursively give files read privileges:
 ```
 find /path/to/base/dir -type f -exec chmod 644 {} +
 ```

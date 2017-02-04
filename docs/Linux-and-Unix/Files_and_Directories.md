@@ -78,7 +78,7 @@ Recursively give directories read&execute privileges:
 ```
 find /path/to/base/dir -type d -exec chmod 755 {} +
 ```
-Recursively give directories read privileges:
+Recursively give files read privileges:
 ```
 find /path/to/base/dir -type f -exec chmod 644 {} +
 ```
