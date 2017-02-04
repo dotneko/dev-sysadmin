@@ -85,7 +85,7 @@ A bash script to read the `userslist.txt` file and create users with necessary i
 echo "Creating users from file userslist.txt"
 while IFS=" " read col1 col2 col3 col4
 do
-  echo "Creating account '$col1' for '$col3 $col4'".
+  echo "Creating account $col1 for $col3 $col4".
   useradd -m -c "$col3 $col4" $col1
   echo "Password for username $col1 is: $col2"
   ./userpass.exp $col1 $col2
