@@ -1,6 +1,7 @@
 # Simple Example (Solaris)
 
-- Task: Automate creation of users with a default password via a bash script.
+***Task: Automate creation of users with a default password via a bash script***
+
 - List of users are included in a `users.txt` containing usernames:
 
 ```
@@ -46,7 +47,8 @@ exit
 
 # More Complex Example (Solaris)
 
-Task: To automatically create user accounts from a text file with additional information.
+***Task: To automatically create user accounts from a text file with additional information.***
+
 - N.B. [Scripts below pushed to github repository](https://github.com/gavchan/sol-scripts)
 - E.g. `userslist.txt` file contains usernames and passwords, first and last names:
 
