@@ -92,6 +92,7 @@ svcs *dhcp*                                 # Searches for service with "dhcp"
 svcs -v servicename                         # Lists verbose information
 svcs -l servicename                         # Lists detailed information about instances of system/service3
 svcs -p servicename                         # Lists processes
+svcs -xv service                            # Troubleshoot service
 
 svccfg                                      # Import, export and modify service configurations.
 
@@ -99,6 +100,25 @@ svcadm                                      # Manipulate service instances
 svcadm disable telnet
 svcadm enable ssh
 ```
+
+# Date, Time, Timezones ([Source](http://unix.stackexchange.com/questions/211425/changing-timezone-in-oracle-solaris-11-2))
+- `nlsadm` may need `pkg install nls-administration`
+```
+date                                        # Gets system date and time
+date mmddHHMM                               # Sets system date and time
+nlsadm get-timezone                         # Gets timezone information
+nlsadm list-timezone | grep Canada          # Lists timezone, can filter with grep
+nlsadm set-timezone Canada/Central          # Sets timezone
+```
+
+# Message of the day
+- Edit `/etc/motd` file as root.
+
+# Change System Identity / hostname ([Source](https://docs.oracle.com/cd/E23824_01/html/821-1451/sysressysinfo-8.html))
+```
+svccfg -s svc:/system/identity:node setprop config/nodename = some-name
+```
+
 # Networking
 
 ```
