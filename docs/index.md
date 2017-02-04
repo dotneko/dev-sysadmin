@@ -2,7 +2,7 @@
 
 This is a personal repository of notes, commands, scripts and resources on software development, systems administration, and miscellaneous tidbits of technology wisdom collected from various sources.
 
-It is not intended to be a complete reference or guide, but more as a cheatsheet/archive of what worked for me, and of links to more comprehensive resources that are available on the Internet.
+It is not intended to be a complete reference or guide, but more as a cheatsheet/archive   of links to more comprehensive resources that are available on the Internet. I make no promises/warranties regarding any of this information, and try to reference sources as much as I can. Any opinions are from my own experience and for educational purpose only. Please use at your own risk.
 
 --Gavin
 
