@@ -94,3 +94,6 @@ do
 done < userlist.txt
 exit
 ```
+
+# References:
+- [How to parse a CSV file in Bash](http://stackoverflow.com/questions/4286469/how-to-parse-a-csv-file-in-bash)
