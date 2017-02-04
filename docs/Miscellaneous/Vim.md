@@ -5,7 +5,7 @@ References and Links:
 
 - Starting out: [Learn Vim Progressively](http://yannesposito.com/Scratch/en/blog/Learn-Vim-Progressively/)
 - [VIM Adventures](https://vim-adventures.com/)
-- `vimtutor`
+- Type `vimtutor` at the command line and you'll have an interactive tutorial.
 
 # Vim Configuration
 
@@ -36,3 +36,7 @@ set softtabstop=4
 set ruler
 set backspace=indent,eol,start
 ```
+
+# Some tips found on the web:
+- Indent multiple lines quickly ([Very detailed answer at source]}(http://stackoverflow.com/questions/235839/indent-multiple-lines-quickly-in-vi)]):
+    - Enter [num lines] then `>>`: E.g. `8>>` will indent 8 lines.
