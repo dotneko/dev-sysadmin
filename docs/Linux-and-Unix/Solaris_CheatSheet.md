@@ -73,7 +73,10 @@ find /path/to/base/dir -type f -exec chmod 644 {} +
 - Authorized commands could be run via `pfexec` instead of `sudo`/`su`
 
 ```
-roleadd -P "User Management" rolename        # Creates a role named rolename with profile "User Management"
+profiles -a|more                            # Lists rights profiles available
+profiles -p "User Management" info          # Info on specific rights profile
+
+roleadd -P "User Management" rolename       # Creates a role named rolename with profile "User Management"
 
     -c comment
     -e expire
