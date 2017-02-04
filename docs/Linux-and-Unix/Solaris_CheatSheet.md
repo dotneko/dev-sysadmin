@@ -57,8 +57,20 @@ groupadd -U user1[,user2] new_groupname     # Creates new group and adds users t
     -g gid                                  # Assigns the group id gid for the new group
 
 ```
+
+# Chmod
+- Recursively give directories read&execute privileges:
+```
+find /path/to/base/dir -type d -exec chmod 755 {} +
+```
+- Recursively give directories read privileges:
+```
+find /path/to/base/dir -type f -exec chmod 644 {} +
+```
+
 # RBAC
-- Roles must be created and assigned to the user before the user can assume the role via `su`
+- Roles must be created and assigned to the user before the user can assume the role via `su`.
+- Authorized commands could be run via `pfexec` instead of `sudo`/`su`
 
 ```
 roleadd -P "User Management" rolename        # Creates a role named rolename with profile "User Management"

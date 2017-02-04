@@ -69,9 +69,21 @@ Privilege
 - Read permission: reading contents
 - Write permission: allows creation or removing entries from the directory
 - Execute permission: permits search but not read/write
-- Note that read and write permissions on directories are not meaningful without the search permission, therefore you ust have both the read and execute permissions on a directory to be able to list its contents, similarly with both write and execute permissions.
+- Note that read and write permissions on directories are not meaningful without the search permission, therefore *must have both the read and execute permissions on a directory to be able to list its contents, similarly with both write and execute permissions.*
 
-Default File Access Privileges
+# Recursively `chmod` files or directories
+- From [superuser.com](http://superuser.com/questions/91935/how-to-chmod-all-directories-except-files-recursively):
+
+Recursively give directories read&execute privileges:
+```
+find /path/to/base/dir -type d -exec chmod 755 {} +
+```
+Recursively give directories read privileges:
+```
+find /path/to/base/dir -type f -exec chmod 644 {} +
+```
+
+# Default File Access Privileges
 - When a new file/directory is created, it sets privilges based on current mask value.
 - Default in UNIX is 777 for executable files and directories, 666 for text files.
 - System uses Boolean logic to determine permissions.
