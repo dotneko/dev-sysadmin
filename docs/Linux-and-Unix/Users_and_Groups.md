@@ -62,6 +62,15 @@ passwd username
   - This means it cannot be logged in directly and users must be explicitly granted to access to the account.
   - When you're authenticating to a role, the password must be that of the role.
 
+- Given the root role, one can assume the role using `su`
+- If want `sudo` access, need to edit the `/etc/sudoers` file for the user ([Source](https://blogs.oracle.com/observatory/entry/sudo)):
+
+```
+user_name ALL=(ALL) ALL
+```
+- In Solaris, commands authorized the user's assigned role can be executed with `pfexec`
+- Why one should use `pfexec` instead of `sudo`: [Link](https://lildude.co.uk/solaris-11-express-root-password-gotcha)
+
 # UNIX Groups
 - Each group has a name, group ID (GID), and a list of usernames that belong to the group.
 - Two types of groups:

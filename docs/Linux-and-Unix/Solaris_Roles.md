@@ -1,4 +1,4 @@
-- [Oracle Solaris 11 Roles @ The Urban Penguin](https://www.theurbanpenguin.com/oracle-solaris-11-roles/)
+# [Oracle Solaris 11 Roles @ The Urban Penguin](https://www.theurbanpenguin.com/oracle-solaris-11-roles/)
 
     - RBAC and Roles allow implementation of the least privileged security model.
     - Root user is a role rather than a typical user, so cannot log in directly to the account, but may still use `su`
@@ -20,3 +20,9 @@ Profiles in Solaris 11 RBAC allow authorizations and privileged commands to be g
 profiles -a |more
 profiles -p "User Management" info
 ```
+
+# More on RBAC And Privileges
+- [c0t0d0s0.org Tutorial on RBAC](http://www.c0t0d0s0.org/archives/4073-Less-known-Solaris-features-RBAC-and-Privileges-Part-1-Introduction.html)
+- [c0t0d0s0.org Using pfexec to delegate administration](http://c0t0d0s0.org/archives/4844-Less-known-Solaris-features-pfexec.html). Very useful article.
+
+    - `pfexec <command>` is a way to execute commands within your rights profile without using su or sudo.
