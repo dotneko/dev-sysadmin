@@ -412,7 +412,20 @@ userdel -r username       # Removes user's home directory.
 <li>
 <p>This means it cannot be logged in directly and users must be explicitly granted to access to the account.</p>
 </li>
-<li>When you're authenticating to a role, the password must be that of the role.</li>
+<li>
+<p>When you're authenticating to a role, the password must be that of the role.</p>
+</li>
+<li>
+<p>Given the root role, one can assume the role using <code>su</code></p>
+</li>
+<li>If want <code>sudo</code> access, need to edit the <code>/etc/sudoers</code> file for the user (<a href="https://blogs.oracle.com/observatory/entry/sudo">Source</a>):</li>
+</ul>
+<pre><code>user_name ALL=(ALL) ALL
+</code></pre>
+
+<ul>
+<li>In Solaris, commands authorized the user's assigned role can be executed with <code>pfexec</code></li>
+<li>Why one should use <code>pfexec</code> instead of <code>sudo</code>: <a href="https://lildude.co.uk/solaris-11-express-root-password-gotcha">Link</a></li>
 </ul>
 <h1 id="unix-groups">UNIX Groups</h1>
 <ul>

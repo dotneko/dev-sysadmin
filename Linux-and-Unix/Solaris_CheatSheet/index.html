@@ -155,6 +155,9 @@
                 <li class="toctree-l3"><a href="#groupadd">Groupadd</a></li>
                 
             
+                <li class="toctree-l3"><a href="#chmod">Chmod</a></li>
+                
+            
                 <li class="toctree-l3"><a href="#rbac">RBAC</a></li>
                 
             
@@ -419,9 +422,23 @@ groupadd -U user1[,user2] new_groupname     # Creates new group and adds users t
 
 </code></pre>
 
+<h1 id="chmod">Chmod</h1>
+<ul>
+<li>Recursively give directories read&amp;execute privileges:</li>
+</ul>
+<pre><code>find /path/to/base/dir -type d -exec chmod 755 {} +
+</code></pre>
+
+<ul>
+<li>Recursively give directories read privileges:</li>
+</ul>
+<pre><code>find /path/to/base/dir -type f -exec chmod 644 {} +
+</code></pre>
+
 <h1 id="rbac">RBAC</h1>
 <ul>
-<li>Roles must be created and assigned to the user before the user can assume the role via <code>su</code></li>
+<li>Roles must be created and assigned to the user before the user can assume the role via <code>su</code>.</li>
+<li>Authorized commands could be run via <code>pfexec</code> instead of <code>sudo</code>/<code>su</code></li>
 </ul>
 <pre><code>roleadd -P &quot;User Management&quot; rolename        # Creates a role named rolename with profile &quot;User Management&quot;
 

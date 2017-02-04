@@ -197,7 +197,13 @@
                 <li class="toctree-l3"><a href="#learning-vim">Learning Vim</a></li>
                 
             
+                <li class="toctree-l3"><a href="#vim-configuration">Vim Configuration</a></li>
+                
+            
                 <li class="toctree-l3"><a href="#useful-plugins">Useful plugins</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#simple-vimrc-file">Simple .VIMRC file</a></li>
                 
             
             </ul>
@@ -334,11 +340,33 @@
 <li><a href="https://vim-adventures.com/">VIM Adventures</a></li>
 <li><code>vimtutor</code></li>
 </ul>
+<h1 id="vim-configuration">Vim Configuration</h1>
+<ul>
+<li><a href="http://vimconfig.com/">VimConfig</a>. Web-based generation of .vimrc</li>
+<li><a href="http://vim.wikia.com/wiki/Open_vimrc_file">Vim Wikia: Vimrc file</a></li>
+<li><a href="http://vim.wikia.com/wiki/Indenting_source_code#Methods_for_automatic_indentation">Vim Wikia: Indenting source code</a></li>
+</ul>
 <h1 id="useful-plugins">Useful plugins</h1>
 <ul>
-<li><a href="https://github.com/tpope/vim-pathogen">Pathogen.vim</a>. An easy way to install plugins and manage your <code>'runtimepath'</code>.</li>
+<li><a href="https://github.com/tpope/vim-pathogen">Pathogen.vim</a>. An easy way to install plugins and manage your <code>runtimepath</code>.</li>
 <li><a href="https://github.com/digitaltoad/vim-pug">vim-pug</a>. Vim syntax highlighting for Pug (formerly Jade) templates.</li>
 </ul>
+<h1 id="simple-vimrc-file">Simple .VIMRC file</h1>
+<pre><code>set number
+set showmatch
+set visualbell
+set hlsearch
+set smartcase
+set ignorecase
+set incsearch
+set autoindent
+set expandtab
+set shiftwidth=4
+set smartindent
+set softtabstop=4
+set ruler
+set backspace=indent,eol,start
+</code></pre>
               
             </div>
           </div>

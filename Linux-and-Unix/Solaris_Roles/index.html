@@ -151,6 +151,12 @@
         
             <ul>
             
+                <li class="toctree-l3"><a href="#oracle-solaris-11-roles-the-urban-penguin">Oracle Solaris 11 Roles @ The Urban Penguin</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#more-on-rbac-and-privileges">More on RBAC And Privileges</a></li>
+                
+            
             </ul>
         
     </li>
@@ -320,18 +326,13 @@
           <div role="main">
             <div class="section">
               
-                <ul>
-<li>
-<p><a href="https://www.theurbanpenguin.com/oracle-solaris-11-roles/">Oracle Solaris 11 Roles @ The Urban Penguin</a></p>
+                <h1 id="oracle-solaris-11-roles-the-urban-penguin"><a href="https://www.theurbanpenguin.com/oracle-solaris-11-roles/">Oracle Solaris 11 Roles @ The Urban Penguin</a></h1>
+<pre><code>- RBAC and Roles allow implementation of the least privileged security model.
+- Root user is a role rather than a typical user, so cannot log in directly to the account, but may still use `su`
+- Users cannot use root even if they know the root password; users can only use the root role if it is assigned to them.
+</code></pre>
 <ul>
-<li>RBAC and Roles allow implementation of the least privileged security model.</li>
-<li>Root user is a role rather than a typical user, so cannot log in directly to the account, but may still use <code>su</code></li>
-<li>Users cannot use root even if they know the root password; users can only use the root role if it is assigned to them.</li>
-</ul>
-</li>
-<li>
-<p><a href="http://www.oracle.com/technetwork/systems/hands-on-labs/s11-security-1408641.html">Oracle Solaris 11 Security Privileges and Authorizations</a></p>
-</li>
+<li><a href="http://www.oracle.com/technetwork/systems/hands-on-labs/s11-security-1408641.html">Oracle Solaris 11 Security Privileges and Authorizations</a></li>
 </ul>
 <pre><code>rolemod -K roleauth=user root
     # Require users own password when switching to root role.
@@ -344,6 +345,17 @@ rolemod -K roleauth=role
 <pre><code>profiles -a |more
 profiles -p &quot;User Management&quot; info
 </code></pre>
+
+<h1 id="more-on-rbac-and-privileges">More on RBAC And Privileges</h1>
+<ul>
+<li><a href="http://www.c0t0d0s0.org/archives/4073-Less-known-Solaris-features-RBAC-and-Privileges-Part-1-Introduction.html">c0t0d0s0.org Tutorial on RBAC</a></li>
+<li>
+<p><a href="http://c0t0d0s0.org/archives/4844-Less-known-Solaris-features-pfexec.html">c0t0d0s0.org Using pfexec to delegate administration</a>. Very useful article.</p>
+<ul>
+<li><code>pfexec &lt;command&gt;</code> is a way to execute commands within your rights profile without using su or sudo.</li>
+</ul>
+</li>
+</ul>
               
             </div>
           </div>

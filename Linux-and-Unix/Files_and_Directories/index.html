@@ -121,6 +121,12 @@
                 <li class="toctree-l3"><a href="#access-permissions-for-directories">Access Permissions for Directories</a></li>
                 
             
+                <li class="toctree-l3"><a href="#recursively-chmod-files-or-directories">Recursively chmod files or directories</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#default-file-access-privileges">Default File Access Privileges</a></li>
+                
+            
                 <li class="toctree-l3"><a href="#special-access-bits">Special Access Bits</a></li>
                 
                     <li><a class="toctree-l4" href="#set-user-id-suid-bit">Set-User-ID (SUID) Bit</a></li>
@@ -410,12 +416,26 @@ chmod 755 filename: rwx permission for user, rx permissions for group/others
 <li>Read permission: reading contents</li>
 <li>Write permission: allows creation or removing entries from the directory</li>
 <li>Execute permission: permits search but not read/write</li>
-<li>Note that read and write permissions on directories are not meaningful without the search permission, therefore you ust have both the read and execute permissions on a directory to be able to list its contents, similarly with both write and execute permissions.</li>
+<li>Note that read and write permissions on directories are not meaningful without the search permission, therefore <em>must have both the read and execute permissions on a directory to be able to list its contents, similarly with both write and execute permissions.</em></li>
 </ul>
-<p>Default File Access Privileges
-- When a new file/directory is created, it sets privilges based on current mask value.
-- Default in UNIX is 777 for executable files and directories, 666 for text files.
-- System uses Boolean logic to determine permissions.</p>
+<h1 id="recursively-chmod-files-or-directories">Recursively <code>chmod</code> files or directories</h1>
+<ul>
+<li>From <a href="http://superuser.com/questions/91935/how-to-chmod-all-directories-except-files-recursively">superuser.com</a>:</li>
+</ul>
+<p>Recursively give directories read&amp;execute privileges:</p>
+<pre><code>find /path/to/base/dir -type d -exec chmod 755 {} +
+</code></pre>
+
+<p>Recursively give directories read privileges:</p>
+<pre><code>find /path/to/base/dir -type f -exec chmod 644 {} +
+</code></pre>
+
+<h1 id="default-file-access-privileges">Default File Access Privileges</h1>
+<ul>
+<li>When a new file/directory is created, it sets privilges based on current mask value.</li>
+<li>Default in UNIX is 777 for executable files and directories, 666 for text files.</li>
+<li>System uses Boolean logic to determine permissions.</li>
+</ul>
 <pre><code>umask [-S] [mask]
   # Execution without argument displays current value of bit mask in octal
   # Bit mask identifies the permission bits that are to be turned off when a new file is being created.
