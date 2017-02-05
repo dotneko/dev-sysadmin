@@ -1,7 +1,9 @@
-*References and Links:*
+# References and Links
 - [Oracle Network Configuration](http://www.oracle.com/technetwork/articles/servers-storage-admin/s11-network-config-1632927.html)
 - [Oracle Solaris 11.3 Network Documentation](http://docs.oracle.com/cd/E53394_01/index.html#group-4)
+- [Oracle Basic Network Configuration Scenario](http://docs.oracle.com/cd/E53394_01/html/E54834/gmoyk.html#NWRDMgnanm)
 
+# Brief Overview
 - Oracle introduced `dladm` and `ipadm` to supersede `ifconfig`
 - Changes made by `dladm` and `ipadm` persist across reboots.
 - Also added automatic network configuration using network profiles.
@@ -14,7 +16,7 @@
   - data-link names are given generic names and are no longer the same as physical interface.
 
 - `ipadm`: Configures IP interfaces, IP addresses and TCP/IP properties.
- 
+
 # Basic Commands
 ```
 ifconfig -a
@@ -40,7 +42,25 @@ netadm list   # Lists
 netadm enable -p ncp Automatic          # Will enable DHCP
 ipadm show-if                           # Display status of interface
 ipadm show-addr                         # Display IP addresses of interfaces
+
+netstat                                 # Shows network status, state of sockets, routing etc.
+who                                     # Shows which users are connected to your network.                    
 ```
+# Configuring a DHCP Server
+- [Working with DHCP in Oracle](https://docs.oracle.com/cd/E53394_01/html/E54848/dhcp-admin-518.html#scrolltoc)
+- Needs root access, or an appropriate role like "DHCP Management":
+
+```
+usermod -P+"DHCP Management" username
+```
+
+- By default the DHCP server and relay is disabled
+```
+svcs -a|grep dhcp       # Can be used to locate the DHCP service
+svcs relay           
+```
+
+- [How to Configure an ISC DHCP Server](https://docs.oracle.com/cd/E53394_01/html/E54848/dhcp-admin-102.html#scrolltoc)
 
 # Configure a Static IP Address
 

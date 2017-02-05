@@ -20,4 +20,4 @@ NFS is traditionally a Unix file sharing protocol but now Windows Server support
 SMB/CIFS uses Windows-style access control lists (which are really complicated) whereas NFS uses Unix-style file permissions (User ID owner, Group ID owner, and read/write/execute permissions).
 On Unix/Linux systems you can use Samba to both share and access filesystems via SMB/CIFS. Samba does a lot more than that though... It can actually act as a drop-in replacement for Microsoft's Active Directory. Linux has built-in support for CIFS shares now so Samba isn't needed in most cases.
 
-- Source: [reddit post](https://www.reddit.com/r/homelab/comments/2fawvq/eli5_what_is_the_difference_between_smb_cifs_and/)
+- Source: [reddit post by riskable](https://www.reddit.com/r/homelab/comments/2fawvq/eli5_what_is_the_difference_between_smb_cifs_and/)
