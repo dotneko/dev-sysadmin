@@ -12,7 +12,6 @@
 
 *Source:* [http://www.ncftp.com/libncftp/doc/ftp_overview.html](http://www.ncftp.com/libncftp/doc/ftp_overview.html)
 
-
 # FTP service on Solaris
 
 ```
@@ -54,14 +53,16 @@ ftp> put            # Sends one file
 ftp> mput           # Sends multiple files; note that directories are not transferred automatically (see bottom of page).
 ```
 # Configuring ProFTPD.conf
-- Detailed configuration documentation at [proftpd.org](http://www.proftpd.org/docs/howto/ConfigFile.html)
 - Configuration is done through editing the `/etc/proftpd.conf` file.
+- Detailed configuration documentation at [proftpd.org](http://www.proftpd.org/docs/howto/ConfigFile.html)
+    - [Configuration tricks](http://www.proftpd.org/docs/howto/ConfigurationTricks.html)
+    - [Display directive](- Detailed configuration documentation at [proftpd.org](http://www.proftpd.org/docs/howto/ConfigFile.html)
 - The file `/etc/ftpd/ftpusers` in Solaris contains a list of users denied access to the FTP server, e.g. root.
 - See [Oracle: Controlling FTP Server Access](https://docs.oracle.com/cd/E23823_01/html/816-4555/wuftp-43.html) for more information.
 - Note that any change of the file requires restarting the ftp service.
     - Solaris: `svcadm restart ftp`
 
-## Changing the FTP Connection Message
+### Changing the FTP Connection Message
 - Configured under `DisplayConnect` in `/etc/proftpd.conf`.
 - By default `DisplayConnect` is configured to display the contents of the `/etc/issue` text file.
 
@@ -71,19 +72,19 @@ DisplayConnect      /etc/issue
 
 - One can modify this to point to another file or edit the `/etc/issue` file directly.
 
-## Confine FTP users to their home directory
+### Confine FTP users to their home directory
 In `/etc/proftpd.conf`, example:
 ```
 DefaultRoot         ~       # Causes every FTP user to be "jailed" into their home directory.
 ```
 
-## Changing the FTP Closing Message
+### Changing the FTP Closing Message
 In `/etc/proftpd.conf`, example, can point the message to /etc/quitmessage
 ```
 DisplayQuit         /etc/quitmessage
 ```
 
-## Controlling who can connect through FTP
+### Controlling who can connect through FTP
 - Using the following directive would deny all access by default:
 ```
 <Limit LOGIN>
@@ -99,13 +100,47 @@ DenyAll
 </Anonymous>
 ```
 
-## Configuring anonymous FTP (No write access)
+# Configuring Anonymous FTP
+
 - By default, Solaris 11 does not allow for anonymous connections.
-- To enable, one can add the following according to [www.proftpd.org](http://www.proftpd.org/docs/configs/basic.conf):
-- Also need to make sure `ftp` is removed from the ftp deny list that is stored in `/etc/ftpd/ftpusers` (Solaris).
+- To enable, one can add consult the basic configuration @ [www.proftpd.org](http://www.proftpd.org/docs/configs/basic.conf)
+- May also need to make sure `ftp` is removed from the ftp deny list that is stored in `/etc/ftpd/ftpusers` (Solaris).
+
+### Example of a typical anonymous FTP configuration block ([Source](http://www.proftpd.org/docs/directives/linked/config_ref_Anonymous.html)):
+
+```
+<Anonymous /home/ftp>     # Root-directory to chroot specified as /home/ftp
+  # After anonymous login, daemon runs as user/group ftp.
+  User ftp                
+  Group ftp                     
+
+  # The client login 'anonymous' is aliased to the "real" user 'ftp'.
+  UserAlias anonymous ftp
+
+  # Deny write operations to all directories, except for 'incoming' where
+  # 'STOR' is allowed (but 'READ' operations are prohibited)
+
+  <Directory *>
+    <Limit WRITE>
+      DenyAll
+    </Limit>
+  </Directory>
+
+  <Directory incoming>
+    <Limit READ >
+      DenyAll
+    </Limit>
+    <Limit STOR>
+      AllowAll
+    </Limit>
+  </Directory>
+
+</Anonymous>
+```
+### Example of basic anonymous configuration, no upload directories
 ```
 # A basic anonymous configuration, no upload directories:
-<Anonymous ~ftp>
+<Anonymous /existing/dir>
   User				ftp
   Group				ftp
 
@@ -127,9 +162,8 @@ DenyAll
 </Anonymous>
 ```
 
-## Configuring anonymous FTP (with an upload directory)
+### Example of anonymous FTP (with an upload directory)
 
-- Add the following within the <Anonymous></Anonymous> section from above:
 ```
 # An upload directory that allows storing files but not retrieving
 # or creating directories.
@@ -143,9 +177,9 @@ DenyAll
   </Limit>
 </Directory>
 ```
-- For detailed example configuration, see example:  [anonymous.conf](http://www.proftpd.org/docs/configs/anonymous.conf)
+- For detailed configuration, see article on:  [anonymous.conf](http://www.proftpd.org/docs/configs/anonymous.conf)
 
-## Transferring directories
+## Trying to transferring directories via FTP
 - FTP will not automatically create and transfer directories when using `mput`.
 - It would be better to use `scp` for better security and support for recursive transfer of files/subdirectories.
 - Anyway here's a bash script that could recursively transfer directories with their contents through FTP...*currently only runs on Bash for Windows with MS FTP.*
@@ -176,3 +210,7 @@ echo quit >> command.ftp
 ftp -s:command.ftp                  # Only works with Windows Cmd FTP
 exit
 ```
+- References:
+    - [How to user ftp in a shell script](http://www.stratigery.com/scripting.ftp.html)
+    - [How to login to FTP in one step](http://superuser.com/questions/98479/how-to-login-to-ftp-in-one-step)
+    - [Listing subdirectories recursively?](http://unix.stackexchange.com/questions/32678/how-can-i-list-subdirectories-recursively)

@@ -46,6 +46,13 @@ Allow from some.host.com
 ```
 - The above example will by default deny access to all, and then only allow access from some.host.com.
 
+### Displaying default files other than index.html
+- Look for `DirectoryIndex` and add other possible files, e.g.:
+
+```
+DirectoryIndex index.html index.htm default.htm index.php index.pl
+```
+
 # Setting up Virtual Hosts in Apache
 - One can examine `/etc/apache2/2.2/samples-conf.d/vhosts.conf` to show examples of VirtualHost configuration tags that should be added to the `/etc/apache2/2.2/httpd.conf` file.
 
