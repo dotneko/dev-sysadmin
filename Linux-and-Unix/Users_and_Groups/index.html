@@ -64,13 +64,6 @@
 <li>
           
             <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../../Solaris_SMB_vs_Samba/">Solaris SMB vs Samba</a>
-        
-    </li>
-<li>
-          
-            <li>
     <ul class="subnav">
     <li><span>Linux and Unix</span></li>
 
@@ -126,6 +119,13 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../Sharing_Files_and_Samba/">Sharing Files and Samba</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../Slackware/">Slackware</a>
         
     </li>
@@ -154,6 +154,13 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../Solaris_SMB_vs_Samba/">Solaris SMB vs Samba</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../Solaris_SMF/">Solaris SMF</a>
         
     </li>
@@ -165,19 +172,19 @@
         
             <ul>
             
-                <li class="toctree-l3"><a href="#user-accounts">User Accounts</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#password-information">Password information</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#special-uids">Special UIDs</a></li>
-                
-                    <li><a class="toctree-l4" href="#standard-users">Standard Users</a></li>
+                <li class="toctree-l3"><a href="#users-and-user-accounts">Users and User Accounts</a></li>
                 
                     <li><a class="toctree-l4" href="#system-accounts">System Accounts</a></li>
                 
                     <li><a class="toctree-l4" href="#root-account">Root Account</a></li>
+                
+                    <li><a class="toctree-l4" href="#examining-users">Examining Users</a></li>
+                
+                    <li><a class="toctree-l4" href="#adding-changing-deleting-users">Adding, Changing, Deleting Users</a></li>
+                
+                    <li><a class="toctree-l4" href="#password-information">Password information</a></li>
+                
+                    <li><a class="toctree-l4" href="#locking-and-unlocking-users">Locking and Unlocking Users</a></li>
                 
             
                 <li class="toctree-l3"><a href="#unix-groups">UNIX Groups</a></li>
@@ -343,9 +350,78 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="user-accounts">User Accounts</h1>
+                <h1 id="users-and-user-accounts">Users and User Accounts</h1>
+<ul>
+<li>All users are assigned a <strong>UID</strong>. Maximum number for UID or GID is 2 to the power of 31 (2147483647)</li>
+<li>
+<p>Users are generally <strong>standard users</strong>:</p>
+<ul>
+<li>Considered "interactive" - can log into the system locally or remotely.</li>
+<li>Will have a home directory associated with it, can be located either on local system or remote file server.</li>
+<li>Groups can be assigned based on user type, location, shared files/directories.</li>
+</ul>
+</li>
+<li>
+<p>Special 'users' include the "super user" root and special accounts, and have <strong>special UIDs</strong>:</p>
+<ul>
+<li>UID 0-99: reserved for Oracle Solaris system</li>
+<li>UID 0: root</li>
+<li>UID 1: daemon</li>
+<li>UID 2: bin pseudouser</li>
+<li>UID 60001 and 65534: reserved for nobody and nobody4 (NFS Anonymous users)</li>
+<li>UID 60002: noaccess</li>
+</ul>
+</li>
+</ul>
+<h3 id="system-accounts">System Accounts</h3>
+<ul>
+<li>
+<p>Associated with an application process that is installed and running on the system.</p>
+</li>
+<li>
+<p>An application process that listens on a network port for service requests is referred to as a <strong>daemon</strong>.</p>
+</li>
+<li>
+<p>These running processes need a way to operate on the system just as standard users do.</p>
+</li>
+<li>System account usually does not require a home directory.</li>
+<li>Provides a basic level of security to the system by protecting it in the event that the service that the service associated  with the account is violated.</li>
+</ul>
+<h3 id="root-account">Root Account</h3>
+<ul>
+<li>Called "super user" in previous Solaris releases - owner of most binaries and configuration files.</li>
+<li>
+<p>Root account in Oracle Solaris 11 is generally configured as an RBAC role.</p>
+</li>
+<li>
+<p>This means it cannot be logged in directly and users must be explicitly granted to access to the account.</p>
+</li>
+<li>
+<p>When you're authenticating to a role, the password must be that of the role.</p>
+</li>
+<li>
+<p>If given the root role/access, one can assume the role using <code>su</code>.</p>
+</li>
+<li>If want <code>sudo</code> access, need to edit the <code>/etc/sudoers</code> file for the user (<a href="https://blogs.oracle.com/observatory/entry/sudo">Source</a>):</li>
+</ul>
+<pre><code>user_name ALL=(ALL) ALL
+</code></pre>
+
+<ul>
+<li>In Solaris, commands authorized the user's assigned role can be executed with <code>pfexec</code></li>
+<li>Why one should use <code>pfexec</code> instead of <code>sudo</code>: <a href="https://lildude.co.uk/solaris-11-express-root-password-gotcha">Link</a></li>
+</ul>
+<h3 id="examining-users">Examining Users</h3>
+<pre><code>whoami              # Who the current user is
+who                 # Who is logged on to the system
+getent passwd       # Examines system's list of users
+finger              # Displays who is logged on to the system (like who)
+finger user_name    # Displays information about the user user_name
+</code></pre>
+
+<h3 id="adding-changing-deleting-users">Adding, Changing, Deleting Users</h3>
 <pre><code>useradd -m username
-useradd -m username # simple way to create a new user with username
+useradd -m username         # simple way to create a new user with username
 useradd -c &quot;Common name&quot; -d [home directory, e.g. /export/home/username] -m username
 useradd -c &quot;User1&quot; -d -m -u:101 -g:staff User1
 </code></pre>
@@ -365,68 +441,27 @@ userdel -r username       # Removes user's home directory.
 <pre><code>umount dirname
 </code></pre>
 
-<h1 id="password-information">Password information</h1>
+<h3 id="password-information">Password information</h3>
 <pre><code>passwd username
 </code></pre>
 
 <ul>
 <li>In <code>/etc/shadow</code> file stores passwords when using /etc files</li>
 <li>In <code>/etc/passwd</code> file when using NIS</li>
-<li>In <code>people</code> container when using LDAP</li>
-<li>Default password requirements stored in <code>/etc/default/passwd</code> file</li>
+<li>
+<p>In <code>people</code> container when using LDAP</p>
+</li>
+<li>
+<p>Default password requirements stored in <code>/etc/default/passwd</code> file</p>
+</li>
 </ul>
-<h1 id="special-uids">Special UIDs</h1>
-<ul>
-<li>UID 0-99: reserved for Oracle Solaris system</li>
-<li>UID 0: root</li>
-<li>UID 1: daemon</li>
-<li>UID 2: bin pseudouser</li>
-<li>UID 60001 and 65534: reserved for nobody and nobody4 (NFS Anonymous users)</li>
-<li>UID 60002: noaccess</li>
-</ul>
-<h2 id="standard-users">Standard Users</h2>
-<ul>
-<li>Interactive in the sense that user can log into the system locally or remotely.</li>
-<li>Will have a home directory associated with it, can be located either on local system or remote file server.</li>
-</ul>
-<h2 id="system-accounts">System Accounts</h2>
-<ul>
-<li>
-<p>Associated with an application process that is installed and running on the system.</p>
-</li>
-<li>
-<p>An application process that listens on a network port for service requests is referred to as a <strong>daemon</strong>.</p>
-</li>
-<li>
-<p>These running processes need a way to operate on the system just as standard users do.</p>
-</li>
-<li>System account usually does not require a home directory.</li>
-<li>Provides a basic level of security to the system by protecting it in the event that the service that the service associated  with the account is violated.</li>
-</ul>
-<h2 id="root-account">Root Account</h2>
-<ul>
-<li>Called "super user" in previous Solaris releases - owner of most binaries and configuration files.</li>
-<li>
-<p>Root account in Oracle Solaris 11 is generally configured as an RBAC role.</p>
-</li>
-<li>
-<p>This means it cannot be logged in directly and users must be explicitly granted to access to the account.</p>
-</li>
-<li>
-<p>When you're authenticating to a role, the password must be that of the role.</p>
-</li>
-<li>
-<p>Given the root role, one can assume the role using <code>su</code></p>
-</li>
-<li>If want <code>sudo</code> access, need to edit the <code>/etc/sudoers</code> file for the user (<a href="https://blogs.oracle.com/observatory/entry/sudo">Source</a>):</li>
-</ul>
-<pre><code>user_name ALL=(ALL) ALL
+<h3 id="locking-and-unlocking-users">Locking and Unlocking Users</h3>
+<pre><code>passwd -f username      # Forces user to change password during next login
+passwd -l username      # Locks user - when user logs in, it seems like password is incorrect.
+passwd -u username      # Unlocks a locked password for entry name
+passwd -d username      # Deletes password for name and unlocks the account
 </code></pre>
 
-<ul>
-<li>In Solaris, commands authorized the user's assigned role can be executed with <code>pfexec</code></li>
-<li>Why one should use <code>pfexec</code> instead of <code>sudo</code>: <a href="https://lildude.co.uk/solaris-11-express-root-password-gotcha">Link</a></li>
-</ul>
 <h1 id="unix-groups">UNIX Groups</h1>
 <ul>
 <li>Each group has a name, group ID (GID), and a list of usernames that belong to the group.</li>

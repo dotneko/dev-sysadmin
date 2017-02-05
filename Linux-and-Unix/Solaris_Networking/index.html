@@ -64,13 +64,6 @@
 <li>
           
             <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../../Solaris_SMB_vs_Samba/">Solaris SMB vs Samba</a>
-        
-    </li>
-<li>
-          
-            <li>
     <ul class="subnav">
     <li><span>Linux and Unix</span></li>
 
@@ -126,6 +119,13 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../Sharing_Files_and_Samba/">Sharing Files and Samba</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../Slackware/">Slackware</a>
         
     </li>
@@ -144,7 +144,16 @@
         
             <ul>
             
+                <li class="toctree-l3"><a href="#references-and-links">References and Links</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#brief-overview">Brief Overview</a></li>
+                
+            
                 <li class="toctree-l3"><a href="#basic-commands">Basic Commands</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#configuring-a-dhcp-server">Configuring a DHCP Server</a></li>
                 
             
                 <li class="toctree-l3"><a href="#configure-a-static-ip-address">Configure a Static IP Address</a></li>
@@ -161,6 +170,13 @@
             
     <li class="toctree-l1 ">
         <a class="" href="../Solaris_Roles/">Solaris Roles</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../Solaris_SMB_vs_Samba/">Solaris SMB vs Samba</a>
         
     </li>
 
@@ -329,9 +345,13 @@
           <div role="main">
             <div class="section">
               
-                <p><em>References and Links:</em>
-- <a href="http://www.oracle.com/technetwork/articles/servers-storage-admin/s11-network-config-1632927.html">Oracle Network Configuration</a>
-- <a href="http://docs.oracle.com/cd/E53394_01/index.html#group-4">Oracle Solaris 11.3 Network Documentation</a></p>
+                <h1 id="references-and-links">References and Links</h1>
+<ul>
+<li><a href="http://www.oracle.com/technetwork/articles/servers-storage-admin/s11-network-config-1632927.html">Oracle Network Configuration</a></li>
+<li><a href="http://docs.oracle.com/cd/E53394_01/index.html#group-4">Oracle Solaris 11.3 Network Documentation</a></li>
+<li><a href="http://docs.oracle.com/cd/E53394_01/html/E54834/gmoyk.html#NWRDMgnanm">Oracle Basic Network Configuration Scenario</a></li>
+</ul>
+<h1 id="brief-overview">Brief Overview</h1>
 <ul>
 <li>Oracle introduced <code>dladm</code> and <code>ipadm</code> to supersede <code>ifconfig</code></li>
 <li>Changes made by <code>dladm</code> and <code>ipadm</code> persist across reboots.</li>
@@ -375,8 +395,29 @@ netadm list   # Lists
 netadm enable -p ncp Automatic          # Will enable DHCP
 ipadm show-if                           # Display status of interface
 ipadm show-addr                         # Display IP addresses of interfaces
+
+netstat                                 # Shows network status, state of sockets, routing etc.
+who                                     # Shows which users are connected to your network.                    
 </code></pre>
 
+<h1 id="configuring-a-dhcp-server">Configuring a DHCP Server</h1>
+<ul>
+<li><a href="https://docs.oracle.com/cd/E53394_01/html/E54848/dhcp-admin-518.html#scrolltoc">Working with DHCP in Oracle</a></li>
+<li>Needs root access, or an appropriate role like "DHCP Management":</li>
+</ul>
+<pre><code>usermod -P+&quot;DHCP Management&quot; username
+</code></pre>
+
+<ul>
+<li>By default the DHCP server and relay is disabled</li>
+</ul>
+<pre><code>svcs -a|grep dhcp       # Can be used to locate the DHCP service
+svcs relay           
+</code></pre>
+
+<ul>
+<li><a href="https://docs.oracle.com/cd/E53394_01/html/E54848/dhcp-admin-102.html#scrolltoc">How to Configure an ISC DHCP Server</a></li>
+</ul>
 <h1 id="configure-a-static-ip-address">Configure a Static IP Address</h1>
 <pre><code>netadm enable -p ncp DefaultFixed       # Will disable DHCP, allow manual config
 dladm show-phys                         # Will display network devices

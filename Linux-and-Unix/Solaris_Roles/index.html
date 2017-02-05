@@ -64,13 +64,6 @@
 <li>
           
             <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../../Solaris_SMB_vs_Samba/">Solaris SMB vs Samba</a>
-        
-    </li>
-<li>
-          
-            <li>
     <ul class="subnav">
     <li><span>Linux and Unix</span></li>
 
@@ -126,6 +119,13 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../Sharing_Files_and_Samba/">Sharing Files and Samba</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../Slackware/">Slackware</a>
         
     </li>
@@ -151,13 +151,31 @@
         
             <ul>
             
-                <li class="toctree-l3"><a href="#oracle-solaris-11-roles-the-urban-penguin">Oracle Solaris 11 Roles @ The Urban Penguin</a></li>
+                <li class="toctree-l3"><a href="#role-based-access-control-rbac-and-administrative-privileges">Role Based Access Control (RBAC) and Administrative Privileges</a></li>
+                
+                    <li><a class="toctree-l4" href="#oracle-solaris-11-roles-the-urban-penguin">Oracle Solaris 11 Roles @ The Urban Penguin</a></li>
+                
+                    <li><a class="toctree-l4" href="#the-root-role">The Root Role</a></li>
+                
+                    <li><a class="toctree-l4" href="#adding-to-sudoers-file">Adding to sudoers file</a></li>
+                
+                    <li><a class="toctree-l4" href="#creating-a-role">Creating a Role</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#solaris-profiles">Solaris Profiles</a></li>
                 
             
                 <li class="toctree-l3"><a href="#more-on-rbac-and-privileges">More on RBAC And Privileges</a></li>
                 
             
             </ul>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../Solaris_SMB_vs_Samba/">Solaris SMB vs Samba</a>
         
     </li>
 
@@ -326,26 +344,79 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="oracle-solaris-11-roles-the-urban-penguin"><a href="https://www.theurbanpenguin.com/oracle-solaris-11-roles/">Oracle Solaris 11 Roles @ The Urban Penguin</a></h1>
-<pre><code>- RBAC and Roles allow implementation of the least privileged security model.
-- Root user is a role rather than a typical user, so cannot log in directly to the account, but may still use `su`
-- Users cannot use root even if they know the root password; users can only use the root role if it is assigned to them.
+                <h1 id="role-based-access-control-rbac-and-administrative-privileges">Role Based Access Control (RBAC) and Administrative Privileges</h1>
+<ul>
+<li>Used to control user access to tasks that would normally be restricted to the root role.</li>
+<li>Usage driven by the need for privilege delegation and separation of duties.</li>
+<li>Concepts include roles, rights profiles, authorizations, privileges, and security attributes.</li>
+<li>Process rights management is implemented through privileges.</li>
+<li>Various superuser capabilities are collected into a <em>rights profile</em>.</li>
+<li>Rights profiles are assigned to special user accounts, called <em>roles</em>.</li>
+<li>One can base roles on rights profiles that have the smae name (e.g. root).</li>
+</ul>
+<h3 id="oracle-solaris-11-roles-the-urban-penguin"><a href="https://www.theurbanpenguin.com/oracle-solaris-11-roles/">Oracle Solaris 11 Roles @ The Urban Penguin</a></h3>
+<ul>
+<li>RBAC and Roles allow implementation of the least privileged security model.</li>
+<li>Root user is a role rather than a typical user, so cannot log in directly to the account, but may still use <code>su</code></li>
+<li>Users cannot use root even if they know the root password; users can only use the root role if it is assigned to them.</li>
+</ul>
+<h3 id="the-root-role">The Root Role</h3>
+<ul>
+<li>
+<p>Initial user account that was created during installation is assigned the root role.</p>
+</li>
+<li>
+<p><code>roles [username]</code></p>
+</li>
+<li><code>usermod -R +root [username]</code> will assign privileges of the root role to [username] and enable them to assume the root role.</li>
+</ul>
+<h3 id="adding-to-sudoers-file">Adding to sudoers file</h3>
+<ul>
+<li><code>sudo visudo</code> or run <code>visudo</code> as root</li>
+<li>Add <code>username ALL=(ALL) ALL</code> to the file</li>
+</ul>
+<h3 id="creating-a-role">Creating a Role</h3>
+<ul>
+<li><code>roleadd -D</code> displays the default settings for a new role or user.</li>
+<li><code>roleadd -A</code> creates the role and assigns authorizations.</li>
+<li><code>auths username</code> used to verify role.</li>
+<li><code>roles username</code> verifies role assignment.</li>
+</ul>
+<pre><code>roleadd -m -P &quot;User Management&quot; usermx
+    # -m: specifies make directories (just like that used in useradd -m)
+    # -P: specifies profile &quot;User Management&quot;
+    # -A: specifies authorization
+    # usermx: the name of the role to be created.
 </code></pre>
+
 <ul>
 <li><a href="http://www.oracle.com/technetwork/systems/hands-on-labs/s11-security-1408641.html">Oracle Solaris 11 Security Privileges and Authorizations</a></li>
 </ul>
-<pre><code>rolemod -K roleauth=user root
-    # Require users own password when switching to root role.
-
-rolemod -K roleauth=role
-    # Require pasword of the role itself.
+<pre><code>rolemod -K roleauth=user root       # Require users own password when switching to root role.
+rolemod -K roleauth=role            # Require pasword of the role itself.
 </code></pre>
 
+<h1 id="solaris-profiles">Solaris Profiles</h1>
 <p>Profiles in Solaris 11 RBAC allow authorizations and privileged commands to be grouped together and can be assigned to users or to roles.</p>
-<pre><code>profiles -a |more
-profiles -p &quot;User Management&quot; info
+<p>In order to find out more about the profiles available, you could use the command:</p>
+<pre><code>profiles -a|more
 </code></pre>
 
+<p>To find out more about the specific profile such as "User Management" including the authorizations and the commands the profile allows, you could use the command:</p>
+<pre><code>profiles -p &quot;User Management&quot; info
+</code></pre>
+
+<ul>
+<li>
+<p><strong>Profile shell</strong></p>
+</li>
+<li>
+<p>In Solaris 11, users and roles can also run privileged applications from a <em>profile shell</em>.</p>
+</li>
+<li>A special shell that recognizes the security attributes included in a rights profile.</li>
+<li>Can be assigned to a specific user as a login shell, or started by using the <code>su</code> command.</li>
+<li>In Solaris 11, every shell has a profile shell counterpart (e.g. bash and pfbash).</li>
+</ul>
 <h1 id="more-on-rbac-and-privileges">More on RBAC And Privileges</h1>
 <ul>
 <li><a href="http://www.c0t0d0s0.org/archives/4073-Less-known-Solaris-features-RBAC-and-Privileges-Part-1-Introduction.html">c0t0d0s0.org Tutorial on RBAC</a></li>
@@ -355,6 +426,10 @@ profiles -p &quot;User Management&quot; info
 <li><code>pfexec &lt;command&gt;</code> is a way to execute commands within your rights profile without using su or sudo.</li>
 </ul>
 </li>
+<li>
+<p><a href="http://docs.oracle.com/cd/E53394_01/html/E54830/rbac-1.html#scrolltoc">Solaris 11.3 User Rights Management</a></p>
+</li>
+<li><a href="http://docs.oracle.com/cd/E53394_01/html/E54830/prbac-moreabt-1.html#OSSUPprbac-25">Oracle User Authorizations, Rights Profiles and Roles</a></li>
 </ul>
               
             </div>
@@ -363,7 +438,7 @@ profiles -p &quot;User Management&quot; info
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../Solaris_SMF/" class="btn btn-neutral float-right" title="Solaris SMF">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../Solaris_SMB_vs_Samba/" class="btn btn-neutral float-right" title="Solaris SMB vs Samba">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../Solaris_Networking/" class="btn btn-neutral" title="Solaris Networking"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -397,7 +472,7 @@ profiles -p &quot;User Management&quot; info
         <span><a href="../Solaris_Networking/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../Solaris_SMF/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../Solaris_SMB_vs_Samba/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

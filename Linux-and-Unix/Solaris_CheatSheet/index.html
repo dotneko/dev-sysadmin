@@ -64,13 +64,6 @@
 <li>
           
             <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../../Solaris_SMB_vs_Samba/">Solaris SMB vs Samba</a>
-        
-    </li>
-<li>
-          
-            <li>
     <ul class="subnav">
     <li><span>Linux and Unix</span></li>
 
@@ -120,6 +113,13 @@
             
     <li class="toctree-l1 ">
         <a class="" href="../SSH_and_SCP_Usage/">SSH and SCP Usage</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../Sharing_Files_and_Samba/">Sharing Files and Samba</a>
         
     </li>
 
@@ -176,6 +176,11 @@
                 <li class="toctree-l3"><a href="#networking">Networking</a></li>
                 
             
+                <li class="toctree-l3"><a href="#installing-the-graphical-user-interface">Installing the Graphical User Interface</a></li>
+                
+                    <li><a class="toctree-l4" href="#disabling-and-enabling-the-gui">Disabling and Enabling the GUI</a></li>
+                
+            
             </ul>
         
     </li>
@@ -191,6 +196,13 @@
             
     <li class="toctree-l1 ">
         <a class="" href="../Solaris_Roles/">Solaris Roles</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../Solaris_SMB_vs_Samba/">Solaris SMB vs Samba</a>
         
     </li>
 
@@ -360,6 +372,11 @@
             <div class="section">
               
                 <h1 id="solaris-113-cheatsheet">Solaris 11.3 Cheatsheet</h1>
+<ul>
+<li><a href="https://files.fosswire.com/2007/08/fwunixref.pdf">Unix Commands Cheatsheet</a></li>
+<li><a href="http://sites.tufts.edu/cbi/files/2013/01/linux_cheat_sheet.pdf">Another Linux/Unix Cheatsheet</a></li>
+<li><a href="http://cb.vu/unixtoolbox.xhtml">Unix Toolbox commands</a></li>
+</ul>
 <h1 id="useradd">Useradd</h1>
 <ul>
 <li>Administrator requires <strong>User Management Profile</strong></li>
@@ -430,7 +447,7 @@ groupadd -U user1[,user2] new_groupname     # Creates new group and adds users t
 </code></pre>
 
 <ul>
-<li>Recursively give directories read privileges:</li>
+<li>Recursively give files read privileges:</li>
 </ul>
 <pre><code>find /path/to/base/dir -type f -exec chmod 644 {} +
 </code></pre>
@@ -440,7 +457,10 @@ groupadd -U user1[,user2] new_groupname     # Creates new group and adds users t
 <li>Roles must be created and assigned to the user before the user can assume the role via <code>su</code>.</li>
 <li>Authorized commands could be run via <code>pfexec</code> instead of <code>sudo</code>/<code>su</code></li>
 </ul>
-<pre><code>roleadd -P &quot;User Management&quot; rolename        # Creates a role named rolename with profile &quot;User Management&quot;
+<pre><code>profiles -a|more                            # Lists rights profiles available
+profiles -p &quot;User Management&quot; info          # Info on specific rights profile
+
+roleadd -P &quot;User Management&quot; rolename       # Creates a role named rolename with profile &quot;User Management&quot;
 
     -c comment
     -e expire
@@ -493,8 +513,40 @@ nlsadm set-timezone Canada/Central          # Sets timezone
 <ul>
 <li>Edit <code>/etc/motd</code> file as root.</li>
 </ul>
-<h1 id="change-system-identity-hostname-source">Change System Identity / hostname (<a href="https://docs.oracle.com/cd/E23824_01/html/821-1451/sysressysinfo-8.html">Source</a>)</h1>
-<pre><code>svccfg -s svc:/system/identity:node setprop config/nodename = some-name
+<h1 id="change-system-identity-hostname-source">Change System Identity / hostname (<a href="https://blogs.oracle.com/VDIpier/entry/solaris_11_changing_the_hostname">Source</a>)</h1>
+<p>To check the current environment properties:</p>
+<pre><code>svccfg -s system/identity:node listprop config
+</code></pre>
+
+<p>Should output two properties:</p>
+<pre><code>config                 application        
+config/enable_mapping boolean     true
+config/nodename       astring     solaris
+config/loopback       astring     solaris
+</code></pre>
+
+<p>Set the new hostname:</p>
+<pre><code>svccfg -s system/identity:node setprop config/nodename=&quot;my-host-name&quot;
+svccfg -s system/identity:node setprop config/loopback=&quot;my-host-name&quot;
+</code></pre>
+
+<p>Refresh the properties:</p>
+<pre><code>svccfg -s system/identity:node refresh
+</code></pre>
+
+<p>Restart the service:</p>
+<pre><code>svcadm restart system/identity:node
+</code></pre>
+
+<p>Verify that the changes took place by running <code>hostname</code> or:</p>
+<pre><code>svccfg -s system/identity:node listprop config
+</code></pre>
+
+<p>Should output:</p>
+<pre><code>config                 application        
+config/enable_mapping boolean     true
+config/nodename       astring     my-host-name
+config/loopback       astring     my-host-name
 </code></pre>
 
 <h1 id="networking">Networking</h1>
@@ -509,6 +561,18 @@ traceroute url
 netcfg                                      # Create and modify network configuration profiles
 netcfg&gt; list                                # Lists objects
 netcfg&gt; list ncp Automatic                  # Lists the details for the NCP Automatic
+</code></pre>
+
+<h1 id="installing-the-graphical-user-interface">Installing the Graphical User Interface</h1>
+<pre><code>pkg install solaris-desktop
+</code></pre>
+
+<h3 id="disabling-and-enabling-the-gui">Disabling and Enabling the GUI</h3>
+<pre><code>svcadm disable application/graphical-login/gdm:default
+svcadm disable gdm                                      # Shortcut; same as above
+
+svcadm enable gdm                                       # Re-enable GUI, persists
+startx                                                  # Run once
 </code></pre>
               
             </div>

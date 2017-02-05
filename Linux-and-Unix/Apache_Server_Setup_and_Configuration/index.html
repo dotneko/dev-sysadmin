@@ -64,13 +64,6 @@
 <li>
           
             <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../../Solaris_SMB_vs_Samba/">Solaris SMB vs Samba</a>
-        
-    </li>
-<li>
-          
-            <li>
     <ul class="subnav">
     <li><span>Linux and Unix</span></li>
 
@@ -81,14 +74,27 @@
         
             <ul>
             
+                <li class="toctree-l3"><a href="#resources">Resources</a></li>
+                
+            
                 <li class="toctree-l3"><a href="#apache-on-oracle-solaris-113">Apache on Oracle Solaris 11.3</a></li>
                 
             
-                <li class="toctree-l3"><a href="#configuration-of-apache">Configuration of Apache</a></li>
+                <li class="toctree-l3"><a href="#configuring-apache">Configuring Apache</a></li>
                 
                     <li><a class="toctree-l4" href="#edit-etcapache222httpdconf">Edit /etc/apache2/2.2/httpd.conf</a></li>
                 
-                    <li><a class="toctree-l4" href="#configuring-authentication-and-authorization">Configuring Authentication and Authorization</a></li>
+                    <li><a class="toctree-l4" href="#directives-in-httpdconf">Directives in httpd.conf</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#setting-up-virtual-hosts-in-apache">Setting up Virtual Hosts in Apache</a></li>
+                
+                    <li><a class="toctree-l4" href="#edit-the-etcapache222httpdconf-file">Edit the /etc/apache2/2.2/httpd.conf file:</a></li>
+                
+                    <li><a class="toctree-l4" href="#additional-steps-for-virtual-hosts-on-different-ports">Additional steps for virtual hosts on different ports</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#configuring-authentication-and-authorization">Configuring Authentication and Authorization</a></li>
                 
             
             </ul>
@@ -140,6 +146,13 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../Sharing_Files_and_Samba/">Sharing Files and Samba</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../Slackware/">Slackware</a>
         
     </li>
@@ -162,6 +175,13 @@
             
     <li class="toctree-l1 ">
         <a class="" href="../Solaris_Roles/">Solaris Roles</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../Solaris_SMB_vs_Samba/">Solaris SMB vs Samba</a>
         
     </li>
 
@@ -330,9 +350,11 @@
           <div role="main">
             <div class="section">
               
-                <p><em>Useful Links:</em>
-- <a href="http://httpd.apache.org/docs/2.4/">Apache HTTP Server Version 2.4 Documentation</a>
-- <a href="https://docs.oracle.com/cd/E53394_01/html/E54831/gnvhs.html">Oracle Docs: Apache Web Server</a></p>
+                <h1 id="resources">Resources</h1>
+<ul>
+<li><a href="http://httpd.apache.org/docs/2.4/">Apache HTTP Server Version 2.4 Documentation</a></li>
+<li><a href="https://docs.oracle.com/cd/E53394_01/html/E54831/gnvhs.html">Oracle Docs: Apache Web Server</a></li>
+</ul>
 <h1 id="apache-on-oracle-solaris-113">Apache on Oracle Solaris 11.3</h1>
 <ul>
 <li>By default apache22 is installed but disabled. One can check using either of the following:</li>
@@ -363,18 +385,18 @@ svcadm -v enable /network/http:apache24
 <ul>
 <li>Verify that webserver works by opening: <code>http://localhost:80</code> in browser.</li>
 </ul>
-<h1 id="configuration-of-apache">Configuration of Apache</h1>
+<h1 id="configuring-apache">Configuring Apache</h1>
 <ul>
 <li>Configuration is stored in the <code>/etc/apache2/2.2/httpd.conf</code> file.</li>
 <li>By default, web pages are served from <code>/var/apache2/2.2/htdocs</code> folder.</li>
 </ul>
-<h2 id="edit-etcapache222httpdconf">Edit <code>/etc/apache2/2.2/httpd.conf</code></h2>
+<h3 id="edit-etcapache222httpdconf">Edit <code>/etc/apache2/2.2/httpd.conf</code></h3>
 <ul>
 <li>Can edit <code>DocumentRoot</code> to point to another directory.</li>
 <li>Make sure to change the <Directory ""> to point to the same DocumentRoot</li>
 <li>Also need to make sure that the directory it points into to has execute permissions, otherwise others won't be able to read the files within the directory.</li>
 </ul>
-<h4 id="directives-in-httpdconf">Directives in <code>httpd.conf</code></h4>
+<h3 id="directives-in-httpdconf">Directives in <code>httpd.conf</code></h3>
 <pre><code>Allow from &lt;address&gt;        # &lt;address&gt; is IP address or fully qualified domain name
 Deny from &lt;address&gt;
 </code></pre>
@@ -390,7 +412,58 @@ Allow from some.host.com
 <ul>
 <li>The above example will by default deny access to all, and then only allow access from some.host.com.</li>
 </ul>
-<h2 id="configuring-authentication-and-authorization">Configuring Authentication and Authorization</h2>
+<h1 id="setting-up-virtual-hosts-in-apache">Setting up Virtual Hosts in Apache</h1>
+<ul>
+<li>One can examine <code>/etc/apache2/2.2/samples-conf.d/vhosts.conf</code> to show examples of VirtualHost configuration tags that should be added to the <code>/etc/apache2/2.2/httpd.conf</code> file.</li>
+</ul>
+<h3 id="edit-the-etcapache222httpdconf-file">Edit the <code>/etc/apache2/2.2/httpd.conf</code> file:</h3>
+<ul>
+<li>Comment out the default <code>DocumentRoot "..."</code></li>
+<li>Add the following to direct queries to the specified DocumentRoot:</li>
+</ul>
+<pre><code>Listen 80                   # Check that Apache listens on this port (default)
+
+NameVirtualHost *:80        # Allows for name based virtual hosts
+
+&lt;VirtualHost *:80&gt;
+    DocumentRoot &quot;/path/directory&quot;
+    ServerName www.host.name
+&lt;/VirtualHost&gt;
+</code></pre>
+
+<ul>
+<li>Next, need to give access through Apache to the specified directory by adding:</li>
+</ul>
+<pre><code>&lt;Directory &quot;/path/directory&quot;&gt;
+    Options Indexes FollowSymLinks
+    AllowOverride None
+    Order allow,deny
+    Allow from all
+&lt;/Directory&gt;
+</code></pre>
+
+<p>Also ensure the <code>/etc/inet/hosts</code> file is configured to resolve the ServerName (note that <code>/etc/hosts</code> symbolically links to <code>/etc/inet/hosts</code>):</p>
+<pre><code>192.168.1.123 www.host.name     # Assigns 192.168.1.123 to www.host.name
+</code></pre>
+
+<h2 id="additional-steps-for-virtual-hosts-on-different-ports">Additional steps for virtual hosts on different ports</h2>
+<p>Assuming the above virtual host is created, we add another virtual host that runs on a different port:</p>
+<pre><code>Listen 8123
+
+&lt;VirtualHost *:8123&gt;
+    DocumentRoot &quot;/path/anotherDirectory&quot;
+&lt;/VirtualHost&gt;
+
+&lt;Directory &quot;/path/anotherDirectory&quot;&gt;
+    Options Indexes FollowSymLinks
+    AllowOverride None
+    Order allow,deny
+    Allow from all
+&lt;/Directory&gt;
+
+</code></pre>
+
+<h1 id="configuring-authentication-and-authorization">Configuring Authentication and Authorization</h1>
 <ul>
 <li><a href="http://httpd.apache.org/docs/2.2/howto/auth.html">Authentication and Authorization for version 2.2 from apache.org</a></li>
 <li>Create a password file (not accessible from the web) using <code>htpasswd</code>.</li>
@@ -423,7 +496,7 @@ Require user user_name
         <a href="../Bash_Automating_User_and_Passwords/" class="btn btn-neutral float-right" title="Bash Automating User and Passwords">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../../Solaris_SMB_vs_Samba/" class="btn btn-neutral" title="Solaris SMB vs Samba"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../.." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -451,7 +524,7 @@ Require user user_name
           <a href="https://github.com/gavchan/dev-sysadmin/" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../../Solaris_SMB_vs_Samba/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../.." style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
         <span style="margin-left: 15px"><a href="../Bash_Automating_User_and_Passwords/" style="color: #fcfcfc">Next &raquo;</a></span>

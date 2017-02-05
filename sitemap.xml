@@ -10,14 +10,6 @@
     
 
     
-    <url>
-     <loc>/Solaris_SMB_vs_Samba/</loc>
-     <lastmod>2017-02-04</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    
-
-    
         
     <url>
      <loc>/Linux-and-Unix/Apache_Server_Setup_and_Configuration/</loc>
@@ -62,6 +54,12 @@
     </url>
         
     <url>
+     <loc>/Linux-and-Unix/Sharing_Files_and_Samba/</loc>
+     <lastmod>2017-02-04</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
      <loc>/Linux-and-Unix/Slackware/</loc>
      <lastmod>2017-02-04</lastmod>
      <changefreq>daily</changefreq>
@@ -81,6 +79,12 @@
         
     <url>
      <loc>/Linux-and-Unix/Solaris_Roles/</loc>
+     <lastmod>2017-02-04</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/Linux-and-Unix/Solaris_SMB_vs_Samba/</loc>
      <lastmod>2017-02-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
