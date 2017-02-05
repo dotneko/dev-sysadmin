@@ -114,11 +114,16 @@
                 
                     <li><a class="toctree-l4" href="#controlling-who-can-connect-through-ftp">Controlling who can connect through FTP</a></li>
                 
-                    <li><a class="toctree-l4" href="#configuring-anonymous-ftp-no-write-access">Configuring anonymous FTP (No write access)</a></li>
+            
+                <li class="toctree-l3"><a href="#configuring-anonymous-ftp">Configuring Anonymous FTP</a></li>
                 
-                    <li><a class="toctree-l4" href="#configuring-anonymous-ftp-with-an-upload-directory">Configuring anonymous FTP (with an upload directory)</a></li>
+                    <li><a class="toctree-l4" href="#example-of-a-typical-anonymous-ftp-configuration-block-source">Example of a typical anonymous FTP configuration block (Source):</a></li>
                 
-                    <li><a class="toctree-l4" href="#transferring-directories">Transferring directories</a></li>
+                    <li><a class="toctree-l4" href="#example-of-basic-anonymous-configuration-no-upload-directories">Example of basic anonymous configuration, no upload directories</a></li>
+                
+                    <li><a class="toctree-l4" href="#example-of-anonymous-ftp-with-an-upload-directory">Example of anonymous FTP (with an upload directory)</a></li>
+                
+                    <li><a class="toctree-l4" href="#trying-to-transferring-directories-via-ftp">Trying to transferring directories via FTP</a></li>
                 
             
             </ul>
@@ -406,8 +411,12 @@ ftp&gt; mput           # Sends multiple files; note that directories are not tra
 
 <h1 id="configuring-proftpdconf">Configuring ProFTPD.conf</h1>
 <ul>
-<li>Detailed configuration documentation at <a href="http://www.proftpd.org/docs/howto/ConfigFile.html">proftpd.org</a></li>
 <li>Configuration is done through editing the <code>/etc/proftpd.conf</code> file.</li>
+<li>Detailed configuration documentation at <a href="http://www.proftpd.org/docs/howto/ConfigFile.html">proftpd.org</a><ul>
+<li><a href="http://www.proftpd.org/docs/howto/ConfigurationTricks.html">Configuration tricks</a></li>
+<li>[Display directive](- Detailed configuration documentation at <a href="http://www.proftpd.org/docs/howto/ConfigFile.html">proftpd.org</a></li>
+</ul>
+</li>
 <li>The file <code>/etc/ftpd/ftpusers</code> in Solaris contains a list of users denied access to the FTP server, e.g. root.</li>
 <li>See <a href="https://docs.oracle.com/cd/E23823_01/html/816-4555/wuftp-43.html">Oracle: Controlling FTP Server Access</a> for more information.</li>
 <li>Note that any change of the file requires restarting the ftp service.<ul>
@@ -415,7 +424,7 @@ ftp&gt; mput           # Sends multiple files; note that directories are not tra
 </ul>
 </li>
 </ul>
-<h2 id="changing-the-ftp-connection-message">Changing the FTP Connection Message</h2>
+<h3 id="changing-the-ftp-connection-message">Changing the FTP Connection Message</h3>
 <ul>
 <li>Configured under <code>DisplayConnect</code> in <code>/etc/proftpd.conf</code>.</li>
 <li>By default <code>DisplayConnect</code> is configured to display the contents of the <code>/etc/issue</code> text file.</li>
@@ -426,17 +435,17 @@ ftp&gt; mput           # Sends multiple files; note that directories are not tra
 <ul>
 <li>One can modify this to point to another file or edit the <code>/etc/issue</code> file directly.</li>
 </ul>
-<h2 id="confine-ftp-users-to-their-home-directory">Confine FTP users to their home directory</h2>
+<h3 id="confine-ftp-users-to-their-home-directory">Confine FTP users to their home directory</h3>
 <p>In <code>/etc/proftpd.conf</code>, example:</p>
 <pre><code>DefaultRoot         ~       # Causes every FTP user to be &quot;jailed&quot; into their home directory.
 </code></pre>
 
-<h2 id="changing-the-ftp-closing-message">Changing the FTP Closing Message</h2>
+<h3 id="changing-the-ftp-closing-message">Changing the FTP Closing Message</h3>
 <p>In <code>/etc/proftpd.conf</code>, example, can point the message to /etc/quitmessage</p>
 <pre><code>DisplayQuit         /etc/quitmessage
 </code></pre>
 
-<h2 id="controlling-who-can-connect-through-ftp">Controlling who can connect through FTP</h2>
+<h3 id="controlling-who-can-connect-through-ftp">Controlling who can connect through FTP</h3>
 <ul>
 <li>Using the following directive would deny all access by default:</li>
 </ul>
@@ -455,14 +464,45 @@ DenyAll
 &lt;/Anonymous&gt;
 </code></pre>
 
-<h2 id="configuring-anonymous-ftp-no-write-access">Configuring anonymous FTP (No write access)</h2>
+<h1 id="configuring-anonymous-ftp">Configuring Anonymous FTP</h1>
 <ul>
 <li>By default, Solaris 11 does not allow for anonymous connections.</li>
-<li>To enable, one can add the following according to <a href="http://www.proftpd.org/docs/configs/basic.conf">www.proftpd.org</a>:</li>
-<li>Also need to make sure <code>ftp</code> is removed from the ftp deny list that is stored in <code>/etc/ftpd/ftpusers</code> (Solaris).</li>
+<li>To enable, one can add consult the basic configuration @ <a href="http://www.proftpd.org/docs/configs/basic.conf">www.proftpd.org</a></li>
+<li>May also need to make sure <code>ftp</code> is removed from the ftp deny list that is stored in <code>/etc/ftpd/ftpusers</code> (Solaris).</li>
 </ul>
+<h3 id="example-of-a-typical-anonymous-ftp-configuration-block-source">Example of a typical anonymous FTP configuration block (<a href="http://www.proftpd.org/docs/directives/linked/config_ref_Anonymous.html">Source</a>):</h3>
+<pre><code>&lt;Anonymous /home/ftp&gt;     # Root-directory to chroot specified as /home/ftp
+  # After anonymous login, daemon runs as user/group ftp.
+  User ftp                
+  Group ftp                     
+
+  # The client login 'anonymous' is aliased to the &quot;real&quot; user 'ftp'.
+  UserAlias anonymous ftp
+
+  # Deny write operations to all directories, except for 'incoming' where
+  # 'STOR' is allowed (but 'READ' operations are prohibited)
+
+  &lt;Directory *&gt;
+    &lt;Limit WRITE&gt;
+      DenyAll
+    &lt;/Limit&gt;
+  &lt;/Directory&gt;
+
+  &lt;Directory incoming&gt;
+    &lt;Limit READ &gt;
+      DenyAll
+    &lt;/Limit&gt;
+    &lt;Limit STOR&gt;
+      AllowAll
+    &lt;/Limit&gt;
+  &lt;/Directory&gt;
+
+&lt;/Anonymous&gt;
+</code></pre>
+
+<h3 id="example-of-basic-anonymous-configuration-no-upload-directories">Example of basic anonymous configuration, no upload directories</h3>
 <pre><code># A basic anonymous configuration, no upload directories:
-&lt;Anonymous ~ftp&gt;
+&lt;Anonymous /existing/dir&gt;
   User              ftp
   Group             ftp
 
@@ -484,10 +524,7 @@ DenyAll
 &lt;/Anonymous&gt;
 </code></pre>
 
-<h2 id="configuring-anonymous-ftp-with-an-upload-directory">Configuring anonymous FTP (with an upload directory)</h2>
-<ul>
-<li>Add the following within the <Anonymous></Anonymous> section from above:</li>
-</ul>
+<h3 id="example-of-anonymous-ftp-with-an-upload-directory">Example of anonymous FTP (with an upload directory)</h3>
 <pre><code># An upload directory that allows storing files but not retrieving
 # or creating directories.
 &lt;Directory uploads/*&gt;
@@ -502,9 +539,9 @@ DenyAll
 </code></pre>
 
 <ul>
-<li>For detailed example configuration, see example:  <a href="http://www.proftpd.org/docs/configs/anonymous.conf">anonymous.conf</a></li>
+<li>For detailed configuration, see article on:  <a href="http://www.proftpd.org/docs/configs/anonymous.conf">anonymous.conf</a></li>
 </ul>
-<h2 id="transferring-directories">Transferring directories</h2>
+<h2 id="trying-to-transferring-directories-via-ftp">Trying to transferring directories via FTP</h2>
 <ul>
 <li>FTP will not automatically create and transfer directories when using <code>mput</code>.</li>
 <li>It would be better to use <code>scp</code> for better security and support for recursive transfer of files/subdirectories.</li>
@@ -535,6 +572,15 @@ echo quit &gt;&gt; command.ftp
 ftp -s:command.ftp                  # Only works with Windows Cmd FTP
 exit
 </code></pre>
+
+<ul>
+<li>References:<ul>
+<li><a href="http://www.stratigery.com/scripting.ftp.html">How to user ftp in a shell script</a></li>
+<li><a href="http://superuser.com/questions/98479/how-to-login-to-ftp-in-one-step">How to login to FTP in one step</a></li>
+<li><a href="http://unix.stackexchange.com/questions/32678/how-can-i-list-subdirectories-recursively">Listing subdirectories recursively?</a></li>
+</ul>
+</li>
+</ul>
               
             </div>
           </div>

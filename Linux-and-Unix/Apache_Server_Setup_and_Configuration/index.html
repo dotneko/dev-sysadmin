@@ -86,6 +86,8 @@
                 
                     <li><a class="toctree-l4" href="#directives-in-httpdconf">Directives in httpd.conf</a></li>
                 
+                    <li><a class="toctree-l4" href="#displaying-default-files-other-than-indexhtml">Displaying default files other than index.html</a></li>
+                
             
                 <li class="toctree-l3"><a href="#setting-up-virtual-hosts-in-apache">Setting up Virtual Hosts in Apache</a></li>
                 
@@ -412,6 +414,13 @@ Allow from some.host.com
 <ul>
 <li>The above example will by default deny access to all, and then only allow access from some.host.com.</li>
 </ul>
+<h3 id="displaying-default-files-other-than-indexhtml">Displaying default files other than index.html</h3>
+<ul>
+<li>Look for <code>DirectoryIndex</code> and add other possible files, e.g.:</li>
+</ul>
+<pre><code>DirectoryIndex index.html index.htm default.htm index.php index.pl
+</code></pre>
+
 <h1 id="setting-up-virtual-hosts-in-apache">Setting up Virtual Hosts in Apache</h1>
 <ul>
 <li>One can examine <code>/etc/apache2/2.2/samples-conf.d/vhosts.conf</code> to show examples of VirtualHost configuration tags that should be added to the <code>/etc/apache2/2.2/httpd.conf</code> file.</li>

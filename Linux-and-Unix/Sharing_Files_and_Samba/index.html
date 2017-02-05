@@ -123,6 +123,17 @@
         
             <ul>
             
+                <li class="toctree-l3"><a href="#legacy-sharing">Legacy Sharing</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#using-the-samba-suite">Using the Samba Suite</a></li>
+                
+                    <li><a class="toctree-l4" href="#create-a-user-for-samba">Create a user for samba</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#miscellaneous">Miscellaneous</a></li>
+                
+            
             </ul>
         
     </li>
@@ -327,7 +338,44 @@
           <div role="main">
             <div class="section">
               
-                
+                <h1 id="legacy-sharing">Legacy Sharing</h1>
+<pre><code>share                       # Display shares (more info than -A ?)
+share -A                    # Displays published shares
+share -F nfs -o ro ./share  # Defines and publishes a file system share (NFS)
+share -F smb -o rw ./share2 # Defines and publishes a file system share (SMB)
+unshare share_name          # Unpublishes a share
+unshare -a                  # Unpublishes all active shares.
+</code></pre>
+
+<h1 id="using-the-samba-suite">Using the Samba Suite</h1>
+<ul>
+<li>In Solaris 11.3, the Samba suite has to be downloaded separately:</li>
+</ul>
+<pre><code>pfexec pkg install samba    # or run as root
+</code></pre>
+
+<ul>
+<li>No configuration file exists on installation, but an example configuration file <code>smb.conf-example</code> exists in the <code>/etc/samba</code> directory.</li>
+<li>Can create new config file or use the <code>smb.conf-example</code> as a template -&gt; the samba service will look for the configuration file at <code>/etc/samba/smb.conf</code></li>
+<li>Can examine the default share named <code>[homes]</code> under the share definitions.</li>
+</ul>
+<h3 id="create-a-user-for-samba">Create a user for samba</h3>
+<pre><code>useradd samba
+passwd -r files samba           # -r files option specifies password for file system.
+
+smbadm enable-user samba        # Enables samba service for user samba.
+</code></pre>
+
+<h1 id="miscellaneous">Miscellaneous</h1>
+<ul>
+<li>Accessing a Solaris file share from Windows Command Line</li>
+</ul>
+<pre><code>net use x:\\&lt;ipaddress&gt;
+</code></pre>
+
+<ul>
+<li><code>dfshares</code>: Lists information about resources available to the host through a distributed file system.</li>
+</ul>
               
             </div>
           </div>
