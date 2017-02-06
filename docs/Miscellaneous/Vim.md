@@ -40,3 +40,6 @@ set backspace=indent,eol,start
 # Some tips found on the web:
 - Indent multiple lines quickly ([Very detailed answer at source]}(http://stackoverflow.com/questions/235839/indent-multiple-lines-quickly-in-vi)]):
     - Enter [num lines] then `>>`: E.g. `8>>` will indent 8 lines.
+- Commenting out blocks of code ([Source](http://stackoverflow.com/questions/2561418/how-to-comment-out-a-block-of-python-code-in-vim)):
+    - Go to beginning of block, press \<Ctrl-V> to enter visual mode.
+    - Move down to the end of the block, then press \<Shift-I> to insert, type `# `, and then \<Esc>
