@@ -8,7 +8,7 @@
   
   <meta name="author" content="Gavin">
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Git and GitHub - Software Development and System Administration Notes</title>
+  <title>Script for Automating User and Group Creation - Software Development and System Administration Notes</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Git and GitHub";
-    var mkdocs_page_input_path = "Miscellaneous/Git_and_GitHub.md";
-    var mkdocs_page_url = "/Miscellaneous/Git_and_GitHub/";
+    var mkdocs_page_name = "Script for Automating User and Group Creation";
+    var mkdocs_page_input_path = "Powershell/Script_for_Automating_User_and_Group_Creation.md";
+    var mkdocs_page_url = "/Powershell/Script_for_Automating_User_and_Group_Creation/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -182,38 +182,22 @@
 
         
             
-    <li class="toctree-l1 current">
-        <a class="current" href="./">Git and GitHub</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#references-and-links">References and Links</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#authentication-with-ssh-key">Authentication with SSH Key</a></li>
-                
-                    <li><a class="toctree-l4" href="#generate-new-ssh-key-with-email-as-label">Generate new SSH Key with email as label</a></li>
-                
-                    <li><a class="toctree-l4" href="#link-key-to-github-account">Link key to Github account</a></li>
-                
-                    <li><a class="toctree-l4" href="#change-git-origin-from-https-to-ssh">Change git origin from https:// to ssh</a></li>
-                
-            
-            </ul>
+    <li class="toctree-l1 ">
+        <a class="" href="../../Miscellaneous/Git_and_GitHub/">Git and GitHub</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../Octave_Basics/">Octave Basics</a>
+        <a class="" href="../../Miscellaneous/Octave_Basics/">Octave Basics</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../Vim/">Vim</a>
+        <a class="" href="../../Miscellaneous/Vim/">Vim</a>
         
     </li>
 
@@ -228,49 +212,53 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../Powershell/Functions_and_Scripting/">Functions and Scripting</a>
+        <a class="" href="../Functions_and_Scripting/">Functions and Scripting</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../Powershell/Installation_for_Linux_Mac/">Installation for Linux Mac</a>
+        <a class="" href="../Installation_for_Linux_Mac/">Installation for Linux Mac</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../Powershell/Network_Configuration/">Network Configuration</a>
+        <a class="" href="../Network_Configuration/">Network Configuration</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../Powershell/Powershell_Basics/">Powershell Basics</a>
+        <a class="" href="../Powershell_Basics/">Powershell Basics</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Script for Automating User and Group Creation</a>
+        
+            <ul>
+            
+            </ul>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../Powershell/Script_for_Automating_User_and_Group_Creation/">Script for Automating User and Group Creation</a>
+        <a class="" href="../Windows_Firewall/">Windows Firewall</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../Powershell/Windows_Firewall/">Windows Firewall</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../Powershell/Windows_Server_2012R2_Installation/">Windows Server 2012R2 Installation</a>
+        <a class="" href="../Windows_Server_2012R2_Installation/">Windows Server 2012R2 Installation</a>
         
     </li>
 
@@ -350,14 +338,14 @@
     
       
         
-          <li>Miscellaneous &raquo;</li>
+          <li>Powershell &raquo;</li>
         
       
     
-    <li>Git and GitHub</li>
+    <li>Script for Automating User and Group Creation</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/gavchan/dev-sysadmin/edit/master/docs/Miscellaneous/Git_and_GitHub.md"
+        <a href="https://github.com/gavchan/dev-sysadmin/edit/master/docs/Powershell/Script_for_Automating_User_and_Group_Creation.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -367,44 +355,181 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="references-and-links">References and Links</h1>
-<ul>
-<li><a href="http://gitref.org/index.html">Git Reference</a></li>
-<li><a href="https://github.com/chhavip/Git-Guide">Git-Guide for Open Source Contributions</a></li>
-<li><a href="https://github.com/tiimgreen/github-cheat-sheet">Git Cheatsheet</a></li>
-</ul>
-<h1 id="authentication-with-ssh-key">Authentication with SSH Key</h1>
-<ul>
-<li>
-<p>Ran into problems with 2FA when trying to connect to my own repository despite trying out various methods using https and personal access tokens.</p>
-<ul>
-<li>Username: <username> Password <personal-access-token> =&gt; Failed</li>
-</ul>
-</li>
-<li>
-<p>Eventually was able to successfully authenticate my Github identity using an SSH key (<a href="http://stackoverflow.com/questions/25550481/git-authentication-fails-after-enabling-2fa">Stackoverflow...Jossef Harush</a>:</p>
-</li>
-</ul>
-<h3 id="generate-new-ssh-key-with-email-as-label">Generate new SSH Key with email as label</h3>
-<pre><code>ssh-keygen -t rsa -b 4096 -C &quot;your_email@example.com&quot;
-</code></pre>
+                <p>Most-updated script here: https://github.com/gavchan/ws-scripts</p>
+<pre><code>function UserAdd($user, $pass) {
+    net user $user $pass /add
+}
 
-<h3 id="link-key-to-github-account">Link key to Github account</h3>
-<ul>
-<li>Use <code>cat ~/.ssh/id_rsa.pub</code> to output the generated public key, which should output something like:</li>
-</ul>
-<pre><code>ssh-rsa AAASDFlkajdsflkadsf23j23l4kjkalsdfja ... asdfkEWR== your_email@example.com
-</code></pre>
+function UserDel($user) {
+    net user $user /delete
+}
+&lt;#
+function CreateGroupsFromInput {
+    $Input = Read-Host -prompt &quot;Enter a group name to add (or just &lt;Enter&gt; to quit)&quot;
+    while ($Input -ne &quot;&quot;)
+    {
+        Write-Host &quot;Creating group: $Input&quot;
+        net localgroup &quot;$Input&quot; /add
+        $Input = Read-Host -prompt &quot;Enter a group name to add (or just &lt;Enter&gt; to quit)&quot;
+    }
+}
+#&gt;
+function CreateGroupsFromFile ($filepath) {
 
-<ul>
-<li>Next go to https://github.com &gt; Settings &gt; SSH and GPG keys</li>
-<li>Click on "New SSH key", add a title and paste the key above into the box.</li>
-</ul>
-<h3 id="change-git-origin-from-https-to-ssh">Change git origin from <code>https://</code> to <code>ssh</code></h3>
-<ul>
-<li>Go to your repository location and type:</li>
-</ul>
-<pre><code>git remote set-url origin git@github.com:&lt;github username&gt;/&lt;repository name&gt;
+    &lt;#
+    .SYNOPSIS
+        Creates a series of groups from a .CSV file with 1st field named &quot;Group&quot;
+    #&gt;
+
+    $Groups = Import-Csv -Delimiter &quot;|&quot; -Path $filepath
+    foreach ($Group in $Groups)
+    {
+        net localgroup $Group.Group /add
+    }
+}
+
+
+function DeleteGroupsFromFile ($filepath) {
+    &lt;#
+    .SYNOPSIS
+        Deletes a series of groups from a .CSV file with 1st field named &quot;Group&quot;
+    #&gt;
+
+    $Groups = Import-Csv -Delimiter &quot;|&quot; -Path $filepath
+    foreach ($Group in $Groups)
+    {
+        net localgroup $Group.Group /delete
+    }
+}
+
+function AddUsersToGroup($group, $userlist) {
+
+    &lt;#
+    .SYNOPSIS
+        Adds a comma separated user list to an existing group
+    .PARAMETER $group
+        Existing group name
+    .PARAMETER $userlist
+        A comma separated list of usernames, e.g. User1,User2,User3
+    #&gt;
+
+    $userlist.Split(&quot;,&quot;) | ForEach {
+        Write-Host &quot;Adding user $_ to the group $group&quot;
+        net localgroup $group $_ /add
+    }
+}
+
+function AddUsersToGroupFromInput($Groupname) {
+
+    &lt;#
+    .SYNOPSIS
+        Takes input from host to add users to a given group.
+    #&gt;
+
+    $Input = Read-Host -prompt &quot;Enter a username to add to $Groupname (or just &lt;Enter&gt; to quit)&quot;
+    while ($Input -ne &quot;&quot;)
+    {
+        Write-Host Adding $Input to group $Groupname
+        net localgroup $Groupname $Input /add
+        $Input = Read-Host -prompt &quot;Enter a username to add to $Groupname (or just &lt;Enter&gt; to quit)&quot;
+    }
+}
+
+function CreateUsersFromFile ($filepath) {
+
+    &lt;#
+    .SYNOPSIS
+        Creates a series of users from a given $filepath
+    #&gt;
+
+    $Users = Import-Csv -Delimiter &quot;|&quot; -Path $filepath
+    Write-Host &quot;Retrieving Users from $filepath&quot;
+
+    foreach ($User in $Users)
+    {
+        Write-Host Adding $User.Username $User.Pass
+        net user $User.Username $User.Pass /add
+
+    }
+}
+
+function DeleteUsersFromFile ($filepath) {
+
+    &lt;#
+    .SYNOPSIS
+        Deletes a series of users from a given $filepath
+    #&gt;
+
+    $Users = Import-Csv -Delimiter &quot;|&quot; -Path $filepath
+    foreach ($User in $Users)
+    {
+        Write-Host Deleting $User.Username
+        net user $User.Username /delete
+    }
+}
+
+function AddGroupList ($filepath) {
+
+    &lt;#
+    .SYNOPSIS
+        Deletes a series of users from a given $filepath
+    #&gt;
+
+    $Groups = Import-Csv -Delimiter &quot;|&quot; -Path $filepath
+    foreach ($Group in $Groups)
+    {
+        AddUsersToGroup $Group.Group $Group.Users
+    }
+}
+
+function PrintUserList ($filepath) {
+    $Users = Import-Csv -Delimiter &quot;|&quot; -Path $filepath
+    foreach ($User in $Users)
+    {
+        Write-Host $User.Username $User.Pass
+    }
+}
+
+function ResetAndAdd() {
+    Write-Host &quot;Starting fresh by deleting existing groups and users from grouplist.csv and userlist.csv&quot;
+
+    # --- Delete previous entries
+    DeleteGroupsFromFile(&quot;./grouplist.csv&quot;)
+    DeleteUsersFromFile(&quot;./userlist.csv&quot;)
+
+    # --- Create groups from file
+    Write-Host &quot;Creating Groups from grouplist.csv&quot;
+    CreateGroupsFromFile(&quot;./grouplist.csv&quot;)
+
+    # --- Create users from file
+    Write-Host &quot;Adding Users from userlist.csv with the respective passwords&quot;
+    CreateUsersFromFile(&quot;./userlist.csv&quot;)
+
+    # --- Add users to group
+    Write-Host &quot;Add list of users into specified group from grouplist.csv&quot;
+    AddGroupList(&quot;./grouplist.csv&quot;)
+}
+
+# --- Display Info
+
+Write-Host &quot;Functions installed from script:&quot;
+Write-Host &quot;The default Users list is stored in ./userlist.csv - Fields: User|Pass&quot;
+Write-Host &quot;The default Group list is stored in ./grouplist.csv - Fields: Group|Users (user1,user2,user3&quot;
+
+Write-Host &quot;function UserAdd(user, pass)&quot;
+Write-Host &quot;function UserDel(user)&quot;
+Write-Host &quot;function CreateGroupsFromInput()&quot;
+Write-Host &quot;function CreateGroupsFromFile (filepath)&quot;
+Write-Host &quot;function DeleteGroupsFromFile (filepath)&quot;
+Write-Host &quot;function AddUsersToGroup(group, userlist)&quot;
+Write-Host &quot;function AddUsersToGroupFromInput(Groupname)&quot;
+Write-Host &quot;function CreateUsersFromFile (filepath)&quot;
+Write-Host &quot;function DeleteUsersFromFile (filepath)&quot;
+Write-Host &quot;function AddGroupList (filepath)&quot;
+Write-Host &quot;function PrintUserList (filepath)&quot;
+Write-Host &quot;function ResetAndAdd()&quot;
+
+Write-Host &quot;`nExecute ResetAndAdd to start reset existing groups/users and add them again&quot;
 </code></pre>
               
             </div>
@@ -413,10 +538,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../Octave_Basics/" class="btn btn-neutral float-right" title="Octave Basics">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../Windows_Firewall/" class="btn btn-neutral float-right" title="Windows Firewall">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../../Linux-and-Unix/Users_and_Groups/" class="btn btn-neutral" title="Users and Groups"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../Powershell_Basics/" class="btn btn-neutral" title="Powershell Basics"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -444,10 +569,10 @@
           <a href="https://github.com/gavchan/dev-sysadmin/" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../../Linux-and-Unix/Users_and_Groups/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../Powershell_Basics/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../Octave_Basics/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../Windows_Firewall/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

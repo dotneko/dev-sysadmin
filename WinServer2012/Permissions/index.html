@@ -8,7 +8,7 @@
   
   <meta name="author" content="Gavin">
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Git and GitHub - Software Development and System Administration Notes</title>
+  <title>Permissions - Software Development and System Administration Notes</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Git and GitHub";
-    var mkdocs_page_input_path = "Miscellaneous/Git_and_GitHub.md";
-    var mkdocs_page_url = "/Miscellaneous/Git_and_GitHub/";
+    var mkdocs_page_name = "Permissions";
+    var mkdocs_page_input_path = "WinServer2012/Permissions.md";
+    var mkdocs_page_url = "/WinServer2012/Permissions/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -182,38 +182,22 @@
 
         
             
-    <li class="toctree-l1 current">
-        <a class="current" href="./">Git and GitHub</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#references-and-links">References and Links</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#authentication-with-ssh-key">Authentication with SSH Key</a></li>
-                
-                    <li><a class="toctree-l4" href="#generate-new-ssh-key-with-email-as-label">Generate new SSH Key with email as label</a></li>
-                
-                    <li><a class="toctree-l4" href="#link-key-to-github-account">Link key to Github account</a></li>
-                
-                    <li><a class="toctree-l4" href="#change-git-origin-from-https-to-ssh">Change git origin from https:// to ssh</a></li>
-                
-            
-            </ul>
+    <li class="toctree-l1 ">
+        <a class="" href="../../Miscellaneous/Git_and_GitHub/">Git and GitHub</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../Octave_Basics/">Octave Basics</a>
+        <a class="" href="../../Miscellaneous/Octave_Basics/">Octave Basics</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../Vim/">Vim</a>
+        <a class="" href="../../Miscellaneous/Vim/">Vim</a>
         
     </li>
 
@@ -285,42 +269,61 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../WinServer2012/Basic_Command_Line/">Basic Command Line</a>
+        <a class="" href="../Basic_Command_Line/">Basic Command Line</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Permissions</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#ntfs-permissions-in-ws-2012">NTFS Permissions in WS 2012</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#permission-of-shares">Permission of shares</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#what-happens-when-combining-share-and-ntfs-permissions">What happens when combining share and NTFS permissions?</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#changing-ntfs-folder-permissions">Changing NTFS Folder Permissions</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#references">References</a></li>
+                
+            
+            </ul>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../WinServer2012/Permissions/">Permissions</a>
+        <a class="" href="../Server_Roles/">Server Roles</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../WinServer2012/Server_Roles/">Server Roles</a>
+        <a class="" href="../Sharing_Folders/">Sharing Folders</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../WinServer2012/Sharing_Folders/">Sharing Folders</a>
+        <a class="" href="../User_Management/">User Management</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../WinServer2012/User_Management/">User Management</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../WinServer2012/Windows_Server/">Windows Server</a>
+        <a class="" href="../Windows_Server/">Windows Server</a>
         
     </li>
 
@@ -350,14 +353,14 @@
     
       
         
-          <li>Miscellaneous &raquo;</li>
+          <li>WinServer2012 &raquo;</li>
         
       
     
-    <li>Git and GitHub</li>
+    <li>Permissions</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/gavchan/dev-sysadmin/edit/master/docs/Miscellaneous/Git_and_GitHub.md"
+        <a href="https://github.com/gavchan/dev-sysadmin/edit/master/docs/WinServer2012/Permissions.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -367,45 +370,105 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="references-and-links">References and Links</h1>
-<ul>
-<li><a href="http://gitref.org/index.html">Git Reference</a></li>
-<li><a href="https://github.com/chhavip/Git-Guide">Git-Guide for Open Source Contributions</a></li>
-<li><a href="https://github.com/tiimgreen/github-cheat-sheet">Git Cheatsheet</a></li>
-</ul>
-<h1 id="authentication-with-ssh-key">Authentication with SSH Key</h1>
+                <h1 id="ntfs-permissions-in-ws-2012">NTFS Permissions in WS 2012</h1>
 <ul>
 <li>
-<p>Ran into problems with 2FA when trying to connect to my own repository despite trying out various methods using https and personal access tokens.</p>
+<p>Permissions can be set at both the folder and file level:</p>
 <ul>
-<li>Username: <username> Password <personal-access-token> =&gt; Failed</li>
+<li>Full control: can add, change, move, delete and <em>change permissions</em></li>
+<li>Modify: combination of Read and Write; delete files within folder</li>
+<li>Read &amp; Execute</li>
+<li>List folder contents (applies only to folder): does not allow direct read.</li>
+<li>Read</li>
+<li>Write: can create files and folders but <em>cannot read existing information</em>.</li>
 </ul>
 </li>
 <li>
-<p>Eventually was able to successfully authenticate my Github identity using an SSH key (<a href="http://stackoverflow.com/questions/25550481/git-authentication-fails-after-enabling-2fa">Stackoverflow...Jossef Harush</a>:</p>
+<p>Note that NTFS permissions assigned are <em>cumulative</em>.</p>
+</li>
+<li>
+<p>Deny permissions always override Allow permissions.</p>
+<ul>
+<li>Useful when group permissions have been applied to a folder, but want a user in that group to be denied access to the folder.</li>
+</ul>
+</li>
+<li>
+<p>More details from source: <a href="http://www.techrepublic.com/blog/data-center/setting-basic-ntfs-permissions-in-windows-server-2012/">Setting basic NTFS permissions</a></p>
+</li>
+<li>
+<p><a href="http://www.ntfs.com/ntfs-permissions-precedence.htm">NTFS Permission Precedence</a></p>
+<ul>
+<li>
+<p>A general hierarchy of precedence:</p>
+<ul>
+<li>Explicit Deny</li>
+<li>Explicit Allow</li>
+<li>Inherited Deny</li>
+<li>Inherited Allow</li>
+</ul>
 </li>
 </ul>
-<h3 id="generate-new-ssh-key-with-email-as-label">Generate new SSH Key with email as label</h3>
-<pre><code>ssh-keygen -t rsa -b 4096 -C &quot;your_email@example.com&quot;
+</li>
+<li>
+<p><a href="http://www.ntfs.com/ntfs-permissions-file-folder.htm">Files and Folder Basic NTFS Permissions Table</a></p>
+</li>
+</ul>
+<h1 id="permission-of-shares">Permission of shares</h1>
+<pre><code>- Full Control – it allows reading, writing, changing, and deleting of any file and subfolder.
+- Change – it is the equivalent of the Modify permission level.
+ Read – it is the equivalent of the Read &amp; execute permission level.
+</code></pre>
+<ul>
+<li>Source: <a href="http://www.howtogeek.com/school/windows-network-sharing/lesson1/all/">Windows Network Sharing</a></li>
+</ul>
+<h1 id="what-happens-when-combining-share-and-ntfs-permissions">What happens when combining share and NTFS permissions?</h1>
+<ul>
+<li>
+<p>Share vs NTFS permissions: The <em>most restrictive permission</em> wins out.</p>
+<ul>
+<li>E.g. Folder - Share: Read-Only for Everyone group
+                NTFS:  Full Control for Everyone group
+            =&gt; Share permission will mean users are unable to make changes.</li>
+</ul>
+</li>
+<li>
+<p>Share permissions are only enforced <em>if the contents of the shared folder are accessed over the network.</em></p>
+<ul>
+<li>This means that on local server only NTFS permissions will apply</li>
+</ul>
+</li>
+<li>
+<p>NTFS vs NTFS permissions are <em>additive</em></p>
+<ul>
+<li>User A has read rights</li>
+<li>User A belongs to group that has modify rights
+=&gt; User A will have read &amp; modify rights.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<blockquote>
+<p>For many administrators, it's considered a best practice to provide Full Control/Read &amp; Write permissions to shares and then use NTFS permissions to further restrict access if necessary. So, you would simply grant a user or group full share permissions, which would not restrict any access. However, if you wanted to allow only Read rights on the items in the shared folder, you would use NTFS permissions and grant just Read rights.  In this way, regardless of how the folder is accessed - over the network or directly from the server - the same permission set will always apply and it simplifies the permissions game for administrators by basically eliminating one set of permissions that you need to worry about.</p>
+</blockquote>
+</blockquote>
+<ul>
+<li>Source: <a href="http://www.techrepublic.com/blog/data-center/windows-server-2012-tips-for-setting-share-vs-ntfs-permissions/">Tips for setting share vs NTFS permissions</a></li>
+</ul>
+<h1 id="changing-ntfs-folder-permissions">Changing NTFS Folder Permissions</h1>
+<pre><code>icacls
+icacls dirname              # Displays ACL for dirname
+icacls dirname /t           # Recursively lists ACLs
+icacls dirname /grant:
 </code></pre>
 
-<h3 id="link-key-to-github-account">Link key to Github account</h3>
 <ul>
-<li>Use <code>cat ~/.ssh/id_rsa.pub</code> to output the generated public key, which should output something like:</li>
+<li>Source: <a href="http://tomandersonpro.net/ntfs-permissions-with-powershell/">NTFS folder permissions with PowerShell</a></li>
 </ul>
-<pre><code>ssh-rsa AAASDFlkajdsflkadsf23j23l4kjkalsdfja ... asdfkEWR== your_email@example.com
-</code></pre>
-
+<h1 id="references">References</h1>
 <ul>
-<li>Next go to https://github.com &gt; Settings &gt; SSH and GPG keys</li>
-<li>Click on "New SSH key", add a title and paste the key above into the box.</li>
+<li><a href="http://serverfault.com/questions/188115/what-is-windows-interactive-user">What is windows "Interactive" User</a></li>
+<li><a href="https://technet.microsoft.com/en-us/library/cc753731(v=ws.11).aspx">WS2008 Managing Permissions for Shared Folders</a></li>
 </ul>
-<h3 id="change-git-origin-from-https-to-ssh">Change git origin from <code>https://</code> to <code>ssh</code></h3>
-<ul>
-<li>Go to your repository location and type:</li>
-</ul>
-<pre><code>git remote set-url origin git@github.com:&lt;github username&gt;/&lt;repository name&gt;
-</code></pre>
               
             </div>
           </div>
@@ -413,10 +476,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../Octave_Basics/" class="btn btn-neutral float-right" title="Octave Basics">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../Server_Roles/" class="btn btn-neutral float-right" title="Server Roles">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../../Linux-and-Unix/Users_and_Groups/" class="btn btn-neutral" title="Users and Groups"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../Basic_Command_Line/" class="btn btn-neutral" title="Basic Command Line"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -444,10 +507,10 @@
           <a href="https://github.com/gavchan/dev-sysadmin/" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../../Linux-and-Unix/Users_and_Groups/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../Basic_Command_Line/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../Octave_Basics/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../Server_Roles/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

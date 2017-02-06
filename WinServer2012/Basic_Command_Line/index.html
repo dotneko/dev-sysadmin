@@ -240,6 +240,13 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../../Powershell/Script_for_Automating_User_and_Group_Creation/">Script for Automating User and Group Creation</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../../Powershell/Windows_Firewall/">Windows Firewall</a>
         
     </li>
@@ -272,6 +279,9 @@
                 <li class="toctree-l3"><a href="#network-commands">Network Commands</a></li>
                 
             
+                <li class="toctree-l3"><a href="#net-services">NET services</a></li>
+                
+            
                 <li class="toctree-l3"><a href="#changing-computer-name">Changing Computer Name</a></li>
                 
             
@@ -288,7 +298,28 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../Permissions/">Permissions</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../Server_Roles/">Server Roles</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../Sharing_Folders/">Sharing Folders</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../User_Management/">User Management</a>
         
     </li>
 
@@ -358,12 +389,18 @@ powershell  # enters powershell environment
 
 <h1 id="network-commands">Network Commands</h1>
 <pre><code>ipconfig
-net
+netstat
+nslookup
+</code></pre>
+
+<h1 id="net-services">NET services</h1>
+<pre><code>net
 net help
 net command ?       # displays syntax of the command
 net computer
 net localgroup      # equivalent to bash-$ getent groups
-net use             # allows connection to another network   
+net use             # allows connection to another network; shows network shares
+net view            
 </code></pre>
 
 <h1 id="changing-computer-name">Changing Computer Name</h1>
@@ -372,9 +409,13 @@ wmic computersystem where caption='currentname' rename newname
 </code></pre>
 
 <h1 id="changing-the-timedatetimezone">Changing the Time/Date/Timezone</h1>
-<pre><code>date
-time
-tzutil`
+<pre><code>date                                # Displays current date and time
+tzutil
+tzutil /l                           # Lists valid timezones
+tzutil /l|findstr /R /C:&quot;Canada&quot;    # Filters list of timezones for &quot;Canada&quot; (case sensitive)
+tzutil /l|findstr /R /I /C:&quot;canada&quot; # Use /I for a non-case-sensitive search.
+tzutil /l|Select-String canada      # Filters list of timezones for &quot;canada&quot; (PowerShell)
+
 </code></pre>
 
 <h1 id="windows-core-server-configuration-screen">Windows Core Server Configuration Screen</h1>
@@ -387,7 +428,7 @@ tzutil`
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../Server_Roles/" class="btn btn-neutral float-right" title="Server Roles">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../Permissions/" class="btn btn-neutral float-right" title="Permissions">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../../Powershell/Windows_Server_2012R2_Installation/" class="btn btn-neutral" title="Windows Server 2012R2 Installation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -421,7 +462,7 @@ tzutil`
         <span><a href="../../Powershell/Windows_Server_2012R2_Installation/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../Server_Roles/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../Permissions/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

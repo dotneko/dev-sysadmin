@@ -8,7 +8,7 @@
   
   <meta name="author" content="Gavin">
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Git and GitHub - Software Development and System Administration Notes</title>
+  <title>User Management - Software Development and System Administration Notes</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Git and GitHub";
-    var mkdocs_page_input_path = "Miscellaneous/Git_and_GitHub.md";
-    var mkdocs_page_url = "/Miscellaneous/Git_and_GitHub/";
+    var mkdocs_page_name = "User Management";
+    var mkdocs_page_input_path = "WinServer2012/User_Management.md";
+    var mkdocs_page_url = "/WinServer2012/User_Management/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -182,38 +182,22 @@
 
         
             
-    <li class="toctree-l1 current">
-        <a class="current" href="./">Git and GitHub</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#references-and-links">References and Links</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#authentication-with-ssh-key">Authentication with SSH Key</a></li>
-                
-                    <li><a class="toctree-l4" href="#generate-new-ssh-key-with-email-as-label">Generate new SSH Key with email as label</a></li>
-                
-                    <li><a class="toctree-l4" href="#link-key-to-github-account">Link key to Github account</a></li>
-                
-                    <li><a class="toctree-l4" href="#change-git-origin-from-https-to-ssh">Change git origin from https:// to ssh</a></li>
-                
-            
-            </ul>
+    <li class="toctree-l1 ">
+        <a class="" href="../../Miscellaneous/Git_and_GitHub/">Git and GitHub</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../Octave_Basics/">Octave Basics</a>
+        <a class="" href="../../Miscellaneous/Octave_Basics/">Octave Basics</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../Vim/">Vim</a>
+        <a class="" href="../../Miscellaneous/Vim/">Vim</a>
         
     </li>
 
@@ -285,42 +269,52 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../WinServer2012/Basic_Command_Line/">Basic Command Line</a>
+        <a class="" href="../Basic_Command_Line/">Basic Command Line</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../WinServer2012/Permissions/">Permissions</a>
+        <a class="" href="../Permissions/">Permissions</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../WinServer2012/Server_Roles/">Server Roles</a>
+        <a class="" href="../Server_Roles/">Server Roles</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../WinServer2012/Sharing_Folders/">Sharing Folders</a>
+        <a class="" href="../Sharing_Folders/">Sharing Folders</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 current">
+        <a class="current" href="./">User Management</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#managing-local-users-and-passwords-with-net-user">Managing Local Users and Passwords with NET USER</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#managing-local-groups-using-net-localgroup">Managing Local Groups using NET LOCALGROUP</a></li>
+                
+            
+            </ul>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../WinServer2012/User_Management/">User Management</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../WinServer2012/Windows_Server/">Windows Server</a>
+        <a class="" href="../Windows_Server/">Windows Server</a>
         
     </li>
 
@@ -350,14 +344,14 @@
     
       
         
-          <li>Miscellaneous &raquo;</li>
+          <li>WinServer2012 &raquo;</li>
         
       
     
-    <li>Git and GitHub</li>
+    <li>User Management</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/gavchan/dev-sysadmin/edit/master/docs/Miscellaneous/Git_and_GitHub.md"
+        <a href="https://github.com/gavchan/dev-sysadmin/edit/master/docs/WinServer2012/User_Management.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -367,44 +361,46 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="references-and-links">References and Links</h1>
+                <h1 id="managing-local-users-and-passwords-with-net-user">Managing Local Users and Passwords with <code>NET USER</code></h1>
 <ul>
-<li><a href="http://gitref.org/index.html">Git Reference</a></li>
-<li><a href="https://github.com/chhavip/Git-Guide">Git-Guide for Open Source Contributions</a></li>
-<li><a href="https://github.com/tiimgreen/github-cheat-sheet">Git Cheatsheet</a></li>
+<li>More on the NET services command: <a href="https://www.microsoft.com/resources/documentation/windows/xp/all/proddocs/en-us/net_subcmds.mspx?mfr=true">Microsoft XP Documentation: Net services commands</a></li>
+<li><a href="http://www.thewindowsclub.com/net-user-command-windows">Net User command for administrators in Windows</a></li>
 </ul>
-<h1 id="authentication-with-ssh-key">Authentication with SSH Key</h1>
-<ul>
-<li>
-<p>Ran into problems with 2FA when trying to connect to my own repository despite trying out various methods using https and personal access tokens.</p>
-<ul>
-<li>Username: <username> Password <personal-access-token> =&gt; Failed</li>
-</ul>
-</li>
-<li>
-<p>Eventually was able to successfully authenticate my Github identity using an SSH key (<a href="http://stackoverflow.com/questions/25550481/git-authentication-fails-after-enabling-2fa">Stackoverflow...Jossef Harush</a>:</p>
-</li>
-</ul>
-<h3 id="generate-new-ssh-key-with-email-as-label">Generate new SSH Key with email as label</h3>
-<pre><code>ssh-keygen -t rsa -b 4096 -C &quot;your_email@example.com&quot;
-</code></pre>
-
-<h3 id="link-key-to-github-account">Link key to Github account</h3>
-<ul>
-<li>Use <code>cat ~/.ssh/id_rsa.pub</code> to output the generated public key, which should output something like:</li>
-</ul>
-<pre><code>ssh-rsa AAASDFlkajdsflkadsf23j23l4kjkalsdfja ... asdfkEWR== your_email@example.com
+<pre><code>net user                            # Lists user accounts
+net user username                   # Lists info for username
+net user username /add              # Adds a user username
+net user username /delete           # Deletes a user username
+net user username *                 # Prompts for password for username
+net user username &lt;new_password&gt;    # Changes the password directly
 </code></pre>
 
 <ul>
-<li>Next go to https://github.com &gt; Settings &gt; SSH and GPG keys</li>
-<li>Click on "New SSH key", add a title and paste the key above into the box.</li>
+<li><a href="https://technet.microsoft.com/en-us/library/cc771865(v=ws.11).aspx">TechNet Net User</a></li>
 </ul>
-<h3 id="change-git-origin-from-https-to-ssh">Change git origin from <code>https://</code> to <code>ssh</code></h3>
+<pre><code>net user username * /add                            # Prompts for password
+net user username /add /comment:&quot;User Comment&quot;      # Add comment for user
+net user username /active:{yes|no}
+net user username /homedir:&lt;Path&gt;                   # Does not auto create until you log on
+net user username /expires:jan,9,2017               # Set account expiry for username
+</code></pre>
+
 <ul>
-<li>Go to your repository location and type:</li>
+<li>Note that when remove username, the user directory is not deleted.</li>
+<li>Need to manually delete with <code>rd</code> or <code>rmdir</code>; <code>/s</code> option removes recursively.</li>
+<li>
+<p>If delete an account and then recreate a new account with the same name, by default a new folder is created (Windows treats them as new and separate accounts).</p>
+</li>
+<li>
+<p>For managing local user accounts with Powershell, see: <a href="https://mcpmag.com/articles/2015/05/07/local-user-accounts-with-powershell.aspx">Managing Local User Accounts with PowerShell</a></p>
+</li>
 </ul>
-<pre><code>git remote set-url origin git@github.com:&lt;github username&gt;/&lt;repository name&gt;
+<h1 id="managing-local-groups-using-net-localgroup">Managing Local Groups using <code>NET LOCALGROUP</code></h1>
+<pre><code>net localgroup      # Local groups on individual device.
+net groups          # Not available unless Active Directory set up (Windows Domain Controller)
+net localgroup /?
+net localgroup groupname                        # Creates a group named &quot;groupname&quot;
+net localgroup groupname username /add          # Adds &quot;username&quot; to the group &quot;groupname&quot;
+net localgroup groupname user1,user2 /delete    # Deletes user1 and user2 from &quot;groupname&quot;
 </code></pre>
               
             </div>
@@ -413,10 +409,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../Octave_Basics/" class="btn btn-neutral float-right" title="Octave Basics">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../Windows_Server/" class="btn btn-neutral float-right" title="Windows Server">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../../Linux-and-Unix/Users_and_Groups/" class="btn btn-neutral" title="Users and Groups"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../Sharing_Folders/" class="btn btn-neutral" title="Sharing Folders"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -444,10 +440,10 @@
           <a href="https://github.com/gavchan/dev-sysadmin/" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../../Linux-and-Unix/Users_and_Groups/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../Sharing_Folders/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../Octave_Basics/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../Windows_Server/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
