@@ -301,29 +301,59 @@
             "title": "Connecting with Microsoft Windows OS"
         }, 
         {
-            "location": "/Linux-and-Unix/Sharing_Files_and_Samba/", 
-            "text": "Legacy Sharing\n\n\nshare                       # Display shares (more info than -A ?)\nshare -A                    # Displays published shares\nshare -F nfs -o ro ./share  # Defines and publishes a file system share (NFS)\nshare -F smb -o rw ./share2 # Defines and publishes a file system share (SMB)\nunshare share_name          # Unpublishes a share\nunshare -a                  # Unpublishes all active shares.\n\n\n\n\nUsing the Samba Suite\n\n\n\n\nIn Solaris 11.3, the Samba suite has to be downloaded separately:\n\n\n\n\npfexec pkg install samba    # or run as root\n\n\n\n\n\n\nNo configuration file exists on installation, but an example configuration file \nsmb.conf-example\n exists in the \n/etc/samba\n directory.\n\n\nCan create new config file or use the \nsmb.conf-example\n as a template -\n the samba service will look for the configuration file at \n/etc/samba/smb.conf\n\n\nCan examine the default share named \n[homes]\n under the share definitions.\n\n\n\n\nCreate a user for samba\n\n\nuseradd samba\npasswd -r files samba           # -r files option specifies password for file system.\n\nsmbadm enable-user samba        # Enables samba service for user samba.\n\n\n\n\nMiscellaneous\n\n\n\n\nAccessing a Solaris file share from Windows Command Line\n\n\n\n\nnet use x:\\\\\nipaddress\n\n\n\n\n\n\n\ndfshares\n: Lists information about resources available to the host through a distributed file system.", 
-            "title": "Sharing Files and Samba"
+            "location": "/Linux-and-Unix/Sharing_Files_with_Samba/", 
+            "text": "Using the Samba Suite\n\n\n\n\nIn Solaris 11.3, the Samba suite has to be downloaded separately:\n\n\n\n\npfexec pkg install samba    # or run as root (may need to --accept license)\n\n\n\n\nConfiguring Samba: \n/etc/samba/smb.conf\n\n\n\n\nNo configuration file exists on installation, but an example configuration file \nsmb.conf-example\n exists in the \n/etc/samba\n directory.\n\n\nOne can use the existing \n/etc/samba/smb.conf-example\n as a template, copy it \n/etc/samba/smb.conf\n and make the necessary modifications (need set w permission)\n\n\n\n\nsmb.conf\n has 2 sections: global settings, share definitions.\n\n\n\n\nWorkgroup name should be changed.\n\n\nConfirm authentication is set to user \nsecurity = user\n\n\n\n\n\n\n\n\nShare definitions\n\n\n\n\n[home]\n defines default share access to home folders.\n\n\n\n\n\n\nExample share definition\n\n\n\n\n[smbdemo]\n    comment = Samba Share\n    path = /smbdemo\n    browsable = yes\n    guest ok = yes\n    read only = no\n    create mask = 0755\n\n\n\n\nCreating a new directory for sharing using Samba\n\n\nmkdir /smbdemo\nchmod 770 /smbdemo\n\n\n\n\nCreate a users and groups for Samba\n\n\nuseradd samba           # Optional, but user for samba must be an existing user.\nsmbpasswd -a \nusername\n\n\n\n\n\nCreating the Samba group\n\n\ngroupadd smbusers\nchown :smbusers /smbdemo\nusermod -G smbusers \nusername\n\n\n\n\n\nEnabling Samba\n\n\nsvcadm disable samba\nsvcadm enable samba\nsmbadm enable-user samba        # Enables SMB service for user samba.\ntestparm                        # Tests configuration\n\n\n\n\n\n\nN.B. Does one need to publish a share using \nshare\n? Seems to be so...\n\n\n\n\nOther commands\n\n\n\n\npasswd -r files samba\n: -r files option specifies password for file system. Is this necessary for a Samba share??\n\n\n\n\nBasic Sharing Commands\n\n\nshare                       # Display shares (more info than -A ?)\nshare -A                    # Displays published shares\nshare -F nfs -o ro ./share  # Defines and publishes a file system share (NFS)\nshare -F smb -o rw ./share2 # Defines and publishes a file system share (SMB)\nunshare share_name          # Unpublishes a share\nunshare -a                  # Unpublishes all active shares.\n\n\n\n\nMiscellaneous\n\n\n\n\nAccessing a Solaris file share from Windows Command Line\n\n\n\n\nnet use x:\\\\\nipaddress\n\n\n\n\n\n\n\ndfshares\n: Lists information about resources available to the host through a distributed file system.\n\n\n\n\nReferences\n\n\n\n\nCreating network share via Samba via CLI Linux Terminal\n\n\nLinux File Server Step-by-step config guide", 
+            "title": "Sharing Files with Samba"
         }, 
         {
-            "location": "/Linux-and-Unix/Sharing_Files_and_Samba/#legacy-sharing", 
-            "text": "share                       # Display shares (more info than -A ?)\nshare -A                    # Displays published shares\nshare -F nfs -o ro ./share  # Defines and publishes a file system share (NFS)\nshare -F smb -o rw ./share2 # Defines and publishes a file system share (SMB)\nunshare share_name          # Unpublishes a share\nunshare -a                  # Unpublishes all active shares.", 
-            "title": "Legacy Sharing"
-        }, 
-        {
-            "location": "/Linux-and-Unix/Sharing_Files_and_Samba/#using-the-samba-suite", 
-            "text": "In Solaris 11.3, the Samba suite has to be downloaded separately:   pfexec pkg install samba    # or run as root   No configuration file exists on installation, but an example configuration file  smb.conf-example  exists in the  /etc/samba  directory.  Can create new config file or use the  smb.conf-example  as a template -  the samba service will look for the configuration file at  /etc/samba/smb.conf  Can examine the default share named  [homes]  under the share definitions.", 
+            "location": "/Linux-and-Unix/Sharing_Files_with_Samba/#using-the-samba-suite", 
+            "text": "In Solaris 11.3, the Samba suite has to be downloaded separately:   pfexec pkg install samba    # or run as root (may need to --accept license)", 
             "title": "Using the Samba Suite"
         }, 
         {
-            "location": "/Linux-and-Unix/Sharing_Files_and_Samba/#create-a-user-for-samba", 
-            "text": "useradd samba\npasswd -r files samba           # -r files option specifies password for file system.\n\nsmbadm enable-user samba        # Enables samba service for user samba.", 
-            "title": "Create a user for samba"
+            "location": "/Linux-and-Unix/Sharing_Files_with_Samba/#configuring-samba-etcsambasmbconf", 
+            "text": "No configuration file exists on installation, but an example configuration file  smb.conf-example  exists in the  /etc/samba  directory.  One can use the existing  /etc/samba/smb.conf-example  as a template, copy it  /etc/samba/smb.conf  and make the necessary modifications (need set w permission)   smb.conf  has 2 sections: global settings, share definitions.   Workgroup name should be changed.  Confirm authentication is set to user  security = user     Share definitions   [home]  defines default share access to home folders.    Example share definition   [smbdemo]\n    comment = Samba Share\n    path = /smbdemo\n    browsable = yes\n    guest ok = yes\n    read only = no\n    create mask = 0755", 
+            "title": "Configuring Samba: /etc/samba/smb.conf"
         }, 
         {
-            "location": "/Linux-and-Unix/Sharing_Files_and_Samba/#miscellaneous", 
+            "location": "/Linux-and-Unix/Sharing_Files_with_Samba/#creating-a-new-directory-for-sharing-using-samba", 
+            "text": "mkdir /smbdemo\nchmod 770 /smbdemo", 
+            "title": "Creating a new directory for sharing using Samba"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Sharing_Files_with_Samba/#create-a-users-and-groups-for-samba", 
+            "text": "useradd samba           # Optional, but user for samba must be an existing user.\nsmbpasswd -a  username", 
+            "title": "Create a users and groups for Samba"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Sharing_Files_with_Samba/#creating-the-samba-group", 
+            "text": "groupadd smbusers\nchown :smbusers /smbdemo\nusermod -G smbusers  username", 
+            "title": "Creating the Samba group"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Sharing_Files_with_Samba/#enabling-samba", 
+            "text": "svcadm disable samba\nsvcadm enable samba\nsmbadm enable-user samba        # Enables SMB service for user samba.\ntestparm                        # Tests configuration   N.B. Does one need to publish a share using  share ? Seems to be so...", 
+            "title": "Enabling Samba"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Sharing_Files_with_Samba/#other-commands", 
+            "text": "passwd -r files samba : -r files option specifies password for file system. Is this necessary for a Samba share??", 
+            "title": "Other commands"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Sharing_Files_with_Samba/#basic-sharing-commands", 
+            "text": "share                       # Display shares (more info than -A ?)\nshare -A                    # Displays published shares\nshare -F nfs -o ro ./share  # Defines and publishes a file system share (NFS)\nshare -F smb -o rw ./share2 # Defines and publishes a file system share (SMB)\nunshare share_name          # Unpublishes a share\nunshare -a                  # Unpublishes all active shares.", 
+            "title": "Basic Sharing Commands"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Sharing_Files_with_Samba/#miscellaneous", 
             "text": "Accessing a Solaris file share from Windows Command Line   net use x:\\\\ ipaddress    dfshares : Lists information about resources available to the host through a distributed file system.", 
             "title": "Miscellaneous"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Sharing_Files_with_Samba/#references", 
+            "text": "Creating network share via Samba via CLI Linux Terminal  Linux File Server Step-by-step config guide", 
+            "title": "References"
         }, 
         {
             "location": "/Linux-and-Unix/Slackware/", 
