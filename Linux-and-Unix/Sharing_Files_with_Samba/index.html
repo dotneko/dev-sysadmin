@@ -135,10 +135,8 @@
                 
                     <li><a class="toctree-l4" href="#enabling-samba">Enabling Samba</a></li>
                 
-                    <li><a class="toctree-l4" href="#other-commands">Other commands</a></li>
-                
             
-                <li class="toctree-l3"><a href="#basic-sharing-commands">Basic Sharing Commands</a></li>
+                <li class="toctree-l3"><a href="#legacy-sharing-commands">Legacy Sharing Commands</a></li>
                 
             
                 <li class="toctree-l3"><a href="#miscellaneous">Miscellaneous</a></li>
@@ -438,19 +436,16 @@ testparm                        # Tests configuration
 </code></pre>
 
 <ul>
-<li>N.B. Does one need to publish a share using <code>share</code>? Seems to be so...</li>
+<li>N.B. Using the above configuration works for sharing files without using legacy sharing commands like share/unshare for configuration.</li>
 </ul>
-<h3 id="other-commands">Other commands</h3>
-<ul>
-<li><code>passwd -r files samba</code>: -r files option specifies password for file system. Is this necessary for a Samba share??</li>
-</ul>
-<h1 id="basic-sharing-commands">Basic Sharing Commands</h1>
+<h1 id="legacy-sharing-commands">Legacy Sharing Commands</h1>
 <pre><code>share                       # Display shares (more info than -A ?)
 share -A                    # Displays published shares
 share -F nfs -o ro ./share  # Defines and publishes a file system share (NFS)
 share -F smb -o rw ./share2 # Defines and publishes a file system share (SMB)
 unshare share_name          # Unpublishes a share
 unshare -a                  # Unpublishes all active shares.
+dfshares                    # Lists information about resources available to the host through a distributed file system.
 </code></pre>
 
 <h1 id="miscellaneous">Miscellaneous</h1>
@@ -461,7 +456,7 @@ unshare -a                  # Unpublishes all active shares.
 </code></pre>
 
 <ul>
-<li><code>dfshares</code>: Lists information about resources available to the host through a distributed file system.</li>
+<li>Accessing the SMB file share: <code>smb://&lt;ip address&gt;</code></li>
 </ul>
 <h1 id="references">References</h1>
 <ul>
