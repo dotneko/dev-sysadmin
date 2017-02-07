@@ -52,12 +52,9 @@ svcadm enable samba
 smbadm enable-user samba        # Enables SMB service for user samba.
 testparm                        # Tests configuration
 ```
-- N.B. Does one need to publish a share using `share`? Seems to be so...
+- N.B. Using the above configuration works for sharing files without using legacy sharing commands like share/unshare for configuration.
 
-### Other commands
-- `passwd -r files samba`: -r files option specifies password for file system. Is this necessary for a Samba share??
-
-# Basic Sharing Commands
+# Legacy Sharing Commands
 ```
 share                       # Display shares (more info than -A ?)
 share -A                    # Displays published shares
@@ -65,6 +62,7 @@ share -F nfs -o ro ./share  # Defines and publishes a file system share (NFS)
 share -F smb -o rw ./share2 # Defines and publishes a file system share (SMB)
 unshare share_name          # Unpublishes a share
 unshare -a                  # Unpublishes all active shares.
+dfshares                    # Lists information about resources available to the host through a distributed file system.
 ```
 
 # Miscellaneous
@@ -72,7 +70,7 @@ unshare -a                  # Unpublishes all active shares.
 ```
 net use x:\\<ipaddress>
 ```
-- `dfshares`: Lists information about resources available to the host through a distributed file system.
+- Accessing the SMB file share: `smb://<ip address>`
 
 # References
 - [Creating network share via Samba via CLI Linux Terminal](https://help.ubuntu.com/community/How%20to%20Create%20a%20Network%20Share%20Via%20Samba%20Via%20CLI%20(Command-line%20interface/Linux%20Terminal)%20-%20Uncomplicated,%20Simple%20and%20Brief%20Way!)
