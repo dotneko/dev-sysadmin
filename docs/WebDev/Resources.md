@@ -15,7 +15,8 @@
 - [Transparent Textures](https://www.transparenttextures.com/). Cool site of customizable transparent textures.
 
 # Wordpress
-- [Migrating a Wordpress site](https://codex.wordpress.org/Moving_WordPress)
+- [How to speed up development with WP CLI](https://torquemag.io/2017/02/wordpress-development-with-wp-cli/)
+- [Moving a Wordpress site](https://codex.wordpress.org/Moving_WordPress)
 
 # Workflow Automation
 - [Gulp](http://gulpjs.com/)
