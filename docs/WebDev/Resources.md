@@ -8,9 +8,9 @@
 
 # Server Setup: LAMP/MAMP
 - Working guide here to setup user Sites folder on El Capitan: [AMP Setup on MacOS El Capitan](https://coolestguidesontheplanet.com/get-apache-mysql-php-and-phpmyadmin-working-on-osx-10-11-el-capitan/)
-    - Above link sets up web root at `~/Username/Sites`
     - Default web root at `/Library/WebServer/Documents/`
-
+    - Above link sets up web root at `~/Username/Sites`
+    - Access at: `http://localhost/~username/`
 # Textures
 - [Transparent Textures](https://www.transparenttextures.com/). Cool site of customizable transparent textures.
 
