@@ -8,7 +8,7 @@
   
   <meta name="author" content="Gavin">
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Apache Server Setup and Configuration - Software Development and System Administration Notes</title>
+  <title>Other Distros - Software Development and System Administration Notes</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Apache Server Setup and Configuration";
-    var mkdocs_page_input_path = "Linux-and-Unix/Apache_Server_Setup_and_Configuration.md";
-    var mkdocs_page_url = "/Linux-and-Unix/Apache_Server_Setup_and_Configuration/";
+    var mkdocs_page_name = "Other Distros";
+    var mkdocs_page_input_path = "Linux-and-Unix/Other_Distros.md";
+    var mkdocs_page_url = "/Linux-and-Unix/Other_Distros/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -69,37 +69,8 @@
 
         
             
-    <li class="toctree-l1 current">
-        <a class="current" href="./">Apache Server Setup and Configuration</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#resources">Resources</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#apache-on-oracle-solaris-113">Apache on Oracle Solaris 11.3</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#configuring-apache">Configuring Apache</a></li>
-                
-                    <li><a class="toctree-l4" href="#edit-etcapache222httpdconf">Edit /etc/apache2/2.2/httpd.conf</a></li>
-                
-                    <li><a class="toctree-l4" href="#directives-in-httpdconf">Directives in httpd.conf</a></li>
-                
-                    <li><a class="toctree-l4" href="#displaying-default-files-other-than-indexhtml">Displaying default files other than index.html</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#setting-up-virtual-hosts-in-apache">Setting up Virtual Hosts in Apache</a></li>
-                
-                    <li><a class="toctree-l4" href="#edit-the-etcapache222httpdconf-file">Edit the /etc/apache2/2.2/httpd.conf file:</a></li>
-                
-                    <li><a class="toctree-l4" href="#additional-steps-for-virtual-hosts-on-different-ports">Additional steps for virtual hosts on different ports</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#configuring-authentication-and-authorization">Configuring Authentication and Authorization</a></li>
-                
-            
-            </ul>
+    <li class="toctree-l1 ">
+        <a class="" href="../ArchLinux/">ArchLinux</a>
         
     </li>
 
@@ -140,6 +111,20 @@
 
         
             
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Other Distros</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#slackware">Slackware</a></li>
+                
+            
+            </ul>
+        
+    </li>
+
+        
+            
     <li class="toctree-l1 ">
         <a class="" href="../SSH_and_SCP_Usage/">SSH and SCP Usage</a>
         
@@ -155,7 +140,7 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../Slackware/">Slackware</a>
+        <a class="" href="../Solaris_Apache_Server_Setup_and_Config/">Solaris Apache Server Setup and Config</a>
         
     </li>
 
@@ -191,6 +176,13 @@
             
     <li class="toctree-l1 ">
         <a class="" href="../Solaris_SMF/">Solaris SMF</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../Ubuntu_Apache_Setup_and_Config/">Ubuntu Apache Setup and Config</a>
         
     </li>
 
@@ -293,6 +285,43 @@
           
             <li>
     <ul class="subnav">
+    <li><span>Python</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Python/Databases_SQL_Python/">Databases SQL Python</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../Python/Python_OOP/">Python OOP</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>WebDev</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../WebDev/Resources/">Resources</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
     <li><span>WinServer2012</span></li>
 
         
@@ -367,10 +396,10 @@
         
       
     
-    <li>Apache Server Setup and Configuration</li>
+    <li>Other Distros</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/gavchan/dev-sysadmin/edit/master/docs/Linux-and-Unix/Apache_Server_Setup_and_Configuration.md"
+        <a href="https://github.com/gavchan/dev-sysadmin/edit/master/docs/Linux-and-Unix/Other_Distros.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -380,148 +409,14 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="resources">Resources</h1>
+                <h1 id="slackware">Slackware</h1>
 <ul>
-<li><a href="http://httpd.apache.org/docs/2.4/">Apache HTTP Server Version 2.4 Documentation</a></li>
-<li><a href="https://docs.oracle.com/cd/E53394_01/html/E54831/gnvhs.html">Oracle Docs: Apache Web Server</a></li>
+<li><a href="http://www.slackware.com/">The Slackware Linux Project</a></li>
 </ul>
-<h1 id="apache-on-oracle-solaris-113">Apache on Oracle Solaris 11.3</h1>
+<p><em>Documentation</em></p>
 <ul>
-<li>By default apache22 is installed but disabled. One can check using either of the following:</li>
-</ul>
-<pre><code>svcs *apache*       # Or:
-svcs http
-</code></pre>
-
-<ul>
-<li>To enable default apache22 service if currently disabled.</li>
-</ul>
-<pre><code>svcadm enable svc:/network/http:apache22
-</code></pre>
-
-<ul>
-<li>Can install newer version then enable the server.</li>
-</ul>
-<pre><code>pkg install web/server/apache-24
-svcadm -v enable /network/http:apache24
-</code></pre>
-
-<ul>
-<li>Alternately can install a Apache webserver with MySQL and PHP:</li>
-</ul>
-<pre><code>pkg install group/feature/amp
-</code></pre>
-
-<ul>
-<li>Verify that webserver works by opening: <code>http://localhost:80</code> in browser.</li>
-</ul>
-<h1 id="configuring-apache">Configuring Apache</h1>
-<ul>
-<li>Configuration is stored in the <code>/etc/apache2/2.2/httpd.conf</code> file.</li>
-<li>By default, web pages are served from <code>/var/apache2/2.2/htdocs</code> folder.</li>
-</ul>
-<h3 id="edit-etcapache222httpdconf">Edit <code>/etc/apache2/2.2/httpd.conf</code></h3>
-<ul>
-<li>Can edit <code>DocumentRoot</code> to point to another directory.</li>
-<li>Make sure to change the <Directory ""> to point to the same DocumentRoot</li>
-<li>Also need to make sure that the directory it points into to has execute permissions, otherwise others won't be able to read the files within the directory.</li>
-</ul>
-<h3 id="directives-in-httpdconf">Directives in <code>httpd.conf</code></h3>
-<pre><code>Allow from &lt;address&gt;        # &lt;address&gt; is IP address or fully qualified domain name
-Deny from &lt;address&gt;
-</code></pre>
-
-<ul>
-<li>Using <code>Order</code> allows one to fine-tune the access:</li>
-</ul>
-<pre><code>Order deny,allow            # Specifies restriction order
-Deny from all
-Allow from some.host.com
-</code></pre>
-
-<ul>
-<li>The above example will by default deny access to all, and then only allow access from some.host.com.</li>
-</ul>
-<h3 id="displaying-default-files-other-than-indexhtml">Displaying default files other than index.html</h3>
-<ul>
-<li>Look for <code>DirectoryIndex</code> and add other possible files, e.g.:</li>
-</ul>
-<pre><code>DirectoryIndex index.html index.htm default.htm index.php index.pl
-</code></pre>
-
-<h1 id="setting-up-virtual-hosts-in-apache">Setting up Virtual Hosts in Apache</h1>
-<ul>
-<li>One can examine <code>/etc/apache2/2.2/samples-conf.d/vhosts.conf</code> to show examples of VirtualHost configuration tags that should be added to the <code>/etc/apache2/2.2/httpd.conf</code> file.</li>
-</ul>
-<h3 id="edit-the-etcapache222httpdconf-file">Edit the <code>/etc/apache2/2.2/httpd.conf</code> file:</h3>
-<ul>
-<li>Comment out the default <code>DocumentRoot "..."</code></li>
-<li>Add the following to direct queries to the specified DocumentRoot:</li>
-</ul>
-<pre><code>Listen 80                   # Check that Apache listens on this port (default)
-
-NameVirtualHost *:80        # Allows for name based virtual hosts
-
-&lt;VirtualHost *:80&gt;
-    DocumentRoot &quot;/path/directory&quot;
-    ServerName www.host.name
-&lt;/VirtualHost&gt;
-</code></pre>
-
-<ul>
-<li>Next, need to give access through Apache to the specified directory by adding:</li>
-</ul>
-<pre><code>&lt;Directory &quot;/path/directory&quot;&gt;
-    Options Indexes FollowSymLinks
-    AllowOverride None
-    Order allow,deny
-    Allow from all
-&lt;/Directory&gt;
-</code></pre>
-
-<p>Also ensure the <code>/etc/inet/hosts</code> file is configured to resolve the ServerName (note that <code>/etc/hosts</code> symbolically links to <code>/etc/inet/hosts</code>):</p>
-<pre><code>192.168.1.123 www.host.name     # Assigns 192.168.1.123 to www.host.name
-</code></pre>
-
-<h2 id="additional-steps-for-virtual-hosts-on-different-ports">Additional steps for virtual hosts on different ports</h2>
-<p>Assuming the above virtual host is created, we add another virtual host that runs on a different port:</p>
-<pre><code>Listen 8123
-
-&lt;VirtualHost *:8123&gt;
-    DocumentRoot &quot;/path/anotherDirectory&quot;
-&lt;/VirtualHost&gt;
-
-&lt;Directory &quot;/path/anotherDirectory&quot;&gt;
-    Options Indexes FollowSymLinks
-    AllowOverride None
-    Order allow,deny
-    Allow from all
-&lt;/Directory&gt;
-
-</code></pre>
-
-<h1 id="configuring-authentication-and-authorization">Configuring Authentication and Authorization</h1>
-<ul>
-<li><a href="http://httpd.apache.org/docs/2.2/howto/auth.html">Authentication and Authorization for version 2.2 from apache.org</a></li>
-<li>Create a password file (not accessible from the web) using <code>htpasswd</code>.</li>
-<li>Note that <code>htpasswd</code> is located at <code>/usr/local/apache2/bin/htpasswd</code></li>
-<li>E.g. <code>htpasswd -c /usr/local/apache/passwd/passwords user_name</code></li>
-<li>Then configure the server to request the password by editing the <code>httpd.conf</code> file or using an <code>.htaccess</code> file:</li>
-</ul>
-<pre><code>AuthType Basic
-AuthName &quot;Restricted Files&quot;
-# (Following line optional)
-AuthBasicProvider file
-AuthUserFile /usr/local/apache/passwd/passwords
-Require user user_name
-</code></pre>
-
-<ul>
-<li>So to protect a folder <code>/pathto/secret</code>:<ul>
-<li>Place the above directives in <code>.htaccess</code> within the folder <code>/pathto/secret</code>.</li>
-<li>Alternatively, place the above directives in the <code>httpd.conf</code> file within a directory section: <code>&lt;Directory /pathto/secret&gt; ... &lt;/Directory&gt;</code></li>
-</ul>
-</li>
+<li><a href="http://slackbook.org/beta/">Slackbook: The Revised Slackware Book Project</a></li>
+<li><a href="https://docs.slackware.com/start">Slackware Documentation Project</a></li>
 </ul>
               
             </div>
@@ -530,10 +425,10 @@ Require user user_name
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../Bash_Automating_User_and_Passwords/" class="btn btn-neutral float-right" title="Bash Automating User and Passwords">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../SSH_and_SCP_Usage/" class="btn btn-neutral float-right" title="SSH and SCP Usage">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../.." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../Naming_Services/" class="btn btn-neutral" title="Naming Services"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -561,10 +456,10 @@ Require user user_name
           <a href="https://github.com/gavchan/dev-sysadmin/" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../.." style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../Naming_Services/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../Bash_Automating_User_and_Passwords/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../SSH_and_SCP_Usage/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

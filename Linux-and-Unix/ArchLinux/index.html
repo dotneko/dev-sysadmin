@@ -8,7 +8,7 @@
   
   <meta name="author" content="Gavin">
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Solaris SMF - Software Development and System Administration Notes</title>
+  <title>ArchLinux - Software Development and System Administration Notes</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Solaris SMF";
-    var mkdocs_page_input_path = "Linux-and-Unix/Solaris_SMF.md";
-    var mkdocs_page_url = "/Linux-and-Unix/Solaris_SMF/";
+    var mkdocs_page_name = "ArchLinux";
+    var mkdocs_page_input_path = "Linux-and-Unix/ArchLinux.md";
+    var mkdocs_page_url = "/Linux-and-Unix/ArchLinux/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -69,8 +69,30 @@
 
         
             
-    <li class="toctree-l1 ">
-        <a class="" href="../ArchLinux/">ArchLinux</a>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">ArchLinux</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#installation">Installation</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#mounting-an-additional-internal-drive-at-boot">Mounting an additional internal drive at boot</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#installing-files-from-the-archlinux-user-repository">Installing files from the ArchLinux User Repository</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#configuring-network-manager">Configuring Network Manager</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#configuring-pia">Configuring PIA</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#redshift-flux-alternative-for-linux">Redshift (F.lux alternative for Linux)</a></li>
+                
+            
+            </ul>
         
     </li>
 
@@ -167,22 +189,8 @@
 
         
             
-    <li class="toctree-l1 current">
-        <a class="current" href="./">Solaris SMF</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#basics-of-service-management-facility-smf-on-oracle-solaris-11">Basics of Service Management Facility (SMF) on Oracle Solaris 11</a></li>
-                
-                    <li><a class="toctree-l4" href="#listing-services">Listing services</a></li>
-                
-                    <li><a class="toctree-l4" href="#managing-services">Managing services</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#troubleshooting-system-services">Troubleshooting system services</a></li>
-                
-            
-            </ul>
+    <li class="toctree-l1 ">
+        <a class="" href="../Solaris_SMF/">Solaris SMF</a>
         
     </li>
 
@@ -403,10 +411,10 @@
         
       
     
-    <li>Solaris SMF</li>
+    <li>ArchLinux</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/gavchan/dev-sysadmin/edit/master/docs/Linux-and-Unix/Solaris_SMF.md"
+        <a href="https://github.com/gavchan/dev-sysadmin/edit/master/docs/Linux-and-Unix/ArchLinux.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -416,38 +424,44 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="basics-of-service-management-facility-smf-on-oracle-solaris-11"><a href="http://www.oracle.com/technetwork/articles/servers-storage-admin/intro-smf-basics-s11-1729181.html">Basics of Service Management Facility (SMF) on Oracle Solaris 11</a></h1>
-<ul>
-<li>A software framework that manages the services on a system.</li>
-<li>Each service has a well-defined state and a relationship to other dependent services.</li>
-<li>Ability to run multiple instances of a given service and share common configuration.</li>
-<li>Configuration repository managed by <code>svc.configd</code></li>
-<li>Each service described using a Fault Management Reousrce Indicator (FMRI)</li>
-<li>SMF framework always active on Oracle Solaris 11 - started and restarted through the default init process.</li>
+                <ul>
+<li><a href="https://wiki.archlinux.org/">ArchLinux Wiki</a></li>
 </ul>
-<hr />
-<h2 id="listing-services">Listing services</h2>
-<pre><code>svcs
-svcs -a         # Lists additional new service instances.
-svcs *ftp*      # Searches for services containing *ftp*
+<h3 id="installation">Installation</h3>
+<ul>
+<li><a href="https://wiki.archlinux.org/index.php/Installation_guide">ArchLinux Installation</a></li>
+<li><a href="https://uvesway.wordpress.com/2015/03/11/how-to-install-arch-linux-on-a-vm-virtualbox/">Installing ArchLinux in VirtualBox</a> (Worked well with minor adjustments)</li>
+</ul>
+<h3 id="mounting-an-additional-internal-drive-at-boot">Mounting an additional internal drive at boot</h3>
+<ul>
+<li>Edit fstab: <a href="http://www.linuxquestions.org/questions/linux-newbie-8/arch-linux-how-to-get-access-to-my-internal-hard-drive-can%27t-change-permissions-4175592413/">Accessing an internal drive</a></li>
+</ul>
+<pre><code>/dev/sdc4 /media/anyname rw,auto,user 0 0
 </code></pre>
 
-<h2 id="managing-services">Managing services</h2>
-<p>If change configuration file, need to restart service using <code>svcadm</code> <code>enable</code>/<code>disable</code>:</p>
-<pre><code>svcadm disable ftp
-svcadm enable ftp
-svcadm restart ftp
-</code></pre>
-
+<h3 id="installing-files-from-the-archlinux-user-repository">Installing files from the ArchLinux User Repository</h3>
 <ul>
-<li>Note that <code>svcsadm restart</code> <a href="https://docs.oracle.com/cd/E36784_01/html/E36820/svcrestart.html">does not commit property changes to the running snapshot and does not run the refesh method of the instance</a>.</li>
+<li><a href="https://wiki.archlinux.org/index.php/Help:Reading#Installation_of_packages">ArchLinux installing "AUR" packages</a></li>
 </ul>
-<h1 id="troubleshooting-system-services">Troubleshooting system services</h1>
+<h3 id="configuring-network-manager">Configuring Network Manager</h3>
+<p>-<a href="https://evilshit.wordpress.com/2012/09/15/how-to-make-networkmanager-and-network-manager-applet-work-on-arch-linux-with-gnome3/">Network Manager with Gnome3</a>
+- <a href="https://wiki.archlinux.org/index.php/NetworkManager">ArchLinux Wiki Network Manager</a></p>
+<h3 id="configuring-pia">Configuring PIA</h3>
 <ul>
-<li><a href="https://docs.oracle.com/cd/E36784_01/html/E36820/ecdps.html#SVSVFmaintenanceadm">Oracle Solaris 11.2: How to repair an instance that is in maintenance</a></li>
+<li>Finally got it working via NetworkManager/OpenVPN using <a href="https://www.privateinternetaccess.com/pages/client-support/ubuntu-openvpn">PIA's script</a></li>
 </ul>
-<pre><code>svcs -xv svc:/network/ftp:default       # Troubleshoot the FTP server
-</code></pre>
+<h3 id="redshift-flux-alternative-for-linux">Redshift (F.lux alternative for Linux)</h3>
+<ul>
+<li><a href="http://jonls.dk/redshift/">Redshift Project Web Page</a></li>
+<li><a href="https://wiki.archlinux.org/index.php/Redshift">Redshift Archlinux Page</a></li>
+</ul>
+<p><em>Installation Notes</em></p>
+<ul>
+<li>Installation with <code>pacman -S redshift</code> worked fine.</li>
+<li>Noted when trying to run <code>redshift-gtk1</code> needed to install <code>python-gobject</code> and <code>python-xdg</code> as noted on the ArchLinux Wiki.</li>
+<li>Install as service: <code>systemctl enable /usr/lib/systemd/redshift-gtk.service</code></li>
+<li>Manually configure <code>~/.config/redshift.conf</code> file.</li>
+</ul>
               
             </div>
           </div>
@@ -455,10 +469,10 @@ svcadm restart ftp
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../Ubuntu_Apache_Setup_and_Config/" class="btn btn-neutral float-right" title="Ubuntu Apache Setup and Config">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../Bash_Automating_User_and_Passwords/" class="btn btn-neutral float-right" title="Bash Automating User and Passwords">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../Solaris_SMB_vs_Samba/" class="btn btn-neutral" title="Solaris SMB vs Samba"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../.." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -486,10 +500,10 @@ svcadm restart ftp
           <a href="https://github.com/gavchan/dev-sysadmin/" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../Solaris_SMB_vs_Samba/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../.." style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../Ubuntu_Apache_Setup_and_Config/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../Bash_Automating_User_and_Passwords/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

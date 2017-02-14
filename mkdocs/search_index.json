@@ -11,59 +11,39 @@
             "title": "Software Development &amp; Systems Administration Notes"
         }, 
         {
-            "location": "/Linux-and-Unix/Apache_Server_Setup_and_Configuration/", 
-            "text": "Resources\n\n\n\n\nApache HTTP Server Version 2.4 Documentation\n\n\nOracle Docs: Apache Web Server\n\n\n\n\nApache on Oracle Solaris 11.3\n\n\n\n\nBy default apache22 is installed but disabled. One can check using either of the following:\n\n\n\n\nsvcs *apache*       # Or:\nsvcs http\n\n\n\n\n\n\nTo enable default apache22 service if currently disabled.\n\n\n\n\nsvcadm enable svc:/network/http:apache22\n\n\n\n\n\n\nCan install newer version then enable the server.\n\n\n\n\npkg install web/server/apache-24\nsvcadm -v enable /network/http:apache24\n\n\n\n\n\n\nAlternately can install a Apache webserver with MySQL and PHP:\n\n\n\n\npkg install group/feature/amp\n\n\n\n\n\n\nVerify that webserver works by opening: \nhttp://localhost:80\n in browser.\n\n\n\n\nConfiguring Apache\n\n\n\n\nConfiguration is stored in the \n/etc/apache2/2.2/httpd.conf\n file.\n\n\nBy default, web pages are served from \n/var/apache2/2.2/htdocs\n folder.\n\n\n\n\nEdit \n/etc/apache2/2.2/httpd.conf\n\n\n\n\nCan edit \nDocumentRoot\n to point to another directory.\n\n\nMake sure to change the \n to point to the same DocumentRoot\n\n\nAlso need to make sure that the directory it points into to has execute permissions, otherwise others won't be able to read the files within the directory.\n\n\n\n\nDirectives in \nhttpd.conf\n\n\nAllow from \naddress\n        # \naddress\n is IP address or fully qualified domain name\nDeny from \naddress\n\n\n\n\n\n\n\nUsing \nOrder\n allows one to fine-tune the access:\n\n\n\n\nOrder deny,allow            # Specifies restriction order\nDeny from all\nAllow from some.host.com\n\n\n\n\n\n\nThe above example will by default deny access to all, and then only allow access from some.host.com.\n\n\n\n\nDisplaying default files other than index.html\n\n\n\n\nLook for \nDirectoryIndex\n and add other possible files, e.g.:\n\n\n\n\nDirectoryIndex index.html index.htm default.htm index.php index.pl\n\n\n\n\nSetting up Virtual Hosts in Apache\n\n\n\n\nOne can examine \n/etc/apache2/2.2/samples-conf.d/vhosts.conf\n to show examples of VirtualHost configuration tags that should be added to the \n/etc/apache2/2.2/httpd.conf\n file.\n\n\n\n\nEdit the \n/etc/apache2/2.2/httpd.conf\n file:\n\n\n\n\nComment out the default \nDocumentRoot \"...\"\n\n\nAdd the following to direct queries to the specified DocumentRoot:\n\n\n\n\nListen 80                   # Check that Apache listens on this port (default)\n\nNameVirtualHost *:80        # Allows for name based virtual hosts\n\n\nVirtualHost *:80\n\n    DocumentRoot \n/path/directory\n\n    ServerName www.host.name\n\n/VirtualHost\n\n\n\n\n\n\n\nNext, need to give access through Apache to the specified directory by adding:\n\n\n\n\nDirectory \n/path/directory\n\n    Options Indexes FollowSymLinks\n    AllowOverride None\n    Order allow,deny\n    Allow from all\n\n/Directory\n\n\n\n\n\nAlso ensure the \n/etc/inet/hosts\n file is configured to resolve the ServerName (note that \n/etc/hosts\n symbolically links to \n/etc/inet/hosts\n):\n\n\n192.168.1.123 www.host.name     # Assigns 192.168.1.123 to www.host.name\n\n\n\n\nAdditional steps for virtual hosts on different ports\n\n\nAssuming the above virtual host is created, we add another virtual host that runs on a different port:\n\n\nListen 8123\n\n\nVirtualHost *:8123\n\n    DocumentRoot \n/path/anotherDirectory\n\n\n/VirtualHost\n\n\n\nDirectory \n/path/anotherDirectory\n\n    Options Indexes FollowSymLinks\n    AllowOverride None\n    Order allow,deny\n    Allow from all\n\n/Directory\n\n\n\n\n\n\nConfiguring Authentication and Authorization\n\n\n\n\nAuthentication and Authorization for version 2.2 from apache.org\n\n\nCreate a password file (not accessible from the web) using \nhtpasswd\n.\n\n\nNote that \nhtpasswd\n is located at \n/usr/local/apache2/bin/htpasswd\n\n\nE.g. \nhtpasswd -c /usr/local/apache/passwd/passwords user_name\n\n\nThen configure the server to request the password by editing the \nhttpd.conf\n file or using an \n.htaccess\n file:\n\n\n\n\nAuthType Basic\nAuthName \nRestricted Files\n\n# (Following line optional)\nAuthBasicProvider file\nAuthUserFile /usr/local/apache/passwd/passwords\nRequire user user_name\n\n\n\n\n\n\nSo to protect a folder \n/pathto/secret\n:\n\n\nPlace the above directives in \n.htaccess\n within the folder \n/pathto/secret\n.\n\n\nAlternatively, place the above directives in the \nhttpd.conf\n file within a directory section: \nDirectory /pathto/secret\n ... \n/Directory", 
-            "title": "Apache Server Setup and Configuration"
+            "location": "/Linux-and-Unix/ArchLinux/", 
+            "text": "ArchLinux Wiki\n\n\n\n\nInstallation\n\n\n\n\nArchLinux Installation\n\n\nInstalling ArchLinux in VirtualBox\n (Worked well with minor adjustments)\n\n\n\n\nMounting an additional internal drive at boot\n\n\n\n\nEdit fstab: \nAccessing an internal drive\n\n\n\n\n/dev/sdc4 /media/anyname rw,auto,user 0 0\n\n\n\n\nInstalling files from the ArchLinux User Repository\n\n\n\n\nArchLinux installing \"AUR\" packages\n\n\n\n\nConfiguring Network Manager\n\n\n-\nNetwork Manager with Gnome3\n\n- \nArchLinux Wiki Network Manager\n\n\nConfiguring PIA\n\n\n\n\nFinally got it working via NetworkManager/OpenVPN using \nPIA's script\n\n\n\n\nRedshift (F.lux alternative for Linux)\n\n\n\n\nRedshift Project Web Page\n\n\nRedshift Archlinux Page\n\n\n\n\nInstallation Notes\n\n\n\n\nInstallation with \npacman -S redshift\n worked fine.\n\n\nNoted when trying to run \nredshift-gtk1\n needed to install \npython-gobject\n and \npython-xdg\n as noted on the ArchLinux Wiki.\n\n\nInstall as service: \nsystemctl enable /usr/lib/systemd/redshift-gtk.service\n\n\nManually configure \n~/.config/redshift.conf\n file.", 
+            "title": "ArchLinux"
         }, 
         {
-            "location": "/Linux-and-Unix/Apache_Server_Setup_and_Configuration/#resources", 
-            "text": "Apache HTTP Server Version 2.4 Documentation  Oracle Docs: Apache Web Server", 
-            "title": "Resources"
+            "location": "/Linux-and-Unix/ArchLinux/#installation", 
+            "text": "ArchLinux Installation  Installing ArchLinux in VirtualBox  (Worked well with minor adjustments)", 
+            "title": "Installation"
         }, 
         {
-            "location": "/Linux-and-Unix/Apache_Server_Setup_and_Configuration/#apache-on-oracle-solaris-113", 
-            "text": "By default apache22 is installed but disabled. One can check using either of the following:   svcs *apache*       # Or:\nsvcs http   To enable default apache22 service if currently disabled.   svcadm enable svc:/network/http:apache22   Can install newer version then enable the server.   pkg install web/server/apache-24\nsvcadm -v enable /network/http:apache24   Alternately can install a Apache webserver with MySQL and PHP:   pkg install group/feature/amp   Verify that webserver works by opening:  http://localhost:80  in browser.", 
-            "title": "Apache on Oracle Solaris 11.3"
+            "location": "/Linux-and-Unix/ArchLinux/#mounting-an-additional-internal-drive-at-boot", 
+            "text": "Edit fstab:  Accessing an internal drive   /dev/sdc4 /media/anyname rw,auto,user 0 0", 
+            "title": "Mounting an additional internal drive at boot"
         }, 
         {
-            "location": "/Linux-and-Unix/Apache_Server_Setup_and_Configuration/#configuring-apache", 
-            "text": "Configuration is stored in the  /etc/apache2/2.2/httpd.conf  file.  By default, web pages are served from  /var/apache2/2.2/htdocs  folder.", 
-            "title": "Configuring Apache"
+            "location": "/Linux-and-Unix/ArchLinux/#installing-files-from-the-archlinux-user-repository", 
+            "text": "ArchLinux installing \"AUR\" packages", 
+            "title": "Installing files from the ArchLinux User Repository"
         }, 
         {
-            "location": "/Linux-and-Unix/Apache_Server_Setup_and_Configuration/#edit-etcapache222httpdconf", 
-            "text": "Can edit  DocumentRoot  to point to another directory.  Make sure to change the   to point to the same DocumentRoot  Also need to make sure that the directory it points into to has execute permissions, otherwise others won't be able to read the files within the directory.", 
-            "title": "Edit /etc/apache2/2.2/httpd.conf"
+            "location": "/Linux-and-Unix/ArchLinux/#configuring-network-manager", 
+            "text": "- Network Manager with Gnome3 \n-  ArchLinux Wiki Network Manager", 
+            "title": "Configuring Network Manager"
         }, 
         {
-            "location": "/Linux-and-Unix/Apache_Server_Setup_and_Configuration/#directives-in-httpdconf", 
-            "text": "Allow from  address         #  address  is IP address or fully qualified domain name\nDeny from  address    Using  Order  allows one to fine-tune the access:   Order deny,allow            # Specifies restriction order\nDeny from all\nAllow from some.host.com   The above example will by default deny access to all, and then only allow access from some.host.com.", 
-            "title": "Directives in httpd.conf"
+            "location": "/Linux-and-Unix/ArchLinux/#configuring-pia", 
+            "text": "Finally got it working via NetworkManager/OpenVPN using  PIA's script", 
+            "title": "Configuring PIA"
         }, 
         {
-            "location": "/Linux-and-Unix/Apache_Server_Setup_and_Configuration/#displaying-default-files-other-than-indexhtml", 
-            "text": "Look for  DirectoryIndex  and add other possible files, e.g.:   DirectoryIndex index.html index.htm default.htm index.php index.pl", 
-            "title": "Displaying default files other than index.html"
-        }, 
-        {
-            "location": "/Linux-and-Unix/Apache_Server_Setup_and_Configuration/#setting-up-virtual-hosts-in-apache", 
-            "text": "One can examine  /etc/apache2/2.2/samples-conf.d/vhosts.conf  to show examples of VirtualHost configuration tags that should be added to the  /etc/apache2/2.2/httpd.conf  file.", 
-            "title": "Setting up Virtual Hosts in Apache"
-        }, 
-        {
-            "location": "/Linux-and-Unix/Apache_Server_Setup_and_Configuration/#edit-the-etcapache222httpdconf-file", 
-            "text": "Comment out the default  DocumentRoot \"...\"  Add the following to direct queries to the specified DocumentRoot:   Listen 80                   # Check that Apache listens on this port (default)\n\nNameVirtualHost *:80        # Allows for name based virtual hosts VirtualHost *:80 \n    DocumentRoot  /path/directory \n    ServerName www.host.name /VirtualHost    Next, need to give access through Apache to the specified directory by adding:   Directory  /path/directory \n    Options Indexes FollowSymLinks\n    AllowOverride None\n    Order allow,deny\n    Allow from all /Directory   Also ensure the  /etc/inet/hosts  file is configured to resolve the ServerName (note that  /etc/hosts  symbolically links to  /etc/inet/hosts ):  192.168.1.123 www.host.name     # Assigns 192.168.1.123 to www.host.name", 
-            "title": "Edit the /etc/apache2/2.2/httpd.conf file:"
-        }, 
-        {
-            "location": "/Linux-and-Unix/Apache_Server_Setup_and_Configuration/#additional-steps-for-virtual-hosts-on-different-ports", 
-            "text": "Assuming the above virtual host is created, we add another virtual host that runs on a different port:  Listen 8123 VirtualHost *:8123 \n    DocumentRoot  /path/anotherDirectory  /VirtualHost  Directory  /path/anotherDirectory \n    Options Indexes FollowSymLinks\n    AllowOverride None\n    Order allow,deny\n    Allow from all /Directory", 
-            "title": "Additional steps for virtual hosts on different ports"
-        }, 
-        {
-            "location": "/Linux-and-Unix/Apache_Server_Setup_and_Configuration/#configuring-authentication-and-authorization", 
-            "text": "Authentication and Authorization for version 2.2 from apache.org  Create a password file (not accessible from the web) using  htpasswd .  Note that  htpasswd  is located at  /usr/local/apache2/bin/htpasswd  E.g.  htpasswd -c /usr/local/apache/passwd/passwords user_name  Then configure the server to request the password by editing the  httpd.conf  file or using an  .htaccess  file:   AuthType Basic\nAuthName  Restricted Files \n# (Following line optional)\nAuthBasicProvider file\nAuthUserFile /usr/local/apache/passwd/passwords\nRequire user user_name   So to protect a folder  /pathto/secret :  Place the above directives in  .htaccess  within the folder  /pathto/secret .  Alternatively, place the above directives in the  httpd.conf  file within a directory section:  Directory /pathto/secret  ...  /Directory", 
-            "title": "Configuring Authentication and Authorization"
+            "location": "/Linux-and-Unix/ArchLinux/#redshift-flux-alternative-for-linux", 
+            "text": "Redshift Project Web Page  Redshift Archlinux Page   Installation Notes   Installation with  pacman -S redshift  worked fine.  Noted when trying to run  redshift-gtk1  needed to install  python-gobject  and  python-xdg  as noted on the ArchLinux Wiki.  Install as service:  systemctl enable /usr/lib/systemd/redshift-gtk.service  Manually configure  ~/.config/redshift.conf  file.", 
+            "title": "Redshift (F.lux alternative for Linux)"
         }, 
         {
             "location": "/Linux-and-Unix/Bash_Automating_User_and_Passwords/", 
@@ -266,6 +246,16 @@
             "title": "LDAP"
         }, 
         {
+            "location": "/Linux-and-Unix/Other_Distros/", 
+            "text": "Slackware\n\n\n\n\nThe Slackware Linux Project\n\n\n\n\nDocumentation\n\n\n\n\nSlackbook: The Revised Slackware Book Project\n\n\nSlackware Documentation Project", 
+            "title": "Other Distros"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Other_Distros/#slackware", 
+            "text": "The Slackware Linux Project   Documentation   Slackbook: The Revised Slackware Book Project  Slackware Documentation Project", 
+            "title": "Slackware"
+        }, 
+        {
             "location": "/Linux-and-Unix/SSH_and_SCP_Usage/", 
             "text": "Links and References\n\n- \nOracle Linux Tips and Tricks: Using SSH\n\n\nSecure Shell (SSH) and Secure Copy (SCP)\n\n\n\n\nDeveloped in 1995, provided security through encryption.\n\n\nUnlike \ntelnet\n and \nftp\n, user credentials and file contents are encrypted.\n\n\nAlso used by \nSecure Copy\n (\nscp\n)\n\n\n\n\nOracle Solaris SSH\n\n\n\n\nOpenSSH in Solaris 11.3\n\n\nFor Solaris 11.3 both OpenSSH and SunSSH are both supplied.\n\n\nSunSSH: \npkg:/network/ssh\n\n\nOpenSSH: \npkg:/network/openssh\n\n\nBoth packages deliver the same \nsvc:/network/ssh:default\n\n\n\n\n\n\n\n\nConfiguring SSH\n\n\n\n\nSSH configuration stored in \n/etc/ssh/sshd_conf\n file.\n\n\nEnsure \nStrictModes yes\n for secure permissions on users .ssh directory.\n\n\n\n\nUsing SSH on Oracle Solaris\n\n\n\n\nSSH is automatically installed and enabled by default with root access disabled.\n\n\nCan check with \nsvcs ssh\n and/or \nps -ef|grep ssh\n\n\nCan enable/disable with:\n\n\n\n\nsvcadm disable ssh\nsvcadm enable ssh\n\n\n\n\nUsing SCP\n\n\n\n\nSyntax:\n\n\n\n\nscp /localpath/localfilename remoteuser@remotehost:/remotepath/remotefilename\n\n\n\n\n\n\nUse the \n-r\n option to recursively transfer all files and directories inside the path.\n\n\n\n\nscp -r /localpath/dirname remoteuser@remotehost:/remotepath/dirfortransfer\n\n\n\n\nConnecting with Microsoft Windows OS\n\n\n\n\nSetting up SSH Server on Microsoft Windows", 
             "title": "SSH and SCP Usage"
@@ -351,14 +341,59 @@
             "title": "References"
         }, 
         {
-            "location": "/Linux-and-Unix/Slackware/", 
-            "text": "The Slackware Linux Project\n\n\n\n\nDocumentation\n\n\n\n\nSlackbook: The Revised Slackware Book Project\n\n\nSlackware Documentation Project", 
-            "title": "Slackware"
+            "location": "/Linux-and-Unix/Solaris_Apache_Server_Setup_and_Config/", 
+            "text": "Resources\n\n\n\n\nApache HTTP Server Version 2.4 Documentation\n\n\nOracle Docs: Apache Web Server\n\n\n\n\nApache on Oracle Solaris 11.3\n\n\n\n\nBy default apache22 is installed but disabled. One can check using either of the following:\n\n\n\n\nsvcs *apache*       # Or:\nsvcs http\n\n\n\n\n\n\nTo enable default apache22 service if currently disabled.\n\n\n\n\nsvcadm enable svc:/network/http:apache22\n\n\n\n\n\n\nCan install newer version then enable the server.\n\n\n\n\npkg install web/server/apache-24\nsvcadm -v enable /network/http:apache24\n\n\n\n\n\n\nAlternately can install a Apache webserver with MySQL and PHP:\n\n\n\n\npkg install group/feature/amp\n\n\n\n\n\n\nVerify that webserver works by opening: \nhttp://localhost:80\n in browser.\n\n\n\n\nConfiguring Apache\n\n\n\n\nConfiguration is stored in the \n/etc/apache2/2.2/httpd.conf\n file.\n\n\nBy default, web pages are served from \n/var/apache2/2.2/htdocs\n folder.\n\n\n\n\nEdit \n/etc/apache2/2.2/httpd.conf\n\n\n\n\nCan edit \nDocumentRoot\n to point to another directory.\n\n\nMake sure to change the \n to point to the same DocumentRoot\n\n\nAlso need to make sure that the directory it points into to has execute permissions, otherwise others won't be able to read the files within the directory.\n\n\n\n\nDirectives in \nhttpd.conf\n\n\nAllow from \naddress\n        # \naddress\n is IP address or fully qualified domain name\nDeny from \naddress\n\n\n\n\n\n\n\nUsing \nOrder\n allows one to fine-tune the access:\n\n\n\n\nOrder deny,allow            # Specifies restriction order\nDeny from all\nAllow from some.host.com\n\n\n\n\n\n\nThe above example will by default deny access to all, and then only allow access from some.host.com.\n\n\n\n\nDisplaying default files other than index.html\n\n\n\n\nLook for \nDirectoryIndex\n and add other possible files, e.g.:\n\n\n\n\nDirectoryIndex index.html index.htm default.htm index.php index.pl\n\n\n\n\nSetting up Virtual Hosts in Apache\n\n\n\n\nOne can examine \n/etc/apache2/2.2/samples-conf.d/vhosts.conf\n to show examples of VirtualHost configuration tags that should be added to the \n/etc/apache2/2.2/httpd.conf\n file.\n\n\n\n\nEdit the \n/etc/apache2/2.2/httpd.conf\n file:\n\n\n\n\nComment out the default \nDocumentRoot \"...\"\n\n\nAdd the following to direct queries to the specified DocumentRoot:\n\n\n\n\nListen 80                   # Check that Apache listens on this port (default)\n\nNameVirtualHost *:80        # Allows for name based virtual hosts\n\n\nVirtualHost *:80\n\n    DocumentRoot \n/path/directory\n\n    ServerName www.host.name\n\n/VirtualHost\n\n\n\n\n\n\n\nNext, need to give access through Apache to the specified directory by adding:\n\n\n\n\nDirectory \n/path/directory\n\n    Options Indexes FollowSymLinks\n    AllowOverride None\n    Order allow,deny\n    Allow from all\n\n/Directory\n\n\n\n\n\nAlso ensure the \n/etc/inet/hosts\n file is configured to resolve the ServerName (note that \n/etc/hosts\n symbolically links to \n/etc/inet/hosts\n):\n\n\n192.168.1.123 www.host.name     # Assigns 192.168.1.123 to www.host.name\n\n\n\n\nAdditional steps for virtual hosts on different ports\n\n\nAssuming the above virtual host is created, we add another virtual host that runs on a different port:\n\n\nListen 8123\n\n\nVirtualHost *:8123\n\n    DocumentRoot \n/path/anotherDirectory\n\n\n/VirtualHost\n\n\n\nDirectory \n/path/anotherDirectory\n\n    Options Indexes FollowSymLinks\n    AllowOverride None\n    Order allow,deny\n    Allow from all\n\n/Directory\n\n\n\n\n\n\nConfiguring Authentication and Authorization\n\n\n\n\nAuthentication and Authorization for version 2.2 from apache.org\n\n\nCreate a password file (not accessible from the web) using \nhtpasswd\n.\n\n\nNote that \nhtpasswd\n is located at \n/usr/local/apache2/bin/htpasswd\n\n\nE.g. \nhtpasswd -c /usr/local/apache/passwd/passwords user_name\n\n\nThen configure the server to request the password by editing the \nhttpd.conf\n file or using an \n.htaccess\n file:\n\n\n\n\nAuthType Basic\nAuthName \nRestricted Files\n\n# (Following line optional)\nAuthBasicProvider file\nAuthUserFile /usr/local/apache/passwd/passwords\nRequire user user_name\n\n\n\n\n\n\nSo to protect a folder \n/pathto/secret\n:\n\n\nPlace the above directives in \n.htaccess\n within the folder \n/pathto/secret\n.\n\n\nAlternatively, place the above directives in the \nhttpd.conf\n file within a directory section: \nDirectory /pathto/secret\n ... \n/Directory", 
+            "title": "Solaris Apache Server Setup and Config"
         }, 
         {
-            "location": "/Linux-and-Unix/Slackware/#documentation", 
-            "text": "Slackbook: The Revised Slackware Book Project  Slackware Documentation Project", 
-            "title": "Documentation"
+            "location": "/Linux-and-Unix/Solaris_Apache_Server_Setup_and_Config/#resources", 
+            "text": "Apache HTTP Server Version 2.4 Documentation  Oracle Docs: Apache Web Server", 
+            "title": "Resources"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Solaris_Apache_Server_Setup_and_Config/#apache-on-oracle-solaris-113", 
+            "text": "By default apache22 is installed but disabled. One can check using either of the following:   svcs *apache*       # Or:\nsvcs http   To enable default apache22 service if currently disabled.   svcadm enable svc:/network/http:apache22   Can install newer version then enable the server.   pkg install web/server/apache-24\nsvcadm -v enable /network/http:apache24   Alternately can install a Apache webserver with MySQL and PHP:   pkg install group/feature/amp   Verify that webserver works by opening:  http://localhost:80  in browser.", 
+            "title": "Apache on Oracle Solaris 11.3"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Solaris_Apache_Server_Setup_and_Config/#configuring-apache", 
+            "text": "Configuration is stored in the  /etc/apache2/2.2/httpd.conf  file.  By default, web pages are served from  /var/apache2/2.2/htdocs  folder.", 
+            "title": "Configuring Apache"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Solaris_Apache_Server_Setup_and_Config/#edit-etcapache222httpdconf", 
+            "text": "Can edit  DocumentRoot  to point to another directory.  Make sure to change the   to point to the same DocumentRoot  Also need to make sure that the directory it points into to has execute permissions, otherwise others won't be able to read the files within the directory.", 
+            "title": "Edit /etc/apache2/2.2/httpd.conf"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Solaris_Apache_Server_Setup_and_Config/#directives-in-httpdconf", 
+            "text": "Allow from  address         #  address  is IP address or fully qualified domain name\nDeny from  address    Using  Order  allows one to fine-tune the access:   Order deny,allow            # Specifies restriction order\nDeny from all\nAllow from some.host.com   The above example will by default deny access to all, and then only allow access from some.host.com.", 
+            "title": "Directives in httpd.conf"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Solaris_Apache_Server_Setup_and_Config/#displaying-default-files-other-than-indexhtml", 
+            "text": "Look for  DirectoryIndex  and add other possible files, e.g.:   DirectoryIndex index.html index.htm default.htm index.php index.pl", 
+            "title": "Displaying default files other than index.html"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Solaris_Apache_Server_Setup_and_Config/#setting-up-virtual-hosts-in-apache", 
+            "text": "One can examine  /etc/apache2/2.2/samples-conf.d/vhosts.conf  to show examples of VirtualHost configuration tags that should be added to the  /etc/apache2/2.2/httpd.conf  file.", 
+            "title": "Setting up Virtual Hosts in Apache"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Solaris_Apache_Server_Setup_and_Config/#edit-the-etcapache222httpdconf-file", 
+            "text": "Comment out the default  DocumentRoot \"...\"  Add the following to direct queries to the specified DocumentRoot:   Listen 80                   # Check that Apache listens on this port (default)\n\nNameVirtualHost *:80        # Allows for name based virtual hosts VirtualHost *:80 \n    DocumentRoot  /path/directory \n    ServerName www.host.name /VirtualHost    Next, need to give access through Apache to the specified directory by adding:   Directory  /path/directory \n    Options Indexes FollowSymLinks\n    AllowOverride None\n    Order allow,deny\n    Allow from all /Directory   Also ensure the  /etc/inet/hosts  file is configured to resolve the ServerName (note that  /etc/hosts  symbolically links to  /etc/inet/hosts ):  192.168.1.123 www.host.name     # Assigns 192.168.1.123 to www.host.name", 
+            "title": "Edit the /etc/apache2/2.2/httpd.conf file:"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Solaris_Apache_Server_Setup_and_Config/#additional-steps-for-virtual-hosts-on-different-ports", 
+            "text": "Assuming the above virtual host is created, we add another virtual host that runs on a different port:  Listen 8123 VirtualHost *:8123 \n    DocumentRoot  /path/anotherDirectory  /VirtualHost  Directory  /path/anotherDirectory \n    Options Indexes FollowSymLinks\n    AllowOverride None\n    Order allow,deny\n    Allow from all /Directory", 
+            "title": "Additional steps for virtual hosts on different ports"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Solaris_Apache_Server_Setup_and_Config/#configuring-authentication-and-authorization", 
+            "text": "Authentication and Authorization for version 2.2 from apache.org  Create a password file (not accessible from the web) using  htpasswd .  Note that  htpasswd  is located at  /usr/local/apache2/bin/htpasswd  E.g.  htpasswd -c /usr/local/apache/passwd/passwords user_name  Then configure the server to request the password by editing the  httpd.conf  file or using an  .htaccess  file:   AuthType Basic\nAuthName  Restricted Files \n# (Following line optional)\nAuthBasicProvider file\nAuthUserFile /usr/local/apache/passwd/passwords\nRequire user user_name   So to protect a folder  /pathto/secret :  Place the above directives in  .htaccess  within the folder  /pathto/secret .  Alternatively, place the above directives in the  httpd.conf  file within a directory section:  Directory /pathto/secret  ...  /Directory", 
+            "title": "Configuring Authentication and Authorization"
         }, 
         {
             "location": "/Linux-and-Unix/Solaris_CheatSheet/", 
@@ -554,6 +589,51 @@
             "location": "/Linux-and-Unix/Solaris_SMF/#troubleshooting-system-services", 
             "text": "Oracle Solaris 11.2: How to repair an instance that is in maintenance   svcs -xv svc:/network/ftp:default       # Troubleshoot the FTP server", 
             "title": "Troubleshooting system services"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Ubuntu_Apache_Setup_and_Config/", 
+            "text": "Check Version\n\n\nmore /etc/issue\n\n\n\n\nInstalling LAMP on Ubuntu\n\n\n\n\nSource: \nInstalling LAMP on Ubuntu 16.04\n\n\n\n\nInstall Apache\n\n\nsudo apt-get update\nsudo apt-get install apache2\n\nservice apache2 status          # Check status\n\n\n\n\n\n\nConfiguration overview in default page: \n/var/www/html/index.html\n\n\nFull documentation in \n/user/share/doc/apache2/README.Debian.gz\n\n\nConfiguration files in \n/etc/apache2\n\n\nDefault document root in \nvar/www/html\n; virtual hosts could be made uder \nvar/www\n.\n\n\n\n\nRestarting, Starting and Stopping\n\n\nsudo /etc/init.d/apache2 restart\nsudo /etc/init.d/apache2 stop\nsudo /etc/init.d/apache2 start\n\n\n\n\nConfiguring Autostart\n\n\nsudo update-rc.d -f apache2 remove\nsudo update-rc.d apache2 defaults\n\n\n\n\nSecuring Apache Ubuntu\n\n\n\n\nSecuring Apache Ubuntu\n\n\n\n\nInstalling MySQL\n\n\nsudo apt install mysql-server php7.0-mysql\nmy_sql_secure_installation                  # Configure secure settings\nservice mysql status                        # Check status of mysql\n\n\n\n\nInstalling PHP\n\n\nsudo apt install php libapache2-mod-php\nsudo service apache2 restart\n\n\n\n\n\n\nCan create a test php file in \n/var/www/html/info.php\n and load in html:\n\n\n\n\n?php\nphpinfo();\n?", 
+            "title": "Ubuntu Apache Setup and Config"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Ubuntu_Apache_Setup_and_Config/#check-version", 
+            "text": "more /etc/issue", 
+            "title": "Check Version"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Ubuntu_Apache_Setup_and_Config/#installing-lamp-on-ubuntu", 
+            "text": "Source:  Installing LAMP on Ubuntu 16.04", 
+            "title": "Installing LAMP on Ubuntu"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Ubuntu_Apache_Setup_and_Config/#install-apache", 
+            "text": "sudo apt-get update\nsudo apt-get install apache2\n\nservice apache2 status          # Check status   Configuration overview in default page:  /var/www/html/index.html  Full documentation in  /user/share/doc/apache2/README.Debian.gz  Configuration files in  /etc/apache2  Default document root in  var/www/html ; virtual hosts could be made uder  var/www .", 
+            "title": "Install Apache"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Ubuntu_Apache_Setup_and_Config/#restarting-starting-and-stopping", 
+            "text": "sudo /etc/init.d/apache2 restart\nsudo /etc/init.d/apache2 stop\nsudo /etc/init.d/apache2 start", 
+            "title": "Restarting, Starting and Stopping"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Ubuntu_Apache_Setup_and_Config/#configuring-autostart", 
+            "text": "sudo update-rc.d -f apache2 remove\nsudo update-rc.d apache2 defaults", 
+            "title": "Configuring Autostart"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Ubuntu_Apache_Setup_and_Config/#securing-apache-ubuntu", 
+            "text": "Securing Apache Ubuntu", 
+            "title": "Securing Apache Ubuntu"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Ubuntu_Apache_Setup_and_Config/#installing-mysql", 
+            "text": "sudo apt install mysql-server php7.0-mysql\nmy_sql_secure_installation                  # Configure secure settings\nservice mysql status                        # Check status of mysql", 
+            "title": "Installing MySQL"
+        }, 
+        {
+            "location": "/Linux-and-Unix/Ubuntu_Apache_Setup_and_Config/#installing-php", 
+            "text": "sudo apt install php libapache2-mod-php\nsudo service apache2 restart   Can create a test php file in  /var/www/html/info.php  and load in html:   ?php\nphpinfo();\n?", 
+            "title": "Installing PHP"
         }, 
         {
             "location": "/Linux-and-Unix/Users_and_Groups/", 
@@ -999,6 +1079,106 @@
             "location": "/Powershell/Windows_Server_2012R2_Installation/#powershell-installuninstall-command-values-for-the-name-parameter", 
             "text": "Graphical Management Tools and Infrastructure Server-Gui-Mgmt-Infra  Graphical Management Tools and Infrastructure, Server Graphical Shell Server-Gui-Mgmt-Infra, Server-Gui-Shell  Graphical Management Tools and Infrastructure, Server Graphical Shell, Desktop Experience Server-Gui-Mgmt-Infra, Server-Gui-Shell, Desktop-Experience", 
             "title": "Powershell install/uninstall command values for the Name parameter:"
+        }, 
+        {
+            "location": "/Python/Databases_SQL_Python/", 
+            "text": "SQLite\n\n\n\n\nSQLite Browser\n\n\n\n\nImport SQLite3 Library and Initialize\n\n\nimport sqlite3\n\nconn = sqlite3.conect('db_name.sqlite')\ncur = conn.cursor()\n\n\n\n\nExecute SQL commands: Examples\n\n\ncur.execute('''\nDROP TABLE IF EXISTS Counts''')\n\ncur.execute('''\nCREATE TABLE Counts (email TEXT, count INTEGER)''')\n\ncur.execute('SELECT count FROM Counts WHERE email = ? ', (email, ))\n\n\n\n\nWrite to disk\n\n\nconn.commit()\n\n\n\n\nLooping through SQL\n\n\nsqlstring = '...'\n\n\n\n\n\nClose\n\n\ncur.close()", 
+            "title": "Databases SQL Python"
+        }, 
+        {
+            "location": "/Python/Databases_SQL_Python/#sqlite", 
+            "text": "SQLite Browser", 
+            "title": "SQLite"
+        }, 
+        {
+            "location": "/Python/Databases_SQL_Python/#import-sqlite3-library-and-initialize", 
+            "text": "import sqlite3\n\nconn = sqlite3.conect('db_name.sqlite')\ncur = conn.cursor()", 
+            "title": "Import SQLite3 Library and Initialize"
+        }, 
+        {
+            "location": "/Python/Databases_SQL_Python/#execute-sql-commands-examples", 
+            "text": "cur.execute('''\nDROP TABLE IF EXISTS Counts''')\n\ncur.execute('''\nCREATE TABLE Counts (email TEXT, count INTEGER)''')\n\ncur.execute('SELECT count FROM Counts WHERE email = ? ', (email, ))", 
+            "title": "Execute SQL commands: Examples"
+        }, 
+        {
+            "location": "/Python/Databases_SQL_Python/#write-to-disk", 
+            "text": "conn.commit()", 
+            "title": "Write to disk"
+        }, 
+        {
+            "location": "/Python/Databases_SQL_Python/#looping-through-sql", 
+            "text": "sqlstring = '...'", 
+            "title": "Looping through SQL"
+        }, 
+        {
+            "location": "/Python/Databases_SQL_Python/#close", 
+            "text": "cur.close()", 
+            "title": "Close"
+        }, 
+        {
+            "location": "/Python/Python_OOP/", 
+            "text": "Notes from Coursera Using Databases with Python by Prof. Charles Severance\n\n\nBasic Structure / Syntax\n\n\nclass ClassName:\n    x = 0\n\n    def methodName(self):\n        self.x = self.x + 1\n\nanObj = ClassName()\n\nanObj.methodName();\n\n\n\n\n\n\nself\n is a variable that is an alias to an instance.\n\n\nEach instance has to have one parameter if want objects to \"talk\" to each other.\n\n\n\n\ntype()\n\n\n\n\ntype(anObj)\n returns something about the variable/object.\n\n\n\n\ndir()\n\n\n\n\ndir(anObj)\n lists capabilities of a class.\n\n\nItems enclosed by underscores are reserved methods used by Python.\n\n\n\n\nObject Lifecycle\n\n\n\n\nObjects are created, used and discarded\n\n\nConstructors are methods that sets up instance variables that have initial values.\n\n\nDestructors are rarely used.\n\n\n\n\nclass ClassName:\n\n    def __init__(self, nam):\n        self.name = nam\n\n    def __del__(self):\n        ...\n\n\n\n\nInheritance\n\n\n\n\nUsing an existing class in which one inherits all the capabilities of an existing class. Other terms are extending the class.\n\n\nSyntax:\n\n\n\n\nclass Class1:\n    x = 0\n    name = \n\n    def __init__(self,nam):\n        ...\n    def a_Method(self):\n        ...\n\nclass Class2(Class1):\n    ...", 
+            "title": "Python OOP"
+        }, 
+        {
+            "location": "/Python/Python_OOP/#basic-structure-syntax", 
+            "text": "class ClassName:\n    x = 0\n\n    def methodName(self):\n        self.x = self.x + 1\n\nanObj = ClassName()\n\nanObj.methodName();   self  is a variable that is an alias to an instance.  Each instance has to have one parameter if want objects to \"talk\" to each other.", 
+            "title": "Basic Structure / Syntax"
+        }, 
+        {
+            "location": "/Python/Python_OOP/#type", 
+            "text": "type(anObj)  returns something about the variable/object.", 
+            "title": "type()"
+        }, 
+        {
+            "location": "/Python/Python_OOP/#dir", 
+            "text": "dir(anObj)  lists capabilities of a class.  Items enclosed by underscores are reserved methods used by Python.", 
+            "title": "dir()"
+        }, 
+        {
+            "location": "/Python/Python_OOP/#object-lifecycle", 
+            "text": "Objects are created, used and discarded  Constructors are methods that sets up instance variables that have initial values.  Destructors are rarely used.   class ClassName:\n\n    def __init__(self, nam):\n        self.name = nam\n\n    def __del__(self):\n        ...", 
+            "title": "Object Lifecycle"
+        }, 
+        {
+            "location": "/Python/Python_OOP/#inheritance", 
+            "text": "Using an existing class in which one inherits all the capabilities of an existing class. Other terms are extending the class.  Syntax:   class Class1:\n    x = 0\n    name =  \n    def __init__(self,nam):\n        ...\n    def a_Method(self):\n        ...\n\nclass Class2(Class1):\n    ...", 
+            "title": "Inheritance"
+        }, 
+        {
+            "location": "/WebDev/Resources/", 
+            "text": "Hosting\n\n\n\n\nHosting Facts\n\n\nTWM Web Hosting SEO News\n\n\nBest Wordpress Hosting Recommendations February 2017\n\n\n\n\nPackage Managers\n\n\n\n\nBower\n. Package manager for the web.\n\n\n\n\nServer Setup: LAMP/MAMP\n\n\n\n\nWorking guide here to setup user Sites folder on El Capitan: \nAMP Setup on MacOS El Capitan\n\n\nDefault web root at \n/Library/WebServer/Documents/\n\n\nAbove link sets up web root at \n~/Username/Sites\n\n\nAccess at: \nhttp://localhost/~username/\n\n\n\n\n\n\n\n\nTextures\n\n\n\n\nTransparent Textures\n. Cool site of customizable transparent textures.\n\n\n\n\nWordpress\n\n\n\n\nHow to speed up development with WP CLI\n\n\nMoving a Wordpress site\n\n\n\n\nWorkflow Automation\n\n\n\n\nGulp\n\n\nBeginners Guide to the Task Runner Gulp", 
+            "title": "Resources"
+        }, 
+        {
+            "location": "/WebDev/Resources/#hosting", 
+            "text": "Hosting Facts  TWM Web Hosting SEO News  Best Wordpress Hosting Recommendations February 2017", 
+            "title": "Hosting"
+        }, 
+        {
+            "location": "/WebDev/Resources/#package-managers", 
+            "text": "Bower . Package manager for the web.", 
+            "title": "Package Managers"
+        }, 
+        {
+            "location": "/WebDev/Resources/#server-setup-lampmamp", 
+            "text": "Working guide here to setup user Sites folder on El Capitan:  AMP Setup on MacOS El Capitan  Default web root at  /Library/WebServer/Documents/  Above link sets up web root at  ~/Username/Sites  Access at:  http://localhost/~username/", 
+            "title": "Server Setup: LAMP/MAMP"
+        }, 
+        {
+            "location": "/WebDev/Resources/#textures", 
+            "text": "Transparent Textures . Cool site of customizable transparent textures.", 
+            "title": "Textures"
+        }, 
+        {
+            "location": "/WebDev/Resources/#wordpress", 
+            "text": "How to speed up development with WP CLI  Moving a Wordpress site", 
+            "title": "Wordpress"
+        }, 
+        {
+            "location": "/WebDev/Resources/#workflow-automation", 
+            "text": "Gulp  Beginners Guide to the Task Runner Gulp", 
+            "title": "Workflow Automation"
         }, 
         {
             "location": "/WinServer2012/Basic_Command_Line/", 

@@ -8,7 +8,7 @@
   
   <meta name="author" content="Gavin">
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Solaris SMF - Software Development and System Administration Notes</title>
+  <title>Solaris Apache Server Setup and Config - Software Development and System Administration Notes</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Solaris SMF";
-    var mkdocs_page_input_path = "Linux-and-Unix/Solaris_SMF.md";
-    var mkdocs_page_url = "/Linux-and-Unix/Solaris_SMF/";
+    var mkdocs_page_name = "Solaris Apache Server Setup and Config";
+    var mkdocs_page_input_path = "Linux-and-Unix/Solaris_Apache_Server_Setup_and_Config.md";
+    var mkdocs_page_url = "/Linux-and-Unix/Solaris_Apache_Server_Setup_and_Config/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -132,8 +132,37 @@
 
         
             
-    <li class="toctree-l1 ">
-        <a class="" href="../Solaris_Apache_Server_Setup_and_Config/">Solaris Apache Server Setup and Config</a>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Solaris Apache Server Setup and Config</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#resources">Resources</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#apache-on-oracle-solaris-113">Apache on Oracle Solaris 11.3</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#configuring-apache">Configuring Apache</a></li>
+                
+                    <li><a class="toctree-l4" href="#edit-etcapache222httpdconf">Edit /etc/apache2/2.2/httpd.conf</a></li>
+                
+                    <li><a class="toctree-l4" href="#directives-in-httpdconf">Directives in httpd.conf</a></li>
+                
+                    <li><a class="toctree-l4" href="#displaying-default-files-other-than-indexhtml">Displaying default files other than index.html</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#setting-up-virtual-hosts-in-apache">Setting up Virtual Hosts in Apache</a></li>
+                
+                    <li><a class="toctree-l4" href="#edit-the-etcapache222httpdconf-file">Edit the /etc/apache2/2.2/httpd.conf file:</a></li>
+                
+                    <li><a class="toctree-l4" href="#additional-steps-for-virtual-hosts-on-different-ports">Additional steps for virtual hosts on different ports</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#configuring-authentication-and-authorization">Configuring Authentication and Authorization</a></li>
+                
+            
+            </ul>
         
     </li>
 
@@ -167,22 +196,8 @@
 
         
             
-    <li class="toctree-l1 current">
-        <a class="current" href="./">Solaris SMF</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#basics-of-service-management-facility-smf-on-oracle-solaris-11">Basics of Service Management Facility (SMF) on Oracle Solaris 11</a></li>
-                
-                    <li><a class="toctree-l4" href="#listing-services">Listing services</a></li>
-                
-                    <li><a class="toctree-l4" href="#managing-services">Managing services</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#troubleshooting-system-services">Troubleshooting system services</a></li>
-                
-            
-            </ul>
+    <li class="toctree-l1 ">
+        <a class="" href="../Solaris_SMF/">Solaris SMF</a>
         
     </li>
 
@@ -403,10 +418,10 @@
         
       
     
-    <li>Solaris SMF</li>
+    <li>Solaris Apache Server Setup and Config</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/gavchan/dev-sysadmin/edit/master/docs/Linux-and-Unix/Solaris_SMF.md"
+        <a href="https://github.com/gavchan/dev-sysadmin/edit/master/docs/Linux-and-Unix/Solaris_Apache_Server_Setup_and_Config.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -416,38 +431,149 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="basics-of-service-management-facility-smf-on-oracle-solaris-11"><a href="http://www.oracle.com/technetwork/articles/servers-storage-admin/intro-smf-basics-s11-1729181.html">Basics of Service Management Facility (SMF) on Oracle Solaris 11</a></h1>
+                <h1 id="resources">Resources</h1>
 <ul>
-<li>A software framework that manages the services on a system.</li>
-<li>Each service has a well-defined state and a relationship to other dependent services.</li>
-<li>Ability to run multiple instances of a given service and share common configuration.</li>
-<li>Configuration repository managed by <code>svc.configd</code></li>
-<li>Each service described using a Fault Management Reousrce Indicator (FMRI)</li>
-<li>SMF framework always active on Oracle Solaris 11 - started and restarted through the default init process.</li>
+<li><a href="http://httpd.apache.org/docs/2.4/">Apache HTTP Server Version 2.4 Documentation</a></li>
+<li><a href="https://docs.oracle.com/cd/E53394_01/html/E54831/gnvhs.html">Oracle Docs: Apache Web Server</a></li>
 </ul>
-<hr />
-<h2 id="listing-services">Listing services</h2>
-<pre><code>svcs
-svcs -a         # Lists additional new service instances.
-svcs *ftp*      # Searches for services containing *ftp*
-</code></pre>
-
-<h2 id="managing-services">Managing services</h2>
-<p>If change configuration file, need to restart service using <code>svcadm</code> <code>enable</code>/<code>disable</code>:</p>
-<pre><code>svcadm disable ftp
-svcadm enable ftp
-svcadm restart ftp
+<h1 id="apache-on-oracle-solaris-113">Apache on Oracle Solaris 11.3</h1>
+<ul>
+<li>By default apache22 is installed but disabled. One can check using either of the following:</li>
+</ul>
+<pre><code>svcs *apache*       # Or:
+svcs http
 </code></pre>
 
 <ul>
-<li>Note that <code>svcsadm restart</code> <a href="https://docs.oracle.com/cd/E36784_01/html/E36820/svcrestart.html">does not commit property changes to the running snapshot and does not run the refesh method of the instance</a>.</li>
+<li>To enable default apache22 service if currently disabled.</li>
 </ul>
-<h1 id="troubleshooting-system-services">Troubleshooting system services</h1>
-<ul>
-<li><a href="https://docs.oracle.com/cd/E36784_01/html/E36820/ecdps.html#SVSVFmaintenanceadm">Oracle Solaris 11.2: How to repair an instance that is in maintenance</a></li>
-</ul>
-<pre><code>svcs -xv svc:/network/ftp:default       # Troubleshoot the FTP server
+<pre><code>svcadm enable svc:/network/http:apache22
 </code></pre>
+
+<ul>
+<li>Can install newer version then enable the server.</li>
+</ul>
+<pre><code>pkg install web/server/apache-24
+svcadm -v enable /network/http:apache24
+</code></pre>
+
+<ul>
+<li>Alternately can install a Apache webserver with MySQL and PHP:</li>
+</ul>
+<pre><code>pkg install group/feature/amp
+</code></pre>
+
+<ul>
+<li>Verify that webserver works by opening: <code>http://localhost:80</code> in browser.</li>
+</ul>
+<h1 id="configuring-apache">Configuring Apache</h1>
+<ul>
+<li>Configuration is stored in the <code>/etc/apache2/2.2/httpd.conf</code> file.</li>
+<li>By default, web pages are served from <code>/var/apache2/2.2/htdocs</code> folder.</li>
+</ul>
+<h3 id="edit-etcapache222httpdconf">Edit <code>/etc/apache2/2.2/httpd.conf</code></h3>
+<ul>
+<li>Can edit <code>DocumentRoot</code> to point to another directory.</li>
+<li>Make sure to change the <Directory ""> to point to the same DocumentRoot</li>
+<li>Also need to make sure that the directory it points into to has execute permissions, otherwise others won't be able to read the files within the directory.</li>
+</ul>
+<h3 id="directives-in-httpdconf">Directives in <code>httpd.conf</code></h3>
+<pre><code>Allow from &lt;address&gt;        # &lt;address&gt; is IP address or fully qualified domain name
+Deny from &lt;address&gt;
+</code></pre>
+
+<ul>
+<li>Using <code>Order</code> allows one to fine-tune the access:</li>
+</ul>
+<pre><code>Order deny,allow            # Specifies restriction order
+Deny from all
+Allow from some.host.com
+</code></pre>
+
+<ul>
+<li>The above example will by default deny access to all, and then only allow access from some.host.com.</li>
+</ul>
+<h3 id="displaying-default-files-other-than-indexhtml">Displaying default files other than index.html</h3>
+<ul>
+<li>Look for <code>DirectoryIndex</code> and add other possible files, e.g.:</li>
+</ul>
+<pre><code>DirectoryIndex index.html index.htm default.htm index.php index.pl
+</code></pre>
+
+<h1 id="setting-up-virtual-hosts-in-apache">Setting up Virtual Hosts in Apache</h1>
+<ul>
+<li>One can examine <code>/etc/apache2/2.2/samples-conf.d/vhosts.conf</code> to show examples of VirtualHost configuration tags that should be added to the <code>/etc/apache2/2.2/httpd.conf</code> file.</li>
+</ul>
+<h3 id="edit-the-etcapache222httpdconf-file">Edit the <code>/etc/apache2/2.2/httpd.conf</code> file:</h3>
+<ul>
+<li>Comment out the default <code>DocumentRoot "..."</code></li>
+<li>Add the following to direct queries to the specified DocumentRoot:</li>
+</ul>
+<pre><code>Listen 80                   # Check that Apache listens on this port (default)
+
+NameVirtualHost *:80        # Allows for name based virtual hosts
+
+&lt;VirtualHost *:80&gt;
+    DocumentRoot &quot;/path/directory&quot;
+    ServerName www.host.name
+&lt;/VirtualHost&gt;
+</code></pre>
+
+<ul>
+<li>Next, need to give access through Apache to the specified directory by adding:</li>
+</ul>
+<pre><code>&lt;Directory &quot;/path/directory&quot;&gt;
+    Options Indexes FollowSymLinks
+    AllowOverride None
+    Order allow,deny
+    Allow from all
+&lt;/Directory&gt;
+</code></pre>
+
+<p>Also ensure the <code>/etc/inet/hosts</code> file is configured to resolve the ServerName (note that <code>/etc/hosts</code> symbolically links to <code>/etc/inet/hosts</code>):</p>
+<pre><code>192.168.1.123 www.host.name     # Assigns 192.168.1.123 to www.host.name
+</code></pre>
+
+<h2 id="additional-steps-for-virtual-hosts-on-different-ports">Additional steps for virtual hosts on different ports</h2>
+<p>Assuming the above virtual host is created, we add another virtual host that runs on a different port:</p>
+<pre><code>Listen 8123
+
+&lt;VirtualHost *:8123&gt;
+    DocumentRoot &quot;/path/anotherDirectory&quot;
+&lt;/VirtualHost&gt;
+
+&lt;Directory &quot;/path/anotherDirectory&quot;&gt;
+    Options Indexes FollowSymLinks
+    AllowOverride None
+    Order allow,deny
+    Allow from all
+&lt;/Directory&gt;
+
+</code></pre>
+
+<h1 id="configuring-authentication-and-authorization">Configuring Authentication and Authorization</h1>
+<ul>
+<li><a href="http://httpd.apache.org/docs/2.2/howto/auth.html">Authentication and Authorization for version 2.2 from apache.org</a></li>
+<li>Create a password file (not accessible from the web) using <code>htpasswd</code>.</li>
+<li>Note that <code>htpasswd</code> is located at <code>/usr/local/apache2/bin/htpasswd</code></li>
+<li>E.g. <code>htpasswd -c /usr/local/apache/passwd/passwords user_name</code></li>
+<li>Then configure the server to request the password by editing the <code>httpd.conf</code> file or using an <code>.htaccess</code> file:</li>
+</ul>
+<pre><code>AuthType Basic
+AuthName &quot;Restricted Files&quot;
+# (Following line optional)
+AuthBasicProvider file
+AuthUserFile /usr/local/apache/passwd/passwords
+Require user user_name
+</code></pre>
+
+<ul>
+<li>So to protect a folder <code>/pathto/secret</code>:<ul>
+<li>Place the above directives in <code>.htaccess</code> within the folder <code>/pathto/secret</code>.</li>
+<li>Alternatively, place the above directives in the <code>httpd.conf</code> file within a directory section: <code>&lt;Directory /pathto/secret&gt; ... &lt;/Directory&gt;</code></li>
+</ul>
+</li>
+</ul>
               
             </div>
           </div>
@@ -455,10 +581,10 @@ svcadm restart ftp
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../Ubuntu_Apache_Setup_and_Config/" class="btn btn-neutral float-right" title="Ubuntu Apache Setup and Config">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../Solaris_CheatSheet/" class="btn btn-neutral float-right" title="Solaris CheatSheet">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../Solaris_SMB_vs_Samba/" class="btn btn-neutral" title="Solaris SMB vs Samba"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../Sharing_Files_with_Samba/" class="btn btn-neutral" title="Sharing Files with Samba"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -486,10 +612,10 @@ svcadm restart ftp
           <a href="https://github.com/gavchan/dev-sysadmin/" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../Solaris_SMB_vs_Samba/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../Sharing_Files_with_Samba/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../Ubuntu_Apache_Setup_and_Config/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../Solaris_CheatSheet/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
