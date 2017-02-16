@@ -13,11 +13,19 @@
 ### Installing files from the ArchLinux User Repository
 - [ArchLinux installing "AUR" packages](https://wiki.archlinux.org/index.php/Help:Reading#Installation_of_packages)
 
-### Configuring Network Manager
--[Network Manager with Gnome3](https://evilshit.wordpress.com/2012/09/15/how-to-make-networkmanager-and-network-manager-applet-work-on-arch-linux-with-gnome3/)
+### Deluge
+- [ArchLinux Wiki: Deluge](https://wiki.archlinux.org/index.php/Deluge)
+
+*Installation Notes*
+
+- "Import Error: No module named gtk" when running `deluge-gtk`: install `pygtk` package.
+
+### Network Manager
+
+- [Network Manager with Gnome3](https://evilshit.wordpress.com/2012/09/15/how-to-make-networkmanager-and-network-manager-applet-work-on-arch-linux-with-gnome3/)
 - [ArchLinux Wiki Network Manager](https://wiki.archlinux.org/index.php/NetworkManager)
 
-### Configuring PIA
+### PIA
 - Finally got it working via NetworkManager/OpenVPN using [PIA's script](https://www.privateinternetaccess.com/pages/client-support/ubuntu-openvpn)
 
 ### Redshift (F.lux alternative for Linux)
