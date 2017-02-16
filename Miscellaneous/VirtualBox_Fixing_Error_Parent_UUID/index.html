@@ -8,7 +8,7 @@
   
   <meta name="author" content="Gavin">
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Python OOP - Software Development and System Administration Notes</title>
+  <title>VirtualBox Fixing Error Parent UUID - Software Development and System Administration Notes</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Python OOP";
-    var mkdocs_page_input_path = "Python/Python_OOP.md";
-    var mkdocs_page_url = "/Python/Python_OOP/";
+    var mkdocs_page_name = "VirtualBox Fixing Error Parent UUID";
+    var mkdocs_page_input_path = "Miscellaneous/VirtualBox_Fixing_Error_Parent_UUID.md";
+    var mkdocs_page_url = "/Miscellaneous/VirtualBox_Fixing_Error_Parent_UUID/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -197,28 +197,39 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../Miscellaneous/Git_and_GitHub/">Git and GitHub</a>
+        <a class="" href="../Git_and_GitHub/">Git and GitHub</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../Miscellaneous/Octave_Basics/">Octave Basics</a>
+        <a class="" href="../Octave_Basics/">Octave Basics</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../Miscellaneous/Vim/">Vim</a>
+        <a class="" href="../Vim/">Vim</a>
         
     </li>
 
         
             
-    <li class="toctree-l1 ">
-        <a class="" href="../../Miscellaneous/VirtualBox_Fixing_Error_Parent_UUID/">VirtualBox Fixing Error Parent UUID</a>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">VirtualBox Fixing Error Parent UUID</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#recovering-virtualbox-vhd-and-snapshots">Recovering VirtualBox VHD and Snapshots</a></li>
+                
+                    <li><a class="toctree-l4" href="#exploring-configuration-files">Exploring Configuration Files</a></li>
+                
+                    <li><a class="toctree-l4" href="#parent-uuid-problems">Parent UUID Problems</a></li>
+                
+            
+            </ul>
         
     </li>
 
@@ -290,31 +301,14 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../Databases_SQL_Python/">Databases SQL Python</a>
+        <a class="" href="../../Python/Databases_SQL_Python/">Databases SQL Python</a>
         
     </li>
 
         
             
-    <li class="toctree-l1 current">
-        <a class="current" href="./">Python OOP</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#basic-structure-syntax">Basic Structure / Syntax</a></li>
-                
-                    <li><a class="toctree-l4" href="#type">type()</a></li>
-                
-                    <li><a class="toctree-l4" href="#dir">dir()</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#object-lifecycle">Object Lifecycle</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#inheritance">Inheritance</a></li>
-                
-            
-            </ul>
+    <li class="toctree-l1 ">
+        <a class="" href="../../Python/Python_OOP/">Python OOP</a>
         
     </li>
 
@@ -409,14 +403,14 @@
     
       
         
-          <li>Python &raquo;</li>
+          <li>Miscellaneous &raquo;</li>
         
       
     
-    <li>Python OOP</li>
+    <li>VirtualBox Fixing Error Parent UUID</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/gavchan/dev-sysadmin/edit/master/docs/Python/Python_OOP.md"
+        <a href="https://github.com/gavchan/dev-sysadmin/edit/master/docs/Miscellaneous/VirtualBox_Fixing_Error_Parent_UUID.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -426,62 +420,32 @@
           <div role="main">
             <div class="section">
               
-                <p><em>Notes from Coursera Using Databases with Python by Prof. Charles Severance</em></p>
-<h1 id="basic-structure-syntax">Basic Structure / Syntax</h1>
-<pre><code>class ClassName:
-    x = 0
-
-    def methodName(self):
-        self.x = self.x + 1
-
-anObj = ClassName()
-
-anObj.methodName();
+                <h1 id="recovering-virtualbox-vhd-and-snapshots">Recovering VirtualBox VHD and Snapshots</h1>
+<p>Problem: For an unknown reason, my Solaris VM .VHD file got corrupted, and although the .VHD file was able to be loaded into VirtualBox, the snapshots were unusable.</p>
+<h3 id="exploring-configuration-files">Exploring Configuration Files</h3>
+<ul>
+<li>Assuming the VirtualBox Machine was named "Vbmach", the VM folder is stored in the <code>Users/VirtualBox VMs/</code> folder, with a configuration file named <code>Vbmach.vbox</code></li>
+</ul>
+<h3 id="parent-uuid-problems">Parent UUID Problems</h3>
+<ul>
+<li>Source: https://forums.virtualbox.org/viewtopic.php?f=6&amp;t=79896</li>
+<li>When facing Parent UUID problems, one can use the <code>vbmanage</code> command (located in the VirtualBox installation folder):</li>
+<li>Example of an error:</li>
+</ul>
+<pre><code>Parent UUID {00000000-0000-0000-0000-000000000000} of the medium 'C:\Users\User\VirtualBox VMs\Ubuntu\Snapshots/{e2758629-df3a-4f02-a9a3-eb1cfa43fcaf}.vhd' does not match UUID {eb1dad3e-8223-4284-9534-588b1af20c25} of its parent medium stored in the media registry ('C:\Users\User\.VirtualBox\VirtualBox.xml').
 </code></pre>
 
-<ul>
-<li><code>self</code> is a variable that is an alias to an instance.</li>
-<li>Each instance has to have one parameter if want objects to "talk" to each other.</li>
-</ul>
-<h3 id="type"><code>type()</code></h3>
-<ul>
-<li><code>type(anObj)</code> returns something about the variable/object.</li>
-</ul>
-<h3 id="dir"><code>dir()</code></h3>
-<ul>
-<li><code>dir(anObj)</code> lists capabilities of a class.</li>
-<li>Items enclosed by underscores are reserved methods used by Python.</li>
-</ul>
-<h1 id="object-lifecycle">Object Lifecycle</h1>
-<ul>
-<li>Objects are created, used and discarded</li>
-<li>Constructors are methods that sets up instance variables that have initial values.</li>
-<li>Destructors are rarely used.</li>
-</ul>
-<pre><code>class ClassName:
-
-    def __init__(self, nam):
-        self.name = nam
-
-    def __del__(self):
-        ...
+<p>First get information on each snapshot (.vhd) and the main .vmd file using:</p>
+<pre><code>vbox manage internalcommands dumphdinfo harddisk0.vhd
 </code></pre>
 
-<h1 id="inheritance">Inheritance</h1>
-<ul>
-<li>Using an existing class in which one inherits all the capabilities of an existing class. Other terms are extending the class.</li>
-<li>Syntax:</li>
-</ul>
-<pre><code>class Class1:
-    x = 0
-    name = &quot;&quot;
-    def __init__(self,nam):
-        ...
-    def a_Method(self):
-        ...
-
-class Class2(Class1):
-    ...
+<p>After retrieving a dump of of the info in each of the files, I noted that two of the files had a uuidParent={00000000-0000-0000-0000-000000000000}.</p>
+<p>Going through the sequential list of .VHD snapshots, the problem identified was that the main .VHD file and the first visible snapshot in the directory that the above invalid uuid, and so could not chain with each other.</p>
+<p>The issue was solved by:
+1. Setting the main .VHD file's parent UUID equal to the Machine UUID (Found in the .VirtualBox/virtualbox.xml file, or visible in the <code>Vbmach.vbox</code> configuration file.
+2. Setting the first snapshot with the invalid parent UUID to the UUID of the main.VHD file.</p>
+<pre><code>vboxmanage.exe internalcommands sethdparentuuid &quot;C:\Path\to\Vbmach.vhd&quot; {&lt;parent-UUID&gt;}
+vboxmanage.exe internalcommands sethdparentuuid &quot;C:\Path\to\Snapshots\{&lt;uuid&gt;}.vhd&quot;
 </code></pre>
               
             </div>
@@ -490,10 +454,10 @@ class Class2(Class1):
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../../WebDev/Resources/" class="btn btn-neutral float-right" title="Resources">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../../Powershell/Functions_and_Scripting/" class="btn btn-neutral float-right" title="Functions and Scripting">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../Databases_SQL_Python/" class="btn btn-neutral" title="Databases SQL Python"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../Vim/" class="btn btn-neutral" title="Vim"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -521,10 +485,10 @@ class Class2(Class1):
           <a href="https://github.com/gavchan/dev-sysadmin/" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../Databases_SQL_Python/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../Vim/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../../WebDev/Resources/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../../Powershell/Functions_and_Scripting/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

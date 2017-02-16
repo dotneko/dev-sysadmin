@@ -12,7 +12,7 @@
         }, 
         {
             "location": "/Linux-and-Unix/ArchLinux/", 
-            "text": "ArchLinux Wiki\n\n\n\n\nInstallation\n\n\n\n\nArchLinux Installation\n\n\nInstalling ArchLinux in VirtualBox\n (Worked well with minor adjustments)\n\n\n\n\nMounting an additional internal drive at boot\n\n\n\n\nEdit fstab: \nAccessing an internal drive\n\n\n\n\n/dev/sdc4 /media/anyname rw,auto,user 0 0\n\n\n\n\nInstalling files from the ArchLinux User Repository\n\n\n\n\nArchLinux installing \"AUR\" packages\n\n\n\n\nConfiguring Network Manager\n\n\n-\nNetwork Manager with Gnome3\n\n- \nArchLinux Wiki Network Manager\n\n\nConfiguring PIA\n\n\n\n\nFinally got it working via NetworkManager/OpenVPN using \nPIA's script\n\n\n\n\nRedshift (F.lux alternative for Linux)\n\n\n\n\nRedshift Project Web Page\n\n\nRedshift Archlinux Page\n\n\n\n\nInstallation Notes\n\n\n\n\nInstallation with \npacman -S redshift\n worked fine.\n\n\nNoted when trying to run \nredshift-gtk1\n needed to install \npython-gobject\n and \npython-xdg\n as noted on the ArchLinux Wiki.\n\n\nInstall as service: \nsystemctl enable /usr/lib/systemd/redshift-gtk.service\n\n\nManually configure \n~/.config/redshift.conf\n file.", 
+            "text": "ArchLinux Wiki\n\n\n\n\nInstallation\n\n\n\n\nArchLinux Installation\n\n\nInstalling ArchLinux in VirtualBox\n (Worked well with minor adjustments)\n\n\n\n\nMounting an additional internal drive at boot\n\n\n\n\nEdit fstab: \nAccessing an internal drive\n\n\n\n\n/dev/sdc4 /media/anyname rw,auto,user 0 0\n\n\n\n\nInstalling files from the ArchLinux User Repository\n\n\n\n\nArchLinux installing \"AUR\" packages\n\n\n\n\nDeluge\n\n\n\n\nArchLinux Wiki: Deluge\n\n\n\n\nInstallation Notes\n\n\n\n\n\"Import Error: No module named gtk\" when running \ndeluge-gtk\n: install \npygtk\n package.\n\n\n\n\nNetwork Manager\n\n\n\n\nNetwork Manager with Gnome3\n\n\nArchLinux Wiki Network Manager\n\n\n\n\nPIA\n\n\n\n\nFinally got it working via NetworkManager/OpenVPN using \nPIA's script\n\n\n\n\nRedshift (F.lux alternative for Linux)\n\n\n\n\nRedshift Project Web Page\n\n\nRedshift Archlinux Page\n\n\n\n\nInstallation Notes\n\n\n\n\nInstallation with \npacman -S redshift\n worked fine.\n\n\nNoted when trying to run \nredshift-gtk1\n needed to install \npython-gobject\n and \npython-xdg\n as noted on the ArchLinux Wiki.\n\n\nInstall as service: \nsystemctl enable /usr/lib/systemd/redshift-gtk.service\n\n\nManually configure \n~/.config/redshift.conf\n file.", 
             "title": "ArchLinux"
         }, 
         {
@@ -31,14 +31,19 @@
             "title": "Installing files from the ArchLinux User Repository"
         }, 
         {
-            "location": "/Linux-and-Unix/ArchLinux/#configuring-network-manager", 
-            "text": "- Network Manager with Gnome3 \n-  ArchLinux Wiki Network Manager", 
-            "title": "Configuring Network Manager"
+            "location": "/Linux-and-Unix/ArchLinux/#deluge", 
+            "text": "ArchLinux Wiki: Deluge   Installation Notes   \"Import Error: No module named gtk\" when running  deluge-gtk : install  pygtk  package.", 
+            "title": "Deluge"
         }, 
         {
-            "location": "/Linux-and-Unix/ArchLinux/#configuring-pia", 
+            "location": "/Linux-and-Unix/ArchLinux/#network-manager", 
+            "text": "Network Manager with Gnome3  ArchLinux Wiki Network Manager", 
+            "title": "Network Manager"
+        }, 
+        {
+            "location": "/Linux-and-Unix/ArchLinux/#pia", 
             "text": "Finally got it working via NetworkManager/OpenVPN using  PIA's script", 
-            "title": "Configuring PIA"
+            "title": "PIA"
         }, 
         {
             "location": "/Linux-and-Unix/ArchLinux/#redshift-flux-alternative-for-linux", 
@@ -909,6 +914,26 @@
             "location": "/Miscellaneous/Vim/#some-tips-found-on-the-web", 
             "text": "Indent multiple lines quickly ([Very detailed answer at source]}(http://stackoverflow.com/questions/235839/indent-multiple-lines-quickly-in-vi)]):  Enter [num lines] then  : E.g.  8  will indent 8 lines.    Commenting out blocks of code ( Source ):  Go to beginning of block, press \\  to enter visual mode.  Move down to the end of the block, then press \\  to insert, type  # , and then \\", 
             "title": "Some tips found on the web:"
+        }, 
+        {
+            "location": "/Miscellaneous/VirtualBox_Fixing_Error_Parent_UUID/", 
+            "text": "Recovering VirtualBox VHD and Snapshots\n\n\nProblem: For an unknown reason, my Solaris VM .VHD file got corrupted, and although the .VHD file was able to be loaded into VirtualBox, the snapshots were unusable.\n\n\nExploring Configuration Files\n\n\n\n\nAssuming the VirtualBox Machine was named \"Vbmach\", the VM folder is stored in the \nUsers/VirtualBox VMs/\n folder, with a configuration file named \nVbmach.vbox\n\n\n\n\nParent UUID Problems\n\n\n\n\nSource: https://forums.virtualbox.org/viewtopic.php?f=6\nt=79896\n\n\nWhen facing Parent UUID problems, one can use the \nvbmanage\n command (located in the VirtualBox installation folder):\n\n\nExample of an error:\n\n\n\n\nParent UUID {00000000-0000-0000-0000-000000000000} of the medium 'C:\\Users\\User\\VirtualBox VMs\\Ubuntu\\Snapshots/{e2758629-df3a-4f02-a9a3-eb1cfa43fcaf}.vhd' does not match UUID {eb1dad3e-8223-4284-9534-588b1af20c25} of its parent medium stored in the media registry ('C:\\Users\\User\\.VirtualBox\\VirtualBox.xml').\n\n\n\n\nFirst get information on each snapshot (.vhd) and the main .vmd file using:\n\n\nvbox manage internalcommands dumphdinfo harddisk0.vhd\n\n\n\n\nAfter retrieving a dump of of the info in each of the files, I noted that two of the files had a uuidParent={00000000-0000-0000-0000-000000000000}.\n\n\nGoing through the sequential list of .VHD snapshots, the problem identified was that the main .VHD file and the first visible snapshot in the directory that the above invalid uuid, and so could not chain with each other.\n\n\nThe issue was solved by:\n1. Setting the main .VHD file's parent UUID equal to the Machine UUID (Found in the .VirtualBox/virtualbox.xml file, or visible in the \nVbmach.vbox\n configuration file.\n2. Setting the first snapshot with the invalid parent UUID to the UUID of the main.VHD file.\n\n\nvboxmanage.exe internalcommands sethdparentuuid \nC:\\Path\\to\\Vbmach.vhd\n {\nparent-UUID\n}\nvboxmanage.exe internalcommands sethdparentuuid \nC:\\Path\\to\\Snapshots\\{\nuuid\n}.vhd", 
+            "title": "VirtualBox Fixing Error Parent UUID"
+        }, 
+        {
+            "location": "/Miscellaneous/VirtualBox_Fixing_Error_Parent_UUID/#recovering-virtualbox-vhd-and-snapshots", 
+            "text": "Problem: For an unknown reason, my Solaris VM .VHD file got corrupted, and although the .VHD file was able to be loaded into VirtualBox, the snapshots were unusable.", 
+            "title": "Recovering VirtualBox VHD and Snapshots"
+        }, 
+        {
+            "location": "/Miscellaneous/VirtualBox_Fixing_Error_Parent_UUID/#exploring-configuration-files", 
+            "text": "Assuming the VirtualBox Machine was named \"Vbmach\", the VM folder is stored in the  Users/VirtualBox VMs/  folder, with a configuration file named  Vbmach.vbox", 
+            "title": "Exploring Configuration Files"
+        }, 
+        {
+            "location": "/Miscellaneous/VirtualBox_Fixing_Error_Parent_UUID/#parent-uuid-problems", 
+            "text": "Source: https://forums.virtualbox.org/viewtopic.php?f=6 t=79896  When facing Parent UUID problems, one can use the  vbmanage  command (located in the VirtualBox installation folder):  Example of an error:   Parent UUID {00000000-0000-0000-0000-000000000000} of the medium 'C:\\Users\\User\\VirtualBox VMs\\Ubuntu\\Snapshots/{e2758629-df3a-4f02-a9a3-eb1cfa43fcaf}.vhd' does not match UUID {eb1dad3e-8223-4284-9534-588b1af20c25} of its parent medium stored in the media registry ('C:\\Users\\User\\.VirtualBox\\VirtualBox.xml').  First get information on each snapshot (.vhd) and the main .vmd file using:  vbox manage internalcommands dumphdinfo harddisk0.vhd  After retrieving a dump of of the info in each of the files, I noted that two of the files had a uuidParent={00000000-0000-0000-0000-000000000000}.  Going through the sequential list of .VHD snapshots, the problem identified was that the main .VHD file and the first visible snapshot in the directory that the above invalid uuid, and so could not chain with each other.  The issue was solved by:\n1. Setting the main .VHD file's parent UUID equal to the Machine UUID (Found in the .VirtualBox/virtualbox.xml file, or visible in the  Vbmach.vbox  configuration file.\n2. Setting the first snapshot with the invalid parent UUID to the UUID of the main.VHD file.  vboxmanage.exe internalcommands sethdparentuuid  C:\\Path\\to\\Vbmach.vhd  { parent-UUID }\nvboxmanage.exe internalcommands sethdparentuuid  C:\\Path\\to\\Snapshots\\{ uuid }.vhd", 
+            "title": "Parent UUID Problems"
         }, 
         {
             "location": "/Powershell/Functions_and_Scripting/", 
