@@ -8,7 +8,7 @@
   
   <meta name="author" content="Gavin">
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>SSL TLS - Software Development and System Administration Notes</title>
+  <title>Linux Networking - Software Development and System Administration Notes</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "SSL TLS";
-    var mkdocs_page_input_path = "Security/SSL-TLS.md";
-    var mkdocs_page_url = "/Security/SSL-TLS/";
+    var mkdocs_page_name = "Linux Networking";
+    var mkdocs_page_input_path = "Linux-and-Unix/Linux_Networking.md";
+    var mkdocs_page_url = "/Linux-and-Unix/Linux_Networking/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -68,75 +68,93 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../../Linux-and-Unix/ArchLinux/">ArchLinux</a>
+    <a class="" href="../ArchLinux/">ArchLinux</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../Linux-and-Unix/Bash_Automating_User_and_Passwords/">Bash Automating User and Passwords</a>
+    <a class="" href="../Bash_Automating_User_and_Passwords/">Bash Automating User and Passwords</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../Linux-and-Unix/FTP_Usage_and_Configuration/">FTP Usage and Configuration</a>
+    <a class="" href="../FTP_Usage_and_Configuration/">FTP Usage and Configuration</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../Linux-and-Unix/File_System/">File System</a>
+    <a class="" href="../File_System/">File System</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../Linux-and-Unix/Files_and_Directories/">Files and Directories</a>
+    <a class="" href="../Files_and_Directories/">Files and Directories</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Linux Networking</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#basic-commands">Basic Commands</a></li>
+    
+
+    <li class="toctree-l3"><a href="#controlling-network-interfaces">Controlling Network Interfaces</a></li>
+    
+
+    <li class="toctree-l3"><a href="#monitoring-network-connections">Monitoring Network Connections</a></li>
+    
+
+    <li class="toctree-l3"><a href="#basic-os-statistics-with-sysstat-tools">Basic OS statistics with sysstat tools</a></li>
+    
+
+    <li class="toctree-l3"><a href="#historical-resource-usage-with-sar">Historical Resource Usage with SAR</a></li>
+    
+
+    </ul>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../Linux-and-Unix/Linux_Networking/">Linux Networking</a>
+    <a class="" href="../Naming_Services/">Naming Services</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../Linux-and-Unix/Naming_Services/">Naming Services</a>
+    <a class="" href="../Other_Distros/">Other Distros</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../Linux-and-Unix/Other_Distros/">Other Distros</a>
+    <a class="" href="../SSH_and_SCP_Usage/">SSH and SCP Usage</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../Linux-and-Unix/SSH_and_SCP_Usage/">SSH and SCP Usage</a>
+    <a class="" href="../Sharing_Files_with_Samba/">Sharing Files with Samba</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../Linux-and-Unix/Sharing_Files_with_Samba/">Sharing Files with Samba</a>
+    <a class="" href="../Solaris_Apache_Server_Setup_and_Config/">Solaris Apache Server Setup and Config</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../Linux-and-Unix/Solaris_Apache_Server_Setup_and_Config/">Solaris Apache Server Setup and Config</a>
+    <a class="" href="../Solaris_CheatSheet/">Solaris CheatSheet</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../Linux-and-Unix/Solaris_CheatSheet/">Solaris CheatSheet</a>
+    <a class="" href="../Solaris_Networking/">Solaris Networking</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../Linux-and-Unix/Solaris_Networking/">Solaris Networking</a>
+    <a class="" href="../Solaris_Roles/">Solaris Roles</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../Linux-and-Unix/Solaris_Roles/">Solaris Roles</a>
+    <a class="" href="../Solaris_SMB_vs_Samba/">Solaris SMB vs Samba</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../Linux-and-Unix/Solaris_SMB_vs_Samba/">Solaris SMB vs Samba</a>
+    <a class="" href="../Solaris_SMF/">Solaris SMF</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../Linux-and-Unix/Solaris_SMF/">Solaris SMF</a>
+    <a class="" href="../Ubuntu_Apache_Setup_and_Config/">Ubuntu Apache Setup and Config</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../Linux-and-Unix/Ubuntu_Apache_Setup_and_Config/">Ubuntu Apache Setup and Config</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../Linux-and-Unix/Users_and_Groups/">Users and Groups</a>
+    <a class="" href="../Users_and_Groups/">Users and Groups</a>
                 </li>
     </ul>
 	    </li>
@@ -220,31 +238,11 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../Checksum_Integrity/">Checksum Integrity</a>
+    <a class="" href="../../Security/Checksum_Integrity/">Checksum Integrity</a>
                 </li>
-                <li class=" current">
+                <li class="">
                     
-    <a class="current" href="./">SSL TLS</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#ssl">SSL</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l4" href="#application-to-a-web-system">Application to a Web System</a></li>
-        
-            <li><a class="toctree-l4" href="#how-ssl-works">How SSL works</a></li>
-        
-        </ul>
-    
-
-    <li class="toctree-l3"><a href="#tls-transport-layer-security-protocol">TLS: Transport Layer Security Protocol</a></li>
-    
-
-    <li class="toctree-l3"><a href="#7-main-differences-between-ssl-and-tls">7 Main differences between SSL and TLS</a></li>
-    
-
-    </ul>
+    <a class="" href="../../Security/SSL-TLS/">SSL TLS</a>
                 </li>
     </ul>
 	    </li>
@@ -313,14 +311,14 @@
     
       
         
-          <li>Security &raquo;</li>
+          <li>Linux and Unix &raquo;</li>
         
       
     
-    <li>SSL TLS</li>
+    <li>Linux Networking</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/gavchan/dev-sysadmin/edit/master/docs/Security/SSL-TLS.md"
+        <a href="https://github.com/gavchan/dev-sysadmin/edit/master/docs/Linux-and-Unix/Linux_Networking.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -330,161 +328,118 @@
           <div role="main">
             <div class="section">
               
-                <p>Notes on <a href="https://www.sans.org/reading-room/whitepapers/protocols/ssl-tls-beginners-guide-1029">SANS Beginner's guide on SSL and TLS</a></p>
-<p>Two communication protocols that could be used to encrypt data in transit between the user and the server on which sensitive information resides are:</p>
-<pre><code>- Secure Sockets Layer (SSL)
-- Transport Layer Security (TLS)
+                <h3 id="basic-commands">Basic Commands</h3>
+<pre><code>ifconfig -a
+arp -a
 </code></pre>
-<h1 id="ssl">SSL</h1>
+
+<h3 id="controlling-network-interfaces">Controlling Network Interfaces</h3>
+<p>Display IP addresses:</p>
+<pre><code>ip addr show
+ip addr show &lt;interface: eth0&gt;
+</code></pre>
+
+<p>Add a new IPv4 address:</p>
+<pre><code>ip addr add &lt;ip-addr&gt;/&lt;CIDR&gt; dev &lt;device
+ip addr add 172.16.1.2/24 dev eth1
+</code></pre>
+
+<p>Remove an IPv4 address:</p>
+<pre><code>ip addr del &lt;ip-addr&gt;/&lt;CIDR&gt; dev &lt;device&gt;
+ip addr del 172.16.1.2/24 dev eth1
+</code></pre>
+
+<p>Bringing an interface up and down:</p>
+<pre><code>ip link set eth1 down
+ip link set eth1 up
+</code></pre>
+
+<p>View basic network statistics:</p>
+<pre><code>ip -s link
+ip -s link ls &lt;interface&gt;   # Specific interface
+ip -s -s link ls eth0      # Add -s for additional info
+</code></pre>
+
+<h3 id="monitoring-network-connections">Monitoring Network Connections</h3>
+<p>Show Connections:</p>
+<pre><code>ss -t     # TCP Established connections
+ss -u     # UDP connections
+ss -lt    # Listening TCP ports
+ss -ltn   # Listening ports, no hostname lookups (faster)
+ss -lun   # Listening UDP ports
+ss -ltun  # All listening ports
+</code></pre>
+
+<h3 id="basic-os-statistics-with-sysstat-tools">Basic OS statistics with <code>sysstat</code> tools</h3>
+<p>Installation on Debian-based systems:</p>
+<pre><code>sudo apt-get install sysstat    # Debian-based distros
+sudo yum install sysstat        # RHEL-based distros
+</code></pre>
+
+<p>Gather basic OS statistics:</p>
+<pre><code>vmstat [delay [count]]
+vmstat 1 99   # Reports every 1 second, 99 times.
+</code></pre>
+
+<p>Output key:</p>
 <ul>
-<li>Capable of securing any transmission over TCP.</li>
-<li>HTTPS (Secure HTTP) utilizes SSL in e-commerce or password transactions.</li>
-<li>
-<p>Focuses on the combination of 3 points to provide connection security:</p>
+<li><code>procs - r</code>: Total num processes waiting to run</li>
+<li><code>procs - b</code>: Total num busy processes</li>
+<li><code>memory - swpd</code>: Used virtual memory</li>
+<li><code>memory - free</code>: Free virtual memory</li>
+<li><code>memory - buff</code>: memory used as buffers</li>
+<li><code>memory - cache</code>: memory used as cache</li>
+<li><code>swap - si</code>: memory swapped from disk (each second)</li>
+<li><code>swap - so</code>: memory swapped to disk (each second)</li>
+<li><code>io - bi</code>: blocks in (received from device each second)</li>
+<li><code>io - bo</code>: blocks out (sent to device each second)</li>
+<li><code>system - in</code>: interrupts per second</li>
+<li><code>system - cs</code>: context switches</li>
+<li><code>cpu - us,sys,id,wa,st</code>: CPU user time, system time, idle time, wait time.</li>
+</ul>
+<p>Show memory usage information (active/inactive):</p>
+<pre><code>vmstat -a 1 99
+</code></pre>
+
+<p>Reformat output in megabytes:</p>
+<pre><code>vmstat -a -S M 1 99
+</code></pre>
+
+<p>Gather information for disks/block devices:</p>
+<pre><code>vmstat -d 1 99
+vmstat -d -w     # Wide output
+</code></pre>
+
+<p>Detailed statistics of IO on a server with <code>iostat</code>:</p>
+<pre><code>iostat [delay [count]]
+</code></pre>
+
+<p>Specify device for IO statistics:</p>
+<pre><code>iostat -d -p sda 1 99
+</code></pre>
+
+<h3 id="historical-resource-usage-with-sar">Historical Resource Usage with SAR</h3>
 <ul>
-<li>Privacy: connection through encryption.</li>
-<li>Identity authentication - identification through certificates.</li>
-<li>Reliability - dependable maintenance of a secure connection through message integrity checking.</li>
+<li>System Activity Report (SAR) tool is included with the <code>sysstat</code> tools, and needs to be enabled:</li>
 </ul>
-</li>
-<li>
-<p>SSL version 3.0 was released by Netscape in 1999.</p>
-</li>
-<li>The IETF created a similar protocol in an attempt to standardize SSL within the Internet community, and is the TLS protocol.</li>
-<li>Server authenticates itself to a client that is transmitting information through a series of 9 messages; but it is not critical that the user has an identifying certificate on her machine.</li>
-</ul>
-<h3 id="application-to-a-web-system">Application to a Web System</h3>
+<p>Edit the <code>/etc/default/sysstat</code> by changing the <code>ENABLED="false"</code> to <code>ENABLED="true"</code>, then restart service:</p>
+<pre><code>sudo service sysstat restart
+</code></pre>
+
 <ul>
-<li>Common application is for e-Commerce where a client machine is sending a request to a merchant's server.</li>
-<li>SSL protocol is integrated into most web browsers (so no client configuration required).</li>
-<li>
-<p>SSL needs to be configured on the server:</p>
-<ol>
-<li>
-<p>Web server administrator needs to acquire a digital certificate.</p>
+<li>Data is collected every 10 minutes using a simple cron job configured within <code>/etc/cron.d/sysstat</code></li>
+</ul>
+<p>View basic CPU statistics and wait times:</p>
+<pre><code>sar -u    # Basic CPU statistics and wait times
+sar -r    # Available memory statistics
+sar -b    # IO stats for individual block devices
+</code></pre>
+
+<hr />
+<p>References:</p>
 <ul>
-<li>Can be obtained from a Certification Authority (CA) - Verisign, RSA Data Security.</li>
-<li>Certificates must be renewed after a set length of time.</li>
+<li>Duffy, M. (2015). <em>DevOps Automation Cookbook</em>. Birmingham: Packt Publishing</li>
 </ul>
-</li>
-<li>
-<p>Proper configuration to allow SSL connections.</p>
-</li>
-<li>Add an accelerator to the web server (not requirement but suggested)<ul>
-<li>These are PCI cards that speed up processing actions required to encrypt information for secure communications.</li>
-</ul>
-</li>
-</ol>
-</li>
-<li>
-<p>SSL connections do slow communications due to exchanging of keys and other information during the startup phase of the session.</p>
-</li>
-<li>Public key cryptography requires a "sizeable amount of information" to be passed between the client and server machines.</li>
-</ul>
-<h3 id="how-ssl-works">How SSL works</h3>
-<ul>
-<li>
-<p>4 protocol layers encapsulate all communication between client and server:</p>
-<ol>
-<li>
-<p>Record Layer</p>
-<ul>
-<li>Formats the Alert, ChangeCipherSpec, Handshake and application protocol messages.</li>
-<li>Provides a header for each message and a hash, generated from a Message Authentication Code (MAC) at the end.</li>
-</ul>
-</li>
-<li>
-<p>ChangeCipherSpec Protocol</p>
-<ul>
-<li>Composed of one message that signals the beginning of secure communications between the client and server.</li>
-</ul>
-</li>
-<li>
-<p>Alert Protocol</p>
-<ul>
-<li>Sends errors, problems or warnings about the connection between parties.</li>
-<li>Two fields: Severity Level, Alert Description</li>
-</ul>
-</li>
-<li>
-<p>Handshake Protocol</p>
-<ul>
-<li>A series of messages establish a handshake that begins a secure connection.<ul>
-<li>ClientHello</li>
-<li>ServerHello</li>
-<li>ServerKeyExchange</li>
-<li>ServerHelloDone</li>
-<li>ClientKeyExchange - point where "man in the middle" attack is mitigated.</li>
-<li>ChangeCipherSpec</li>
-<li>Finished</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-</li>
-<li>
-<p>After the handshake process, a lock icon appears to indicate that the secure protocol has been agreed upon.</p>
-</li>
-<li>Message authentication: performed using "an algorithm that uses cryptographic technology to create a digital summary of information so that if the information is altered, the summary (known as a hash) will also change."</li>
-<li>MD5 and SHA are common hash functions used in SSL</li>
-</ul>
-<h1 id="tls-transport-layer-security-protocol">TLS: Transport Layer Security Protocol</h1>
-<ul>
-<li>Released in January 1999 to create a standard for private communications.</li>
-<li>
-<p>Goals of TLS are:</p>
-<ul>
-<li>Cryptographic security</li>
-<li>Interoperability</li>
-<li>Extensibility</li>
-<li>Relative efficiency</li>
-</ul>
-</li>
-<li>
-<p>Implementation is on two levels:</p>
-<ol>
-<li>
-<p>TLS Record protocol</p>
-<ul>
-<li>Negotiates a private, reliable connection between client and server.</li>
-<li>Can be used without encryption but uses symmetric cryptography keys to ensure a private connection.</li>
-<li>Connection is secured through the use of hash functions generated by using a Message Authentication Code.</li>
-</ul>
-</li>
-<li>
-<p>TLS Handshake protocol</p>
-<ul>
-<li>Allows authenticated communication to commence between server and client.</li>
-<li>Uses the same handshake protocol procedure as SSL.</li>
-</ul>
-</li>
-</ol>
-</li>
-</ul>
-<h1 id="7-main-differences-between-ssl-and-tls">7 Main differences between SSL and TLS</h1>
-<ol>
-<li>Protocol Version in Messages</li>
-<li>Alert Protocol Message Types</li>
-<li>
-<p>Message Authentication</p>
-<ul>
-<li>TLS implements standardized MAC (H-MAC) - operates with any hash function, not just MD5 or SHA as explicitly stated by the SSL protocol.</li>
-</ul>
-</li>
-<li>
-<p>Key Material Generation</p>
-<ul>
-<li>TLS uses HMAC standard and its pseudorandom function (PRF) output to generate key material.</li>
-<li>SSL uses RSA, Diffie-Hellman or Fortezza/DMS output to create key material.</li>
-</ul>
-</li>
-<li>
-<p>CertificateVerity</p>
-</li>
-<li>Finished</li>
-<li>Baseline Cipher Suites</li>
-</ol>
               
             </div>
           </div>
@@ -492,10 +447,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../../WebDev/Resources/" class="btn btn-neutral float-right" title="Resources">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../Naming_Services/" class="btn btn-neutral float-right" title="Naming Services">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../Checksum_Integrity/" class="btn btn-neutral" title="Checksum Integrity"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../Files_and_Directories/" class="btn btn-neutral" title="Files and Directories"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -523,10 +478,10 @@
           <a href="https://github.com/gavchan/dev-sysadmin/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../Checksum_Integrity/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../Files_and_Directories/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../../WebDev/Resources/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../Naming_Services/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
