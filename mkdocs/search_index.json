@@ -1246,6 +1246,46 @@
             "title": "7 Main differences between SSL and TLS"
         }, 
         {
+            "location": "/Virtualization/Vagrant/", 
+            "text": "Vagrant\n\n\n\n\nVagrant Docs\n\n\n\n\nStarting and stopping VMs\n\n\nvagrant init\nvagrant up\nvagrant halt\n\n\n\n\nConnecting to the VM:\n\n\nvagrant ssh\n\n\n\n\nRestarting the VM:\n\n\nvagrant reload\n\n\n\n\nCheck Guest OS Sates\n\n\nvagrant status\n\n\n\n\nSuspending/Resuming\n\n\nSuspend (saves snapshot) with:\n\n\nvagrant suspend\n\n\n\n\nResume with:\n\n\nvagrant up\nvagrant resume\n\n\n\n\nRemoving VMs\n\n\nvagrant global-status\nvagrant destroy \nID\n\n\n\n\n\nTo remove stale VMs:\n\n\nvagrant global-status --prune\n\n\n\n\nUsing Vagrant with Version Control\n\n\n\n\nVagrantfile\n should be in version control.\n\n\n.vagrant/\n should be ignored by version control: add to \n.gitignore\n\n\n\n\nManaging Boxes\n\n\nList installed boxes:\n\n\nvagrant box list\n\n\n\n\nRemove an installed box:\n\n\nvagrant box remove \nname", 
+            "title": "Vagrant"
+        }, 
+        {
+            "location": "/Virtualization/Vagrant/#vagrant", 
+            "text": "Vagrant Docs", 
+            "title": "Vagrant"
+        }, 
+        {
+            "location": "/Virtualization/Vagrant/#starting-and-stopping-vms", 
+            "text": "vagrant init\nvagrant up\nvagrant halt  Connecting to the VM:  vagrant ssh  Restarting the VM:  vagrant reload", 
+            "title": "Starting and stopping VMs"
+        }, 
+        {
+            "location": "/Virtualization/Vagrant/#check-guest-os-sates", 
+            "text": "vagrant status", 
+            "title": "Check Guest OS Sates"
+        }, 
+        {
+            "location": "/Virtualization/Vagrant/#suspendingresuming", 
+            "text": "Suspend (saves snapshot) with:  vagrant suspend  Resume with:  vagrant up\nvagrant resume", 
+            "title": "Suspending/Resuming"
+        }, 
+        {
+            "location": "/Virtualization/Vagrant/#removing-vms", 
+            "text": "vagrant global-status\nvagrant destroy  ID   To remove stale VMs:  vagrant global-status --prune", 
+            "title": "Removing VMs"
+        }, 
+        {
+            "location": "/Virtualization/Vagrant/#using-vagrant-with-version-control", 
+            "text": "Vagrantfile  should be in version control.  .vagrant/  should be ignored by version control: add to  .gitignore", 
+            "title": "Using Vagrant with Version Control"
+        }, 
+        {
+            "location": "/Virtualization/Vagrant/#managing-boxes", 
+            "text": "List installed boxes:  vagrant box list  Remove an installed box:  vagrant box remove  name", 
+            "title": "Managing Boxes"
+        }, 
+        {
             "location": "/WebDev/Resources/", 
             "text": "Hosting\n\n\n\n\nHosting Facts\n\n\nTWM Web Hosting SEO News\n\n\nBest Wordpress Hosting Recommendations February 2017\n\n\n\n\nPackage Managers\n\n\n\n\nBower\n. Package manager for the web.\n\n\n\n\nServer Setup: LAMP/MAMP\n\n\n\n\nWorking guide here to setup user Sites folder on El Capitan: \nAMP Setup on MacOS El Capitan\n\n\nDefault web root at \n/Library/WebServer/Documents/\n\n\nAbove link sets up web root at \n~/Username/Sites\n\n\nAccess at: \nhttp://localhost/~username/\n\n\n\n\n\n\n\n\nTextures\n\n\n\n\nTransparent Textures\n. Cool site of customizable transparent textures.\n\n\n\n\nWordpress\n\n\n\n\nHow to speed up development with WP CLI\n\n\nMoving a Wordpress site\n\n\n\n\nWorkflow Automation\n\n\n\n\nGulp\n\n\nBeginners Guide to the Task Runner Gulp", 
             "title": "Resources"
